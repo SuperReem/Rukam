@@ -1,0 +1,13 @@
+.sideNav-container{
+   background-color: var(--primary);
+   height: 100vh;
+   width: 250px;
+   border-bottom-left-radius: 4em;
+   border-top-left-radius: 4em;
+}
+.nav-sub-container{
+   padding: 2em;
+}
+.nav-logo{
+    width: fit-content;
+}
