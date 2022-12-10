@@ -4,7 +4,7 @@ import './SideNavbar.css';
 import Dashboard from "../Dashboard/Dashboard";
 import DroneList from "../Drones/Drones_list";
 import ReportsList from "../Reports/Reports_list";
-import DetectionList from "../Detection/Detection_list";
+import DetectionList from "../Detections/Detection_list";
 
 const Sidebar = () => {
 
