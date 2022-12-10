@@ -29,7 +29,7 @@ const Sidebar = () => {
       </div>
     </div>
     <main className="page-container">
-      <div className="background">
+      <div className="background fs-1">
          {currentIndex === 0? <Dashboard/> : currentIndex === 1? <ReportsList/> : currentIndex === 2? <DetectionList/> : <DroneList/>}
       </div>
     </main>
