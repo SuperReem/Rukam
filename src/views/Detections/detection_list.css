@@ -1,12 +1,63 @@
-#title{
+#title {
     text-align: right;
-    
-   
+    padding-right: 4%;
+
+
 }
 
-#card{
+#card {
     background-color: white;
     border-radius: 2%;
     height: 80%;
     margin: 4%;
+    font-size: 0.45em;
+    text-align: right;
+
+
 }
+
+#headings {
+    padding-right: 5%;
+    padding-top: 3%;
+    padding-bottom: 4%;
+
+}
+
+#detection-list {
+    padding-left: 3%;
+    padding-right: 3%;
+    border-radius: 10%;
+
+}
+
+#button {
+    text-align: left;
+    padding-left: 4%;
+ 
+}
+
+#button-details{
+    background-color:var(--light_green);
+display: none;
+}
+
+
+#row:hover #button-details {
+    display: inline-block;
+    
+}
+
+#row:hover  {
+background-color: #d2bda43d;
+
+
+ 
+}
+
+
+  .style-custom:hover{
+    background-color:var(--light_green) !important;
+     }
+     .style-custom .activeButton{
+        background-color:var(--light_green) !important;
+         }
