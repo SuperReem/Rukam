@@ -56,3 +56,10 @@ main{
    height: 100%;
    padding: 0.5em;
 }
+#copy-right {
+   font-size: 0.9em;
+   color: var(--primary);
+   margin-top: 1em;
+   margin-right: auto;
+   margin-left: auto;
+}

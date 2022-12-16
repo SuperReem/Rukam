@@ -35,6 +35,9 @@ const Sidebar = () => {
       <div className="background fs-1">
          {currentIndex === 0? <Dashboard/> : currentIndex === 1? <ReportsList/> : currentIndex === 2? <DetectionList/> : <DroneList/>}
       </div>
+      <div id='copy-right'>
+            جميع الحقوق محفوظة لــركام &copy; {new Date().getFullYear()}
+      </div>
     </main>
   </div>
 }

@@ -10,7 +10,7 @@ import { useState } from "react";
 import SweetPagination from "sweetpagination";
 import DatePicker from "react-multi-date-picker";
 import "react-multi-date-picker/styles/colors/green.css"
-import arabic from "react-date-object/calendars/arabic"
+//import arabic from "react-date-object/calendars/arabic"
 import arabic_ar from "react-date-object/locales/arabic_ar"
 
 
@@ -147,14 +147,9 @@ function DetectionList() {
                     getStyle={'style-1'}
                 />
             </div>
-
             <div id="page-number">
                 1-20 صفحة
             </div>
-
-        </div>
-        <div id='copy-right'>
-            جميع الحقوق محفوظة لــركام @2022
         </div>
     </>
 
