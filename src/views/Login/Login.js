@@ -43,7 +43,7 @@ function Login() {
 
               <div className="col-12 mb-4">
             <label className="form-label text-right col-form-label col-sm-5 pt-0" for="inputEmail">البريد الإلكتروني</label>
-            <input type="email" className="form-control" id="inputEmail" placeholder="ma***@gmail.com" value={email} required/>
+            <input type="email" className="form-control" id="inputEmail" placeholder="ma***@gmail.com" value={email} required />
         </div>
              
 
@@ -65,7 +65,7 @@ function Login() {
             </div>
                 <div className="text-center">
                
-                  <button type="button" className="btn btn-primary my-2">تسجيل الدخول</button>
+                  <button type="button" className="btn btn-primary my-2  px-5">تسجيل الدخول</button>
                 </div>
               </form>
             </div>

@@ -47,7 +47,7 @@ function ResetPassword() {
 
                 <div className="text-center">
                
-                  <button type="button" className="btn btn-primary my-2">إرسال</button>
+                  <button type="button" className="btn btn-primary my-2  px-5">إرسال</button>
                 </div>
               </form>
             </div>
