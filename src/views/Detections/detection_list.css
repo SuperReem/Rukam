@@ -1,90 +1,100 @@
 #title {
-  text-align: right;
-  padding-right: 3%;
-  font-size: 26px;
-  font-weight: 600;
+    text-align: right;
+    padding-right: 3%;
+    font-size: 26px;
+    font-weight: 600;
 }
 
 #filter {
-  text-align: right;
-  font-size: 0.5em;
-  padding-right: 4%;
-  margin-top: 3%;
-  margin-bottom: 1%;
+    text-align: right;
+    font-size: 0.5em;
+    padding-right: 4%;
+    margin-top: 3%;
+    margin-bottom: 1%;
+
 }
 
 .custom-input {
-  border-radius: 15px;
-  border: 1px white solid;
-  padding: 4px 12px;
-  background-color: white;
-  box-shadow: 0 0 2px var(--light_green);
-}
+    border-radius: 15px;
+    border: 1px  white solid;
+    padding: 4px 12px;
+    background-color: white;
 
-.custom-input:focus {
-  outline: none;
-  border: 1px solid var(--light_green);
-  box-shadow: 0 0 10px 2px var(--light_green);
-}
+    box-shadow: 0 0 2px var(--light_green);
+  }
+ 
+  
+  .custom-input:focus {
+    outline: none;
+    border: 1px solid var(--light_green);
+    box-shadow: 0 0 10px 2px  var(--light_green);
+  }
 
 #card {
-  background-color: white;
-  border-radius: 10px;
-  height: 81%;
-  margin-left: 3%;
-  margin-right: 3%;
-  font-size: 0.45em;
-  text-align: right;
+    background-color: white;
+    border-radius: 2%;
+    height: 74%;
+    margin-left: 3%;
+    margin-right: 3%;
+    font-size: 0.45em;
+    text-align: right;
+
+
 }
 
 #headings {
-  padding-right: 5%;
-  padding-top: 3%;
-  padding-bottom: 3%;
-  font-weight: bold;
+    padding-right: 5%;
+    padding-top: 3%;
+    padding-bottom: 4%;
+    font-weight: bold;
+
 }
 
 #detection-list {
-  padding-left: 3%;
-  padding-right: 3%;
-  border-radius: 10%;
+    padding-left: 3%;
+    padding-right: 3%;
+    border-radius: 10%;
+
 }
 
 #button {
-  text-align: left;
-  padding-left: 4%;
+    text-align: left;
+    padding-left: 4%;
+
 }
 
 #button-details {
-  background-color: var(--light_green) !important;
-  border-color: var(--light_green) !important;
-  display: none;
+    background-color: var(--light_green);
+    display: none;
 }
-#row{
-    padding: 0.4em;
-    border-radius: 10px;
-}
+
+
 #row:hover #button-details {
-  display: inline-block;
+    display: inline-block;
+
 }
 
 #row:hover {
-  background-color: #d2bda43d;
-  border-radius: 15px;
+    background-color: #d2bda43d;
+
+
+
 }
 
+
+.style-custom {
+    background-color: var(--light_green) !important;
+}
+
+
+
 #pagination {
-  direction: ltr !important;
-  margin-top: 2%;
+    direction: ltr !important;
+    margin-top:2%;
 }
 
 #page-number {
-  text-align: center;
-  font-size: 0.8em !important;
-}
-
-#copy-right {
-  font-size: 0.4em;
-  color: var(--primary);
-  margin: 1.5%;
+    text-align: center;
+    font-size: 0.8em !important;
+    
 }
