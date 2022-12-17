@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./login.css";
+import "./Login.css";
 import Button from "react-bootstrap/Button";
 import { BsArrowUpLeft } from "react-icons/bs";
 
