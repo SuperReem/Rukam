@@ -1,18 +1,17 @@
 import Button from "react-bootstrap/Button";
 import { AiOutlinePlus } from "react-icons/ai";
+import { BsArrowUpLeft } from "react-icons/bs";
+
 import "./Drones_list.css";
 import { useState } from "react";
-import drone from "../../assets/images/DRONE_ICON.png"
-
+import drone from "../../assets/images/DRONE_ICON.png";
 
 function DroneList() {
-  const [imgFile, setImgFile] = useState('');
-  const [dronName, setDronName] = useState('');
-
+  const [imgFile, setImgFile] = useState("");
+  const [dronName, setDronName] = useState("");
 
   return (
-    <>
-
+    <div>
       <div className=" d-flex align-items-center justify-content-between">
         <div className="">قائمة الدرون</div>
         <Button variant="secondary" size="sm" className="darkbtn">
@@ -20,24 +19,160 @@ function DroneList() {
         </Button>
       </div>
 
+    
 
-      <div className="position-relative mt-4 ">
-      <img src={drone} alt="" className=" position-absolute translate-middle  rounded-circle  border border-white  border-5  " height={100} width={100}/>
+      <div class="container-fluid bg-3 text-center">
+        {/* <div class="row"> */}
 
-      <div className="statistics-cards">
+          {/* <div class=""> */}
+          
+            <div class="row text-center  mt-4  ">
 
-
-              {/* <p className='statistics-cards-title'>المنطقة الأعلى مخالفات</p> */}
-              <div className='d-flex'>
-               {/* <SlLocationPin className='statistics-cards-icon'/> */}
-               <div>
-                <p className='statistics-cards-number mb-0'>حطين</p>
-                <p className='fs-6'>٢٠٠ مخالفة</p>
-               </div>
+            {/* mt-sm-5 mt-lg-1 */}
+              <div class="col-lg-3 col-sm-6 text-center  mb-3">
+                <div class=" card mx-3 text-center mt-5 border-0 shadow p-0 ">
+                  <div class=" card-body avatar mx-auto white avatar-container text-center mx-auto position-relative pb-0 pt-2">
+                    <img
+                      class="
+      card-img-top bg-white  mx-auto  shadow-sm 
+     img-circle rounded-circle   p-1  position-absolute top-0 start-50 translate-middle 
+      "
+                      src={drone}
+                      alt=""
+                    />
+                   
+                      <h4 class="card-title mt-5 mb-0">Drone564</h4>
+                      <Button variant="secondary" size="sm" className="mt-0 mb-0">
+                        <BsArrowUpLeft /> التفاصيل
+                      </Button>
+                   
+                  </div>
+                </div>
               </div>
+
+            {/* </div> */}
+          {/* </div> */}
+          <div class="col-lg-3 col-sm-6 text-center  mb-3">
+                <div class=" card mx-3 text-center mt-5 border-0 shadow p-0 ">
+                  <div class=" card-body avatar mx-auto white avatar-container text-center mx-auto position-relative pb-0 pt-2">
+                    <img
+                      class="
+      card-img-top bg-white  mx-auto  shadow-sm 
+     img-circle rounded-circle   p-1  position-absolute top-0 start-50 translate-middle 
+      "
+                      src={drone}
+                      alt=""
+                    />
+                   
+                      <h4 class="card-title mt-5 mb-0">Drone564</h4>
+                      <Button variant="secondary" size="sm" className="mt-0 mb-0">
+                        <BsArrowUpLeft /> التفاصيل
+                      </Button>
+                   
+                  </div>
+                </div>
+              </div> <div class="col-lg-3 col-sm-6 text-center  mb-3">
+                <div class=" card mx-3 text-center mt-5 border-0 shadow p-0 ">
+                  <div class=" card-body avatar mx-auto white avatar-container text-center mx-auto position-relative pb-0 pt-2">
+                    <img
+                      class="
+      card-img-top bg-white  mx-auto  shadow-sm 
+     img-circle rounded-circle   p-1  position-absolute top-0 start-50 translate-middle 
+      "
+                      src={drone}
+                      alt=""
+                    />
+                   
+                      <h4 class="card-title mt-5 mb-0">Drone564</h4>
+                      <Button variant="secondary" size="sm" className="mt-0 mb-0">
+                        <BsArrowUpLeft /> التفاصيل
+                      </Button>
+                   
+                  </div>
+                </div>
+              </div> <div class="col-lg-3 col-sm-6 text-center  mb-3">
+                <div class=" card mx-3 text-center mt-5 border-0 shadow p-0 ">
+                  <div class=" card-body avatar mx-auto white avatar-container text-center mx-auto position-relative pb-0 pt-2">
+                    <img
+                      class="
+      card-img-top bg-white  mx-auto  shadow-sm 
+     img-circle rounded-circle   p-1  position-absolute top-0 start-50 translate-middle 
+      "
+                      src={drone}
+                      alt=""
+                    />
+                   
+                      <h4 class="card-title mt-5 mb-0">Drone564</h4>
+                      <Button variant="secondary" size="sm" className="mt-0 mb-0">
+                        <BsArrowUpLeft /> التفاصيل
+                      </Button>
+                   
+                  </div>
+                </div>
+              </div> <div class="col-lg-3 col-sm-6 text-center  mb-3">
+                <div class=" card mx-3 text-center mt-5 border-0 shadow p-0 ">
+                  <div class=" card-body avatar mx-auto white avatar-container text-center mx-auto position-relative pb-0 pt-2">
+                    <img
+                      class="
+      card-img-top bg-white  mx-auto  shadow-sm 
+     img-circle rounded-circle   p-1  position-absolute top-0 start-50 translate-middle 
+      "
+                      src={drone}
+                      alt=""
+                    />
+                   
+                      <h4 class="card-title mt-5 mb-0">Drone564</h4>
+                      <Button variant="secondary" size="sm" className="mt-0 mb-0">
+                        <BsArrowUpLeft /> التفاصيل
+                      </Button>
+                   
+                  </div>
+                </div>
+              </div> <div class="col-lg-3 col-sm-6 text-center  mb-3">
+                <div class=" card mx-3 text-center mt-5 border-0 shadow p-0 ">
+                  <div class=" card-body avatar mx-auto white avatar-container text-center mx-auto position-relative pb-0 pt-2">
+                    <img
+                      class="
+      card-img-top bg-white  mx-auto  shadow-sm 
+     img-circle rounded-circle   p-1  position-absolute top-0 start-50 translate-middle 
+      "
+                      src={drone}
+                      alt=""
+                    />
+                   
+                      <h4 class="card-title mt-5 mb-0">Drone564</h4>
+                      <Button variant="secondary" size="sm" className="mt-0 mb-0">
+                        <BsArrowUpLeft /> التفاصيل
+                      </Button>
+                   
+                  </div>
+                </div>
+              </div> <div class="col-lg-3 col-sm-6 text-center  mb-3">
+                <div class=" card mx-3 text-center mt-5 border-0 shadow p-0 ">
+                  <div class=" card-body avatar mx-auto white avatar-container text-center mx-auto position-relative pb-0 pt-2">
+                    <img
+                      class="
+      card-img-top bg-white  mx-auto  shadow-sm 
+     img-circle rounded-circle   p-1  position-absolute top-0 start-50 translate-middle 
+      "
+                      src={drone}
+                      alt=""
+                    />
+                   
+                      <h4 class="card-title mt-5 mb-0">Drone564</h4>
+                      <Button variant="secondary" size="sm" className="mt-0 mb-0">
+                        <BsArrowUpLeft /> التفاصيل
+                      </Button>
+                   
+                  </div>
+                </div>
               </div>
-            </div>
-    </>
+          
+       
+        </div>
+      </div>
+     
+    </div>
   );
 }
 
