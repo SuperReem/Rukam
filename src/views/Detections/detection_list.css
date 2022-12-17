@@ -60,7 +60,10 @@
   border-color: var(--light_green) !important;
   display: none;
 }
-
+#row{
+    padding: 0.4em;
+    border-radius: 10px;
+}
 #row:hover #button-details {
   display: inline-block;
 }

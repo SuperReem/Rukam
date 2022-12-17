@@ -1,3 +1,9 @@
+:root{
+    --brown: #B5864C;
+    --light_brown: #D2BDA4;
+    --light_brown_hover: #a18e75;
+    --light_green_hover: #536d56;
+ }
 .statistics-cards-container{
     display: flex;
     height: 140px;
@@ -22,4 +28,53 @@
 .statistics-cards-number{
     font-weight: 600;
     font-size: 24px;
+}
+.active-drones-container{
+    padding-top: 0.5em;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+}
+.active-drones-list{
+    border-radius: 20px;
+}
+.active-drones-title{
+    font-weight: 600;
+}
+#show-all-button{
+    border-radius: 10px;
+    border: 1px solid #c6c6c6 !important;
+    color: var(--primary);
+    height: 30px;
+    background-color: white !important;
+    font-size: 0.4em;
+}
+#show-all-button:hover{
+    background-color: rgb(250, 250, 250) !important;
+}
+.active-drone-icon{
+    height: 45px;
+    width: 50px;
+}
+#Active-Drones-ListGroup{
+    border-radius: 20px;
+}
+.active-drones-drone-name{
+    font-size: 20px;
+}
+.active-drones-region-name{
+    font-size: 16px;
+    color: var(--primary);
+}
+#details-button {
+    background-color: var(--light_green);
+}
+#details-button:hover {
+    background-color: var(--light_green_hover) !important;
+}
+#current-loc-button{
+    background-color: var(--light_brown) !important;
+    border-color: var(--light_brown) !important;
+}
+#current_loc_button:hover {
+    background-color: var(--light_brown_hover) !important;
 }
