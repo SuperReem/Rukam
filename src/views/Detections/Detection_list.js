@@ -147,13 +147,11 @@ function DetectionList() {
             getData={items}
             navigation={true}
             dataPerPage={1}
-            getStyle={"style-1"}
           />
         </div>
 
         <div id="page-number">1-20 صفحة</div>
       </div>
-      <div id="copy-right">جميع الحقوق محفوظة لــركام @2022</div>
     </>
   );
 }

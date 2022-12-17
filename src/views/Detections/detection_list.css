@@ -30,7 +30,7 @@
 #card {
   background-color: white;
   border-radius: 10px;
-  height: 74%;
+  height: 81%;
   margin-left: 3%;
   margin-right: 3%;
   font-size: 0.45em;
@@ -56,8 +56,8 @@
 }
 
 #button-details {
-  background-color: var(--light_green);
-  border-color: var(--light_green);
+  background-color: var(--light_green) !important;
+  border-color: var(--light_green) !important;
   display: none;
 }
 
@@ -68,10 +68,6 @@
 #row:hover {
   background-color: #d2bda43d;
   border-radius: 15px;
-}
-
-.style-custom {
-  background-color: var(--light_green) !important;
 }
 
 #pagination {
