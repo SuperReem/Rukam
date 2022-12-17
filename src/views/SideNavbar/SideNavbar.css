@@ -15,7 +15,11 @@
 .nav-list-container{
    height: 40%;
 }
+.nav-list-container ul{
+   padding-right : 0.5em;
+}
 .nav-list{
+   width: max-content;
    margin-top: 3em;
    height: 100%;
    list-style: none;
@@ -28,6 +32,10 @@
 .nav-list li{
    cursor: pointer;
    margin-bottom: 2em;
+}
+.sidenav-icons{
+   font-size: 1.5em;
+   margin-left: 0.3em;
 }
 #main-container{
    width: 100%;
@@ -46,4 +54,12 @@ main{
 .background{
    background-color: #FAFAFA;
    height: 100%;
+   padding: 0.5em;
+}
+#copy-right {
+   font-size: 0.9em;
+   color: var(--primary);
+   margin-top: 1em;
+   margin-right: auto;
+   margin-left: auto;
 }
