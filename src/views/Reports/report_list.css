@@ -1,0 +1,80 @@
+#title {
+  text-align: right;
+  padding-right: 4%;
+}
+
+#filter {
+  text-align: right;
+  font-size: 0.5em;
+  padding-right: 4%;
+  margin-top: 2%;
+  margin-bottom: 1%;
+}
+
+.custom-input {
+  border-radius: 10px;
+  border: 1px white solid;
+  padding: 4px 12px;
+  background-color: white;
+  box-shadow: 0 0 2px var(--light_green);
+}
+
+.custom-input:focus {
+  outline: none;
+  border: 1px solid var(--light_green);
+  box-shadow: 0 0 10px 2px var(--light_green);
+}
+#status {
+  background-color: rgb(182, 67, 67);
+  border-radius: 10px;
+  height: 4%;
+  width: 9%;
+  position: absolute;
+  z-index: 2;
+  margin-right: 5%;
+}
+#report-card {
+  background-color: white;
+  border-radius: 10px;
+  height: 13%;
+  margin-top: 2%;
+  margin-left: 10%;
+  margin-right: 4%;
+  font-size: 0.45em;
+  z-index: 1;
+  box-shadow: 0 0 2px rgba(128, 128, 128, 0.153);
+}
+
+#row-info {
+  padding-top: 3%;
+}
+
+#date {
+  color: grey;
+  text-align: right;
+  font-size: 0.9em;
+}
+#button1 {
+  background-color: var(--light_green);
+  border-color: var(--light_green);
+  margin-left: 3%;
+}
+#button2 {
+  background-color: var(--brown);
+  border-color: var(--brown);
+}
+
+#pagination {
+  direction: ltr !important;
+}
+
+#page-number2 {
+  text-align: center;
+  font-size: 0.4em !important;
+}
+
+#copy-right {
+  font-size: 0.4em;
+  color: var(--primary);
+  margin: 1.5%;
+}
