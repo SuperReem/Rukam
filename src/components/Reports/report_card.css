@@ -1,45 +1,43 @@
-.report-card-container{
-    padding-top: 0.5em;
-    margin-bottom: 0.7em;
+.report-card-container {
+  padding-top: 0.8em;
+  margin-right: 0.8em;
 }
-.report-card{
-   background-color: white;
-   box-shadow: 1px 1px 15px 1px #ebebeb;
-   width: 90%;
-   border-radius: 10px;
-   padding: 0.8em;
+.report-card {
+  background-color: white;
+  box-shadow: 1px 1px 15px 1px #ebebeb;
+  width: 90%;
+  border-radius: 10px;
+  padding: 0.4em;
 }
-.report-status-container{
-   border-radius: 10px;
-   width: fit-content;
-   padding: 0.1em 0.5em 0.1em 0.5em;
-   margin-right: 0.2em;
-   margin-top: -1.2em;  
+.report-status-container {
+  border-radius: 10px;
+  width: fit-content;
+  padding: 0.1em 0.5em 0.1em 0.5em;
+  margin-right: 0.2em;
+  margin-top: -0.7em;
 }
-.pending{
-   background-color: rgba(242, 232, 120, 0.63);
+.pending {
+  background-color: rgba(242, 232, 120, 0.63);
 }
-.unsent{
-    background-color: #E9E9E9;
-    color: #4D4D4D;
+.unsent {
+  background-color: #e9e9e9;
+  color: #4d4d4d;
 }
-.under_processing{
-    background-color: #b7d0ece1;
+.under_processing {
+  background-color: #b7d0ece1;
 }
-.closed{
-    background-color: #e4e9e4;
-    color: var(--primary);
+.closed {
+  background-color: #e4e9e4;
+  color: var(--primary);
 }
-#delete-report-button{
-    background-color: #B5864C !important;
-    border-color: #B5864C !important;
+#delete-report-button {
+  background-color: #b5864c !important;
+  border-color: #b5864c !important;
 }
-#delete-report-button:hover{
-    background-color: #9e7440 !important;
+#delete-report-button:hover {
+  background-color: #9e7440 !important;
 }
-.report-time{
-    font-size: 16px;
-    color: #8b8b8b;
+.report-time {
+  font-size: 16px;
+  color: #8b8b8b;
 }
-
-

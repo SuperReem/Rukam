@@ -16,13 +16,13 @@
   border: 1px white solid;
   padding: 4px 12px;
   background-color: white;
-  box-shadow: 0 0 2px var(--light_green);
+  box-shadow: 0 0 2px var(--light_green) !important;
 }
 
 .custom-input:focus {
   outline: none;
-  border: 1px solid var(--light_green);
-  box-shadow: 0 0 10px 2px var(--light_green);
+  border: 1px solid var(--light_green) !important;
+  box-shadow: 0 0 10px 2px var(--light_green) !important;
 }
 #status {
   background-color: rgb(182, 67, 67);
@@ -60,8 +60,8 @@
   margin-left: 3%;
 }
 #button2 {
-  background-color: var(--brown);
-  border-color: var(--brown);
+  background-color: var(--brown) !important;
+  border-color: var(--brown) !important;
 }
 
 #pagination {
