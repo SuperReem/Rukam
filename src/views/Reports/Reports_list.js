@@ -29,7 +29,7 @@ function ReportsList() {
       <ReportCard status={"unsent"} />
       <ReportCard status={"pending"} />
       <ReportCard status={"under_processing"} />
-
+      <ReportCard status={"under_processing"} />
       <div id="pagination">
         <SweetPagination //try react-paginate later!
           currentPageData={setCurrentPageData}
@@ -39,7 +39,6 @@ function ReportsList() {
           getStyle={"style-1"}
         />
       </div>
-
       <div id="page-number2">1-20 صفحة</div>
     </>
   );

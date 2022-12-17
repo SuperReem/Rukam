@@ -1,65 +1,64 @@
-.sideNav-container{
-   background-color: var(--primary);
-   height: 100vh;
-   width: 250px;
-   border-bottom-left-radius: 4em;
-   border-top-left-radius: 4em;
-   position: relative;
+.sideNav-container {
+  background-color: var(--primary);
+  height: 100vh;
+  width: 250px;
+  border-bottom-left-radius: 4em;
+  border-top-left-radius: 4em;
+  position: relative;
 }
-.nav-sub-container{
-   padding: 2em;
+.nav-sub-container {
+  padding: 2em;
 }
-.nav-logo{
-   width: fit-content;
+.nav-logo {
+  width: fit-content;
 }
-.nav-list-container{
-   height: 40%;
+.nav-list-container {
+  height: 40%;
 }
-.nav-list-container ul{
-   padding-right : 0.5em;
+.nav-list-container ul {
+  padding-right: 0.5em;
 }
-.nav-list{
-   width: max-content;
-   margin-top: 3em;
-   height: 100%;
-   list-style: none;
-   color: white;
-   display: flex;
-   flex-direction: column;
-   justify-content: space-evenly;
-   align-items: flex-start;
+.nav-list {
+  width: max-content;
+  margin-top: 3em;
+  height: 100%;
+  list-style: none;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
 }
-.nav-list li{
-   cursor: pointer;
-   margin-bottom: 2em;
+.nav-list li {
+  cursor: pointer;
+  margin-bottom: 2em;
 }
-.sidenav-icons{
-   font-size: 1.5em;
-   margin-left: 0.3em;
+.sidenav-icons {
+  font-size: 1.5em;
+  margin-left: 0.3em;
 }
-#main-container{
-   width: 100%;
-   display: flex;
+#main-container {
+  width: 100%;
+  display: flex;
 }
-main{
-   width: 100%;
-   flex: 1;
-   padding-left: 2rem;
-   padding-top: 4rem;
-   padding-bottom: 4rem;
-   color: #1f2027;
-   display: flex;
-   flex-direction: column;
+main {
+  width: 100%;
+  flex: 1;
+  padding-left: 2rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  color: #1f2027;
+  display: flex;
+  flex-direction: column;
 }
-.background{
-   background-color: #FAFAFA;
-   height: 100%;
-   padding: 0.5em;
+.background {
+  background-color: #fafafa;
+  height: 100%;
+  padding: 0.5em;
 }
 #copy-right {
-   font-size: 0.9em;
-   color: var(--primary);
-   margin-top: 1em;
-   margin-right: auto;
-   margin-left: auto;
+  font-size: 0.9em !important;
+  color: var(--primary);
+  margin-top: 1em;
+  text-align: center;
 }
