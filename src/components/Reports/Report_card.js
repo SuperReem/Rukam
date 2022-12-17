@@ -8,7 +8,7 @@ function ReportCard({ status }) {
       <div className="report-card-container">
         <div className="report-card">
           <div className={"report-status-container " + status}>
-            <h5>
+            <h6>
               {status == "unsent"
                 ? "غير مرسل"
                 : status == "pending"
@@ -16,11 +16,14 @@ function ReportCard({ status }) {
                 : status == "under_processing"
                 ? "قيد المراجعة"
                 : "مغلق"}
-            </h5>
+            </h6>
           </div>
-          <div className="report-card-content d-flex flex-column flex-md-row justify-content-between align-items-end pt-3">
+          <div
+            className="report-card-content d-flex flex-column flex-md-row justify-content-between align-items-end pt-3"
+            id="report-info"
+          >
             <div className="d-flex">
-              <h5 className="ms-4">حي حطين، شارع الورد</h5>
+              <h5 className="ms-5">حي حطين، شارع الورد</h5>
               <p className="report-time">منذ 3 ساعات</p>
             </div>
             <div>

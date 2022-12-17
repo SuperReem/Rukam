@@ -28,8 +28,7 @@ function ReportsList() {
       </div>
       <ReportCard status={"unsent"} />
       <ReportCard status={"pending"} />
-      <ReportCard status={"under_processing"} />
-      <ReportCard status={"under_processing"} />
+      <ReportCard status={"closed"} />
       <div id="pagination">
         <SweetPagination //try react-paginate later!
           currentPageData={setCurrentPageData}

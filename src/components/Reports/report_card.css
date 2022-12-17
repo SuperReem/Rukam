@@ -7,27 +7,41 @@
   box-shadow: 1px 1px 15px 1px #ebebeb;
   width: 90%;
   border-radius: 10px;
-  padding: 0.4em;
+  padding: 0.3em;
+}
+#report-info {
+  padding-bottom: 2%;
+  padding-right: 2%;
+  padding-left: 1%;
+  margin-top: -1.5%;
 }
 .report-status-container {
   border-radius: 10px;
-  width: fit-content;
+  width: 15%;
   padding: 0.1em 0.5em 0.1em 0.5em;
   margin-right: 0.2em;
   margin-top: -0.7em;
 }
 .pending {
-  background-color: rgba(242, 232, 120, 0.63);
+  text-align: center;
+  padding-top: 0.2em;
+  background-color: rgba(242, 218, 120, 0.692);
 }
 .unsent {
   background-color: #e9e9e9;
+  text-align: center;
+  padding-top: 0.2em;
   color: #4d4d4d;
 }
 .under_processing {
-  background-color: #b7d0ece1;
+  text-align: center;
+  padding-top: 0.2em;
+  background-color: #f6b694a9;
 }
 .closed {
-  background-color: #e4e9e4;
+  text-align: center;
+  padding-top: 0.2em;
+  background-color: #e4e9e4e8;
   color: var(--primary);
 }
 #delete-report-button {
@@ -36,6 +50,9 @@
 }
 #delete-report-button:hover {
   background-color: #9e7440 !important;
+}
+#details-button {
+  background-color: var(--light_green);
 }
 .report-time {
   font-size: 16px;
