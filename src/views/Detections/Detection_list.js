@@ -32,7 +32,7 @@ function DetectionList() {
           inputClass="custom-input"
         />
       </div>
-      <div id="card">
+      <div id="detection-card">
         <div id="headings">
           {" "}
           <Row>
