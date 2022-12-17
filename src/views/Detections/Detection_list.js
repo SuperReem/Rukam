@@ -30,18 +30,20 @@ function DetectionList() {
             /></div>
         <div id="card">
 
-            <div id="headings"> <Row>
-                <Col>الموقع</Col>
-                <Col>التاريخ</Col>
-
-            </Row></div>
+            <div id="headings"> 
+                <Row>
+                    <Col>الموقع</Col>
+                    <Col>التاريخ</Col>
+                </Row>
+            </div>
             <div id="detection-list">
                 <ListGroup variant="flush">
                     <ListGroup.Item>
                         <Row id="row" >
                             <Col>#1 حي حطين،شارع تثليث</Col>
                             <Col id="button">3 ابريل 2022</Col>
-                            <Col id="button">   <Button variant="secondary" size="sm" id="button-details">
+                            <Col id="button">   
+                            <Button variant="secondary" size="sm" id="button-details">
                                 <BsArrowUpLeft /> التفاصيل
                             </Button>
                             </Col>

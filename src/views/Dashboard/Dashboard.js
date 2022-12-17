@@ -1,7 +1,13 @@
 import './dashboard.css';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import DroneIcon from '../../assets/images/DRONE_ICON.png';
 import {SlLocationPin} from 'react-icons/sl';
 import {IoWarningOutline} from 'react-icons/io5';
 import {TbReportAnalytics,TbDrone} from 'react-icons/tb';
+import { BsArrowUpLeft } from "react-icons/bs";
 const Dashboard = ()=>{
     
     return <>
@@ -44,6 +50,77 @@ const Dashboard = ()=>{
                 </div>
                </div>
             </div>
+        </div>
+        <div className='active-drones-container'>
+          <div className='d-flex justify-content-between pb-2'>
+            <h5 className='active-drones-title'>الدرونز المفعلة</h5>
+            <button id='show-all-button'>عرض الكل</button>
+          </div>
+          <div className='active-drones-list-container'>
+            <div className='active-drones-list'>
+               <ListGroup variant="flush" id='Active-Drones-ListGroup'>
+                    <ListGroup.Item>
+                        <Row className='active-drone-row'>
+                          <Col>
+                            <img src={DroneIcon} className='active-drone-icon'></img>
+                          </Col>
+                          <Col>
+                            <Row className='active-drones-drone-name'>Drone76</Row>
+                            <Row className='active-drones-region-name'>منطقة الندى</Row>
+                          </Col>
+                          <Col>
+                          <Col>
+                            <Button variant="secondary" size="sm" id="current-loc-button">
+                                <SlLocationPin /> الموقع الحالي
+                            </Button>
+                            <Button variant="secondary" size="sm" id="details-button">
+                                <BsArrowUpLeft /> التفاصيل
+                            </Button>
+                          </Col>
+                          </Col>
+                        </Row>
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                        <Row className='active-drone-row'>
+                          <Col>
+                            <img src={DroneIcon} className='active-drone-icon'></img>
+                          </Col>
+                          <Col>
+                            <Row className='active-drones-drone-name'>Dron56</Row>
+                            <Row className='active-drones-region-name'>منطقة الروابي</Row>
+                          </Col>
+                          <Col>
+                            <Button variant="secondary" size="sm" id="current-loc-button">
+                                <SlLocationPin /> الموقع الحالي
+                            </Button>
+                            <Button variant="secondary" size="sm" id="details-button">
+                                <BsArrowUpLeft /> التفاصيل
+                            </Button>
+                          </Col>
+                        </Row>
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                        <Row className='active-drone-row'>
+                          <Col>
+                           <img src={DroneIcon} className='active-drone-icon'></img>
+                          </Col>
+                          <Col>
+                            <Row className='active-drones-drone-name'>Drone32</Row>
+                            <Row className='active-drones-region-name'>منطقة حطين</Row>
+                          </Col>
+                          <Col>
+                            <Button variant="secondary" size="sm" id="current-loc-button">
+                                <SlLocationPin /> الموقع الحالي
+                            </Button>
+                            <Button variant="secondary" size="sm" id="details-button">
+                                <BsArrowUpLeft /> التفاصيل
+                            </Button>
+                          </Col>
+                        </Row>
+                    </ListGroup.Item>
+               </ListGroup>
+            </div>
+          </div>
         </div>
     </div>
     </>

@@ -19,16 +19,14 @@
     border: 1px  white solid;
     padding: 4px 12px;
     background-color: white;
-
     box-shadow: 0 0 2px var(--light_green);
-  }
- 
+}
   
-  .custom-input:focus {
+.custom-input:focus {
     outline: none;
     border: 1px solid var(--light_green);
     box-shadow: 0 0 10px 2px  var(--light_green);
-  }
+}
 
 #card {
     background-color: white;
@@ -38,8 +36,6 @@
     margin-right: 3%;
     font-size: 0.45em;
     text-align: right;
-
-
 }
 
 #headings {
@@ -68,7 +64,10 @@
     display: none;
 }
 
-
+#row{
+    padding: 0.4em;
+    border-radius: 10px;
+}
 #row:hover #button-details {
     display: inline-block;
 
@@ -76,17 +75,12 @@
 
 #row:hover {
     background-color: #d2bda43d;
-
-
-
 }
 
 
 .style-custom {
     background-color: var(--light_green) !important;
 }
-
-
 
 #pagination {
     direction: ltr !important;
@@ -95,6 +89,5 @@
 
 #page-number {
     text-align: center;
-    font-size: 0.8em !important;
-    
+    font-size: 0.8em !important;   
 }
