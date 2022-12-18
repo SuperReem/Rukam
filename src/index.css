@@ -17,6 +17,8 @@ body {
   --light_green: #68836B;
   --brown: #B5864C;
   --light_brown: #D2BDA4;
+  --very_light:rgba(104, 131, 107, 0.2);
+  --light_grey: #F5F5F5
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
