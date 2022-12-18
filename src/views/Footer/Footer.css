@@ -1,0 +1,29 @@
+.footerimg {
+    position: fixed; 
+    height: 180px;
+    background-image: url(/src/assets/images/FOOTER-1.png);
+    /* background-position:center; */
+    background-repeat: no-repeat; 
+    background-size: 100% 100% ;
+    /* background-color: gray; */
+     bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 8px;
+    /* text-align: center;  */
+  }
+  .fontBold{
+    font-weight: bold;
+    font-size: 1em !important;
+  }
+  li{
+    font-size: 0.8em !important;
+
+  }
+  #copy-right {
+    font-size: 0.9em !important;
+    /* color: var(--primary); */
+    margin-top: 1em;
+    /* text-align: center; */
+  }
+ 
