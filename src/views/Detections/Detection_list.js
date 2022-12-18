@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./detection_list.css";
 import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
@@ -9,9 +9,11 @@ import { BsFilter } from "react-icons/bs";
 import { useState } from "react";
 import SweetPagination from "sweetpagination";
 import DatePicker from "react-multi-date-picker";
+import "react-multi-date-picker/styles/layouts/mobile.css";
 import "react-multi-date-picker/styles/colors/green.css";
 import arabic from "react-date-object/calendars/arabic"; //if i want the calender to be hijri
 import arabic_ar from "react-date-object/locales/arabic_ar";
+import InputIcon from "react-multi-date-picker/components/input_icon";
 
 function DetectionList() {
   const [currentPageData, setCurrentPageData] = useState(new Array(5).fill());
@@ -19,17 +21,22 @@ function DetectionList() {
     1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3,
     4, 5, 6, 7, 12, 13, 14,
   ];
-
+  const datePickerRef = useRef();
   return (
     <>
       <div id="title">المواقع المخالفة</div>
       <div id="filter">
-        <BsFilter size={43} />{" "}
+        <BsFilter
+          size={43}
+          onClick={() => datePickerRef.current.openCalendar()}
+        />{" "}
         <DatePicker
+          ref={datePickerRef}
           locale={arabic_ar}
           range="true"
           className="green"
           inputClass="custom-input"
+          maxDate={new Date()}
         />
       </div>
       <div id="detection-card">

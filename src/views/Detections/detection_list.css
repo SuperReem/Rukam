@@ -22,11 +22,6 @@
   box-shadow: 0 0 2px var(--light_green);
 }
 
-.custom-input a:hover {
-  background-color: black !important;
-  border-color: var(--light_green) !important;
-}
-
 .custom-input:focus {
   outline: none;
   border: 1px solid var(--light_green);
