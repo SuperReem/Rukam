@@ -46,13 +46,13 @@ function ResetPass() {
                  
                                 <label className="form-label text-right mb-0 " for="inputPass">كلمة المرور الجديدة</label>
 
-                    <input className="form-control" placeholder="********" value={password} id='inputPass' type="password"/>
+                    <input className="form-control classInput" placeholder="********" value={password} id='inputPass' type="password"/>
                   </div>
                   <div className="mb-3  input-group-alternative">
                    
                                 <label className="form-label text-right mb-0" for="inputPass">تأكيد كلمة المرور الجديدة</label>
 
-                    <input className="form-control" placeholder="********" 
+                    <input className="form-control classInput" placeholder="********" 
                     value={password2}
                      id='inputPass' type="password"/>
                   </div>
@@ -98,7 +98,7 @@ function ResetPass() {
 
                 <div className="text-center">
                
-                  <button type="button" className="btn btn-primary my-2 px-5">تغيير كلمة المرور </button>
+                  <button type="button" className="btn btn-primary my-2 px-5 classButton">تغيير كلمة المرور </button>
                 </div>
               </form>
             </div>

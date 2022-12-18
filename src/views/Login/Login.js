@@ -37,14 +37,14 @@ function Login() {
                   <form role="form">
                     <div className="col-12 mb-4">
                       <label
-                        className="form-label text-right col-form-label col-sm-5 pt-0"
+                        className="form-label text-right col-form-label col-sm-5 pt-0 classLabel"
                         for="inputEmail"
                       >
                         البريد الإلكتروني
                       </label>
                       <input
                         type="email"
-                        className="form-control"
+                        className="form-control classInput"
                         id="inputEmail"
                         placeholder="ma***@gmail.com"
                         value={email}
@@ -57,12 +57,12 @@ function Login() {
                       {/* <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div> */}
-                      <label className="form-label text-right " for="inputPass">
+                      <label className="form-label text-rightclassLabel" for="inputPass">
                         كلمة المرور
                       </label>
 
                       <input
-                        className="form-control"
+                        className="form-control classInput"
                         placeholder="********"
                         value={password}
                         id="inputPass"
@@ -80,7 +80,7 @@ function Login() {
                     <div className="text-center">
                       <button
                         type="button"
-                        className="btn btn-primary my-2  px-5"
+                        className="btn btn-primary my-2  px-5 classButton"
                       >
                         تسجيل الدخول
                       </button>

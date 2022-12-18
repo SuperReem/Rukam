@@ -1,22 +1,21 @@
-/* .check-icon {
+.check-icon {
   color: var(--primary);
   margin-left: 0.2em;
 }
-button {
+.classButton  {
   background-color: var(--light_green) !important;
   border-color: var(--light_green) !important;
 }
-input {
+.classInput{
   border-color: var(--light_brown) !important;
   text-decoration-color: var(--light_brown) !important;
 }
-input::placeholder {
+.classInput::placeholder {
   color: var(--brown) !important;
 }
-
-input:focus {
+.classInput:focus {
   outline: none !important;
   border: 0px !important;
   box-shadow: 0 0 10px var(--light_brown) !important;
-  /* #ce9e71 
-} */
+  /* #ce9e71  */
+}
