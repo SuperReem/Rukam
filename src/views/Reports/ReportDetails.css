@@ -1,0 +1,114 @@
+.App{
+font-family: tajawal;
+
+}
+#title {
+    text-align: right;
+    padding-right: 4%;
+  }
+.he{
+
+    height: 90%;
+padding: 20px;
+background-color: white;
+}
+
+.heading{
+    font-size:1.5rem;
+}
+
+.container.time{
+    font-size: 1.3rem;
+    width: 60%;
+    margin-left: 0!important;
+    margin-right: 0!important;
+    background-color: var(--light_grey);
+}
+
+.container.status{
+    font-size: 50%;
+    width: 30%;
+    margin-left: 0!important;
+    margin-right: 0!important;
+    background-color: var(--very_light);
+    color: var(--primary);
+}
+
+
+.container.pic{
+    width: 60%;
+    height: 200px;
+    margin-left: 0!important;
+    margin-right: 0!important;
+    overflow: hidden;
+}
+
+.hr{
+    color: rgb(101, 101, 101);
+    opacity: 10%;
+    size: 5;
+    width: 80%;
+}
+.notes{
+   width: 80%;
+   margin-left: 100px;
+   font-size:1rem;
+   border-color: var(--light_brown);
+   border-radius: 10px;
+}
+.send.btn{
+    background-color: var(--primary)!important ;
+    color: white;
+}
+.send.btn:hover{
+    background-color: rgb(0, 47, 0);
+    color: white;
+}
+.edit.btn{
+    background-color: var(--light_green);
+    color: white;
+}
+.edit.btn:hover{
+    background-color: var(--primary)!important;
+    color: white;
+}
+.save.btn{
+    background-color: var(--light_green)!important;
+    color: white;
+}
+.save.btn:hover{
+    background-color: var(--primary)!important;
+    color: white;
+}
+.cancel.btn{
+    background-color: var(--brown)!important;
+    color: white;
+    border: none;
+
+}
+.cancel.btn:hover{
+    background-color:rgb(151, 89, 38)!important;
+    color: white;
+
+}
+.btn.closebtn {
+    background-color:var(--very_light) !important;
+    font-size: 20px;
+    height: 40px;
+    width: 40px;
+    border: none;
+}
+.btn.closebtn:hover{
+    background-color: var(--light_green)!important;
+}
+.updatS.btn{
+    background-color: var(--brown) !important;
+    border: none;
+    color: white;
+}
+.updatS.btn:hover{
+    background-color:rgb(151, 89, 38)!important;
+    color: white;
+}
+img {position: relative;
+    left: 30px; }
