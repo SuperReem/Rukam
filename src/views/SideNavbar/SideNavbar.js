@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import Logo from '../../assets/images/Logo_Dark.png';
 import './SideNavbar.css';
 import Dashboard from "../Dashboard/Dashboard";
-import DroneList from "../Drones/Drones_list";
+//import DroneList from "../Drones/Drones_list";
+import AddDrone from "../Drones/Add_Drone";
+//import DroneDetails from "../Drones/Drone_Details";
 import ReportsList from "../Reports/Reports_list";
 import DetectionList from "../Detections/Detection_list";
 
@@ -30,7 +32,7 @@ const Sidebar = () => {
     </div>
     <main className="page-container">
       <div className="background fs-1">
-         {currentIndex === 0? <Dashboard/> : currentIndex === 1? <ReportsList/> : currentIndex === 2? <DetectionList/> : <DroneList/>}
+         {currentIndex === 0? <Dashboard/> : currentIndex === 1? <ReportsList/> : currentIndex === 2? <DetectionList/> : <AddDrone/>}
       </div>
     </main>
   </div>
