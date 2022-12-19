@@ -74,11 +74,6 @@
   border-radius: 10px;
 }
 
-#pagination {
-  direction: ltr !important;
-  margin-top: 2%;
-}
-
 #page-number {
   text-align: center;
   font-size: 0.9em !important;
@@ -93,7 +88,10 @@
   background-color: var(--light_green) !important;
   border-color: var(--light_green) !important;
 }
-#Selected {
-  background-color: var(--light_green) !important;
-  border-color: var(--light_green) !important;
+
+#pagination {
+  margin-top: 2%;
+  direction: ltr !important;
+  display: flex;
+  justify-content: center;
 }

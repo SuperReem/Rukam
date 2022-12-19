@@ -14,6 +14,24 @@ import "react-multi-date-picker/styles/colors/green.css";
 import arabic from "react-date-object/calendars/arabic"; //if i want the calender to be hijri
 import arabic_ar from "react-date-object/locales/arabic_ar";
 import InputIcon from "react-multi-date-picker/components/input_icon";
+import Pagination from "@mui/material/Pagination";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+const theme = createTheme({
+  status: {
+    danger: "#68836B",
+  },
+  palette: {
+    primary: {
+      main: "#034C3C",
+      darker: "#034C3C",
+    },
+    neutral: {
+      main: "#68836B",
+      contrastText: "#034C3C",
+    },
+  },
+});
 
 function DetectionList() {
   const [currentPageData, setCurrentPageData] = useState(new Array(5).fill());
@@ -149,13 +167,14 @@ function DetectionList() {
         </div>
 
         <div id="pagination">
-          <SweetPagination //try react-paginate later!
-            currentPageData={setCurrentPageData}
-            getData={items}
-            navigation={true}
-            dataPerPage={1}
-            getStyle={"style-1"}
-          />
+          <ThemeProvider theme={theme}>
+            <Pagination
+              count={10}
+              variant="outlined"
+              size="large"
+              color="primary"
+            />
+          </ThemeProvider>
         </div>
 
         <div id="page-number">1-20 صفحة</div>
