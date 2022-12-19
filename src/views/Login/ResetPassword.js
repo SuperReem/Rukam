@@ -40,14 +40,14 @@ function ResetPassword() {
               <form role="form">
 
               <div className="col-12 mb-4">
-            <label className="form-label text-right col-form-label col-sm-5 pt-0" for="inputEmail">البريد الإلكتروني</label>
-            <input type="email" className="form-control" id="inputEmail" placeholder="ma***@gmail.com" value={email} required/>
+            <label className="form-label text-right col-form-label col-sm-5 pt-0 classLabel" for="inputEmail">البريد الإلكتروني</label>
+            <input type="email" className="form-control classInput" id="inputEmail" placeholder="ma***@gmail.com" value={email} required/>
         </div>
              
 
                 <div className="text-center">
                
-                  <button type="button" className="btn btn-primary my-2  px-5">إرسال</button>
+                  <button type="button" className="btn btn-primary my-2  px-5 classButton">إرسال</button>
                 </div>
               </form>
             </div>
