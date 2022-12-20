@@ -11,6 +11,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   direction: rtl;
   padding: 0;
+  overflow-y: hidden;
 }
 :root{
   --primary: #034C3C;

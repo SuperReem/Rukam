@@ -1,0 +1,26 @@
+.statistics-cards-container{
+    display: flex;
+    height: 140px;
+    justify-content: space-around;
+}
+.statistics-cards{
+    box-shadow: 1px 1px 15px 1px #ebebeb;
+    background-color: white;
+    border-radius: 20px;
+    width: 100%;
+    height: inherit;
+    padding: 0.5em;
+}
+.statistics-cards-title{
+    color: #B5864C;
+    font-size: large;
+    font-weight: 600;
+}
+.statistics-cards-icon{
+    color: var(--primary);
+    margin-left: 0.8em;
+}
+.statistics-cards-number{
+    font-weight: 600;
+    font-size: 24px;
+}

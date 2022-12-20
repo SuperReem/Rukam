@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Logo from '../../assets/images/Logo_Dark.png';
 import './SideNavbar.css';
-import Dashboard from "../Dashboard/Dashboard";
+import Dashboard_Admin from "../Dashboard/Dashboard_Admin";
+import Dashboard_Employee from "../Dashboard/Dashboard_Employee";
 import DroneList from "../Drones/Drones_list";
 import ReportsList from "../Reports/Reports_list";
 import DetectionList from "../Detections/Detection_list";
@@ -33,9 +34,9 @@ const Sidebar = () => {
     </div>
     <main className="page-container">
       <div className="background fs-1">
-         {currentIndex === 0? <Dashboard/> : currentIndex === 1? <ReportsList/> : currentIndex === 2? <DetectionList/> : <DroneList/>}
+         {currentIndex === 0? <Dashboard_Admin/> : currentIndex === 1? <ReportsList/> : currentIndex === 2? <DetectionList/> : <DroneList/>}
       </div>
-      <div id='copy-right'>
+      <div id='footer-copy-right'>
             جميع الحقوق محفوظة لــركام &copy; {new Date().getFullYear()}
       </div>
     </main>

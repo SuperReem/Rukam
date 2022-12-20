@@ -1,3 +1,9 @@
+:root{
+    --brown: #B5864C;
+    --light_brown: #D2BDA4;
+    --light_brown_hover: #a18e75;
+    --light_green_hover: #536d56;
+}
 .statistics-cards-container{
     display: flex;
     height: 140px;
@@ -7,7 +13,6 @@
     box-shadow: 1px 1px 15px 1px #ebebeb;
     background-color: white;
     border-radius: 20px;
-    width: 22%;
     padding: 0.5em;
 }
 .statistics-cards-title{
@@ -22,4 +27,100 @@
 .statistics-cards-number{
     font-weight: 600;
     font-size: 24px;
+}
+.reports-statistics{
+    background-color: white;
+    padding-left: 0.8em;
+    padding-right: 0.8em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-radius: 10px;
+    box-shadow: 1px 1px 15px 1px #ebebeb;
+}
+.reports-statistics-chart-keys{
+    height: 15px;
+    width: 15px;
+    border-radius: 30px;
+}
+#unsent-key{
+    background-color: #E9E9E9;
+}
+#pending-key{
+    background-color: #D2BDA4
+}
+#underprocessing-key{
+    background-color: #68836B
+}
+#closed-key{
+    background-color: #B5864C
+}
+.active-drones-container{
+    padding-top: 0.5em;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+}
+.active-drones-list{
+    border-radius: 20px;
+}
+.active-drones-title{
+    font-weight: 600;
+}
+#show-all-button{
+    border-radius: 10px;
+    border: 1px solid #c6c6c6 !important;
+    color: var(--primary);
+    height: 30px;
+    background-color: transparent !important;
+    font-size: 0.4em;
+}
+#show-all-button:hover{
+    background-color: rgb(238, 238, 238) !important;
+}
+.active-drone-icon{
+    height: 50px;
+    width: 50px;
+}
+#Active-Drones-ListGroup{
+    border-radius: 20px;
+    box-shadow: 1px 1px 15px 1px #ebebeb; 
+}
+.active-drones-drone-name{
+    font-size: 20px;
+}
+.active-drones-region-name{
+    font-size: 16px;
+    color: var(--primary);
+}
+#details-button {
+    background-color: var(--light_green);
+}
+#details-button:hover {
+    background-color: var(--light_green_hover) !important;
+}
+#current-loc-button{
+    background-color: var(--light_brown) !important;
+    border-color: var(--light_brown) !important;
+}
+#current_loc_button:hover {
+    background-color: var(--light_brown_hover) !important;
+}
+.region-name-container{
+    font-size: 26px;
+    font-weight: 600;
+}
+.region-name-icon{
+    color: var(--primary);
+    font-size: 42px;
+}
+.region-name{
+    color: var(--brown);
+}
+#recent-reports-ListGroup{
+    box-shadow: 1px 1px 15px 1px #ebebeb; 
+    border-radius: 20px;
+}
+.recent-reports-icon{
+    height: 45;
+    width: 45;
+    color: var(--primary);
 }
