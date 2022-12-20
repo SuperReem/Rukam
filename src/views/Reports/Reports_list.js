@@ -6,7 +6,6 @@ import "react-multi-date-picker/styles/colors/green.css";
 import arabic_ar from "react-date-object/locales/arabic_ar";
 import ReportCard from "../../components/Reports/Report_card";
 import { useState } from "react";
-import SweetPagination from "sweetpagination";
 import Pagination from "@mui/material/Pagination";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 

@@ -1,11 +1,6 @@
 import { useState } from "react";
-<<<<<<< Updated upstream
 import "./login.css";
 import Button from "react-bootstrap/Button";
-=======
-import './login.css';
-import Button from 'react-bootstrap/Button';
->>>>>>> Stashed changes
 import { BsArrowUpLeft } from "react-icons/bs";
 
 function Login() {
@@ -62,8 +57,10 @@ function Login() {
                       {/* <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div> */}
-<<<<<<< Updated upstream
-                      <label className="form-label text-rightclassLabel" for="inputPass">
+                      <label
+                        className="form-label text-rightclassLabel"
+                        for="inputPass"
+                      >
                         كلمة المرور
                       </label>
 
@@ -92,21 +89,6 @@ function Login() {
                       </button>
                     </div>
                   </form>
-=======
-                                <label className="form-label text-right " for="inputPass">كلمة المرور</label>
-
-                    <input className="form-control" placeholder="********" value={password} id='inputPass' type="password"/>
-                  </div>
-                {/* </div> */}
-
-                <div className=" text-left d-flex justify-content-end  mb-3">
-              <a href="#" className="text-black text-decoration-none  ">نسيت كلمة المرور؟</a>
-              {/* <a href="#" class="text-light col-2 "><small>نلمرور؟</small></a> */}
-
-            </div>
-                <div className="text-center">
-                  <button type="button" className="btn btn-primary my-2 px-5 login-reset-button">تسجيل الدخول</button>
->>>>>>> Stashed changes
                 </div>
               </div>
             </div>
