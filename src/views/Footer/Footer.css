@@ -1,6 +1,6 @@
 .footerimg {
     position: fixed; 
-    height: 180px;
+    height: 150px;
     background-image: url(/src/assets/images/FOOTER-1.png);
     /* background-position:center; */
     background-repeat: no-repeat; 
@@ -9,7 +9,7 @@
      bottom: 0;
     left: 0;
     right: 0;
-    padding: 8px;
+    padding: 0px;
     /* text-align: center;  */
   }
   .fontBold{

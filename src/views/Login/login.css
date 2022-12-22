@@ -1,10 +1,4 @@
-.body {
-  background-image: url(/src/assets/images/DRONE_ICON_BACKROUND.png);
 
-  background-position: left;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 .classLabel {
   display: flex;
   width: 150px;
@@ -16,7 +10,9 @@
   background-repeat: no-repeat;
   background-size: contain;
   /* height: 300px;  */
+ 
 }
+
 .classButton {
   background-color: var(--light_green) !important;
   border-color: var(--light_green) !important;

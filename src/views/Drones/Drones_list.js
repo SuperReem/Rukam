@@ -13,7 +13,7 @@ function DroneList() {
   return (
     <div>
       <div className=" d-flex align-items-center justify-content-between">
-        <div className="">قائمة الدرون</div>
+        <div className="" id="title" >قائمة الدرون</div>
         <Button variant="secondary" size="sm" className="darkbtn">
           <AiOutlinePlus /> إضافة درون
         </Button>
@@ -84,7 +84,7 @@ function DroneList() {
                     />
                    
                       <h4 class="card-title mt-5 mb-0">Drone564</h4>
-                      <Button variant="secondary" size="sm" className="mt-0 mb-0">
+                      <Button variant="secondary" size="sm" className="mt-0 mb-0" id="button-details2">
                         <BsArrowUpLeft /> التفاصيل
                       </Button>
                    
