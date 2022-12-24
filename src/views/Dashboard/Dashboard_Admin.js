@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./dashboard.css";
-import { XYPlot, XAxis, YAxis, LineChart, PieChart } from "reactochart";
 import "reactochart/styles.css";
+import { XYPlot, XAxis, YAxis, LineChart, PieChart } from "reactochart";
 import {
   GoogleMap,
   Marker,
