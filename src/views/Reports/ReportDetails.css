@@ -14,12 +14,12 @@ background-color: white;
 }
 
 .heading{
-    font-size:1.5rem;
+    font-size:1.3rem;
     color: var(--primary);
 }
 
 .container.time{
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     width: 60%;
     margin-left: 0!important;
     margin-right: 0!important;
@@ -27,7 +27,7 @@ background-color: white;
 }
 
 .container.status{
-    font-size: 50%;
+    font-size:  1.2rem;
     width: 30%;
     margin-left: 0!important;
     margin-right: 0!important;
@@ -37,13 +37,19 @@ background-color: white;
 
 
 .container.pic{
-    width: 60%;
+    width: 70%;
     height: 200px;
     margin-left: 0!important;
     margin-right: 0!important;
     overflow: hidden;
 }
-
+.container.loc{
+    width: 70%;
+    height: 200px;
+    margin-left: 0!important;
+    margin-right: 0!important;
+    overflow: hidden;
+}
 .hr{
     color: rgb(101, 101, 101);
     opacity: 10%;
@@ -51,7 +57,7 @@ background-color: white;
     width: 80%;
 }
 .notes{
-   width: 80%;
+   width: 70%;
    margin-left: 100px;
    font-size:1rem;
    border-color: var(--light_brown);

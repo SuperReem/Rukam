@@ -11,48 +11,48 @@ function Footer() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
-    <div className=" footerimg p-5  text-white">
-      <div className="container m-4 ">
+    <div className=" footerimg p-lg-5  p-sm-0 pb-md-2  text-white">
+      {/* <div className="container m-4 "> */}
         <div className="row   align-items-end">
 
 
           <div className="col-1 ">
             <img
-              className="position-absolute bottom-0 end-0 m-4"
-              width={120}
+              className="position-absolute bottom-0 end-0 m-3"
+              width={110}
               src={Saudi}
               alt=""
             />
           </div>
-          <div className="col-2 align-middle me-5">
+          <div className="col-2 align-middle me-5 ">
             <ul class="">
-              <li className="list-group-item fontBold">القائمة</li>
+              <li className="list-group-item fontBold pb-2">القائمة</li>
               <li class="list-group-item ">الصفحة الرئيسية</li>
               <li class="list-group-item">من نحن؟</li>
             </ul>
           </div>
           <div className="col-2 align-middle">
             <ul class="">
-              <li className="list-group-item fontBold">الدعم</li>
+              <li className="list-group-item fontBold pb-2">الدعم</li>
               <li class="list-group-item ">سياسة الخصوصية</li>
               <li class="list-group-item  ">الدعم الفني</li>
             </ul>
           </div>
           <div className="col-2 align-middle">
             <ul class="">
-              <li className="list-group-item fontBold">تواصل معنا</li>
+              <li className="list-group-item fontBold pb-2">تواصل معنا</li>
               <li class="list-group-item ">الرقم المباشر ٣١٩</li>
               <li class="list-group-item  ">العناية بالعملاء</li>
             </ul>
           </div>
           <div className="col-1 mx-2"></div>
 
-          <div id='copy-right' className="align-middle col-3 text-white">
+          <div id='copy-right' className=" col-3 text-white mt-5 pt-1">
             جميع الحقوق محفوظة لــركام &copy; {new Date().getFullYear()}
       </div>
         </div>
       </div>
-    </div>
+    // </div>
   );
 }
 

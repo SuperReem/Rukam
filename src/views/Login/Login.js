@@ -2,6 +2,9 @@ import { useState } from "react";
 import "./login.css";
 import Button from "react-bootstrap/Button";
 import { BsArrowUpLeft } from "react-icons/bs";
+import imgg from "../../assets/images/DRONE_ICON_BACKROUND.png";
+
+
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -11,11 +14,13 @@ function Login() {
     // bg-light
     <body className=" ">
       <div className="main-content photoHere ">
+
         {/*  the header */}
 
         {/* <!-- Header --> */}
         <div className="header bg-gradient-primary py-7 py-lg-8">
           <div className="container">
+
             <div className="header-body text-center mb-7">
               <div className="row justify-content-center">
                 <div className="col-lg-5 col-md-6">
@@ -27,12 +32,14 @@ function Login() {
         </div>
         {/* <!-- Page content --> */}
         <div className="container mt--8 pb-5">
+          
           <div className="row justify-content-center">
-            <div className="col-lg-5 col-md-7">
+            <div className="  col-lg-5 col-md-7 col-sm-8">
+
               <div className="card bg-white bg-secondary shadow border-0 rounded-280">
-                <div className="card-body px-lg-5 py-lg-5">
+                <div className="card-body px-lg-5 px-sm-4 px-4  pt-lg-4 pb-lg-5 ">
                   <div className="text-center text-muted mb-4 text-black">
-                    <h5 className="text-black">مرحبًا بك مجددًا</h5>
+                    <h5 className="text-black mb-lg-3">مرحبًا بك مجددًا</h5>
                   </div>
                   <form role="form">
                     <div className="col-12 mb-4">
