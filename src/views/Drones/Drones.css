@@ -19,6 +19,17 @@ margin-right: 250px;
 border-radius: 20px;
 background-color: white;
 }
+.boxfordetails{
+    justify-content: center;
+    height: 550px;
+    width: 650px;
+    box-shadow: 5px 2px 13px 5px rgb(207,207,207);
+    padding-top: 30px;
+    margin-top: 30px;
+    margin-right: 250px;
+    border-radius: 20px;
+    background-color: white; 
+}
 
 
 .img{
