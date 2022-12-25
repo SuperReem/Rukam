@@ -1,126 +1,117 @@
 
-#title{
+.title{
     text-align: right;
-    margin-right: 30px;
-    margin-top:20px
+    
+    padding-right: 3%;
+    font-size: 26px;
+    font-weight: 600;
       
 }
-#box{
-display: flex;
+.box{
+
 justify-content: center;
 height: 450px;
-width: 50%;
-box-shadow: 11px 12px 13px 12px rgb(207,207,207);
+width: 550px;
+box-shadow: 5px 2px 13px 5px rgb(207,207,207);
 padding-top: 30px;
 margin-top: 30px;
 margin-right: 250px;
-
-border-radius: 20px;
-background-color: white;
-}
-#DroneDetailsBox{
-    display: flex;
-justify-content: center;
-height: 480px;
-width: 700px;
-box-shadow: 5px 5px 5px 5px rgb(207,207,207);
-padding-top: 10px;
-margin-top: 30px;
-margin-right: 250px;
 border-radius: 20px;
 background-color: white;
 }
 
-#imgs{
+
+.img{
    
     justify-content: center;
+    background-color: #B5864C;
     display: flex;
     height: 150px;
     width: 170px;
     background-color: rgb(255, 255, 255);
     border-radius: 80%;
 }
-#Detailsimgs{
-    justify-content: center;
 
-    height: 110px;
-    width: 150px;
-    margin-bottom: 0px;
-    background-color: rgb(253, 255, 255);
-    border-radius: 80%;
-    background-color: #B5864C;
- 
-
-}
-
-
-.map{
-   
-    
- height: 200px;
-    width:600px;
-   margin-top: 0px;
-    padding-top: 0px;
-    background-color: aqua;
-    
-}
-#add-img{
+.add-img{
    
     display: flex;
-    height: 140px;
-    width: 140px; 
+   
     position: absolute;
-    padding-top: 110px;
-    padding-left: 90px;
+    margin-top: 110px;
+    padding-left: 115px;
     
 
 }
-#formid{
+.editicon{
+    background-color:#B5864C;
+    color: rgb(251, 251, 251);
+    border-radius: 50%;
+    height: 30px;
+    width:33px ;
+    padding: 3px;
+}
+.edit-img{
+    display: flex;
+    position: absolute;
+    margin-top: 115px;
+    padding-left: 110px; 
+}
+
+.classLabel {
+  padding-top: 0.1em;
+    display: flex;
+    width: 150px;
+    text-align: right;
+    font-size: 20px;
+  }
+  .classInput {
+    border-color: var(--light_brown) !important;
+  }
+
+
+  
+  
+  .classInput:focus {
+    outline: none !important;
+    border: 0px !important;
+    box-shadow: 0 0 10px var(--light_brown) !important;
+  }
+
+
+
+
+
+
+
+  #formid{
     margin-top: 160px;
    
     position: absolute;
     display: flex;
     width: 500px;
-    
     padding-right: 100px;
     
    
 }
-.dronename{
-    display: flex;
- padding-bottom: 5px;
- padding-top: 5px;
-    font-size: 17px;
-}
-#inputform{
-    border-color:#B5864C ;
-    width:300px ;
-}
-
-
-
-.drone{
-    position: absolute;
-   margin-top: 110px;
-   background-color: rgb(170, 119, 220);
-}
-.region{
-    position: absolute;
-    margin-top: 130px;
-   background-color: rgb(206, 179, 233);
-}
-.visitedregions{
-    height: 20px;
-    text-align: right;
-    margin-top: 0px;
-    padding-bottom: 0px;
-    background-color: #B5864C;
-}
 #dropdown-right-button{
-    width: 300px;
-    border-color:#B5864C ;
+    width: 387px;
+    border-color: var(--light_brown) !important;
    color:lightslategray;
     background: transparent !important;
     padding-left: 170px;
-    font-size:14px ;
+    font-size:15px ;
+  }
+  .classButton{
+    background-color: var(--light_green) !important;
+  border-color: var(--light_green) !important;
+
+
+   
+  }
+  .classButton2{
+    background-color: var(--brown) !important;
+  border-color: var(--brown) !important;
+
+
+ 
   }

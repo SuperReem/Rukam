@@ -4,6 +4,7 @@ import './SideNavbar.css';
 import Dashboard from "../Dashboard/Dashboard";
 //import DroneList from "../Drones/Drones_list";
 import AddDrone from "../Drones/Add_Drone";
+import EditDrone from "../Drones/Edit_Drone";
 //import DroneDetails from "../Drones/Drone_Details";
 import ReportsList from "../Reports/Reports_list";
 import DetectionList from "../Detections/Detection_list";
@@ -32,7 +33,7 @@ const Sidebar = () => {
     </div>
     <main className="page-container">
       <div className="background fs-1">
-         {currentIndex === 0? <Dashboard/> : currentIndex === 1? <ReportsList/> : currentIndex === 2? <DetectionList/> : <AddDrone/>}
+         {currentIndex === 0? <Dashboard/> : currentIndex === 1? <ReportsList/> : currentIndex === 2? <EditDrone/> : <AddDrone/>}
       </div>
     </main>
   </div>
