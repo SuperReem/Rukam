@@ -1,10 +1,10 @@
+import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { UserProvider } from "./contexts/user.context";
 import Login from "./pages/Login.page";
 // import Login from './views/Login/Login';
 import PrivateRoute from "./pages/PrivateRoute.page";
 //
-
 import TopNavbar from "./views/TopNavbar/TopNavbar";
 
 import ResetPassword from "./views/Login/ResetPassword";
@@ -32,3 +32,4 @@ function App() {
     </BrowserRouter>
   );
 }
+export default App;
