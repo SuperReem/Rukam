@@ -8,11 +8,30 @@ import ReportsList from "../Reports/Reports_list";
 import DetectionList from "../Detections/Detection_list";
 import {RiHome6Line} from 'react-icons/ri';
 import {TbReportAnalytics,TbDrone} from 'react-icons/tb';
-import {SlLocationPin} from 'react-icons/sl'
+import { HiOutlineLogout } from "react-icons/hi";
+import {SlLocationPin} from 'react-icons/sl';
+import { useContext } from 'react';
+import { UserContext } from '../../contexts/user.context';
+ 
 
 const Sidebar = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const { logOutUser } = useContext(UserContext);
+  const logOut = async () => {
+    try {
+      // Calling the logOutUser function from the user context.
+      const loggedOut = await logOutUser();
+      // Now we will refresh the page, and the user will be logged out and
+      // redirected to the login page because of the <PrivateRoute /> component.
+      if (loggedOut) {
+        window.location.reload(true);
+      }
+    } catch (error) {
+      alert(error)
+    }
+  }
 
   return <div id="main-container">
     <div className="sideNav-container">
@@ -28,7 +47,16 @@ const Sidebar = () => {
               <li onClick={()=>setCurrentIndex(1)}><TbReportAnalytics className="sidenav-icons"/> البلاغات</li>
               <li onClick={()=>setCurrentIndex(2)}><SlLocationPin className="sidenav-icons"/> المواقع المخالفة</li>
               <li onClick={()=>setCurrentIndex(3)}><TbDrone className="sidenav-icons"/> قائمة الدرونز</li>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+
+              <li onClick={logOut}><HiOutlineLogout className="sidenav-icons"/>تسجيل الخروج</li>
+
             </ul>
+          </div>
+          <div>
           </div>
       </div>
     </div>
