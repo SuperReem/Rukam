@@ -1,7 +1,10 @@
 import { useState } from "react";
 import "./ResetPass.css";
 import { HiCheck } from "react-icons/hi";
-// BiCheckbox HiCheck
+import Footer from "../Footer/Footer";
+import TopNavbar from "../TopNavbar/TopNavbar";
+import Drone from "../../assets/images/DroneToFly.png";
+
 
 function ResetPass() {
   const [password, setPassword] = useState("");
@@ -9,11 +12,13 @@ function ResetPass() {
 
   return (
     <body className=" ">
-      <div className="main-content photoHere ">
+      <div className="main-content  ">
         {/*  the header */}
+        <TopNavbar/>
+        <img src={Drone} className="movingPhoto position-absolute top-50 start-0  ms-5 translate-middle" height={35}/>
 
         {/* <!-- Header --> */}
-        <div className="header bg-gradient-primary py-7 py-lg-8">
+        <div className="header bg-gradient-primary py-4 py-lg-8">
           <div className="container">
             <div className="header-body text-center mb-7">
               <div className="row justify-content-center">
@@ -118,6 +123,7 @@ function ResetPass() {
         </div>
       </div>
       {/* <!-- Footer --> */}
+      <Footer />
     </body>
   );
 }

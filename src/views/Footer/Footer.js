@@ -11,10 +11,9 @@ function Footer() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
-    <div className=" footerimg p-lg-5  p-sm-0 pb-md-2  text-white">
+    <div className="footer footerimg p-lg-5  p-sm-0 pb-md-2  text-white">
       {/* <div className="container m-4 "> */}
         <div className="row   align-items-end">
-
 
           <div className="col-1 ">
             <img
