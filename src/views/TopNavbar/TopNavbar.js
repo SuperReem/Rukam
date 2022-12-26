@@ -3,7 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import React, { useState } from "react";
 import Logo from "../../assets/images/Logo_Light.png";
-import Login from "../Login/Login";
+
 
 
 function TopNavbar() {
@@ -33,7 +33,7 @@ function TopNavbar() {
     <span class="navbar-toggler-icon">hh</span>
   </button> */}
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav navbar-brand">
       <li onClick={()=>setCurrentIndex(0)} class="nav-item active">
         <a class="nav-link" href="#">تسجيل الدخول<span class="sr-only"></span></a>
       </li>
@@ -50,9 +50,7 @@ function TopNavbar() {
       <div className="background fs-1">
          {currentIndex === 0? <Login/> : currentIndex === 1? <Login/> : currentIndex === 2? <Login/> : <Login/>}
       </div>
-      <div id='copy-right'>
-            جميع الحقوق محفوظة لــركام &copy; {new Date().getFullYear()}
-      </div>
+    
     </main>
      */}
 </nav>
