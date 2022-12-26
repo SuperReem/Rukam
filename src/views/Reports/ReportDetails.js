@@ -14,6 +14,42 @@ import React from "react";
 
 
 function ReportDetails() {
+  const handleClick = async () => {
+    const response = await fetch('/api/Report/' + '63a8c6fa35562331120d3b05', {
+      method: 'DELETE'
+    })
+    const json = await response.json()
+
+    if (response.ok) {
+      console.log('jknswcdj:', json)
+    }
+  }
+  const handle = async (e) => {
+    e.preventDefault()
+
+    const report = {timestamp:'hjbujjb',
+  image:'cew'}
+    
+    const response = await fetch('/api/Report', {
+      method: 'POST',
+      body: JSON.stringify(report),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const json = await response.json()
+
+    if (!response.ok) {
+
+      console.log('new report not added:')
+    }
+    if (response.ok) {
+
+      console.log('new report added:', json)
+    }
+
+  }
+
   const containerStyle = {
   width: "100%;",
   height: "100%",
@@ -119,7 +155,7 @@ function ReportDetails() {
         <div className="container mt-5 pt-5">
           <div className="row">
             <div className="col-6">
-            <Button variant="secondary" size="lg" className="edit justify-content-between">  
+            <Button variant="secondary" size="lg" className="edit justify-content-between" onClick={handle}>  
 
        <MdOutlineModeEditOutline color='white' />   &nbsp; تحرير
               </Button>
