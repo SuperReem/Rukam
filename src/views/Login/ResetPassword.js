@@ -1,8 +1,20 @@
 import { useState } from "react";
 import "./ResetPassword.css";
 
+
 function ResetPassword() {
-  const [email, setEmail] = useState("");
+
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  const onFormInputChange = (event) => {
+    const { name, value } = event.target;
+    setForm({ ...form, [name]: value });
+  };
+
+
 
   return (
     <body className=" ">
@@ -34,23 +46,34 @@ function ResetPassword() {
                     <div className="col-12 mb-4">
                       <label
                         className="form-label text-right col-form-label col-sm-5 pt-0 classLabel"
-                        for="inputEmail"
+                        for="email"
                       >
                         البريد الإلكتروني
                       </label>
                       <input
+                        type="email"
+                        className="form-control classInput "
+                        id="email"
+                        name="email"
+                        placeholder="Ma***@gmail.com"
+                        value={form.email}
+                        onChange={onFormInputChange}
+                        required
+                      />
+                      {/* <input
                         type="email"
                         className="form-control classInput"
                         id="inputEmail"
                         placeholder="ma***@gmail.com"
                         value={email}
                         required
-                      />
+                      /> */}
                     </div>
 
                     <div className="text-center">
                       <button
                         type="button"
+                        // onClick={onSubmit}
                         className="btn btn-primary my-2  px-5 classButton"
                       >
                         إرسال
