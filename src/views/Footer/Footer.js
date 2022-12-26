@@ -4,7 +4,6 @@ import Navbar from "react-bootstrap/Navbar";
 import React, { useState } from "react";
 import "./Footer.css";
 import Logo from "../../assets/images/Logo_Light.png";
-import Login from "../Login/Login";
 import Saudi from "../../assets/images/Saudi_Vision_2030_logo.png";
 
 function Footer() {

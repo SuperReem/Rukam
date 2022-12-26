@@ -2,7 +2,6 @@ import { Button, TextField } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/user.context";
-import "../views/Login/login.css";
 import "./Login.page.css";
 import Footer from "../views/Footer/Footer";
 import TopNavbar from "../views/TopNavbar/TopNavbar";
