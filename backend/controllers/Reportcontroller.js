@@ -28,7 +28,7 @@ const deleteReportByName = async (req, res) => {
   const { image } = req.params;
  
 
-  const report = await Report.findOneAndDelete({ image:image});
+  const report = await reportModel.findOneAndDelete({ image:image});
   if (!report) {
     return res.status(404).json({ error: "No such report" });
   }

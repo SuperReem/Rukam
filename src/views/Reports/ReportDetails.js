@@ -22,7 +22,7 @@ function ReportDetails() {
     if (response.ok) {
       console.log("jknswcdj:", json);
     }
-  };
+  }
   const handle = async (e) => {
     e.preventDefault();
 
@@ -70,6 +70,7 @@ function ReportDetails() {
   const onUnmount = React.useCallback(function callback(map) {
     setMap(null);
   }, []);
+
   return (
     <div className="App">
       <div className="row">
@@ -111,8 +112,8 @@ function ReportDetails() {
             </div>
           </div>
 
-      </div>
-    </div>
+   
+   
     <div className="col-sm-6">
       <div className="m-2 mt-0">
         <div className="heading text-end pe-2">
@@ -155,6 +156,8 @@ function ReportDetails() {
         </div>
       </div>
     </div>
+
+    </div>    </div></div>
   );
 }
 

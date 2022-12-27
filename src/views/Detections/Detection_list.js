@@ -98,7 +98,7 @@ function DetectionList() {
                     variant="secondary"
                     size="sm"
                     id="button-details"
-                    onClick={handle}
+               
                   >
                     <BsArrowUpLeft size={17} /> التفاصيل
                   </Button>
