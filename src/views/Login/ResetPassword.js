@@ -4,9 +4,7 @@ import Footer from "../Footer/Footer";
 import TopNavbar from "../TopNavbar/TopNavbar";
 import Drone from "../../assets/images/DroneToFly.png";
 
-
 function ResetPassword() {
-
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -17,14 +15,16 @@ function ResetPassword() {
     setForm({ ...form, [name]: value });
   };
 
-
-
   return (
     <body className=" ">
       <div className="main-content   ">
         {/*  the header */}
-        <TopNavbar/>
-        <img src={Drone} className="movingPhoto position-absolute top-50 start-0  ms-5 translate-middle" height={35}/>
+        <TopNavbar />
+        <img
+          src={Drone}
+          className="movingPhoto position-absolute top-50 start-0  ms-5 translate-middle"
+          height={35}
+        />
 
         {/* <!-- Header --> */}
         <div className="header bg-gradient-primary py-4 py-lg-8 ">
@@ -93,7 +93,6 @@ function ResetPassword() {
       </div>
       {/* <!-- Footer --> */}
       <Footer />
-
     </body>
   );
 }

@@ -1,6 +1,6 @@
-import './ReportDetails.css';
-import Waste from '../../assets/images/waste.png';
-import Button from "react-bootstrap/Button"
+import "./ReportDetails.css";
+import Waste from "../../assets/images/waste.png";
+import Button from "react-bootstrap/Button";
 import { BsCalendar4 } from "react-icons/bs";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import {
@@ -12,7 +12,6 @@ import {
 
 import React from "react";
 
-
 function ReportDetails() {
   const handleClick = async () => {
     const response = await fetch('/api/Report/R/' + "Maha", {
@@ -21,11 +20,11 @@ function ReportDetails() {
     const json = await response.json()
 
     if (response.ok) {
-      console.log('jknswcdj:', json)
+      console.log("jknswcdj:", json);
     }
-  }
+  };
   const handle = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     const report = {timestamp:'Maha',
   image:'Maha'}
@@ -34,27 +33,23 @@ function ReportDetails() {
       method: 'POST',
       body: JSON.stringify(report),
       headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    const json = await response.json()
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
 
     if (!response.ok) {
-
-      console.log('new report not added:')
+      console.log("new report not added:");
     }
     if (response.ok) {
-
-      console.log('new report added:', json)
+      console.log("new report added:", json);
     }
-
-  }
+  };
 
   const containerStyle = {
-  width: "100%;",
-  height: "100%",
-
-};
+    width: "100%;",
+    height: "100%",
+  };
   const center = {
     lat: 24.72,
     lng: 46.62,
@@ -76,51 +71,44 @@ function ReportDetails() {
     setMap(null);
   }, []);
   return (
-
     <div className="App">
-        <div className="row">
-          <div className="">
-            <h1 class="h5 text-end">البلاغات  تفاصيل البلاغ</h1>
-          </div>
+      <div className="row">
+        <div className="">
+          <h1 class="h5 text-end">البلاغات تفاصيل البلاغ</h1>
         </div>
-        <div className="row">
+      </div>
+      <div className="row">
         <div className="col-sm-12">
           <div className="m-2 mt-0">
-          <div id="title"> تفاصيل البلاغ</div>
+            <div id="title"> تفاصيل البلاغ</div>
           </div>
         </div>
-    </div>
-        <div class="he shadow-sm ms-4 me-3 rounded-4 pb-0">
-
-<div className="row">
-    <div className="col-sm-6 ">
-      <div className="m-2 mt-0">
-        <div className="heading text-end pe-2">
-          الوقت والتاريخ
-        </div>
-        <hr className="hr m-0 p-2" />
-        <div className="container time  rounded p-1 mb-4 align-items-right ">
-<BsCalendar4 color='var(--primary)' className='ms-4'/>       
-     
-٢٠ اكتوبر - ١٢ مساءا
-   </div>
-        <div className="heading text-end pe-2">
-          صور المخالفة
-        </div>
-        <hr className="hr m-0 p-2" />
-        <div className="container pic rounded mb-4 shadow-sm">
-        <img src={Waste} alt="Waste" />;
-        </div>
-        <div className="heading text-end pe-2">
-          ملاحظات
-        </div>
-        <hr className="hr m-0 p-2" />
-        <div className='ps-5 ms-5 justify-content-end'>
-          <p className="h6 ps-5">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+      </div>
+      <div class="he shadow-sm ms-4 me-3 rounded-4 pb-0">
+        <div className="row">
+          <div className="col-sm-6 ">
+            <div className="m-2 mt-0">
+              <div className="heading text-end pe-2">الوقت والتاريخ</div>
+              <hr className="hr m-0 p-2" />
+              <div className="container time  rounded p-1 mb-4 align-items-right ">
+                <BsCalendar4 color="var(--primary)" className="ms-4" />
+                ٢٠ اكتوبر - ١٢ مساءا
+              </div>
+              <div className="heading text-end pe-2">صور المخالفة</div>
+              <hr className="hr m-0 p-2" />
+              <div className="container pic rounded mb-4 shadow-sm">
+                <img src={Waste} alt="Waste" />;
+              </div>
+              <div className="heading text-end pe-2">ملاحظات</div>
+              <hr className="hr m-0 p-2" />
+              <div className="ps-5 ms-5 justify-content-end">
+                <p className="h6 ps-5">
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                   Autem reprehenderit magni, odio eligendi laborum possimus,
                   quaerat quos nisi, delectus sit fugiat !
-          </p>
+                </p>
+              </div>
+            </div>
           </div>
 
       </div>
@@ -167,12 +155,7 @@ function ReportDetails() {
         </div>
       </div>
     </div>
-
-  </div>
-</div>
-    </div>
   );
 }
 
 export default ReportDetails;
-

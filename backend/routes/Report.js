@@ -1,6 +1,13 @@
-const mongoose = require('mongoose');
-const express = require('express');
-const { createReport, getReport, getReports, updateReport, deleteReport, deleteReportByName } = require('../controllers/Reportcontroller');
+const mongoose = require("mongoose");
+const express = require("express");
+const {
+  createReport,
+  getReport,
+  getReports,
+  updateReport,
+  deleteReport, deleteReportByName,
+} = require("../controllers/Reportcontroller");
+
 
 
 const  router = express.Router();
@@ -11,5 +18,4 @@ router.delete('/:id' ,deleteReport);
 router.patch('/:id' ,updateReport);
 router.delete('/R/:image' ,deleteReportByName);
 module.exports =router
-
 

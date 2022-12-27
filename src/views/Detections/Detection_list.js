@@ -94,7 +94,12 @@ function DetectionList() {
                 <Col id="button">3 ابريل 2022</Col>
                 <Col id="button">
                   {" "}
-                  <Button variant="secondary" size="sm" id="button-details">
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    id="button-details"
+                    onClick={handle}
+                  >
                     <BsArrowUpLeft size={17} /> التفاصيل
                   </Button>
                 </Col>

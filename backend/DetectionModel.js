@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
-const reportSchema = new Schema(
+const detectionSchema = new Schema(
   {
     timestamp: {
       type: String,
@@ -12,5 +11,4 @@ const reportSchema = new Schema(
   },
   { timestamps: true }
 );
-
-module.exports = mongoose.model("Reports", reportSchema);
+module.exports = mongoose.model("Detections", detectionSchema);
