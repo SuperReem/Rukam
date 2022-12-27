@@ -63,34 +63,28 @@ const Login = () => {
   // This function gets fired when the user clicks on the "Login" button.
   const onSubmit = async (event) => {
     if (form.email.trim().length == 0 && form.password.trim().length == 0) {
-        alert('form is empty');
-      } else if (form.email.trim().length == 0) {
-        alert('email value is empty');
-      }
-      else
-    if (form.password.trim().length == 0) {
-        alert('password value is empty');
-      }
-      
-      else {
-      
-      
-    try {
-      // Here we are passing user details to our emailPasswordLogin
-      // function that we imported from our realm/authentication.js
-      // to validate the user credentials and log in the user into our App.
-      const user = await emailPasswordLogin(form.email, form.password);
-      if (user) {
-        redirectNow();
-      }
-    } catch (error) {
-      if (error.statusCode === 401) {
-        alert("Invalid email/password. Please try again!");
-      } else {
-        alert(error);
+      alert("form is empty");
+    } else if (form.email.trim().length == 0) {
+      alert("email value is empty");
+    } else if (form.password.trim().length == 0) {
+      alert("password value is empty");
+    } else {
+      try {
+        // Here we are passing user details to our emailPasswordLogin
+        // function that we imported from our realm/authentication.js
+        // to validate the user credentials and log in the user into our App.
+        const user = await emailPasswordLogin(form.email, form.password);
+        if (user) {
+          redirectNow();
+        }
+      } catch (error) {
+        if (error.statusCode === 401) {
+          alert("Invalid email/password. Please try again!");
+        } else {
+          alert(error);
+        }
       }
     }
-}
   };
 
   return (
@@ -187,10 +181,12 @@ const Login = () => {
 
                     <div className=" text-left d-flex justify-content-end  mb-3">
                       {/* <a href="#" className="text-black text-decoration-none "> */}
-                      <Link to="/resetpassword" className="text-decoration-none text-black " >
-
+                      <Link
+                        to="/resetpassword"
+                        className="text-decoration-none text-black "
+                      >
                         نسيت كلمة المرور؟
-                        </Link>
+                      </Link>
 
                       {/* </a> */}
                       {/* <a href="#" class="text-light col-2 "><small>نلمرور؟</small></a> */}
@@ -211,6 +207,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+
       {/* <!-- Footer --> */}
       <Footer />
     </body>
