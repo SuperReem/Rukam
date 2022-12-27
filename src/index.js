@@ -9,11 +9,14 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap";
 import "bootstrap/dist/js/bootstrap.bundle";
 import "bootstrap/dist/js/bootstrap.esm";
+import { DetectionContextProvider } from "./contexts/DetectionListContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <DetectionContextProvider>
+      <App />
+    </DetectionContextProvider>
   </React.StrictMode>
 );
 

@@ -35,6 +35,40 @@ const theme = createTheme({
 });
 
 function DetectionList() {
+  const handleClick = async () => {
+    const response = await fetch(
+      "/api/Detection/" + "63ab2cf4b29727b629e7330a",
+      {
+        method: "DELETE",
+      }
+    );
+    const json = await response.json();
+
+    if (response.ok) {
+      console.log("jknswcdj:", json);
+    }
+  };
+  const handle = async (e) => {
+    e.preventDefault();
+
+    const detection = { timestamp: "nai", image: "cew" };
+
+    const response = await fetch("/api/Detection", {
+      method: "POST",
+      body: JSON.stringify(detection),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+
+    if (!response.ok) {
+      console.log("new Detection not added:");
+    }
+    if (response.ok) {
+      console.log("new Detection added:", json);
+    }
+  };
   const [currentPageData, setCurrentPageData] = useState(new Array(5).fill());
   const items = [
     1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3,
@@ -74,7 +108,12 @@ function DetectionList() {
                 <Col id="button">3 ابريل 2022</Col>
                 <Col id="button">
                   {" "}
-                  <Button variant="secondary" size="sm" id="button-details">
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    id="button-details"
+                    onClick={handle}
+                  >
                     <BsArrowUpLeft size={17} /> التفاصيل
                   </Button>
                 </Col>
