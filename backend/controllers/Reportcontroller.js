@@ -24,6 +24,18 @@ const getReport = async (req, res) => {
   res.status(200).json(report);
 };
 
+const deleteReportByName = async (req, res) => {
+  const { image } = req.params;
+ 
+
+  const report = await Report.findOneAndDelete({ image:image});
+  if (!report) {
+    return res.status(404).json({ error: "No such report" });
+  }
+
+  res.status(200).json(report);
+};
+
 // create a new report
 const createReport = async (req, res) => {
   const { timestamp, image } = req.body;
@@ -97,4 +109,5 @@ module.exports = {
   getReports,
   deleteReport,
   updateReport,
+  deleteReportByName,
 };

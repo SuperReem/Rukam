@@ -17,6 +17,13 @@ import InputIcon from "react-multi-date-picker/components/input_icon";
 import Pagination from "@mui/material/Pagination";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { RiDoubanFill } from "react-icons/ri";
+import DetectionDetails from './DetectionDetails';
+import { render } from "react-dom";
+import { renderHook } from "@testing-library/react";
+import { renderIntoDocument } from "react-dom/test-utils";
+import { Route } from "react-router-dom";
+
+
 
 const theme = createTheme({
   status: {
@@ -34,17 +41,30 @@ const theme = createTheme({
   },
 });
 
+function showDetails(detectionObj){
+  return (
+  <DetectionDetails detection={detectionObj}/>
+  )
+}
+
+
+
 function DetectionList() {
+  const [index, setIndex] = useState(0);
   const [currentPageData, setCurrentPageData] = useState(new Array(5).fill());
   const items = [
     1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3,
     4, 5, 6, 7, 12, 13, 14,
   ];
   const datePickerRef = useRef();
-  return (
-    <>
-      <div id="title">المواقع المخالفة</div>
-      <div id="filter">
+  
+  
+  return (<>
+  {
+         index == 0?
+         <>
+         <div id="title">المواقع المخالفة</div>
+         <div id="filter">
         <BsFilter
           size={43}
           onClick={() => datePickerRef.current.openCalendar()}
@@ -146,7 +166,8 @@ function DetectionList() {
                 <Col id="button">3 ابريل 2022</Col>
                 <Col id="button">
                   {" "}
-                  <Button variant="secondary" size="sm" id="button-details">
+                  <button onClick={()=>setIndex(1)}>Click</button>
+                  <Button variant="secondary" size="sm" id="button-details" onClick={()=>setIndex(1)}>
                     <BsArrowUpLeft size={17} /> التفاصيل
                   </Button>
                 </Col>
@@ -177,11 +198,15 @@ function DetectionList() {
             />
           </ThemeProvider>
         </div>
-
         <div id="page-number">1-20 صفحة</div>
       </div>
-    </>
-  );
+      </>
+    
+  :
+  <DetectionDetails detection={{}}/>
+  }
+  </>
+  )
 }
 
 export default DetectionList;

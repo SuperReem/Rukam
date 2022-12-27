@@ -15,7 +15,7 @@ import React from "react";
 
 function ReportDetails() {
   const handleClick = async () => {
-    const response = await fetch('/api/Report/' + '63a8c6fa35562331120d3b05', {
+    const response = await fetch('/api/Report/R/' + "Maha", {
       method: 'DELETE'
     })
     const json = await response.json()
@@ -27,8 +27,8 @@ function ReportDetails() {
   const handle = async (e) => {
     e.preventDefault()
 
-    const report = {timestamp:'hjbujjb',
-  image:'cew'}
+    const report = {timestamp:'Maha',
+  image:'Maha'}
     
     const response = await fetch('/api/Report', {
       method: 'POST',
@@ -155,7 +155,7 @@ function ReportDetails() {
         <div className="container mt-5 pt-5">
           <div className="row">
             <div className="col-6">
-            <Button variant="secondary" size="lg" className="edit justify-content-between" onClick={handle}>  
+            <Button variant="secondary" size="lg" className="edit justify-content-between" onClick={handleClick}>  
 
        <MdOutlineModeEditOutline color='white' />   &nbsp; تحرير
               </Button>

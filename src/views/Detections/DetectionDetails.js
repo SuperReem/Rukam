@@ -9,11 +9,12 @@ import {
   useJsApiLoader,
   MarkerF,
 } from "@react-google-maps/api";
-
+import { useState } from "react";
 import React from "react";
 
 
-function DetectionDetails() {
+function DetectionDetails({ detection }) {
+  const [index, setIndex] = useState(0);
   const containerStyle = {
     width: "100%;",
     height: "100%",
@@ -120,11 +121,11 @@ Drone21
             <div className="col-6">
             <Button variant="secondary" size="lg" className="edit justify-content-between">  
 
-       <MdOutlineModeEditOutline color='white' />   &nbsp; تحرير
+       <MdOutlineModeEditOutline color='white' />   &nbsp; قبول المخالفة
               </Button>
             </div>
             <div className="col-6">
-              <Button variant="secondary" size="lg" className="send btn"> إرسال البلاغ</Button>
+              <Button variant="secondary" size="lg" className="cancel btn">  رفض المخالفة</Button>
             </div>
             </div>
         </div>
