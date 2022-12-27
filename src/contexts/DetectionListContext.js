@@ -12,12 +12,6 @@ export const detectionReducer = (state, action) => {
       return {
         detections: [action.payload, ...state.detections],
       };
-    case "DELETE_DETECTIONS":
-      return {
-        detections: state.detections.filter(
-          (w) => w._id !== action.payload._id
-        ),
-      };
     default:
       return state;
   }
