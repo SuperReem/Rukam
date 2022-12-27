@@ -1,4 +1,4 @@
-const Report = require('../models/Reportmodel');
+const Report = require('../models');
 const mongoose = require("mongoose");
 
 const getReports = async (req,res) => {
