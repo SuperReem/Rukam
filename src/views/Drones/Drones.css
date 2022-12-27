@@ -1,0 +1,126 @@
+
+.title{
+    text-align: right;
+    
+    padding-right: 3%;
+    font-size: 26px;
+    font-weight: 600;
+      
+}
+.box{
+
+justify-content: center;
+height: 450px;
+width: 550px;
+box-shadow: 5px 2px 13px 5px rgb(207,207,207);
+padding-top: 30px;
+margin-top: 30px;
+margin-right: 250px;
+border-radius: 20px;
+background-color: white;
+}
+.boxfordetails{
+    justify-content: center;
+    height: 550px;
+    width: 650px;
+    box-shadow: 5px 2px 13px 5px rgb(207,207,207);
+    padding-top: 30px;
+    margin-top: 30px;
+    margin-right: 250px;
+    border-radius: 20px;
+    background-color: white; 
+}
+
+
+.img{
+   
+    justify-content: center;
+    background-color: #B5864C;
+    display: flex;
+    height: 150px;
+    width: 170px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 80%;
+}
+
+.add-img{
+   
+    display: flex;
+   
+    position: absolute;
+    margin-top: 110px;
+    padding-left: 115px;
+    
+
+}
+.editicon{
+    background-color:#B5864C;
+    color: rgb(251, 251, 251);
+    border-radius: 50%;
+    height: 30px;
+    width:33px ;
+    padding: 3px;
+}
+.edit-img{
+    display: flex;
+    position: absolute;
+    margin-top: 115px;
+    padding-left: 110px; 
+}
+
+.classLabel {
+  padding-top: 0.1em;
+    display: flex;
+    width: 150px;
+    text-align: right;
+    font-size: 20px;
+  }
+  .classInput {
+    border-color: var(--light_brown) !important;
+  }
+
+
+  
+  
+  .classInput:focus {
+    outline: none !important;
+    border: 0px !important;
+    box-shadow: 0 0 10px var(--light_brown) !important;
+  }
+
+
+
+
+
+
+
+  #formid{
+    margin-top: 160px;
+   
+    position: absolute;
+    display: flex;
+    width: 500px;
+    padding-right: 100px;
+    
+   
+}
+#dropdown-right-button{
+    width: 387px;
+    border-color: var(--light_brown) !important;
+   color:lightslategray;
+    background: transparent !important;
+    padding-left: 170px;
+    font-size:15px ;
+  }
+  .classButton{
+    background-color: var(--light_green) !important;
+  border-color: var(--light_green) !important;
+   
+  }
+  .classButton2{
+    background-color: var(--brown) !important;
+  border-color: var(--brown) !important;
+
+
+ 
+  }
