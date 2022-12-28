@@ -2,8 +2,7 @@ const reportModel = require("../models");
 const mongoose = require("mongoose");
 
 const getReports = async (req, res) => {
-  res.json({ mssg: "GET all reports" });
-  const reports = reportModel.find({});
+  const reports = await reportModel.find({});
   res.status(200).json(reports);
 };
 
@@ -26,9 +25,8 @@ const getReport = async (req, res) => {
 
 const deleteReportByName = async (req, res) => {
   const { image } = req.params;
- 
 
-  const report = await reportModel.findOneAndDelete({ image:image});
+  const report = await reportModel.findOneAndDelete({ image: image });
   if (!report) {
     return res.status(404).json({ error: "No such report" });
   }
