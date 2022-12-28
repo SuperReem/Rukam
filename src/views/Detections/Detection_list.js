@@ -107,9 +107,6 @@ function DetectionList() {
     <>
       {index == 0 ? (
         <>
-          <div>
-            {detections && detections.map((detection) => detection._id)}
-          </div>
           <div id="title">المواقع المخالفة</div>
           <div id="filter">
             <BsFilter
@@ -135,19 +132,28 @@ function DetectionList() {
             </div>
             <div id="detection-list">
               <ListGroup variant="flush">
-                <ListGroup.Item id="row">
-                  <Row>
-                    <Col>#1 حي حطين،شارع تثليث</Col>
-                    <Col id="button">3 ابريل 2022</Col>
-                    <Col id="button">
-                      {" "}
-                      <Button variant="secondary" size="sm" id="button-details">
-                        <BsArrowUpLeft size={17} /> التفاصيل
-                      </Button>
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-                <ListGroup.Item id="row">
+                {detections &&
+                  detections.map((detection) => (
+                    <ListGroup.Item id="row">
+                      <Row>
+                        {" "}
+                        <Col>{detection._id}</Col>{" "}
+                        <Col id="button">{detection.createdAt}</Col>
+                        <Col id="button">
+                          {" "}
+                          <Button
+                            variant="secondary"
+                            size="sm"
+                            id="button-details"
+                          >
+                            <BsArrowUpLeft size={17} /> التفاصيل
+                          </Button>
+                        </Col>
+                      </Row>
+                    </ListGroup.Item>
+                  ))}
+
+                {/* <ListGroup.Item id="row">
                   <Row>
                     <Col>#1 حي حطين،شارع تثليث</Col>
                     <Col id="button">3 ابريل 2022</Col>
@@ -236,7 +242,7 @@ function DetectionList() {
                       </Button>
                     </Col>
                   </Row>
-                </ListGroup.Item>
+                </ListGroup.Item> */}
               </ListGroup>
             </div>
 
