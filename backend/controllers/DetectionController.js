@@ -3,8 +3,7 @@ const mongoose = require("mongoose");
 
 // get all detection
 const getDetections = async (req, res) => {
-  res.json({ mssg: "GET all reports" });
-  const detections = detectionModel.find({});
+  const detections = await detectionModel.find({});
   res.status(200).json(detections);
 };
 

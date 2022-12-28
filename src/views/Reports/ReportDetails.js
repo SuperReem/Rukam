@@ -171,8 +171,9 @@ setStatus(report.status);
         </div>
       </div>
     </div>
-
-    </div>    </div></div>
+    </div>
+      </div>
+    </div>
   );
 }
 
