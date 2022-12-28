@@ -6,11 +6,22 @@ const reportSchema = new Schema(
     timestamp: {
       type: String,
     },
+    status:{
+        type: String,  
+    },
     image: {
       type: String,
     },
+    notes: {
+        type: String,
+      },
+      location:{
+
+            type: String,
+
+      }
   },
-  { timestamps: true }
+
 );
 
 module.exports = mongoose.model("Reports", reportSchema);

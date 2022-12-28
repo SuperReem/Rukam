@@ -1,4 +1,6 @@
 import "./ReportDetails.css";
+import { useEffect } from "react"
+import React, { useState } from "react";
 import Waste from "../../assets/images/waste.png";
 import Button from "react-bootstrap/Button";
 import { BsCalendar4 } from "react-icons/bs";
@@ -10,26 +12,42 @@ import {
   MarkerF,
 } from "@react-google-maps/api";
 
-import React from "react";
+
 
 function ReportDetails() {
-  const handleClick = async () => {
-    const response = await fetch("/api/Report/R/" + "Maha", {
-      method: "DELETE",
-    });
-    const json = await response.json();
 
+  const [report, setReport] = useState();
+  const [timestamp, setTimestamp] = useState("");
+  const [image, setimage] = useState("");
+  const [notes, setNotes] = useState("");
+  const [location, setLocation] = useState("");
+  const [status, setStatus] = useState("");
+  useEffect(() => {
+  const handleClick = async () => {
+    const response = await fetch('/api/Report/' + "63ab54a2d1a653a2379ba071", {
+      method: 'GET'
+    })
+    const json = await response.json()
+setReport(json);
+setimage(report.image);
+setNotes(report.notes);
+setLocation(report.location);
+setTimestamp(report.timestamp);
+setStatus(report.status);
     if (response.ok) {
       console.log("jknswcdj:", json);
     }
-  };
+  }
+  handleClick();
+  },[3])
   const handle = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
 
-    const report = { timestamp: "Maha", image: "Maha" };
-
-    const response = await fetch("/api/Report", {
-      method: "POST",
+    const report = {timestamp:"٢٠ اكتوبر -١٢ مساءا"
+      ,status:"قيد المراجعة",image:"تر نط",notes:"منو",location:"ذتنري"}
+    
+    const response = await fetch('/api/Report', {
+      method: 'POST',
       body: JSON.stringify(report),
       headers: {
         "Content-Type": "application/json",
@@ -44,7 +62,7 @@ function ReportDetails() {
       console.log("new report added:", json);
     }
   };
-
+  
   const containerStyle = {
     width: "100%;",
     height: "100%",
@@ -80,7 +98,7 @@ function ReportDetails() {
       <div className="row">
         <div className="col-sm-12">
           <div className="m-2 mt-0">
-            <div id="title"> تفاصيل البلاغ</div>
+            <div id="title"> {image}</div>
           </div>
         </div>
       </div>
@@ -92,8 +110,7 @@ function ReportDetails() {
               <hr className="hr m-0 p-2" />
               <div className="container time  rounded p-1 mb-4 align-items-right ">
                 <BsCalendar4 color="var(--primary)" className="ms-4" />
-                ٢٠ اكتوبر - ١٢ مساءا
-              </div>
+{timestamp}              </div>
               <div className="heading text-end pe-2">صور المخالفة</div>
               <hr className="hr m-0 p-2" />
               <div className="container pic rounded mb-4 shadow-sm">
@@ -111,52 +128,50 @@ function ReportDetails() {
             </div>
           </div>
 
-          <div className="col-sm-6">
-            <div className="m-2 mt-0">
-              <div className="heading text-end pe-2">حالة البلاغ</div>
-              <hr className="hr m-0 p-2" />
-              <div className="container status rounded p-1  d-flex justify-content-center mb-4">
-                قيد المراجعة
-              </div>
-              <div className="heading text-end pe-2">موقع المخالفة</div>
-              <hr className="hr m-0 p-2" />
-              <div className="container loc rounded mb-5 shadow-sm p-0">
-                {isLoaded ? (
-                  <GoogleMap
-                    mapContainerStyle={containerStyle}
-                    center={center}
-                    zoom={7}
-                    onLoad={onLoad}
-                    onUnmount={onUnmount}
-                  ></GoogleMap>
-                ) : (
-                  <div>Loading...</div>
-                )}
-              </div>
-              <div className="row"> </div>
-              <div className="container mt-5 pt-5">
-                <div className="row">
-                  <div className="col-6">
-                    <Button
-                      variant="secondary"
-                      size="lg"
-                      className="edit justify-content-between"
-                      onClick={handle}
-                    >
-                      <MdOutlineModeEditOutline color="white" /> &nbsp; تحرير
-                    </Button>
-                  </div>
-                  <div className="col-6">
-                    <Button variant="secondary" size="lg" className="send btn">
-                      {" "}
-                      إرسال البلاغ
-                    </Button>
-                  </div>
-                </div>
-              </div>
+   
+   
+    <div className="col-sm-6">
+      <div className="m-2 mt-0">
+        <div className="heading text-end pe-2">
+          حالة البلاغ
+        </div>
+        <hr className="hr m-0 p-2" />
+        <div className="container status rounded p-1  d-flex justify-content-center mb-4">
+{status}        </div>
+        <div className="heading text-end pe-2">
+          موقع المخالفة
+        </div>
+        <hr className="hr m-0 p-2" />
+        <div className="container loc rounded mb-5 shadow-sm p-0">
+        {isLoaded ? (
+            <GoogleMap
+            mapContainerStyle={containerStyle}
+              center={center}
+              zoom={7}
+              onLoad={onLoad}
+              onUnmount={onUnmount}
+            ></GoogleMap>
+          ) : (
+            <div>Loading...</div>
+          )}
+        </div> 
+        <div className="row"> </div>
+        <div className="container mt-5 pt-5">
+          <div className="row">
+            <div className="col-6">
+            <Button variant="secondary" size="lg" className="edit justify-content-between" >  
+
+       <MdOutlineModeEditOutline color='white' />   &nbsp; تحرير
+              </Button>
             </div>
-          </div>
-        </div>{" "}
+            <div className="col-6">
+              <Button variant="secondary" size="lg" className="send btn" onClick={handle}> إرسال البلاغ</Button>
+            </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    </div>
       </div>
     </div>
   );
