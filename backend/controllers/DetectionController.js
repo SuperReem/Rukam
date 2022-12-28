@@ -26,13 +26,10 @@ const getDetection = async (req, res) => {
 
 // create a new detection
 const createDetection = async (req, res) => {
-  const { timestamp, image } = req.body;
+  const { droneId, location, image } = req.body;
 
   let emptyFields = [];
 
-  if (!timestamp) {
-    emptyFields.push("timestamp");
-  }
   if (!image) {
     emptyFields.push("image");
   }
@@ -45,7 +42,11 @@ const createDetection = async (req, res) => {
 
   // add to the database
   try {
-    const detection = await detectionModel.create({ timestamp, image });
+    const detection = await detectionModel.create({
+      droneId,
+      location,
+      image,
+    });
     res.status(200).json(detection);
   } catch (error) {
     res.status(400).json({ error: error.message });

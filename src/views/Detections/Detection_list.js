@@ -61,40 +61,46 @@ function DetectionList() {
     fetchDetections();
   }, [dispatch]);
 
-  // const handleClick = async () => {
-  //   const response = await fetch(
-  //     "/api/Detection/" + "63ab2cf4b29727b629e7330a",
-  //     {
-  //       method: "DELETE",
-  //     }
-  //   );
-  //   const json = await response.json();
+  const handleClick = async () => {
+    const response = await fetch(
+      "/api/Detection/" + "63ab2cf4b29727b629e7330a",
+      {
+        method: "DELETE",
+      }
+    );
+    const json = await response.json();
 
-  //   if (response.ok) {
-  //     console.log("jknswcdj:", json);
-  //   }
-  // };
-  // const handle = async (e) => {
-  //   e.preventDefault();
+    if (response.ok) {
+      console.log("jknswcdj:", json);
+    }
+  };
 
-  //   const detection = { timestamp: "nai", image: "cew" };
+  const handle = async (e) => {
+    e.preventDefault();
 
-  //   const response = await fetch("/api/Detection", {
-  //     method: "POST",
-  //     body: JSON.stringify(detection),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
-  //   const json = await response.json();
+    const detection = {
+      droneId: "7777",
+      location: { latitude: 88, longitude: 66 },
+      image: "kkkkk",
+    };
 
-  //   if (!response.ok) {
-  //     console.log("new Detection not added:");
-  //   }
-  //   if (response.ok) {
-  //     console.log("new Detection added:", json);
-  //   }
-  // };
+    const response = await fetch("/api/Detection", {
+      method: "POST",
+      body: JSON.stringify(detection),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+
+    if (!response.ok) {
+      console.log("new Detection not added:");
+    }
+    if (response.ok) {
+      console.log("new Detection added:", json);
+      dispatch({ type: "CREATE_DETECTIONS", payload: json });
+    }
+  };
   const [index, setIndex] = useState(0);
   const [currentPageData, setCurrentPageData] = useState(new Array(5).fill());
   const items = [
@@ -145,6 +151,7 @@ function DetectionList() {
                             variant="secondary"
                             size="sm"
                             id="button-details"
+                            onClick={handle}
                           >
                             <BsArrowUpLeft size={17} /> التفاصيل
                           </Button>
