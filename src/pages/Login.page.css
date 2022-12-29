@@ -37,3 +37,14 @@
     /* #ce9e71  */
   }
   
+.pass-wrapper {
+  position: relative;
+  display: flex;
+  /* margin-bottom: 14px; */
+}
+.showhide{
+  position: absolute;
+  top: 25%;
+  left: 4%;
+  width:15px;
+}

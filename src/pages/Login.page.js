@@ -6,6 +6,10 @@ import "./Login.page.css";
 import Footer from "../views/Footer/Footer";
 import TopNavbar from "../views/TopNavbar/TopNavbar";
 import Drone from "../assets/images/DroneToFly.png";
+import { VscEye } from "react-icons/vsc";
+import { VscEyeClosed } from "react-icons/vsc";
+
+
 
 
 // import LightBrown from (--light_brown);
@@ -13,6 +17,16 @@ import Drone from "../assets/images/DroneToFly.png";
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const [passwordShown, setPasswordShown] = useState(false);
+  const changeIcon = passwordShown === true ? false : true;
+   // Password toggle handler
+   const togglePassword = () => {
+    // When the handler is invoked
+    // inverse the boolean state of passwordShown
+    setPasswordShown(!passwordShown);
+  };
+
 
   // We are consuming our user-management context to
   // get & set the user details here
@@ -158,15 +172,25 @@ const Login = () => {
                       >
                         كلمة المرور
                       </label>
+
+        
+      <div className="pass-wrapper">
+
                       <input
-                        type="password"
-                        className="form-control classInput"
+                        type= {passwordShown ? "text" : "password"}  //"password"
+                        className="form-control classInput "
                         id="password"
                         placeholder="*********"
                         name="password"
                         value={form.password}
                         onChange={onFormInputChange}
                       />
+                           
+                              <span onClick={togglePassword} className="showhide" >
+                              {changeIcon ? <VscEye /> : <VscEyeClosed />}
+                              </span>
+                            
+                              </div>
                     </div>
                     {/* <TextField
                       class="form-control classInput"
