@@ -3,17 +3,38 @@ import "./ResetPassword.css";
 import Footer from "../Footer/Footer";
 import TopNavbar from "../TopNavbar/TopNavbar";
 import Drone from "../../assets/images/DroneToFly.png";
+import validator from 'validator'
+
 
 function ResetPassword() {
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
+  const [emailError, setEmailError] = useState('')
+
 
   const onFormInputChange = (event) => {
     const { name, value } = event.target;
     setForm({ ...form, [name]: value });
+
+    var email = event.target.value
+  
+    if (validator.isEmail(email)) {
+      setEmailError('')
+    } 
+    else {
+      setEmailError('البريد الإلكتروني غير صالح!')
+    }
   };
+
+///////////////
+  
+
+  
+
+
+  
 
   return (
     <body className=" ">
@@ -57,14 +78,21 @@ function ResetPassword() {
                       </label>
                       <input
                         type="email"
-                        className="form-control classInput "
+                        className="form-control classInput mb-2"
                         id="email"
                         name="email"
                         placeholder="Ma***@gmail.com"
                         value={form.email}
                         onChange={onFormInputChange}
+                        // onChange={(e) => validateEmail(e)}
                         required
                       />
+                         <span className="text-danger mt-1 ">{emailError}</span>
+
+
+
+
+
                       {/* <input
                         type="email"
                         className="form-control classInput"
@@ -97,3 +125,4 @@ function ResetPassword() {
   );
 }
 export default ResetPassword;
+
