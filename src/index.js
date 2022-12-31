@@ -10,12 +10,15 @@ import "bootstrap/dist/js/bootstrap";
 import "bootstrap/dist/js/bootstrap.bundle";
 import "bootstrap/dist/js/bootstrap.esm";
 import { DetectionContextProvider } from "./contexts/DetectionListContext";
+import { ReportContextProvider } from "./contexts/ReportListContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <DetectionContextProvider>
-      <App />
+      <ReportContextProvider>
+        <App />
+      </ReportContextProvider>
     </DetectionContextProvider>
   </React.StrictMode>
 );

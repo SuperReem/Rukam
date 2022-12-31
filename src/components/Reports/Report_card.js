@@ -2,18 +2,53 @@ import "./report_card.css";
 import Button from "react-bootstrap/Button";
 import { BsArrowUpLeft } from "react-icons/bs";
 import { FiTrash } from "react-icons/fi";
-function ReportCard({ status }) {
+import TimeAgo from "react-timeago";
+import frenchStrings from "react-timeago/lib/language-strings/ar";
+import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
+
+function ReportCard({ report }) {
+  const formatter = buildFormatter(frenchStrings);
+
+  const handle = async (e) => {
+    e.preventDefault();
+
+    const report = {
+      reportId: "888",
+      timestamp: "٢٠ اكتوبر -١٢ مساءا",
+      status: "under_processing",
+      region: "حطين",
+      image: "تر نط",
+      notes: "منو",
+      location: "ذتنري",
+    };
+
+    const response = await fetch("/api/Report", {
+      method: "POST",
+      body: JSON.stringify(report),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+
+    if (!response.ok) {
+      console.log("new report not added:");
+    }
+    if (response.ok) {
+      console.log("new report added:", json);
+    }
+  };
   return (
     <>
       <div className="report-card-container">
         <div className="report-card">
-          <div className={"report-status-container " + status}>
+          <div className={"report-status-container " + report.status}>
             <h6>
-              {status == "unsent"
+              {report.status == "unsent"
                 ? "غير مرسل"
-                : status == "pending"
+                : report.status == "pending"
                 ? "قيد الإنتظار"
-                : status == "under_processing"
+                : report.status == "under_processing"
                 ? "قيد المراجعة"
                 : "مغلق"}
             </h6>
@@ -23,8 +58,11 @@ function ReportCard({ status }) {
             id="report-info"
           >
             <div className="d-flex">
-              <h5 className="ms-5">حي حطين، شارع الورد</h5>
-              <p className="report-time">منذ 3 ساعات</p>
+              <h5 className="ms-5"> {report.region}</h5>
+              <p className="report-time">
+                {" "}
+                <TimeAgo date={report.createdAt} formatter={formatter} />;
+              </p>
             </div>
             <div>
               <Button
@@ -32,6 +70,7 @@ function ReportCard({ status }) {
                 size="md"
                 id="details-button"
                 className="ms-3"
+                onClick={handle}
               >
                 <BsArrowUpLeft /> التفاصيل
               </Button>

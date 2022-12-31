@@ -1,5 +1,5 @@
 import "./ReportDetails.css";
-import { useEffect } from "react"
+import { useEffect } from "react";
 import React, { useState } from "react";
 import Waste from "../../assets/images/waste.png";
 import Button from "react-bootstrap/Button";
@@ -12,10 +12,7 @@ import {
   MarkerF,
 } from "@react-google-maps/api";
 
-
-
 function ReportDetails() {
-
   const [report, setReport] = useState();
   const [timestamp, setTimestamp] = useState("");
   const [image, setimage] = useState("");
@@ -23,31 +20,41 @@ function ReportDetails() {
   const [location, setLocation] = useState("");
   const [status, setStatus] = useState("");
   useEffect(() => {
-  const handleClick = async () => {
-    const response = await fetch('/api/Report/' + "63ab54a2d1a653a2379ba071", {
-      method: 'GET'
-    })
-    const json = await response.json()
-setReport(json);
-setimage(report.image);
-setNotes(report.notes);
-setLocation(report.location);
-setTimestamp(report.timestamp);
-setStatus(report.status);
-    if (response.ok) {
-      console.log("jknswcdj:", json);
-    }
-  }
-  handleClick();
-  },[3])
+    const handleClick = async () => {
+      const response = await fetch(
+        "/api/Report/" + "63ab54a2d1a653a2379ba071",
+        {
+          method: "GET",
+        }
+      );
+      const json = await response.json();
+      setReport(json);
+      setimage(report.image);
+      setNotes(report.notes);
+      setLocation(report.location);
+      setTimestamp(report.timestamp);
+      setStatus(report.status);
+      if (response.ok) {
+        console.log("jknswcdj:", json);
+      }
+    };
+    handleClick();
+  }, [3]);
   const handle = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
-    const report = {timestamp:"٢٠ اكتوبر -١٢ مساءا"
-      ,status:"قيد المراجعة",image:"تر نط",notes:"منو",location:"ذتنري"}
-    
-    const response = await fetch('/api/Report', {
-      method: 'POST',
+    const report = {
+      reportId: "888",
+      timestamp: "٢٠ اكتوبر -١٢ مساءا",
+      status: "unsent",
+      region: "حطين",
+      image: "تر نط",
+      notes: "منو",
+      location: "ذتنري",
+    };
+
+    const response = await fetch("/api/Report", {
+      method: "POST",
       body: JSON.stringify(report),
       headers: {
         "Content-Type": "application/json",
@@ -62,7 +69,7 @@ setStatus(report.status);
       console.log("new report added:", json);
     }
   };
-  
+
   const containerStyle = {
     width: "100%;",
     height: "100%",
@@ -110,7 +117,8 @@ setStatus(report.status);
               <hr className="hr m-0 p-2" />
               <div className="container time  rounded p-1 mb-4 align-items-right ">
                 <BsCalendar4 color="var(--primary)" className="ms-4" />
-{timestamp}              </div>
+                {timestamp}{" "}
+              </div>
               <div className="heading text-end pe-2">صور المخالفة</div>
               <hr className="hr m-0 p-2" />
               <div className="container pic rounded mb-4 shadow-sm">
@@ -128,50 +136,56 @@ setStatus(report.status);
             </div>
           </div>
 
-   
-   
-    <div className="col-sm-6">
-      <div className="m-2 mt-0">
-        <div className="heading text-end pe-2">
-          حالة البلاغ
-        </div>
-        <hr className="hr m-0 p-2" />
-        <div className="container status rounded p-1  d-flex justify-content-center mb-4">
-{status}        </div>
-        <div className="heading text-end pe-2">
-          موقع المخالفة
-        </div>
-        <hr className="hr m-0 p-2" />
-        <div className="container loc rounded mb-5 shadow-sm p-0">
-        {isLoaded ? (
-            <GoogleMap
-            mapContainerStyle={containerStyle}
-              center={center}
-              zoom={7}
-              onLoad={onLoad}
-              onUnmount={onUnmount}
-            ></GoogleMap>
-          ) : (
-            <div>Loading...</div>
-          )}
-        </div> 
-        <div className="row"> </div>
-        <div className="container mt-5 pt-5">
-          <div className="row">
-            <div className="col-6">
-            <Button variant="secondary" size="lg" className="edit justify-content-between" >  
-
-       <MdOutlineModeEditOutline color='white' />   &nbsp; تحرير
-              </Button>
+          <div className="col-sm-6">
+            <div className="m-2 mt-0">
+              <div className="heading text-end pe-2">حالة البلاغ</div>
+              <hr className="hr m-0 p-2" />
+              <div className="container status rounded p-1  d-flex justify-content-center mb-4">
+                {status}{" "}
+              </div>
+              <div className="heading text-end pe-2">موقع المخالفة</div>
+              <hr className="hr m-0 p-2" />
+              <div className="container loc rounded mb-5 shadow-sm p-0">
+                {isLoaded ? (
+                  <GoogleMap
+                    mapContainerStyle={containerStyle}
+                    center={center}
+                    zoom={7}
+                    onLoad={onLoad}
+                    onUnmount={onUnmount}
+                  ></GoogleMap>
+                ) : (
+                  <div>Loading...</div>
+                )}
+              </div>
+              <div className="row"> </div>
+              <div className="container mt-5 pt-5">
+                <div className="row">
+                  <div className="col-6">
+                    <Button
+                      variant="secondary"
+                      size="lg"
+                      className="edit justify-content-between"
+                    >
+                      <MdOutlineModeEditOutline color="white" /> &nbsp; تحرير
+                    </Button>
+                  </div>
+                  <div className="col-6">
+                    <Button
+                      variant="secondary"
+                      size="lg"
+                      className="send btn"
+                      onClick={handle}
+                    >
+                      {" "}
+                      إرسال البلاغ
+                    </Button>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="col-6">
-              <Button variant="secondary" size="lg" className="send btn" onClick={handle}> إرسال البلاغ</Button>
-            </div>
-            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    </div>
       </div>
     </div>
   );

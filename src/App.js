@@ -9,7 +9,6 @@ import TopNavbar from "./views/TopNavbar/TopNavbar";
 
 import ResetPassword from "./views/Login/ResetPassword";
 import ResetPass from "./views/Login/ResetPass";
-
 // Login
 import Sidebar from "./views/SideNavbar/SideNavbar";
 

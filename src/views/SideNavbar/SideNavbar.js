@@ -74,7 +74,7 @@ const Sidebar = () => {
           {currentIndex === 0 ? (
             <Dashboard_Admin />
           ) : currentIndex === 1 ? (
-            <ReportDetails />
+            <ReportsList />
           ) : currentIndex === 2 ? (
             <DetectionList />
           ) : (

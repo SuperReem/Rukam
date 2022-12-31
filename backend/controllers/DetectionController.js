@@ -26,7 +26,7 @@ const getDetection = async (req, res) => {
 
 // create a new detection
 const createDetection = async (req, res) => {
-  const { droneId, location, image } = req.body;
+  const { droneId, location, region, time, image } = req.body;
 
   let emptyFields = [];
 
@@ -45,6 +45,8 @@ const createDetection = async (req, res) => {
     const detection = await detectionModel.create({
       droneId,
       location,
+      region,
+      time,
       image,
     });
     res.status(200).json(detection);

@@ -8,6 +8,8 @@ import ReportCard from "../../components/Reports/Report_card";
 import { useState } from "react";
 import Pagination from "@mui/material/Pagination";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useReportContext } from "../../hooks/useReportContext";
+import { useEffect } from "react";
 
 const theme = createTheme({
   status: {
@@ -25,6 +27,21 @@ const theme = createTheme({
   },
 });
 function ReportsList() {
+  const { reports, dispatch } = useReportContext();
+
+  useEffect(() => {
+    const fetchReports = async () => {
+      const response = await fetch("/api/Report");
+      const json = await response.json();
+
+      if (response.ok) {
+        dispatch({ type: "SET_REPORTS", payload: json });
+      }
+    };
+
+    fetchReports();
+  }, [dispatch]);
+
   const [currentPageData, setCurrentPageData] = useState(new Array(5).fill());
   const items = [
     1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3,
@@ -48,9 +65,13 @@ function ReportsList() {
           maxDate={new Date()}
         />
       </div>
-      <ReportCard status={"unsent"} />
+      {reports &&
+        reports.map((report) => (
+          <ReportCard report={report} key={report._id} />
+        ))}
+      {/* <ReportCard status={"unsent"} />
       <ReportCard status={"pending"} />
-      <ReportCard status={"closed"} />
+      <ReportCard status={"closed"} /> */}
       <div id="pagination">
         <ThemeProvider theme={theme}>
           <Pagination

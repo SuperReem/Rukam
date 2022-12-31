@@ -36,7 +36,8 @@ const deleteReportByName = async (req, res) => {
 
 // create a new report
 const createReport = async (req, res) => {
-  const { timestamp,status,image,notes,location } = req.body;
+  const { reportId, timestamp, status, region, image, notes, location } =
+    req.body;
 
   let emptyFields = [];
 
@@ -55,7 +56,15 @@ const createReport = async (req, res) => {
 
   // add to the database
   try {
-    const report = await reportModel.create({ timestamp,status,image,notes,location });
+    const report = await reportModel.create({
+      reportId,
+      timestamp,
+      status,
+      region,
+      image,
+      notes,
+      location,
+    });
     res.status(200).json(report);
   } catch (error) {
     res.status(400).json({ error: error.message });

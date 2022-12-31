@@ -9,6 +9,12 @@ const detectionSchema = new Schema(
       latitude: { type: Number },
       longitude: { type: Number },
     },
+    region: {
+      type: String,
+    },
+    time: {
+      type: String,
+    },
     image: {
       type: String,
     },

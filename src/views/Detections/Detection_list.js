@@ -24,6 +24,7 @@ import { renderIntoDocument } from "react-dom/test-utils";
 import { Route } from "react-router-dom";
 import { useEffect } from "react";
 import { useDetectionsContext } from "../../hooks/useDetectionsContext";
+import { useIntl } from "react-intl";
 
 const theme = createTheme({
   status: {
@@ -74,13 +75,20 @@ function DetectionList() {
       console.log("jknswcdj:", json);
     }
   };
+  const date = new Date();
+  const formattedDate = new Intl.DateTimeFormat("ar-GB", {
+    dateStyle: "full",
+    timeZone: "Australia/Sydney",
+  }).format(date);
 
   const handle = async (e) => {
     e.preventDefault();
 
     const detection = {
       droneId: "7777",
-      location: { latitude: 88, longitude: 66 },
+      location: { latitude: 88.9, longitude: 66 },
+      region: "حي حطين",
+      time: formattedDate,
       image: "kkkkk",
     };
 
@@ -143,8 +151,8 @@ function DetectionList() {
                     <ListGroup.Item id="row">
                       <Row>
                         {" "}
-                        <Col>{detection._id}</Col>{" "}
-                        <Col id="button">{detection.createdAt}</Col>
+                        <Col>{detection.region}</Col>{" "}
+                        <Col id="button">{detection.time}</Col>
                         <Col id="button">
                           {" "}
                           <Button
