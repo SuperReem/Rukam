@@ -103,6 +103,7 @@ function DetectionList() {
 
     if (!response.ok) {
       console.log("new Detection not added:");
+      DetectionDetails({json});
     }
     if (response.ok) {
       console.log("new Detection added:", json);
@@ -110,6 +111,7 @@ function DetectionList() {
     }
   };
   const [index, setIndex] = useState(0);
+  const [detec, setDetec] = useState();
   const [currentPageData, setCurrentPageData] = useState(new Array(5).fill());
   const items = [
     1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3,
@@ -155,14 +157,21 @@ function DetectionList() {
                         <Col id="button">{detection.time}</Col>
                         <Col id="button">
                           {" "}
+                          <button onClick={() => {
+
+                            setDetec(detection)
+                            setIndex(1)
+                          }
+                           }>Click</button>
                           <Button
-                            variant="secondary"
-                            size="sm"
+                            // variant="secondary"
+                            // size="sm"
                             id="button-details"
                             onClick={handle}
                           >
                             <BsArrowUpLeft size={17} /> التفاصيل
                           </Button>
+
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -275,7 +284,7 @@ function DetectionList() {
           </div>
         </>
       ) : (
-        <DetectionDetails detection={{}} />
+        <DetectionDetails detection={detec} key={detec._id}/>
       )}
     </>
   );

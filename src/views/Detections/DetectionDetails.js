@@ -2,6 +2,8 @@ import '../Reports/ReportDetails.css';
 import Waste from '../../assets/images/waste.png';
 import Button from "react-bootstrap/Button"
 import { BsCalendar4 } from "react-icons/bs";
+import { useIntl } from "react-intl";
+import { useDetectionsContext } from "../../hooks/useDetectionsContext";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import {
   GoogleMap,
@@ -13,7 +15,8 @@ import { useState } from "react";
 import React from "react";
 
 
-function DetectionDetails({ detection }) {
+function DetectionDetails({detection}) {
+  const { dispatch } = useDetectionsContext();
   const [index, setIndex] = useState(0);
   const containerStyle = {
     width: "100%;",
@@ -66,7 +69,7 @@ function DetectionDetails({ detection }) {
         </div>
         <hr className="hr m-0 p-2" />
         <div className="container h4  rounded p-1 mb-4 align-items-right ">
-Drone21     
+        {detection.droneId}
    </div>
         <div className="heading text-end pe-2">
           صور المخالفة
@@ -75,17 +78,7 @@ Drone21
         <div className="container pic rounded mb-4 shadow-sm">
         <img src={Waste} alt="Waste" />;
         </div>
-        <div className="heading text-end pe-2">
-          ملاحظات
-        </div>
-        <hr className="hr m-0 p-2" />
-        <div className='ps-5 ms-5 justify-content-end'>
-          <p className="h6 ps-5">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Autem reprehenderit magni, odio eligendi laborum possimus,
-                  quaerat quos nisi, delectus sit fugiat !
-          </p>
-          </div>
+     
 
       </div>
     </div>
@@ -96,7 +89,7 @@ Drone21
         <hr className="hr m-0 p-2" />
         <div className="container time  rounded p-1 mb-4 align-items-right ">
         <BsCalendar4 color='var(--primary)' className='ms-4'/>  
-        ٢٠ اكتوبر - ١٢ مساءا
+        {detection.time}
         </div>
         <div className="heading text-end pe-2">
           موقع المخالفة

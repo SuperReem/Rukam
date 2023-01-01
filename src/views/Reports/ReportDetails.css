@@ -76,7 +76,7 @@ background-color: white;
     color: white;
 }
 .edit.btn:hover{
-    background-color: var(--primary)!important;
+    background-color: rgb(17, 101, 17);
     color: white;
 }
 .save.btn{

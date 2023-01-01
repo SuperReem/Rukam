@@ -105,7 +105,7 @@ function ReportDetails() {
       <div className="row">
         <div className="col-sm-12">
           <div className="m-2 mt-0">
-            <div id="title"> {image}</div>
+            <div id="title"> تفاصيل البلاغ</div>
           </div>
         </div>
       </div>
