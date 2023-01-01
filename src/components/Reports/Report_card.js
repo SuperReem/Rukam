@@ -17,6 +17,17 @@ function ReportCard({ report }) {
     1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3,
     4, 5, 6, 7, 12, 13, 14,
   ];
+
+  const handleClick = async (ID) => {
+    const response = await fetch("/api/Report/" + ID, {
+      method: "DELETE",
+    });
+    const json = await response.json();
+
+    if (response.ok) {
+      console.log("jknswcdj:", json);
+    }
+  };
   const handle = async (e) => {
     e.preventDefault();
 

@@ -5,17 +5,15 @@ const {
   getReport,
   getReports,
   updateReport,
-  deleteReport, deleteReportByName,
+  deleteReport,
+  deleteReportByName,
 } = require("../controllers/Reportcontroller");
 
-
-
-const  router = express.Router();
-router.get('/' ,getReports);
-router.get('/:id' ,getReport);
-router.post('/' ,createReport);
-router.delete('/:id' ,deleteReport);
-router.patch('/:id' ,updateReport);
-router.delete('/R/:image' ,deleteReportByName);
-module.exports =router
-
+const router = express.Router();
+router.get("/", getReports);
+router.get("/:id", getReport);
+router.post("/", createReport);
+router.delete("/:id", deleteReport);
+router.patch("/:id", updateReport);
+router.delete("/R/:image", deleteReportByName);
+module.exports = router;
