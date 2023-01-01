@@ -5,10 +5,18 @@ import { FiTrash } from "react-icons/fi";
 import TimeAgo from "react-timeago";
 import frenchStrings from "react-timeago/lib/language-strings/ar";
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
+import ReportDetails from "../../views/Reports/ReportDetails";
+import React, { useState } from "react";
 
 function ReportCard({ report }) {
   const formatter = buildFormatter(frenchStrings);
-
+  const [index, setIndex] = useState(0);
+  const [rep, setReport] = useState();
+  const [currentPageData, setCurrentPageData] = useState(new Array(5).fill());
+  const items = [
+    1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3,
+    4, 5, 6, 7, 12, 13, 14,
+  ];
   const handle = async (e) => {
     e.preventDefault();
 
@@ -40,6 +48,8 @@ function ReportCard({ report }) {
   };
   return (
     <>
+      {index == 0 ? (
+        <>
       <div className="report-card-container">
         <div className="report-card">
           <div className={"report-status-container " + report.status}>
@@ -66,11 +76,15 @@ function ReportCard({ report }) {
             </div>
             <div>
               <Button
-                variant="secondary"
-                size="md"
+            
                 id="details-button"
-                className="ms-3"
-                onClick={handle}
+              
+                onClick={() => {
+
+        
+                  setIndex(1)
+                }
+                 }
               >
                 <BsArrowUpLeft /> التفاصيل
               </Button>
@@ -136,8 +150,13 @@ function ReportCard({ report }) {
           </div>
         </div>
       </div>
+      </>
+      ) : (
+        <ReportDetails report={report} />
+      )}
     </>
   );
 }
+
 
 export default ReportCard;

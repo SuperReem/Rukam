@@ -5,6 +5,7 @@ import { BsCalendar4 } from "react-icons/bs";
 import { useIntl } from "react-intl";
 import { useDetectionsContext } from "../../hooks/useDetectionsContext";
 import { MdOutlineModeEditOutline } from "react-icons/md";
+import DetectionList from "../Detections/Detection_list";
 import {
   GoogleMap,
   Marker,
@@ -16,8 +17,16 @@ import React from "react";
 
 
 function DetectionDetails({detection}) {
-  const { dispatch } = useDetectionsContext();
   const [index, setIndex] = useState(0);
+
+  const [currentPageData, setCurrentPageData] = useState(new Array(5).fill());
+  const items = [
+    1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3,
+    4, 5, 6, 7, 12, 13, 14,
+  ];
+
+  const { dispatch } = useDetectionsContext();
+
   const containerStyle = {
     width: "100%;",
     height: "100%",
@@ -44,8 +53,62 @@ function DetectionDetails({detection}) {
       setMap(null);
     }, []);
     
-  return (
+    const Accept = async (e) => {
+      e.preventDefault();
+  
+      const report = {
+        reportId: "9898",
+        timestamp: detection.time,
+        status: "unsent",
+        region: detection.region,
+        image: detection.image,
+        notes: "",
+        location: detection.location,
+      };
+  
+      const response = await fetch("/api/Report", {
+        method: "POST",
+        body: JSON.stringify(report),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const json = await response.json();
+  
+      if (!response.ok) {
+        console.log("new report not added:");
+      }
+      if (response.ok) {
+        console.log("new report added:", json);
+      }
 
+
+      DeleteDetection();
+      setIndex(1);
+    };
+  
+
+    const DeleteDetection = async () => {
+      const response = await fetch(
+        "/api/Detection/" + detection._id,
+        {
+          method: "DELETE",
+        }
+      );
+      const json = await response.json();
+      if (response.ok) {
+        console.log("jknswcdj:", json);
+      }
+    };
+
+    const Decline = async (e) => {
+      DeleteDetection();
+      setIndex(1);
+    }
+  return (
+    <>
+    {index == 0 ? (
+      <>
     <div className="App">
         <div className="row">
           <div className="">
@@ -112,13 +175,13 @@ function DetectionDetails({detection}) {
         <div className="container mt-5 pt-5">
           <div className="row">
             <div className="col-6">
-            <Button variant="secondary" size="lg" className="edit justify-content-between">  
+            <Button variant="secondary" size="lg" className="edit justify-content-between" onClick={Accept}>  
 
        <MdOutlineModeEditOutline color='white' />   &nbsp; قبول المخالفة
               </Button>
             </div>
             <div className="col-6">
-              <Button variant="secondary" size="lg" className="cancel btn">  رفض المخالفة</Button>
+              <Button variant="secondary" size="lg" className="cancel btn" onClick={Decline}>  رفض المخالفة</Button>
             </div>
             </div>
         </div>
@@ -128,6 +191,11 @@ function DetectionDetails({detection}) {
   </div>
 </div>
     </div>
+    </>
+      ) : (
+        <DetectionList/>
+      )}
+    </>
   );
 }
 
