@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Waste from "../../assets/images/waste.png";
 import Button from "react-bootstrap/Button";
 import { BsCalendar4 } from "react-icons/bs";
+import EditReport from "../../views/Reports/EditReport";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import {
   GoogleMap,
@@ -13,7 +14,12 @@ import {
 } from "@react-google-maps/api";
 
 function ReportDetails({report}) {
-
+  const [index, setIndex] = useState(0);
+  const [currentPageData, setCurrentPageData] = useState(new Array(5).fill());
+  const items = [
+    1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3,
+    4, 5, 6, 7, 12, 13, 14,
+  ];
   useEffect(() => {
     const handleClick = async () => {
       const response = await fetch(
@@ -29,6 +35,9 @@ function ReportDetails({report}) {
     };
     handleClick();
   }, [3]);
+  const Edit = async (e) => {
+    setIndex(1);
+  };
   const handle = async (e) => {
     e.preventDefault();
 
@@ -41,6 +50,9 @@ function ReportDetails({report}) {
       notes: "منو",
       location: "ذتنري",
     };
+
+    
+
 
     const response = await fetch("/api/Report", {
       method: "POST",
@@ -85,6 +97,9 @@ function ReportDetails({report}) {
   }, []);
 
   return (
+    <>
+    {index == 0 ? (
+      <>
     <div className="App">
       <div className="row">
         <div className="">
@@ -153,6 +168,7 @@ function ReportDetails({report}) {
                       variant="secondary"
                       size="lg"
                       className="edit justify-content-between"
+                      onClick={Edit}
                     >
                       <MdOutlineModeEditOutline color="white" /> &nbsp; تحرير
                     </Button>
@@ -162,7 +178,7 @@ function ReportDetails({report}) {
                       variant="secondary"
                       size="lg"
                       className="send btn"
-                      onClick={handle}
+             
                     >
                       {" "}
                       إرسال البلاغ
@@ -175,6 +191,11 @@ function ReportDetails({report}) {
         </div>
       </div>
     </div>
+    </>
+      ) : (
+        <EditReport report={report} />
+      )}
+    </>
   );
 }
 

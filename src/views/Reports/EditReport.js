@@ -9,12 +9,22 @@ import {
   useJsApiLoader,
   MarkerF,
 } from "@react-google-maps/api";
+import React, { useState } from "react";
+import ReportDetails from "../../views/Reports/ReportDetails";
 
 
-import React from "react";
 
+function EditReport({report}) {
 
-function EditReport() {
+  const [index, setIndex] = useState(0);
+  const [currentPageData, setCurrentPageData] = useState(new Array(5).fill());
+  const items = [
+    1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3,
+    4, 5, 6, 7, 12, 13, 14,
+  ];
+  const Save = async (e) => {
+    setIndex(1);
+  };
   const containerStyle = {
     width: "100%;",
     height: "100%",
@@ -42,6 +52,9 @@ function EditReport() {
     }, []);
     
   return (
+    <>
+    {index == 0 ? (
+      <>
     <div className="App">
         <div className="row">
           <div className="">
@@ -67,8 +80,7 @@ function EditReport() {
         <div className="container time  rounded p-1 mb-4 align-items-right ">
 <BsCalendar4 color='var(--primary)' className='ms-4'/>       
      
-٢٠ اكتوبر - ١٢ مساءا
-   </div>
+{report.timestamp}   </div>
         <div className="heading text-end pe-2">
           صور المخالفة
         </div>
@@ -80,9 +92,7 @@ function EditReport() {
           ملاحظات
         </div>
         <hr className="hr m-0 p-2" />
-     <textarea className="notes p-2" id=""  rows="3">   Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Autem reprehenderit magni, odio eligendi laborum possimus,
-                  quaerat quos nisi, delectus sit fugiat !</textarea>
+     <textarea className="notes p-2" id=""  rows="3" value={report.notes}>   </textarea>
   
 
       </div>
@@ -94,7 +104,7 @@ function EditReport() {
         </div>
         <hr className="hr m-0 p-2" />
         <div className="container status rounded p-1  d-flex justify-content-center mb-4">
-          قيد المراجعة
+        {report.status} 
         </div>
         <div className="heading text-end pe-2">
           موقع المخالفة
@@ -117,14 +127,14 @@ function EditReport() {
         <div className="container mt-5 pt-5">
           <div className="row">
             <div className="col-6">
-            <Button variant="secondary" size="lg" className="edit justify-content-between">  
+            <Button variant="secondary" size="lg" className="edit justify-content-between" onClick={Save}>  
             <FiSave/>   &nbsp;
             حفظ
 
               </Button>
             </div>
             <div className="col-6">
-              <Button variant="secondary" size="lg" className="cancel btn">  إلغاء </Button>
+              <Button variant="secondary" size="lg" className="cancel btn" onClick={Save}>  إلغاء </Button>
             </div>
             </div>
         </div>
@@ -134,6 +144,11 @@ function EditReport() {
   </div>
 </div>
     </div>
+    </>
+      ) : (
+        <ReportDetails report={report} />
+      )}
+    </>
   );
 }
 

@@ -2,6 +2,8 @@ import '../Reports/ReportDetails.css';
 import Waste from '../../assets/images/waste.png';
 import Button from "react-bootstrap/Button"
 import { BsCalendar4 } from "react-icons/bs";
+import { BsCheckLg } from "react-icons/bs";
+import { BsTrash } from "react-icons/bs";
 import { useIntl } from "react-intl";
 import { useDetectionsContext } from "../../hooks/useDetectionsContext";
 import { MdOutlineModeEditOutline } from "react-icons/md";
@@ -177,11 +179,11 @@ function DetectionDetails({detection}) {
             <div className="col-6">
             <Button variant="secondary" size="lg" className="edit justify-content-between" onClick={Accept}>  
 
-       <MdOutlineModeEditOutline color='white' />   &nbsp; قبول المخالفة
+       <BsCheckLg color='white' />   &nbsp; قبول المخالفة
               </Button>
             </div>
             <div className="col-6">
-              <Button variant="secondary" size="lg" className="cancel btn" onClick={Decline}>  رفض المخالفة</Button>
+              <Button variant="secondary" size="lg" className="cancel btn" onClick={Decline}>  <BsTrash color='white' /> رفض المخالفة</Button>
             </div>
             </div>
         </div>
