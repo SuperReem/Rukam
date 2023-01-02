@@ -15,16 +15,54 @@ import ReportDetails from "../../views/Reports/ReportDetails";
 
 
 function EditReport({report}) {
-
+  const [notes, setNotes] = useState(report.notes);
   const [index, setIndex] = useState(0);
   const [currentPageData, setCurrentPageData] = useState(new Array(5).fill());
   const items = [
     1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3,
     4, 5, 6, 7, 12, 13, 14,
   ];
+
+  const updatetext = event => {
+  setNotes(event.target.value);
+  }
+
+  const rep = {
+    reportId: report.reportId,
+    timestamp:report.timestamp,
+    status:report.status,
+    region: report.region,
+    image: report.image,
+    notes:notes,
+    location: report.location,
+  };
+  
+
   const Save = async (e) => {
+    const response = await fetch(
+      "/api/Report/" + report._id,
+      {
+        method: "PATCH",
+        body: JSON.stringify(rep),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const json = await response.json();
+  
+      if (!response.ok) {
+        console.log("new report not added:");
+        console.log(rep.notes);
+      }
+      if (response.ok) {
+        console.log("new report added:", json);
+      }
+    
     setIndex(1);
   };
+
+
+
   const containerStyle = {
     width: "100%;",
     height: "100%",
@@ -92,7 +130,7 @@ function EditReport({report}) {
           ملاحظات
         </div>
         <hr className="hr m-0 p-2" />
-     <textarea className="notes p-2" id=""  rows="3" value={report.notes}>   </textarea>
+     <textarea className="notes p-2" id=""  rows="3" defaultValue={report.notes} onChange={updatetext}/> 
   
 
       </div>
