@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require("mongoose");
 const ReportRoutes = require("./routes/Report");
 const DetectionRoute = require("./routes/Detection");
+const DroneRouter = require("./routes/Drone")
 
 const connection_string = `mongodb+srv://Nailah:0UUXTrBNuiKanCcC@cluster0.cgkke2f.mongodb.net/Rukam?retryWrites=true&w=majority`;
 //const port = process.env.PORT || 80
@@ -20,6 +21,7 @@ app.use((req, res, next) => {
 // routes
 app.use("/api/Report", ReportRoutes);
 app.use("/api/Detection", DetectionRoute);
+app.use("/api/Drone" , DroneRouter);
 
 mongoose
   .connect(connection_string)

@@ -6,8 +6,40 @@ import {DropdownButton , Dropdown} from 'react-bootstrap';
 import { IoAddCircle } from 'react-icons/io5';
 import {IoAddSharp } from 'react-icons/io5';
 import Button from "react-bootstrap/Button";
+import { useEffect , useState} from "react";
 
 const AddDrone = ()=>{
+  const [dronename , setName] = useState('')
+  const [region , setRegion] = useState('')
+  const [image , setImage] = useState('')
+
+  const handle = async (e) => {
+    e.preventDefault();
+
+    const drone = {
+      droneName: "Drone22",
+      region: "hattin",
+      image: "kkkkk",
+    };
+
+    const response = await fetch("/api/Drone", {
+      method: "POST",
+      body: JSON.stringify(drone),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+
+    if (!response.ok) {
+      console.log("new drone not added:");
+    }
+    if (response.ok) {
+     console.log("new drone added:", json);
+    //  dispatch({ type: "CREATE_DRONE", payload: json });
+    }
+  };
+
     return <>
     <div class="App">
     <div class="title">
@@ -25,9 +57,9 @@ const AddDrone = ()=>{
       <div class="box">
 
 
-      <div class="row  m-2">
+      <div class="row  p-2">
       <div class="img">
-      <img src = {Drone} alt="Drone"/>
+      <img src = {Drone} alt="Drone" class="rounded-circle" />
       <div class="add-img" >
       <IoAddCircle color="#B5864C"/> 
       </div>
@@ -75,7 +107,7 @@ const AddDrone = ()=>{
 <div className="row px-md-5">
   <div className="col">
 <div className="text-center">
-                      <button
+                      <button onClick={handle}
                         type="button"
                         className="btn btn-primary my-2  px-3 classButton">
                         <IoAddSharp/>
