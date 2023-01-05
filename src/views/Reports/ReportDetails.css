@@ -4,7 +4,7 @@ font-family: tajawal;
 }
 #title {
     text-align: right;
-    padding-right: 4%;
+  
   }
 .he{
 
@@ -117,5 +117,19 @@ background-color: white;
     background-color:rgb(151, 89, 38)!important;
     color: white;
 }
-img {position: relative;
+.popup.btn{
+    background-color: var(--brown) !important;
+    border: none;
+    color: white;  
+    width: 30%;
+}
+.popup.btn:hover{
+    background-color:rgb(151, 89, 38)!important;
+    color: white;
+}
+.img {position: relative;
     left: 30px; }
+.pagenav{
+    padding-right: 3%;
+    color: var(--brown)!important;
+}

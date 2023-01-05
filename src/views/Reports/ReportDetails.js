@@ -12,14 +12,10 @@ import {
   useJsApiLoader,
   MarkerF,
 } from "@react-google-maps/api";
+import ReportsList from "./Reports_list";
 
 function ReportDetails({report}) {
   const [index, setIndex] = useState(0);
-  const [currentPageData, setCurrentPageData] = useState(new Array(5).fill());
-  const items = [
-    1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3,
-    4, 5, 6, 7, 12, 13, 14,
-  ];
   useEffect(() => {
     const handleClick = async () => {
       const response = await fetch(
@@ -37,6 +33,9 @@ function ReportDetails({report}) {
   }, [3]);
   const Edit = async (e) => {
     setIndex(1);
+  };
+  const PageNav = async (e) => {
+    setIndex(2);
   };
   const handle = async (e) => {
     e.preventDefault();
@@ -101,11 +100,17 @@ function ReportDetails({report}) {
     {index == 0 ? (
       <>
     <div className="App">
-      <div className="row">
-        <div className="">
-          <h1 class="h5 text-end">البلاغات تفاصيل البلاغ</h1>
+ 
+          <div className="row">
+        <div className="col-sm-12">
+          <div className="p-0">
+          <a class="pagenav h5 text-end" onClick={PageNav}>  البلاغات  </a>
+           <a></a>
+          <a class="pagenav h5 text-end">تفاصيل البلاغ</a>
+          </div>
         </div>
       </div>
+    
       <div className="row">
         <div className="col-sm-12">
           <div className="m-2 mt-0">
@@ -192,9 +197,10 @@ function ReportDetails({report}) {
       </div>
     </div>
     </>
-      ) : (
+      ) : index == 1? (
         <EditReport report={report} />
-      )}
+      ): <ReportsList/>
+    }
     </>
   );
 }

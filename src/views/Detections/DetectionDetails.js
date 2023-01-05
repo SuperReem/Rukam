@@ -106,6 +106,7 @@ function DetectionDetails({detection}) {
     const Decline = async (e) => {
       DeleteDetection();
       setIndex(1);
+
     }
   return (
     <>
@@ -183,7 +184,8 @@ function DetectionDetails({detection}) {
               </Button>
             </div>
             <div className="col-6">
-              <Button variant="secondary" size="lg" className="cancel btn" onClick={Decline}>  <BsTrash color='white' /> رفض المخالفة</Button>
+              <Button variant="secondary" size="lg" className="cancel btn"    data-bs-toggle="modal"
+                      data-bs-target="#myModal">  <BsTrash color='white' /> رفض المخالفة</Button>
             </div>
             </div>
         </div>
@@ -192,7 +194,73 @@ function DetectionDetails({detection}) {
 
   </div>
 </div>
-    </div>
+<div>
+        <div className="modal" id="myModal">
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="">
+                <div className="row align-items-center  justify-content-end  pt-2">
+                  <div className="col-6 p-0 ">
+                    <h4 className=" m-0 h3" >رفض المخالفة  </h4>
+                  </div>
+                  <div className="col-2">
+                    <button
+                      data-bs-dismiss="modal"
+                      className="closebtn btn rounded"
+                    >
+                      &#x2715;
+                    </button>
+                  </div>
+                </div>
+                <div className="modal-body justify-content-center">
+                  <div className="row align-items-center  justify-content-center">
+                 
+                    <div className="row align-items-center justify-content-between  me-4 h5">
+                    هل انت متأكد من رفض المخالفة؟
+                    </div>
+                    <div className="row justify-content-start align-items-start">
+                      <div className="col-8 h5">
+             
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div></div>
+
+              <div className="modal-footer border border-0 justify-content-evenly">
+      
+  
+              <Button
+                  variant="secondary"
+                  size="md"
+                  className="popup btn "
+          onClick={Decline}
+          data-bs-dismiss="modal"
+                >
+           
+رفض المخالفة                </Button>
+          
+
+       
+              <Button
+                  variant="secondary"
+                  size="md"
+                  className="popup btn "
+                  data-bs-dismiss="modal"
+                >
+           
+               إلغاء
+                </Button>
+  
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
     </>
       ) : (
         <DetectionList/>
