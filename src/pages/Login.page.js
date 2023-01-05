@@ -9,6 +9,8 @@ import Drone from "../assets/images/DroneToFly.png";
 import { VscEye } from "react-icons/vsc";
 import { VscEyeClosed } from "react-icons/vsc";
 
+import validator from 'validator'
+
 
 
 
@@ -20,6 +22,13 @@ const Login = () => {
 
   const [passwordShown, setPasswordShown] = useState(false);
   const changeIcon = passwordShown === true ? false : true;
+  //
+  const [Error, setError] = useState('')
+  const [  emailError, setEmailError] = useState('')
+  const [passwordError, setPasswordError] = useState('')
+
+
+
    // Password toggle handler
    const togglePassword = () => {
     // When the handler is invoked
@@ -43,6 +52,8 @@ const Login = () => {
   const onFormInputChange = (event) => {
     const { name, value } = event.target;
     setForm({ ...form, [name]: value });
+
+    ///
   };
 
   // This function will redirect the user to the
@@ -77,25 +88,36 @@ const Login = () => {
   // This function gets fired when the user clicks on the "Login" button.
   const onSubmit = async (event) => {
     if (form.email.trim().length == 0 && form.password.trim().length == 0) {
-      alert("form is empty");
+      setError('يرجى تعبئة المطلوب!')
+      setEmailError('')
+      setPasswordError('')
     } else if (form.email.trim().length == 0) {
-      alert("email value is empty");
+      setEmailError('البريد الإلكتروني فارغ!')
+      setError('')
+      setPasswordError('')
     } else if (form.password.trim().length == 0) {
-      alert("password value is empty");
+      setPasswordError('كلمة المرور فارغة!')
+      setEmailError('')
+      setError('')
     } else {
+      setError('')
+      setEmailError('')
+      setPasswordError('')
       try {
         // Here we are passing user details to our emailPasswordLogin
         // function that we imported from our realm/authentication.js
         // to validate the user credentials and log in the user into our App.
-        const user = await emailPasswordLogin(form.email, form.password);
+        const user = await emailPasswordLogin(form.email.toLowerCase(), form.password);
+       
         if (user) {
+          console.log("Successfully logged in!", user);
           redirectNow();
         }
       } catch (error) {
         if (error.statusCode === 401) {
-          alert("Invalid email/password. Please try again!");
+          setError('البريد الإلكتروني، أو كلمة المرور خاطئة، يرجى المحاولة مجددا!')
         } else {
-          alert(error);
+          console.log(error);
         }
       }
     }
@@ -127,8 +149,11 @@ const Login = () => {
               <div className="card bg-white bg-secondary shadow border-0 rounded-280">
                 <div className="card-body px-lg-5 px-sm-4 px-4  pt-lg-4 pb-lg-5 ">
                   <div className="text-center text-muted mb-4 text-black">
+
                     <h5 className="text-black mb-lg-3">مرحبًا بك مجددًا</h5>
                   </div>
+                  <span className="text-danger mt-1 ">{Error}</span>
+
                   <form role="form">
                     <div className="col-12 mb-4">
                       <label
@@ -149,6 +174,9 @@ const Login = () => {
                         onChange={onFormInputChange}
                         required
                       />
+                                        <span className="text-danger mt-1 ">{emailError}</span>
+
+
                       {/* <TextField
                         type="email"
                         name="email"
@@ -191,6 +219,8 @@ const Login = () => {
                               </span>
                             
                               </div>
+                              <span className="text-danger mt-1 ">{passwordError}</span>
+
                     </div>
                     {/* <TextField
                       class="form-control classInput"

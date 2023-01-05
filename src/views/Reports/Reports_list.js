@@ -53,6 +53,47 @@ function ReportsList() {
     fetchReports();
   }, [dispatch]);
 
+  const DeleteReport = async (ID) => {
+    const response = await fetch("/api/Report/" + ID, {
+      method: "DELETE",
+    });
+    const json = await response.json();
+
+    if (response.ok) {
+      console.log("Deleted", json);
+      dispatch({ type: "DELETE_REPORTS", payload: json });
+    }
+  };
+  const handle = async (e) => {
+    e.preventDefault();
+
+    const report = {
+      reportId: "888",
+      timestamp: "٢٠ اكتوبر -١٢ مساءا",
+      status: "under_processing",
+      region: "حطين",
+      image: "تر نط",
+      notes: "منو",
+      location: "ذتنري",
+    };
+
+    const response = await fetch("/api/Report", {
+      method: "POST",
+      body: JSON.stringify(report),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+
+    if (!response.ok) {
+      console.log("new report not added:");
+    }
+    if (response.ok) {
+      console.log("new report added:", json);
+    }
+  };
+
   const [currentPageData, setCurrentPageData] = useState(new Array(5).fill());
   const items = [
     1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3,
@@ -152,6 +193,10 @@ function ReportsList() {
                               <button
                                 data-bs-dismiss="modal"
                                 className="closebtn btn rounded"
+                                // onClick={handle}
+                                onClick={() => {
+                                  setReport(report);
+                                }}
                               >
                                 &#x2715;
                               </button>
@@ -179,6 +224,9 @@ function ReportsList() {
                             variant="secondary"
                             size="md"
                             id="delete-report-button"
+                            onClick={() => {
+                              DeleteReport(rep._id);
+                            }}
                           >
                             {" "}
                             حذف{" "}
