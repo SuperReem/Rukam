@@ -7,7 +7,6 @@ import Button from "react-bootstrap/Button";
 import { BsArrowUpLeft } from "react-icons/bs";
 import { BsFilter } from "react-icons/bs";
 import { useState } from "react";
-import SweetPagination from "sweetpagination";
 import DatePicker from "react-multi-date-picker";
 import "react-multi-date-picker/styles/layouts/mobile.css";
 import "react-multi-date-picker/styles/colors/green.css";
@@ -18,6 +17,8 @@ import Pagination from "@mui/material/Pagination";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { RiDoubanFill } from "react-icons/ri";
 import DetectionDetails from "./DetectionDetails";
+import { BsChevronLeft } from "react-icons/bs";
+import { BsChevronRight } from "react-icons/bs";
 import { render } from "react-dom";
 import { renderHook } from "@testing-library/react";
 import { renderIntoDocument } from "react-dom/test-utils";
@@ -47,20 +48,33 @@ function showDetails(detectionObj) {
 }
 
 function DetectionList() {
+  const [pageNumber, setPageNumber] = useState(0);
+  const [numberOfPages, setNumberOfPages] = useState(0);
   const { detections, dispatch } = useDetectionsContext();
+  const pages = new Array(numberOfPages).fill(null).map((v, i) => i);
 
   useEffect(() => {
     const fetchDetections = async () => {
-      const response = await fetch("/api/Detection");
-      const json = await response.json();
-
-      if (response.ok) {
-        dispatch({ type: "SET_DETECTIONS", payload: json });
-      }
+      const response = await fetch(
+        `http://localhost:3000/api/Detection/detection?page=${pageNumber}`
+      )
+        .then((response) => response.json())
+        .then(({ totalPages, detections }) => {
+          dispatch({ type: "SET_DETECTIONS", payload: detections });
+          setNumberOfPages(totalPages);
+        });
     };
 
     fetchDetections();
-  }, [dispatch]);
+  }, [dispatch, pageNumber]);
+
+  const gotoPrevious = () => {
+    setPageNumber(Math.max(0, pageNumber - 1));
+  };
+
+  const gotoNext = () => {
+    setPageNumber(Math.min(numberOfPages - 1, pageNumber + 1));
+  };
 
   const handleClick = async () => {
     const response = await fetch(
@@ -103,7 +117,7 @@ function DetectionList() {
 
     if (!response.ok) {
       console.log("new Detection not added:");
-      DetectionDetails({json});
+      DetectionDetails({ json });
     }
     if (response.ok) {
       console.log("new Detection added:", json);
@@ -112,11 +126,7 @@ function DetectionList() {
   };
   const [index, setIndex] = useState(0);
   const [detec, setDetec] = useState();
-  const [currentPageData, setCurrentPageData] = useState(new Array(5).fill());
-  const items = [
-    1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3,
-    4, 5, 6, 7, 12, 13, 14,
-  ];
+
   const datePickerRef = useRef();
 
   return (
@@ -157,134 +167,62 @@ function DetectionList() {
                         <Col id="button">{detection.time}</Col>
                         <Col id="button">
                           {" "}
-                          <button onClick={() => {
-
-                            setDetec(detection)
-                            setIndex(1)
-                          }
-                           }>Click</button>
+                          {/* <button
+                            onClick={() => {
+                              setDetec(detection);
+                              setIndex(1);
+                            }}
+                          >
+                            Click
+                          </button> */}
                           <Button
-                            // variant="secondary"
-                            // size="sm"
                             id="button-details"
-                            onClick={handle}
+                            // onClick={handle}
+                            onClick={() => {
+                              setDetec(detection);
+                              setIndex(1);
+                            }}
                           >
                             <BsArrowUpLeft size={17} /> التفاصيل
                           </Button>
-
                         </Col>
                       </Row>
                     </ListGroup.Item>
                   ))}
-
-                {/* <ListGroup.Item id="row">
-                  <Row>
-                    <Col>#1 حي حطين،شارع تثليث</Col>
-                    <Col id="button">3 ابريل 2022</Col>
-                    <Col id="button">
-                      {" "}
-                      <Button variant="secondary" size="sm" id="button-details">
-                        <BsArrowUpLeft size={17} /> التفاصيل
-                      </Button>
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-                <ListGroup.Item id="row">
-                  <Row>
-                    <Col>#1 حي حطين،شارع تثليث</Col>
-                    <Col id="button">3 ابريل 2022</Col>
-                    <Col id="button">
-                      {" "}
-                      <Button variant="secondary" size="sm" id="button-details">
-                        <BsArrowUpLeft size={17} /> التفاصيل
-                      </Button>
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-                <ListGroup.Item id="row">
-                  <Row>
-                    <Col>#1 حي حطين،شارع تثليث</Col>
-                    <Col id="button">3 ابريل 2022</Col>
-                    <Col id="button">
-                      {" "}
-                      <Button variant="secondary" size="sm" id="button-details">
-                        <BsArrowUpLeft size={17} /> التفاصيل
-                      </Button>
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-                <ListGroup.Item id="row">
-                  <Row>
-                    <Col>#1 حي حطين،شارع تثليث</Col>
-                    <Col id="button">3 ابريل 2022</Col>
-                    <Col id="button">
-                      {" "}
-                      <Button variant="secondary" size="sm" id="button-details">
-                        <BsArrowUpLeft size={17} /> التفاصيل
-                      </Button>
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-                <ListGroup.Item id="row">
-                  <Row>
-                    <Col>#1 حي حطين،شارع تثليث</Col>
-                    <Col id="button">3 ابريل 2022</Col>
-                    <Col id="button">
-                      {" "}
-                      <Button variant="secondary" size="sm" id="button-details">
-                        <BsArrowUpLeft size={17} /> التفاصيل
-                      </Button>
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-                <ListGroup.Item id="row">
-                  <Row>
-                    <Col>#1 حي حطين،شارع تثليث</Col>
-                    <Col id="button">3 ابريل 2022</Col>
-                    <Col id="button">
-                      {" "}
-                      <button onClick={() => setIndex(1)}>Click</button>
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        id="button-details"
-                        onClick={() => setIndex(1)}
-                      >
-                        <BsArrowUpLeft size={17} /> التفاصيل
-                      </Button>
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-                <ListGroup.Item id="row">
-                  <Row>
-                    <Col>#1 حي حطين،شارع تثليث</Col>
-                    <Col id="button">3 ابريل 2022</Col>
-                    <Col id="button">
-                      {" "}
-                      <Button variant="secondary" size="sm" id="button-details">
-                        <BsArrowUpLeft size={17} /> التفاصيل
-                      </Button>
-                    </Col>
-                  </Row>
-                </ListGroup.Item> */}
               </ListGroup>
             </div>
-
             <div id="pagination">
-              <ThemeProvider theme={theme}>
-                <Pagination
-                  count={10}
-                  variant="outlined"
-                  size="large"
-                  color="primary"
-                />
-              </ThemeProvider>
+              <button
+                onClick={gotoPrevious}
+                class="btn btn-primary btn-circle btn-sm"
+              >
+                <BsChevronLeft size={18} />
+              </button>
+              {pages.map((pageIndex) => (
+                <button
+                  key={pageIndex}
+                  onClick={() => setPageNumber(pageIndex)}
+                  class="btn btn-primary btn-circle btn-sm"
+                >
+                  {pageIndex + 1}
+                </button>
+              ))}
+              <button
+                onClick={gotoNext}
+                class="btn btn-primary btn-circle btn-sm"
+              >
+                <BsChevronRight size={18} />
+              </button>
             </div>
-            <div id="page-number">1-20 صفحة</div>
+
+            <div id="page-number">
+              {" "}
+              صفحة {numberOfPages}-{pageNumber + 1}
+            </div>
           </div>
         </>
       ) : (
-        <DetectionDetails detection={detec} key={detec._id}/>
+        <DetectionDetails detection={detec} key={detec._id} />
       )}
     </>
   );

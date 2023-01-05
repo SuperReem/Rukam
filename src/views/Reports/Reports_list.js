@@ -12,12 +12,15 @@ import { useReportContext } from "../../hooks/useReportContext";
 import { useEffect } from "react";
 import "../../components/Reports/report_card.css";
 import Button from "react-bootstrap/Button";
+import { BsChevronLeft } from "react-icons/bs";
+import { BsChevronRight } from "react-icons/bs";
 import { BsArrowUpLeft } from "react-icons/bs";
 import { FiTrash } from "react-icons/fi";
 import TimeAgo from "react-timeago";
 import frenchStrings from "react-timeago/lib/language-strings/ar";
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
 import ReportDetails from "../../views/Reports/ReportDetails";
+import ToggleButton from "react-bootstrap/ToggleButton";
 
 const theme = createTheme({
   status: {
@@ -38,17 +41,45 @@ function ReportsList() {
   const formatter = buildFormatter(frenchStrings);
   const [index, setIndex] = useState(0);
   const [rep, setReport] = useState();
+  const [pageNumber, setPageNumber] = useState(0);
+  const [numberOfPages, setNumberOfPages] = useState(0);
   const { reports, dispatch } = useReportContext();
+
+  const pages = new Array(numberOfPages).fill(null).map((v, i) => i);
+
   useEffect(() => {
     const fetchReports = async () => {
-      const response = await fetch("/api/Report");
-      const json = await response.json();
-      if (response.ok) {
-        dispatch({ type: "SET_REPORTS", payload: json });
-      }
+      const response = await fetch(
+        `http://localhost:3000/api/Report/report?page=${pageNumber}`
+      )
+        .then((response) => response.json())
+        .then(({ totalPages, reports }) => {
+          dispatch({ type: "SET_REPORTS", payload: reports });
+          setNumberOfPages(totalPages);
+        });
     };
     fetchReports();
-  }, [dispatch]);
+  }, [dispatch, pageNumber]);
+
+  const gotoPrevious = () => {
+    setPageNumber(Math.max(0, pageNumber - 1));
+  };
+
+  const gotoNext = () => {
+    setPageNumber(Math.min(numberOfPages - 1, pageNumber + 1));
+  };
+
+  // const { reports, dispatch } = useReportContext();
+  // useEffect(() => {
+  //   const fetchReports = async () => {
+  //     const response = await fetch("/api/Report");
+  //     const json = await response.json();
+  //     if (response.ok) {
+  //       dispatch({ type: "SET_REPORTS", payload: json });
+  //     }
+  //   };
+  //   fetchReports();
+  // }, [dispatch]);
   const DeleteReport = async (ID) => {
     const response = await fetch("/api/Report/" + ID, {
       method: "DELETE",
@@ -86,6 +117,7 @@ function ReportsList() {
     }
   };
   const datePickerRef = useRef();
+
   return (
     <>
       {index == 0 ? (
@@ -137,14 +169,15 @@ function ReportsList() {
                         </p>
                       </div>
                       <div>
-                        {/* <Button
+                        <Button
                           id="details-button"
                           onClick={() => {
+                            setReport(report);
                             setIndex(1);
                           }}
                         >
-                          <BsArrowUpLeft /> التفاصيل
-                        </Button> */}
+                          <BsArrowUpLeft size={17} /> التفاصيل
+                        </Button>
                         {/* <button
                           onClick={() => {
                             setReport(report);
@@ -209,7 +242,7 @@ function ReportsList() {
                             size="md"
                             id="delete-report-button"
                             onClick={() => {
-                              //DeleteReport(rep._id);
+                              DeleteReport(rep._id);
                             }}
                           >
                             {" "}
@@ -231,16 +264,33 @@ function ReportsList() {
               </>
             ))}
           <div id="pagination">
-            <ThemeProvider theme={theme}>
-              <Pagination
-                count={10}
-                variant="outlined"
-                size="large"
-                color="primary"
-              />
-            </ThemeProvider>
+            <button
+              onClick={gotoPrevious}
+              class="btn btn-primary btn-circle btn-sm"
+            >
+              <BsChevronLeft size={18} />
+            </button>
+            {pages.map((pageIndex) => (
+              <button
+                key={pageIndex}
+                onClick={() => setPageNumber(pageIndex)}
+                class="btn btn-primary btn-circle btn-sm"
+              >
+                {pageIndex + 1}
+              </button>
+            ))}
+            <button
+              onClick={gotoNext}
+              class="btn btn-primary btn-circle btn-sm"
+            >
+              <BsChevronRight size={18} />
+            </button>
           </div>
-          <div id="page-number2">1-20 صفحة</div>
+
+          <div id="page-number2">
+            {" "}
+            صفحة {numberOfPages}-{pageNumber + 1}
+          </div>
         </>
       ) : (
         <ReportDetails report={rep} />

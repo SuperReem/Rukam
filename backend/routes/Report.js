@@ -10,7 +10,7 @@ const {
 } = require("../controllers/Reportcontroller");
 
 const router = express.Router();
-router.get("/", getReports);
+router.get("/report", getReports);
 router.get("/:id", getReport);
 router.post("/", createReport);
 router.delete("/:id", deleteReport);

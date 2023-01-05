@@ -75,3 +75,16 @@
   color: var(--primary);
   margin: 1.5%;
 }
+.btn-circle.btn-sm {
+  width: 42px;
+  height: 42px;
+  /* padding: 10px 10px; */
+  border-radius: 25px;
+  font-size: 18px;
+  /* font-weight: 550; */
+  text-align: center;
+  margin: 3px;
+  background-color: rgba(255, 255, 255, 0);
+  color: black;
+  border-color: var(--primary);
+}

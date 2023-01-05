@@ -10,7 +10,7 @@ const {
 
 const router = express.Router();
 router.post("/", createDetection);
-router.get("/", getDetections);
+router.get("/detection", getDetections);
 router.get("/:id", getDetection);
 router.delete("/:id", deleteDetection);
 router.patch("/:id", updateDetection);

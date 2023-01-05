@@ -2,9 +2,22 @@ const reportModel = require("../models");
 const mongoose = require("mongoose");
 
 const getReports = async (req, res) => {
-  const reports = await reportModel.find({});
+  const PAGE_SIZE = 3;
+  const page = parseInt(req.query.page || "0");
+  const total = await reportModel.countDocuments({});
+  const reports = await reportModel
+    .find({})
+    .sort({ createdAt: -1 })
+    .limit(PAGE_SIZE)
+    .skip(PAGE_SIZE * page);
 
-  res.status(200).json(reports);
+  res.json({
+    totalPages: Math.ceil(total / PAGE_SIZE),
+    reports,
+  });
+
+  // const reports = await reportModel.find({});
+  // res.status(200).json(reports);
 };
 
 // get a single report

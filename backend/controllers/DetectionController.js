@@ -3,8 +3,19 @@ const mongoose = require("mongoose");
 
 // get all detection
 const getDetections = async (req, res) => {
-  const detections = await detectionModel.find({}).sort({ createdAt: -1 });
-  res.status(200).json(detections);
+  const PAGE_SIZE = 8;
+  const page = parseInt(req.query.page || "0");
+  const total = await detectionModel.countDocuments({});
+  const detections = await detectionModel
+    .find({})
+    .sort({ createdAt: -1 })
+    .limit(PAGE_SIZE)
+    .skip(PAGE_SIZE * page);
+
+  res.json({
+    totalPages: Math.ceil(total / PAGE_SIZE),
+    detections,
+  });
 };
 
 // get a single detection
