@@ -12,7 +12,7 @@ import {
   MarkerF,
 } from "@react-google-maps/api";
 
-function UpdateStatus() {
+function UpdateStatus({report}) {
   const containerStyle = {
     width: "100%;",
     height: "100%",
@@ -45,7 +45,7 @@ function UpdateStatus() {
   );
 
   const check = () => {
-    if (currentIndex == 3 && currentState === "تحديث الحالة الى مغلق") {
+    if (report.status == 3 && currentState === "تحديث الحالة الى مغلق") {
       setCurrentState("حالة الطلب مغلق");
     }
   };
@@ -79,8 +79,7 @@ function UpdateStatus() {
               <hr className="hr m-0 p-2" />
               <div className="container time  rounded p-1 mb-4 align-items-right ">
                 <BsCalendar4 color="var(--primary)" className="ms-4" />
-                ٢٠ اكتوبر - ١٢ مساءا
-              </div>
+                {report.timestamp   }           </div>
               <div className="heading text-end pe-2">صور المخالفة</div>
               <hr className="hr m-0 p-2" />
               <div className="container pic rounded mb-4 shadow-sm">
@@ -90,9 +89,7 @@ function UpdateStatus() {
               <hr className="hr m-0 p-2" />
               <div className="ps-5 ms-5 justify-content-end">
                 <p className="h6 ps-5">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Autem reprehenderit magni, odio eligendi laborum possimus,
-                  quaerat quos nisi, delectus sit fugiat !
+              {report.notes}
                 </p>
               </div>
             </div>
@@ -102,7 +99,7 @@ function UpdateStatus() {
               <div className="heading text-end pe-2">حالة البلاغ</div>
               <hr className="hr m-0 p-2" />
               <div className="container status rounded p-1  d-flex justify-content-center mb-4">
-                قيد المراجعة
+           {    report.status}
               </div>
               <div className="heading text-end pe-2">موقع المخالفة</div>
               <hr className="hr m-0 p-2" />
