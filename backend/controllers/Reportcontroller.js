@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 const getReports = async (req, res) => {
   const reports = await reportModel.find({});
+
   res.status(200).json(reports);
 };
 

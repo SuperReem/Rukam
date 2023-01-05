@@ -39,26 +39,21 @@ function ReportsList() {
   const [index, setIndex] = useState(0);
   const [rep, setReport] = useState();
   const { reports, dispatch } = useReportContext();
-
   useEffect(() => {
     const fetchReports = async () => {
       const response = await fetch("/api/Report");
       const json = await response.json();
-
       if (response.ok) {
         dispatch({ type: "SET_REPORTS", payload: json });
       }
     };
-
     fetchReports();
   }, [dispatch]);
-
   const DeleteReport = async (ID) => {
     const response = await fetch("/api/Report/" + ID, {
       method: "DELETE",
     });
     const json = await response.json();
-
     if (response.ok) {
       console.log("Deleted", json);
       dispatch({ type: "DELETE_REPORTS", payload: json });
@@ -66,7 +61,6 @@ function ReportsList() {
   };
   const handle = async (e) => {
     e.preventDefault();
-
     const report = {
       reportId: "888",
       timestamp: "٢٠ اكتوبر -١٢ مساءا",
@@ -76,7 +70,6 @@ function ReportsList() {
       notes: "منو",
       location: "ذتنري",
     };
-
     const response = await fetch("/api/Report", {
       method: "POST",
       body: JSON.stringify(report),
@@ -85,7 +78,6 @@ function ReportsList() {
       },
     });
     const json = await response.json();
-
     if (!response.ok) {
       console.log("new report not added:");
     }
@@ -93,12 +85,6 @@ function ReportsList() {
       console.log("new report added:", json);
     }
   };
-
-  const [currentPageData, setCurrentPageData] = useState(new Array(5).fill());
-  const items = [
-    1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3,
-    4, 5, 6, 7, 12, 13, 14,
-  ];
   const datePickerRef = useRef();
   return (
     <>
@@ -159,14 +145,14 @@ function ReportsList() {
                         >
                           <BsArrowUpLeft /> التفاصيل
                         </Button> */}
-                        <button
+                        {/* <button
                           onClick={() => {
                             setReport(report);
                             setIndex(1);
                           }}
                         >
                           Click
-                        </button>
+                        </button> */}
                         <Button
                           variant="secondary"
                           size="md"
@@ -216,16 +202,14 @@ function ReportsList() {
                             </div>
                           </div>
                         </div>
-
                         <div></div>
-
                         <div className="modal-footer border border-0 justify-content-center">
                           <Button
                             variant="secondary"
                             size="md"
                             id="delete-report-button"
                             onClick={() => {
-                              DeleteReport(rep._id);
+                              //DeleteReport(rep._id);
                             }}
                           >
                             {" "}
@@ -246,7 +230,6 @@ function ReportsList() {
                 </div>
               </>
             ))}
-
           <div id="pagination">
             <ThemeProvider theme={theme}>
               <Pagination
@@ -257,7 +240,6 @@ function ReportsList() {
               />
             </ThemeProvider>
           </div>
-
           <div id="page-number2">1-20 صفحة</div>
         </>
       ) : (
