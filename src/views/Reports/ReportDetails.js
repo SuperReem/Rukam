@@ -147,8 +147,16 @@ function ReportDetails({report}) {
             <div className="m-2 mt-0">
               <div className="heading text-end pe-2">حالة البلاغ</div>
               <hr className="hr m-0 p-2" />
-              <div className="container status rounded p-1  d-flex justify-content-center mb-4">
-              { report.status}
+              <div className={"report-status-container " + report.status}>
+                <h6>
+                  {report.status == "unsent"
+                    ? "غير مرسل"
+                    : report.status == "pending"
+                    ? "قيد الإنتظار"
+                    : report.status == "under_processing"
+                    ? "قيد المراجعة"
+                    : "مغلق"}
+                </h6>
               </div>
               <div className="heading text-end pe-2">موقع المخالفة</div>
               <hr className="hr m-0 p-2" />
