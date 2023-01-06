@@ -9,7 +9,11 @@ const {
   deleteReportByName,
 } = require("../controllers/Reportcontroller");
 
-const router = express.Router();
+const requireAuth = require('../middleware/requireAuth')
+
+
+const  router = express.Router();
+router.use(requireAuth);
 router.get("/report", getReports);
 router.get("/:id", getReport);
 router.post("/", createReport);

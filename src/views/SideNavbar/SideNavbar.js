@@ -13,26 +13,45 @@ import { SlLocationPin } from "react-icons/sl";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/user.context";
 import ReportDetails from "../Reports/ReportDetails";
+import { useLogout } from '../../hooks/useLogout';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import { Link } from 'react-router-dom'
+import { Navigate, Outlet, useLocation } from "react-router-dom";
+ 
+
 
 const Sidebar = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const { logOutUser } = useContext(UserContext);
-  const logOut = async () => {
-    try {
-      // Calling the logOutUser function from the user context.
-      const loggedOut = await logOutUser();
-      // Now we will refresh the page, and the user will be logged out and
-      // redirected to the login page because of the <PrivateRoute /> component.
-      if (loggedOut) {
-        window.location.reload(true);
-      }
-    } catch (error) {
-      alert(error);
-    }
-  };
+  // const { logOutUser } = useContext(UserContext);
+  // const logOut = async () => {
+  //   try {
+  //     // Calling the logOutUser function from the user context.
+  //     const loggedOut = await logOutUser();
+  //     // Now we will refresh the page, and the user will be logged out and
+  //     // redirected to the login page because of the <PrivateRoute /> component.
+  //     if (loggedOut) {
+  //       window.location.reload(true);
+  //     }
+  //   } catch (error) {
+  //     alert(error);
+  //   }
+  // };
+
+  const { user } = useAuthContext()
+  const location = useLocation();
+  const redirectLoginUrl = `/login?redirectTo=${encodeURI(location.pathname)}`;
+ 
+  
+  const { logout } = useLogout()
+
+  const onLogOut = () => {
+    logout()
+  }
+
 
   return (
+    !user ? <Navigate to={redirectLoginUrl} /> : 
     <div id="main-container">
       <div className="sideNav-container">
         <div className="nav-sub-container">
@@ -41,6 +60,8 @@ const Sidebar = () => {
               <img src={Logo} alt="Rukam Logo" height={50}></img>
             </div>
           </div>
+          {/* // */}
+      
           <div className="nav-list-container">
             <ul className="nav-list">
               <li onClick={() => setCurrentIndex(0)}>
@@ -57,10 +78,11 @@ const Sidebar = () => {
               </li>
               <br></br>
               <br></br>
+            
               <br></br>
               <br></br>
 
-              <li onClick={logOut}>
+              <li onClick={onLogOut}>
                 <HiOutlineLogout className="sidenav-icons" />
                 تسجيل الخروج
               </li>

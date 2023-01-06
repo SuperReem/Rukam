@@ -2,11 +2,12 @@ const reportModel = require("../models");
 const mongoose = require("mongoose");
 
 const getReports = async (req, res) => {
+  const user_id = req.user._id ///////check this
   const PAGE_SIZE = 3;
   const page = parseInt(req.query.page || "0");
   const total = await reportModel.countDocuments({});
   const reports = await reportModel
-    .find({})
+    .find({user_id}) ///////check this
     .sort({ createdAt: -1 })
     .limit(PAGE_SIZE)
     .skip(PAGE_SIZE * page);
@@ -70,6 +71,7 @@ const createReport = async (req, res) => {
 
   // add to the database
   try {
+    const user_id = req.user._id///////check this
     const report = await reportModel.create({
       reportId,
       timestamp,
@@ -78,6 +80,7 @@ const createReport = async (req, res) => {
       image,
       notes,
       location,
+      user_id,///////check this
     });
     res.status(200).json(report);
   } catch (error) {
