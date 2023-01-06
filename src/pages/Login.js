@@ -50,36 +50,11 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-
-    if (email.trim().length == 0 && password.trim().length == 0) {
-      setError('يرجى تعبئة المطلوب!')
-      setEmailError('')
-      setPasswordError('')
-    } else if (email.trim().length == 0) {
-      setEmailError('البريد الإلكتروني فارغ!')
-      setError('')
-      setPasswordError('')
-    } else if (password.trim().length == 0) {
-      setPasswordError('كلمة المرور فارغة!')
-      setEmailError('')
-      setError('')
-    } else {
-      setError('')
-      setEmailError('')
-      setPasswordError('')
-  }
-
       try {
-      if( await login(email, password)) {//
-        redirectNow();
-      }
+     await login(email, password)
     }
       catch (error) {
-                if (error.statusCode === 401) {
-                  setError('البريد الإلكتروني، أو كلمة المرور خاطئة، يرجى المحاولة مجددا!')
-                } else {
                   console.log(error);
-                }
       }
     
 };
@@ -88,10 +63,10 @@ const Login = () => {
 
   // This function will redirect the user to the
   // appropriate page once the authentication is done.
-  const redirectNow = () => {
-    const redirectTo = location.search.replace("?redirectTo=", "");
-    navigate(redirectTo ? redirectTo : "/");
-  };
+  // const redirectNow = () => {
+  //   const redirectTo = location.search.replace("?redirectTo=", "");
+  //   navigate(redirectTo ? redirectTo : "/");
+  // };
 
 
   return (
@@ -125,7 +100,7 @@ const Login = () => {
 
                     <h5 className="text-black mb-lg-3">مرحبًا بك مجددًا</h5>
                   </div>
-                  <span className="text-danger mt-1 ">{Error}</span>
+                  {/* <span className="text-danger mt-1 ">{Error}</span> */}
                   {error && <div className="error text-danger mt-1 ">{error}</div>}
 
                   <form role="form" onSubmit={handleSubmit}>
@@ -148,7 +123,7 @@ const Login = () => {
                         value={email} 
                         required
                       />
-                                        <span className="text-danger mt-1 ">{emailError}</span>
+                                        {/* <span className="text-danger mt-1 ">{emailError}</span> */}
 
                     </div>
 
@@ -179,7 +154,7 @@ const Login = () => {
                               </span>
                             
                               </div>
-                              <span className="text-danger mt-1 ">{passwordError}</span>
+                              {/* <span className="text-danger mt-1 ">{passwordError}</span> */}
 
                     </div>
                     {/* <TextField

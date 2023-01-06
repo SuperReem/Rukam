@@ -9,7 +9,7 @@ const createToken = (_id) => {
 // login a user
 const loginUser = async (req, res) => {
     const {email, password} = req.body
-  
+
     try {
       const user = await User.login(email, password)
   
@@ -18,11 +18,9 @@ const loginUser = async (req, res) => {
   
       res.status(200).json({email, token})
     } catch (error) {
-      res.status(400).json({error: error.message})
+      res.status(400).json({error: 'البريد الإلكتروني، أو كلمة المرور خاطئة، يرجى المحاولة مجددا!'})
     }
   }
-
-// // signup a user
 
 // signup a user
 const signupUser = async (req, res) => {
