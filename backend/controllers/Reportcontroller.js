@@ -27,8 +27,7 @@ const getReports = async (req, res) => {
     });
   } else {
     const total = await reportModel.countDocuments({
-      filter: { $gte: start },
-      filter: { $lte: end },
+      filter: { $gte: start, $lte: end },
     });
 
     const reports = await reportModel
@@ -105,7 +104,7 @@ const createReport = async (req, res) => {
 
   // add to the database
   try {
-    const user_id = req.user._id; ///////check this
+    // const user_id = req.user._id; ///////check this
     const report = await reportModel.create({
       reportId,
       timestamp,

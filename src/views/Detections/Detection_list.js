@@ -103,7 +103,7 @@ function DetectionList() {
     const detection = {
       droneId: "7777",
       location: { latitude: 88.9, longitude: 66 },
-      region: "حي حطين",
+      region: "11حي حطين",
       time: formattedDate,
       image: "kkkkk",
       filter: date.toISOString().slice(0, 10),
@@ -162,7 +162,7 @@ function DetectionList() {
             />{" "}
             <DatePicker
               ref={datePickerRef}
-              // locale={arabic_ar}
+              locale={arabic_ar}
               onChange={onChangeHandler}
               range="true"
               className="green"

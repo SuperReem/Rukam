@@ -3,7 +3,7 @@ import "./report_list.css";
 import { BsFilter } from "react-icons/bs";
 import DatePicker from "react-multi-date-picker";
 import "react-multi-date-picker/styles/colors/green.css";
-import arabic_ar from "react-date-object/locales/arabic_en";
+import arabic_ar from "react-date-object/locales/arabic_ar";
 import ReportCard from "../../components/Reports/Report_card";
 import { useState } from "react";
 import Pagination from "@mui/material/Pagination";
@@ -73,17 +73,6 @@ function ReportsList() {
     setPageNumber(Math.min(numberOfPages - 1, pageNumber + 1));
   };
 
-  // const { reports, dispatch } = useReportContext();
-  // useEffect(() => {
-  //   const fetchReports = async () => {
-  //     const response = await fetch("/api/Report");
-  //     const json = await response.json();
-  //     if (response.ok) {
-  //       dispatch({ type: "SET_REPORTS", payload: json });
-  //     }
-  //   };
-  //   fetchReports();
-  // }, [dispatch]);
   const DeleteReport = async (ID) => {
     const response = await fetch("/api/Report/" + ID, {
       method: "DELETE",
@@ -91,16 +80,46 @@ function ReportsList() {
     const json = await response.json();
     if (response.ok) {
       console.log("Deleted", json);
-      dispatch({ type: "DELETE_REPORTS", payload: json });
+      //dispatch({ type: "DELETE_REPORTS", payload: json });
     }
   };
+
+  // async function DeleteReport(ID) {
+  //   const response = await fetch("/api/Report/" + ID, {
+  //     method: "DELETE",
+  //   });
+  //   const json = await response.json();
+  //   if (response.ok) {
+  //     dispatch({ type: "DELETE_REPORTS", payload: json });
+  //   }
+  // }
+
+  // async function handleDelete(reportId) {
+  //   await DeleteReport(reportId);
+  //   dispatch({ type: "DELETE_REPORTS", payload: { id: reportId } });
+  // }
+
+  // async function DeleteReport(ID) {
+  //   const response = await fetch("/api/Report/" + ID, {
+  //     method: "DELETE",
+  //   });
+  //   const json = await response.json();
+  //   if (response.ok) {
+  //     dispatch({ type: "DELETE_REPORTS", payload: json });
+  //   }
+  // }
+
+  async function handleDelete(reportId) {
+    await DeleteReport(reportId);
+    dispatch({ type: "DELETE_REPORTS", payload: { _id: reportId } });
+  }
   const AddReport = async (e) => {
     const date = new Date();
 
     const report = {
       reportId: "888",
       timestamp: "٢٠ اكتوبر -١٢ مساءا",
-      status: "unsent",
+      status: "pending",
       region: "حطين",
       image: "تر نط",
       notes: "منو",
@@ -115,11 +134,14 @@ function ReportsList() {
       },
     });
     const json = await response.json();
+
     if (!response.ok) {
       console.log("new report not added:");
     }
     if (response.ok) {
       console.log("new report added:", json);
+
+      dispatch({ type: "CREATE_REPORTS", payload: json });
     }
   };
   const datePickerRef = useRef();
@@ -155,7 +177,7 @@ function ReportsList() {
             />{" "}
             <DatePicker
               ref={datePickerRef}
-              //locale={arabic_ar}
+              locale={arabic_ar}
               onChange={onChangeHandler}
               range="true"
               className="green"
@@ -197,10 +219,11 @@ function ReportsList() {
                       <div>
                         <Button
                           id="details-button"
-                          onClick={() => {
-                            setReport(report);
-                            setIndex(1);
-                          }}
+                          onClick={AddReport}
+                          // onClick={() => {
+                          //   setReport(report);
+                          //   setIndex(1);
+                          // }}
                         >
                           <BsArrowUpLeft size={17} /> التفاصيل
                         </Button>
@@ -209,8 +232,10 @@ function ReportsList() {
                           variant="secondary"
                           size="md"
                           id="delete-report-button"
-                          data-bs-toggle="modal"
-                          data-bs-target="#myModal"
+                          // data-bs-toggle="modal"
+                          // data-bs-target="#myModal"
+                          key={report._id}
+                          onClick={() => handleDelete(report._id)}
                         >
                           <FiTrash /> حذف البلاغ
                         </Button>
@@ -231,9 +256,6 @@ function ReportsList() {
                               <button
                                 data-bs-dismiss="modal"
                                 className="closebtn btn rounded"
-                                onClick={() => {
-                                  setReport(report);
-                                }}
                               >
                                 &#x2715;
                               </button>
@@ -259,9 +281,6 @@ function ReportsList() {
                             variant="secondary"
                             size="md"
                             id="delete-report-button"
-                            onClick={() => {
-                              //  DeleteReport(rep._id);
-                            }}
                           >
                             {" "}
                             حذف{" "}

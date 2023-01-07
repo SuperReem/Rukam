@@ -21,8 +21,7 @@ const getDetections = async (req, res) => {
     });
   } else {
     const total = await detectionModel.countDocuments({
-      filter: { $gte: start },
-      filter: { $lte: end },
+      filter: { $gte: start, $lte: end },
     });
 
     const detections = await detectionModel
