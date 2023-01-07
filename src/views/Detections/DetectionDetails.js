@@ -108,23 +108,28 @@ function DetectionDetails({detection}) {
       setIndex(1);
 
     }
+
+    const PageNav = async (e) => {
+      setIndex(2);
+    };
   return (
     <>
     {index == 0 ? (
       <>
-    <div className="App">
-        <div className="row">
-          <div className="">
-            <h1 class="h5 text-end">المواقع المخالفة  موقع مخالف</h1>
-          </div>
-        </div>
-        <div className="row">
-        <div className="col-sm-12">
-          <div className="m-2 mt-0">
-          <div id="title"> موقع مخالف</div>
-          </div>
-        </div>
-    </div>
+       <div className="App">
+            <div className="row">
+              <div className="col-sm-12">
+                <div className="pageNavigation">
+                  <a class="pagenav h5 text-end" onClick={PageNav}>
+                    {" "}
+                    المواقع المخالفة{" "}
+                  </a>
+                  <a></a>
+                  <a class="pagenav h5 text-end"> موقع مخالف</a>
+                </div>
+                <div id="title"> تفاصيل البلاغ</div>
+              </div>
+            </div>
         <div class="he shadow-sm ms-4 me-3 rounded-4 pb-0">
 
 <div className="row">

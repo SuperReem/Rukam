@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import MultiStepProgressBar from "../../components/MultiStepProgressBar.js";
 import "./ReportDetails.css";
 import Waste from "../../assets/images/waste.png";
+import { useEffect } from "react";
 import { BsCalendar4 } from "react-icons/bs";
 import {
   GoogleMap,
@@ -11,7 +12,9 @@ import {
   useJsApiLoader,
   MarkerF,
 } from "@react-google-maps/api";
-
+function hexToBase64(str) {
+  return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
+}
 function UpdateStatus({report}) {
   const containerStyle = {
     width: "100%;",
@@ -40,9 +43,58 @@ function UpdateStatus({report}) {
     }, []);
     
   const [currentIndex, setCurrentIndex] = useState(1);
+  const [status, setStatus] = useState(report.image);
   const [currentState, setCurrentState] = useState(
     "تحديث الحالة الى قيد المراجعة "
   );
+
+
+
+//update status in database
+useEffect(() => {
+  
+  console.log(status +'j');
+}, [status]);
+const rep = {
+
+  status: "closed",
+
+};
+useEffect(() => {
+  
+  console.log(rep +'j');
+}, [rep]);
+
+
+  const updatestatus = async (e) => {
+  
+    const response = await fetch(
+      "/api/Report/" + report._id ,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const json = await response.json();
+  
+      if (!response.ok) {
+        console.log("new report not added:");
+        console.log(rep.notes);
+      }
+      if (response.ok) {
+        console.log("updated:", json);
+        console.log(status +'k');
+      }
+    
+  
+  };
+
+
+
+
+
+
 
   const check = () => {
     if (report.status == 3 && currentState === "تحديث الحالة الى مغلق") {
@@ -50,10 +102,19 @@ function UpdateStatus({report}) {
     }
   };
   const update = () => {
-    if (currentIndex == 1) setCurrentIndex(2);
+    if ( report.status == "pending"){
+      setStatus("under_processing");
+      console.log(status);
+      updatestatus();
+    }
+   
     setCurrentState("تحديث الحالة الى مغلق");
-    if (currentIndex == 2) setCurrentIndex(3);
-
+    if (report.status == "under_processing") {
+      setStatus("closed");
+      console.log(status);
+      updatestatus();
+    }
+   
     if (currentIndex == 3) console.log("dhbfh");
   };
 
@@ -83,7 +144,10 @@ function UpdateStatus({report}) {
               <div className="heading text-end pe-2">صور المخالفة</div>
               <hr className="hr m-0 p-2" />
               <div className="container pic rounded mb-4 shadow-sm">
-                <img src={Waste} alt="Waste" />;
+              { <img src={"data:image/jpeg;base64,"+ report.image} /> 
+              // <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
+              // //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
+            }
               </div>
               <div className="heading text-end pe-2">ملاحظات</div>
               <hr className="hr m-0 p-2" />
@@ -98,7 +162,7 @@ function UpdateStatus({report}) {
             <div className="m-2 mt-0">
               <div className="heading text-end pe-2">حالة البلاغ</div>
               <hr className="hr m-0 p-2" />
-              <div className={"report-status-container " + report.status}>
+              <div className={"reportstatus-container " + report.status}>
                 <h6>
                   {report.status == "unsent"
                     ? "غير مرسل"
@@ -202,7 +266,7 @@ function UpdateStatus({report}) {
                   variant="secondary"
                   size="md"
                   className="updatS btn"
-                  onClick={update}
+                  onClick={updatestatus}
                 >
                   {" "}
                   تحديث الحالة

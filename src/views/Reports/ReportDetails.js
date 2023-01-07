@@ -16,57 +16,15 @@ import ReportsList from "./Reports_list";
 
 function ReportDetails({ report }) {
   const [index, setIndex] = useState(0);
-  useEffect(() => {
-    const handleClick = async () => {
-      const response = await fetch(
-        "/api/Report/" + "63ab54a2d1a653a2379ba071",
-        {
-          method: "GET",
-        }
-      );
-      const json = await response.json();
-      if (response.ok) {
-        console.log("jknswcdj:", json);
-      }
-    };
-    handleClick();
-  }, [3]);
+
   const Edit = async (e) => {
     setIndex(1);
   };
   const PageNav = async (e) => {
     setIndex(2);
   };
-  const handle = async (e) => {
-    e.preventDefault();
-    const date = new Date();
-    const report = {
-      reportId: "888",
-      timestamp: "٢٠ اكتوبر -١٢ مساءا",
-      status: "unsent",
-      region: "حطين",
-      image: "تر نط",
-      notes: "منو",
-      location: "ذتنري",
-      filter: date.toISOString().slice(0, 10),
-    };
 
-    const response = await fetch("/api/Report", {
-      method: "POST",
-      body: JSON.stringify(report),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const json = await response.json();
-
-    if (!response.ok) {
-      console.log("new report not added:");
-    }
-    if (response.ok) {
-      console.log("new report added:", json);
-    }
-  };
+  
 
   const containerStyle = {
     width: "100%;",
@@ -100,7 +58,7 @@ function ReportDetails({ report }) {
           <div className="App">
             <div className="row">
               <div className="col-sm-12">
-                <div className="p-0">
+                <div className="pageNavigation">
                   <a class="pagenav h5 text-end" onClick={PageNav}>
                     {" "}
                     البلاغات{" "}
@@ -108,24 +66,11 @@ function ReportDetails({ report }) {
                   <a></a>
                   <a class="pagenav h5 text-end">تفاصيل البلاغ</a>
                 </div>
+                <div id="title"> تفاصيل البلاغ</div>
               </div>
             </div>
-            <div className="col-sm-6">
-              <div className="m-2 mt-0">
-                <div className="heading text-end pe-2">حالة البلاغ</div>
-                <hr className="hr m-0 p-2" />
-                <div className={"report-status-container " + report.status}>
-                  <h6>
-                    {report.status == "unsent"
-                      ? "غير مرسل"
-                      : report.status == "pending"
-                      ? "قيد الإنتظار"
-                      : report.status == "under_processing"
-                      ? "قيد المراجعة"
-                      : "مغلق"}
-                  </h6>
-                </div>
-              </div>
+       
+            
               <div class="he shadow-sm ms-4 me-3 rounded-4 pb-0">
                 <div className="row">
                   <div className="col-sm-6 ">
@@ -153,11 +98,19 @@ function ReportDetails({ report }) {
 
                   <div className="col-sm-6">
                     <div className="m-2 mt-0">
-                      <div className="heading text-end pe-2">حالة البلاغ</div>
-                      <hr className="hr m-0 p-2" />
-                      <div className="container status rounded p-1  d-flex justify-content-center mb-4">
-                        {report.status}
-                      </div>
+                    <div className="heading text-end pe-2">حالة البلاغ</div>
+              <hr className="hr m-0 p-2" />
+              <div className={"reportstatus-container " + report.status}>
+                <h6>
+                  {report.status == "unsent"
+                    ? "غير مرسل"
+                    : report.status == "pending"
+                    ? "قيد الإنتظار"
+                    : report.status == "under_processing"
+                    ? "قيد المراجعة"
+                    : "مغلق"}
+                </h6>
+              </div>
                       <div className="heading text-end pe-2">موقع المخالفة</div>
                       <hr className="hr m-0 p-2" />
                       <div className="container loc rounded mb-5 shadow-sm p-0">
@@ -204,7 +157,7 @@ function ReportDetails({ report }) {
                 </div>
               </div>
             </div>
-          </div>
+    
         </>
       ) : index == 1 ? (
         <EditReport report={report} />

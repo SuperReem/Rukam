@@ -311,7 +311,7 @@ function ReportsList() {
           </div>
         </>
       ) : (
-        <UpdateStatus report={rep} />
+        <ReportDetails report={rep} />
       )}
     </>
   );

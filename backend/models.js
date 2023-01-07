@@ -1,3 +1,4 @@
+const { Binary } = require("mongodb");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -15,9 +16,7 @@ const reportSchema = new Schema(
     region: {
       type: String,
     },
-    image: {
-      type: String,
-    },
+    image: { contentType: String},
     notes: {
       type: String,
     },

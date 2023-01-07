@@ -3,6 +3,9 @@ import { FiSave } from "react-icons/fi";
 import Waste from '../../assets/images/waste.png';
 import Button from "react-bootstrap/Button"
 import { BsCalendar4 } from "react-icons/bs";
+import { useEffect } from "react";
+import ReportsList from "./Reports_list";
+
 import {
   GoogleMap,
   Marker,
@@ -15,28 +18,24 @@ import ReportDetails from "../../views/Reports/ReportDetails";
 
 
 function EditReport({report}) {
-  const [notes, setNotes] = useState(report.notes);
+  const [note, setNotes] = useState(report.notes);
   const [index, setIndex] = useState(0);
-  const [currentPageData, setCurrentPageData] = useState(new Array(5).fill());
-  const items = [
-    1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3,
-    4, 5, 6, 7, 12, 13, 14,
-  ];
+
 
   const updatetext = event => {
   setNotes(event.target.value);
   }
+  useEffect(() => {
+  
+    console.log(note +'j');
+  }, [note]);
 
   const rep = {
-    reportId: report.reportId,
-    timestamp:report.timestamp,
-    status:report.status,
-    region: report.region,
-    image: report.image,
-    notes:notes,
-    location: report.location,
+
+    notes:'mams',
+
   };
-  
+ 
 
   const Save = async (e) => {
     const response = await fetch(
@@ -88,24 +87,32 @@ function EditReport({report}) {
     const onUnmount = React.useCallback(function callback(map) {
       setMap(null);
     }, []);
+
+
+    const PageNav = (i) => () => {
+      setIndex(i);
+    };
     
   return (
     <>
     {index == 0 ? (
       <>
-    <div className="App">
-        <div className="row">
-          <div className="">
-            <h1 class="h5 text-end">البلاغات  تفاصيل البلاغ</h1>
-          </div>
-        </div>
-        <div className="row">
-        <div className="col-sm-12">
-          <div className="m-2 mt-0">
-          <div id="title"> تحرير البلاغ</div>
-          </div>
-        </div>
-    </div>
+      <div className="App">
+            <div className="row">
+              <div className="col-sm-12">
+                <div className="pageNavigation">
+                  <a class="pagenav h5 text-end" onClick={PageNav(2)}>
+                    {" "}
+                    البلاغات{" "}
+                  </a>
+                  <a></a>
+                  <a class="pagenav h5 text-end" onClick={PageNav(1)} >تفاصيل البلاغ </a>
+                  <a></a>
+                  <a class="pagenav h5 text-end">تحرير البلاغ</a>
+                </div>
+                <div id="title"> تحرير البلاغ</div>
+              </div>
+            </div>
         <div class="he shadow-sm ms-4 me-3 rounded-4 pb-0">
 
 <div className="row">
@@ -136,13 +143,10 @@ function EditReport({report}) {
       </div>
     </div>
     <div className="col-sm-6">
-      <div className="m-2 mt-">
-        <div className="heading text-end pe-2">
-          حالة البلاغ
-        </div>
-        <hr className="hr m-0 p-2" />
-        <div className="container status rounded p-1  d-flex justify-content-center mb-4">
-        <div className={"report-status-container " + report.status}>
+      <div className="m-2 mt-0">
+      <div className="heading text-end pe-2">حالة البلاغ</div>
+              <hr className="hr m-0 p-2" />
+              <div className={"reportstatus-container " + report.status}>
                 <h6>
                   {report.status == "unsent"
                     ? "غير مرسل"
@@ -153,7 +157,6 @@ function EditReport({report}) {
                     : "مغلق"}
                 </h6>
               </div>
-        </div>
         <div className="heading text-end pe-2">
           موقع المخالفة
         </div>
@@ -193,9 +196,9 @@ function EditReport({report}) {
 </div>
     </div>
     </>
-      ) : (
+      ) :index == 1? (
         <ReportDetails report={report} />
-      )}
+      ):  <ReportsList/>}
     </>
   );
 }
