@@ -21,6 +21,7 @@ import frenchStrings from "react-timeago/lib/language-strings/ar";
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
 import ReportDetails from "../../views/Reports/ReportDetails";
 import ToggleButton from "react-bootstrap/ToggleButton";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 import UpdateStatus from "./UpdateStatus";
 
 const theme = createTheme({
@@ -80,7 +81,7 @@ function ReportsList() {
     const json = await response.json();
     if (response.ok) {
       console.log("Deleted", json);
-      //dispatch({ type: "DELETE_REPORTS", payload: json });
+      dispatch({ type: "DELETE_REPORTS", payload: { _id: ID } });
     }
   };
 
@@ -119,7 +120,7 @@ function ReportsList() {
     const report = {
       reportId: "888",
       timestamp: "٢٠ اكتوبر -١٢ مساءا",
-      status: "pending",
+      status: "phending",
       region: "حطين",
       image: "تر نط",
       notes: "منو",
@@ -219,11 +220,11 @@ function ReportsList() {
                       <div>
                         <Button
                           id="details-button"
-                          onClick={AddReport}
-                          // onClick={() => {
-                          //   setReport(report);
-                          //   setIndex(1);
-                          // }}
+                          //onClick={AddReport}
+                          onClick={() => {
+                            setReport(report);
+                            setIndex(1);
+                          }}
                         >
                           <BsArrowUpLeft size={17} /> التفاصيل
                         </Button>
@@ -235,7 +236,7 @@ function ReportsList() {
                           // data-bs-toggle="modal"
                           // data-bs-target="#myModal"
                           key={report._id}
-                          onClick={() => handleDelete(report._id)}
+                          onClick={() => DeleteReport(report._id)}
                         >
                           <FiTrash /> حذف البلاغ
                         </Button>
@@ -307,6 +308,7 @@ function ReportsList() {
             >
               <BsChevronLeft size={18} />
             </button>
+
             {pages.map((pageIndex) => (
               <button
                 key={pageIndex}

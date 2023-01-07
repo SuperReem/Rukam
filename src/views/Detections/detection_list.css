@@ -87,6 +87,7 @@
 #pagination button:hover {
   background-color: var(--light_green) !important;
   border-color: var(--light_green) !important;
+  color: white;
 }
 
 #pagination {
