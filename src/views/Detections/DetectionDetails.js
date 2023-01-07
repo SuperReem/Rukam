@@ -66,6 +66,7 @@ function DetectionDetails({detection}) {
         image: detection.image,
         notes: "",
         location: detection.location,
+        filter:"",
       };
   
       const response = await fetch("/api/Report", {

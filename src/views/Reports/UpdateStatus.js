@@ -6,6 +6,7 @@ import "./ReportDetails.css";
 import Waste from "../../assets/images/waste.png";
 import { useEffect } from "react";
 import { BsCalendar4 } from "react-icons/bs";
+import ReportsList from "./Reports_list";
 import {
   GoogleMap,
   Marker,
@@ -16,6 +17,7 @@ function hexToBase64(str) {
   return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
 }
 function UpdateStatus({report}) {
+  const [index, setIndex] = useState(0);
   const containerStyle = {
     width: "100%;",
     height: "100%",
@@ -43,7 +45,7 @@ function UpdateStatus({report}) {
     }, []);
     
   const [currentIndex, setCurrentIndex] = useState(1);
-  const [status, setStatus] = useState(report.image);
+  const [stat, setStatus] = useState(report.status);
   const [currentState, setCurrentState] = useState(
     "تحديث الحالة الى قيد المراجعة "
   );
@@ -52,26 +54,27 @@ function UpdateStatus({report}) {
 
 //update status in database
 useEffect(() => {
-  
-  console.log(status +'j');
-}, [status]);
-const rep = {
+  if (stat == "closed" && currentState === "تحديث الحالة الى مغلق") {
+    setCurrentState("حالة الطلب مغلق");
 
-  status: "closed",
+  }
+  console.log(stat +'j');
+  updatestatus();
+}, [stat]);
 
-};
-useEffect(() => {
-  
-  console.log(rep +'j');
-}, [rep]);
 
 
   const updatestatus = async (e) => {
-  
+    const rep = {
+
+      status: stat,
+    
+    };
     const response = await fetch(
       "/api/Report/" + report._id ,
       {
         method: "PATCH",
+        body: JSON.stringify(rep),
         headers: {
           "Content-Type": "application/json",
         },
@@ -84,7 +87,7 @@ useEffect(() => {
       }
       if (response.ok) {
         console.log("updated:", json);
-        console.log(status +'k');
+        console.log(stat +'k');
       }
     
   
@@ -97,41 +100,50 @@ useEffect(() => {
 
 
   const check = () => {
-    if (report.status == 3 && currentState === "تحديث الحالة الى مغلق") {
-      setCurrentState("حالة الطلب مغلق");
-    }
+  
   };
   const update = () => {
-    if ( report.status == "pending"){
+    if ( stat === "pending"){
       setStatus("under_processing");
-      console.log(status);
-      updatestatus();
+      console.log('jnj');
+
+ 
     }
    
     setCurrentState("تحديث الحالة الى مغلق");
-    if (report.status == "under_processing") {
+    if (stat === "under_processing") {
       setStatus("closed");
-      console.log(status);
-      updatestatus();
+      console.log(stat);
+     
+
     }
    
-    if (currentIndex == 3) console.log("dhbfh");
+    if (stat == "closed") console.log("dhbfh");
+
+   
+  }
+  const PageNav = async (e) => {
+    setIndex(1);
   };
 
   return (
-    <div className="App">
-      <div className="row">
-        <div className="">
-          <h1 class="h5 text-end">البلاغات تفاصيل البلاغ</h1>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-sm-12">
-          <div className="m-2 mt-0">
-            <div id="title"> تفاصيل البلاغ</div>
-          </div>
-        </div>
-      </div>
+    <>
+      {index == 0 ? (
+        <>
+          <div className="App">
+            <div className="row">
+              <div className="col-sm-12">
+                <div className="pageNavigation">
+                  <a class="pagenav h5 text-end" onClick={PageNav}>
+                    {" "}
+                    البلاغات{" "}
+                  </a>
+                  <a></a>
+                  <a class="pagenav h5 text-end">تفاصيل البلاغ</a>
+                </div>
+                <div id="title"> تفاصيل البلاغ</div>
+              </div>
+            </div>
       <div class="he shadow-sm ms-4 me-3 rounded-4 pb-0">
         <div className="row">
           <div className="col-sm-6 ">
@@ -207,6 +219,7 @@ useEffect(() => {
                       variant="secondary"
                       size="lg"
                       className="cancel btn"
+                      onClick={()=> setIndex(1)}
                     >
                       {" "}
                       إلغاء{" "}
@@ -240,7 +253,7 @@ useEffect(() => {
                 <div className="modal-body justify-content-center">
                   <div className="row align-items-center  justify-content-center">
                     <div className="col-8 progressbar  pb-4">
-                      <MultiStepProgressBar currentStep={currentIndex} />
+                      <MultiStepProgressBar currentStep={stat} />
                     </div>
                     <div className="row align-items-center justify-content-between pb-4 me-4 pt-2">
                       <div className="col-3 align-items-center h6">
@@ -266,7 +279,7 @@ useEffect(() => {
                   variant="secondary"
                   size="md"
                   className="updatS btn"
-                  onClick={updatestatus}
+                  onClick={update}
                 >
                   {" "}
                   تحديث الحالة
@@ -277,6 +290,11 @@ useEffect(() => {
         </div>
       </div>
     </div>
+    </>
+      )  : (
+        <ReportsList />
+      )}
+    </>
   );
 }
 

@@ -32,7 +32,7 @@ function EditReport({report}) {
 
   const rep = {
 
-    notes:'mams',
+    notes:note,
 
   };
  
@@ -185,7 +185,7 @@ function EditReport({report}) {
               </Button>
             </div>
             <div className="col-6">
-              <Button variant="secondary" size="lg" className="cancel btn" onClick={Save}>  إلغاء </Button>
+              <Button variant="secondary" size="lg" className="cancel btn" onClick={()=>setIndex(1)}>  إلغاء </Button>
             </div>
             </div>
         </div>

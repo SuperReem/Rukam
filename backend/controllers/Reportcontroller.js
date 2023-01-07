@@ -150,9 +150,10 @@ const updateReport = async (req, res) => {
 
   const report = await reportModel.findOneAndUpdate(
     { _id: id },
-    {
-      ...req.body,
-    }
+    
+    req.body,
+    {new:true}
+    
   );
 
   if (!report) {
