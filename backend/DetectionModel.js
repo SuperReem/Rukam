@@ -21,10 +21,10 @@ const detectionSchema = new Schema(
     filter: {
       type: String,
     },
-    user_id: {
-      type: String,
-      required: true,
-    },
+    // user_id: {
+    //   type: String,
+    //   required: true,
+    // },
   },
   { timestamps: true }
 );

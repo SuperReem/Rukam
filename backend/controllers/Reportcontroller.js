@@ -2,7 +2,7 @@ const reportModel = require("../models");
 const mongoose = require("mongoose");
 
 const getReports = async (req, res) => {
-  const user_id = req.user._id; ///////check this
+  // const user_id = req.user._id; ///////check this
   const PAGE_SIZE = 3;
   var start = req.query.start || "All";
   var end = req.query.end || "All";
@@ -115,7 +115,7 @@ const createReport = async (req, res) => {
       notes,
       location,
       filter,
-      user_id, ///////check this
+      // user_id, ///////check this
     });
     res.status(200).json(report);
   } catch (error) {

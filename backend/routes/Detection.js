@@ -8,13 +8,10 @@ const {
   updateDetection,
 } = require("../controllers/DetectionController");
 
+// const requireAuth = require('../middleware/requireAuth')
 
-
-const requireAuth = require('../middleware/requireAuth')
-
-
-const  router = express.Router();
-router.use(requireAuth);
+const router = express.Router();
+// router.use(requireAuth);
 router.post("/", createDetection);
 router.get("/detection", getDetections);
 router.get("/:id", getDetection);
