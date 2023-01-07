@@ -4,18 +4,41 @@ const mongoose = require("mongoose");
 // get all detection
 const getDetections = async (req, res) => {
   const PAGE_SIZE = 8;
+  var start = req.query.start || "All";
+  var end = req.query.end || "All";
   const page = parseInt(req.query.page || "0");
-  const total = await detectionModel.countDocuments({});
-  const detections = await detectionModel
-    .find({})
-    .sort({ createdAt: -1 })
-    .limit(PAGE_SIZE)
-    .skip(PAGE_SIZE * page);
+  if ((start == "All") & (end == "All")) {
+    const total = await detectionModel.countDocuments({});
+    const detections = await detectionModel
+      .find({})
+      .sort({ createdAt: -1 })
+      .limit(PAGE_SIZE)
+      .skip(PAGE_SIZE * page);
 
-  res.json({
-    totalPages: Math.ceil(total / PAGE_SIZE),
-    detections,
-  });
+    res.json({
+      totalPages: Math.ceil(total / PAGE_SIZE),
+      detections,
+    });
+  } else {
+    const total = await detectionModel.countDocuments({
+      filter: { $gte: start },
+      filter: { $lte: end },
+    });
+
+    const detections = await detectionModel
+      .find({})
+      .where("filter")
+      .gte(start)
+      .lte(end)
+      .sort({ createdAt: -1 })
+      .limit(PAGE_SIZE)
+      .skip(PAGE_SIZE * page);
+
+    res.json({
+      totalPages: Math.ceil(total / PAGE_SIZE),
+      detections,
+    });
+  }
 };
 
 // get a single detection
@@ -37,7 +60,7 @@ const getDetection = async (req, res) => {
 
 // create a new detection
 const createDetection = async (req, res) => {
-  const { droneId, location, region, time, image } = req.body;
+  const { droneId, location, region, time, image, filter } = req.body;
 
   let emptyFields = [];
 
@@ -59,6 +82,7 @@ const createDetection = async (req, res) => {
       region,
       time,
       image,
+      filter,
     });
     res.status(200).json(detection);
   } catch (error) {

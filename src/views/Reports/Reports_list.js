@@ -3,7 +3,7 @@ import "./report_list.css";
 import { BsFilter } from "react-icons/bs";
 import DatePicker from "react-multi-date-picker";
 import "react-multi-date-picker/styles/colors/green.css";
-import arabic_ar from "react-date-object/locales/arabic_ar";
+import arabic_ar from "react-date-object/locales/arabic_en";
 import ReportCard from "../../components/Reports/Report_card";
 import { useState } from "react";
 import Pagination from "@mui/material/Pagination";
@@ -44,14 +44,16 @@ function ReportsList() {
   const [rep, setReport] = useState();
   const [pageNumber, setPageNumber] = useState(0);
   const [numberOfPages, setNumberOfPages] = useState(0);
+  const [dateStart, setDateStart] = useState("All");
+  const [dateEnd, setDateEnd] = useState("All");
   const { reports, dispatch } = useReportContext();
 
   const pages = new Array(numberOfPages).fill(null).map((v, i) => i);
 
   useEffect(() => {
-    const fetchReports = async () => {
+    var fetchReports = async () => {
       const response = await fetch(
-        `http://localhost:3000/api/Report/report?page=${pageNumber}`
+        `http://localhost:3000/api/Report/report?page=${pageNumber}&start=${dateStart}&end=${dateEnd}`
       )
         .then((response) => response.json())
         .then(({ totalPages, reports }) => {
@@ -59,8 +61,9 @@ function ReportsList() {
           setNumberOfPages(totalPages);
         });
     };
+
     fetchReports();
-  }, [dispatch, pageNumber]);
+  }, [dispatch, pageNumber, dateStart, dateEnd]);
 
   const gotoPrevious = () => {
     setPageNumber(Math.max(0, pageNumber - 1));
@@ -91,16 +94,18 @@ function ReportsList() {
       dispatch({ type: "DELETE_REPORTS", payload: json });
     }
   };
-  const handle = async (e) => {
-    e.preventDefault();
+  const AddReport = async (e) => {
+    const date = new Date();
+
     const report = {
       reportId: "888",
       timestamp: "٢٠ اكتوبر -١٢ مساءا",
-      status: "under_processing",
+      status: "unsent",
       region: "حطين",
       image: "تر نط",
       notes: "منو",
       location: "ذتنري",
+      filter: date.toISOString().slice(0, 10),
     };
     const response = await fetch("/api/Report", {
       method: "POST",
@@ -118,6 +123,25 @@ function ReportsList() {
     }
   };
   const datePickerRef = useRef();
+  function onChangeHandler(value) {
+    var date = new Date(
+      value[0].month.number + "-" + value[0].day + "-" + value[0].year
+    );
+    date.setDate(date.getDate() + 1);
+    setDateStart(date.toISOString().slice(0, 10));
+
+    var date2 = new Date(
+      value[1].month.number + "-" + value[1].day + "-" + value[1].year
+    );
+    date2.setDate(date2.getDate() + 1);
+    setDateEnd(date2.toISOString().slice(0, 10));
+  }
+  useEffect(() => {
+    console.log(dateStart);
+  }, [dateStart]);
+  useEffect(() => {
+    console.log(dateEnd);
+  }, [dateEnd]);
 
   return (
     <>
@@ -131,7 +155,8 @@ function ReportsList() {
             />{" "}
             <DatePicker
               ref={datePickerRef}
-              locale={arabic_ar}
+              //locale={arabic_ar}
+              onChange={onChangeHandler}
               range="true"
               className="green"
               inputClass="custom-input"
@@ -179,14 +204,7 @@ function ReportsList() {
                         >
                           <BsArrowUpLeft size={17} /> التفاصيل
                         </Button>
-                        {/* <button
-                          onClick={() => {
-                            setReport(report);
-                            setIndex(1);
-                          }}
-                        >
-                          Click
-                        </button> */}
+
                         <Button
                           variant="secondary"
                           size="md"
@@ -213,7 +231,6 @@ function ReportsList() {
                               <button
                                 data-bs-dismiss="modal"
                                 className="closebtn btn rounded"
-                                // onClick={handle}
                                 onClick={() => {
                                   setReport(report);
                                 }}
@@ -243,7 +260,7 @@ function ReportsList() {
                             size="md"
                             id="delete-report-button"
                             onClick={() => {
-                              DeleteReport(rep._id);
+                              //  DeleteReport(rep._id);
                             }}
                           >
                             {" "}

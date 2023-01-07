@@ -25,6 +25,13 @@ const reportSchema = new Schema(
       latitude: { type: Number },
       longitude: { type: Number },
     },
+    filter: {
+      type: String,
+    },
+    // user_id: {
+    //   type: String,
+    //   required: true,
+    // },
   },
   { timestamps: true }
 );

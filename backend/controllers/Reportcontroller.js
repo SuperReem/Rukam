@@ -2,22 +2,49 @@ const reportModel = require("../models");
 const mongoose = require("mongoose");
 
 const getReports = async (req, res) => {
+  // const user_id = req.user._id; ///////check this
   const PAGE_SIZE = 3;
+  var start = req.query.start || "All";
+  var end = req.query.end || "All";
   const page = parseInt(req.query.page || "0");
-  const total = await reportModel.countDocuments({});
-  const reports = await reportModel
-    .find({})
-    .sort({ createdAt: -1 })
-    .limit(PAGE_SIZE)
-    .skip(PAGE_SIZE * page);
+  if ((start == "All") & (end == "All")) {
+    const total = await reportModel.countDocuments({});
+    const reports = await reportModel
+      .find({})
+      .sort({ createdAt: -1 })
+      .limit(PAGE_SIZE)
+      .skip(PAGE_SIZE * page);
+    // const total = await reportModel.countDocuments({});
+    // const reports = await reportModel
+    //   .find({user_id}) ///////check this
+    //   .sort({ createdAt: -1 })
+    //   .limit(PAGE_SIZE)
+    //   .skip(PAGE_SIZE * page);
 
-  res.json({
-    totalPages: Math.ceil(total / PAGE_SIZE),
-    reports,
-  });
+    res.json({
+      totalPages: Math.ceil(total / PAGE_SIZE),
+      reports,
+    });
+  } else {
+    const total = await reportModel.countDocuments({
+      filter: { $gte: start },
+      filter: { $lte: end },
+    });
 
-  // const reports = await reportModel.find({});
-  // res.status(200).json(reports);
+    const reports = await reportModel
+      .find({})
+      .where("filter")
+      .gte(start)
+      .lte(end)
+      .sort({ createdAt: -1 })
+      .limit(PAGE_SIZE)
+      .skip(PAGE_SIZE * page);
+
+    res.json({
+      totalPages: Math.ceil(total / PAGE_SIZE),
+      reports,
+    });
+  }
 };
 
 // get a single report
@@ -50,8 +77,16 @@ const deleteReportByName = async (req, res) => {
 
 // create a new report
 const createReport = async (req, res) => {
-  const { reportId, timestamp, status, region, image, notes, location } =
-    req.body;
+  const {
+    reportId,
+    timestamp,
+    status,
+    region,
+    image,
+    notes,
+    location,
+    filter,
+  } = req.body;
 
   let emptyFields = [];
 
@@ -70,6 +105,7 @@ const createReport = async (req, res) => {
 
   // add to the database
   try {
+    const user_id = req.user._id; ///////check this
     const report = await reportModel.create({
       reportId,
       timestamp,
@@ -78,6 +114,8 @@ const createReport = async (req, res) => {
       image,
       notes,
       location,
+      filter,
+      // user_id, ///////check this
     });
     res.status(200).json(report);
   } catch (error) {

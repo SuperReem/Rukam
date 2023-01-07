@@ -9,6 +9,8 @@ import { BsArrowUpLeft } from "react-icons/bs";
 import DroneIcon from '../../assets/images/DRONE_ICON.png';
 import {XYPlot, XAxis, YAxis, LineChart, PieChart} from 'reactochart';
 
+import {IntlProvider} from 'react-intl';
+
 const ReportsChart = (props) => (
     <PieChart
         data={[2,3,0,5]}

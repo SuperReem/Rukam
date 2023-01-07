@@ -1,34 +1,51 @@
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { UserProvider } from "./contexts/user.context";
-import Login from "./pages/Login.page";
+import Login from "./pages/Login";
 // import Login from './views/Login/Login';
 import PrivateRoute from "./pages/PrivateRoute.page";
 //
 import TopNavbar from "./views/TopNavbar/TopNavbar";
-
-import ResetPassword from "./views/Login/ResetPassword";
-import ResetPass from "./views/Login/ResetPass";
+import Signup from './pages/Signup'
+import ResetPassword from "./views/Passwords/ResetPassword";
+import ResetPass from "./views/Passwords/ResetPass";
 // Login
 import Sidebar from "./views/SideNavbar/SideNavbar";
+import { useAuthContext } from './hooks/useAuthContext'
+
 
 function App() {
+  const { user } = useAuthContext()
+
   return (
-    <BrowserRouter>
-      <UserProvider>
-        <Routes>
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/ResetPassword" element={<ResetPassword />} />
 
-          {/* Not here */}
-          <Route exact path="/ResetPass" element={<ResetPass />} />
 
-          <Route element={<PrivateRoute />}>
-            <Route exact path="/" element={<Sidebar />} />
-          </Route>
-        </Routes>
-      </UserProvider>
-    </BrowserRouter>
+
+<div className="App">
+<BrowserRouter>
+  <div className="pages">
+    <Routes>
+    <Route 
+        path="/" 
+        element={ user? <Sidebar /> :  <Navigate to="/login" />} 
+      />
+      <Route 
+        path="/login" 
+        element={!user ? <Login /> : <Navigate to="/" />} 
+        />
+
+        {/* //temp */}
+      <Route 
+        path="/signup" 
+        element={<Signup />} 
+      />
+     
+    </Routes>
+  </div>
+</BrowserRouter>
+</div>
+
+
   );
 }
 export default App;
