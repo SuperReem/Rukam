@@ -4,6 +4,10 @@ import Footer from "../Footer/Footer";
 import TopNavbar from "../TopNavbar/TopNavbar";
 import Drone from "../../assets/images/DroneToFly.png";
 import validator from 'validator'
+//
+import { useContext, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { UserContext } from "../../contexts/user.context";
 
 
 function ResetPassword() {
@@ -11,6 +15,7 @@ function ResetPassword() {
     email: "",
     password: "",
   });
+  const [email, setEmail] = useState('')
   const [emailError, setEmailError] = useState('')
 
 
@@ -39,7 +44,7 @@ function ResetPassword() {
   return (
     <body className=" ">
       <div className="main-content   ">
-        {/*  the header */}
+        {/* <!-- Header --> */}
         <TopNavbar />
         <img
           src={Drone}
@@ -47,7 +52,7 @@ function ResetPassword() {
           height={35}
         />
 
-        {/* <!-- Header --> */}
+        {/* <!-- Body --> */}
         <div className="header bg-gradient-primary py-4 py-lg-8 ">
           <div className="container">
             <div className="header-body text-center mb-7">
@@ -89,23 +94,11 @@ function ResetPassword() {
                       />
                          <span className="text-danger mt-1 ">{emailError}</span>
 
-
-
-
-
-                      {/* <input
-                        type="email"
-                        className="form-control classInput"
-                        id="inputEmail"
-                        placeholder="ma***@gmail.com"
-                        value={email}
-                        required
-                      /> */}
                     </div>
 
                     <div className="text-center">
                       <button
-                        type="button"
+                        type="Submit"
                         // onClick={onSubmit}
                         className="btn btn-primary my-2  px-5 classButton"
                       >

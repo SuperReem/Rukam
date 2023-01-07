@@ -28,6 +28,10 @@ const reportSchema = new Schema(
     filter: {
       type: String,
     },
+    user_id: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

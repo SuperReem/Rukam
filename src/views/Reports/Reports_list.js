@@ -21,6 +21,7 @@ import frenchStrings from "react-timeago/lib/language-strings/ar";
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
 import ReportDetails from "../../views/Reports/ReportDetails";
 import ToggleButton from "react-bootstrap/ToggleButton";
+import UpdateStatus from "./UpdateStatus";
 
 const theme = createTheme({
   status: {
@@ -310,7 +311,7 @@ function ReportsList() {
           </div>
         </>
       ) : (
-        <ReportDetails report={rep} />
+        <UpdateStatus report={rep} />
       )}
     </>
   );

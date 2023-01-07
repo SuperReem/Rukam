@@ -8,9 +8,12 @@ const {
     updateDrone,
 } = require("../controllers/DroneController");
 
+const requireAuth = require('../middleware/requireAuth')
 
 
 const  router = express.Router();
+
+router.use(requireAuth);
 router.get('/' ,getDrones);
 router.get('/:id' ,getDrone);
 router.post('/' ,createDrone);
