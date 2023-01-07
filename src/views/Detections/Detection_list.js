@@ -50,13 +50,15 @@ function showDetails(detectionObj) {
 function DetectionList() {
   const [pageNumber, setPageNumber] = useState(0);
   const [numberOfPages, setNumberOfPages] = useState(0);
+  const [dateStart, setDateStart] = useState("All");
+  const [dateEnd, setDateEnd] = useState("All");
   const { detections, dispatch } = useDetectionsContext();
   const pages = new Array(numberOfPages).fill(null).map((v, i) => i);
 
   useEffect(() => {
     const fetchDetections = async () => {
       const response = await fetch(
-        `http://localhost:3000/api/Detection/detection?page=${pageNumber}`
+        `http://localhost:3000/api/Detection/detection?page=${pageNumber}&start=${dateStart}&end=${dateEnd}`
       )
         .then((response) => response.json())
         .then(({ totalPages, detections }) => {
@@ -66,7 +68,7 @@ function DetectionList() {
     };
 
     fetchDetections();
-  }, [dispatch, pageNumber]);
+  }, [dispatch, pageNumber, dateStart, dateEnd]);
 
   const gotoPrevious = () => {
     setPageNumber(Math.max(0, pageNumber - 1));
@@ -97,13 +99,14 @@ function DetectionList() {
 
   const handle = async (e) => {
     e.preventDefault();
-
+    const date = new Date();
     const detection = {
       droneId: "7777",
       location: { latitude: 88.9, longitude: 66 },
       region: "حي حطين",
       time: formattedDate,
       image: "kkkkk",
+      filter: date.toISOString().slice(0, 10),
     };
 
     const response = await fetch("/api/Detection", {
@@ -128,7 +131,25 @@ function DetectionList() {
   const [detec, setDetec] = useState();
 
   const datePickerRef = useRef();
+  function onChangeHandler(value) {
+    var date = new Date(
+      value[0].month.number + "-" + value[0].day + "-" + value[0].year
+    );
+    date.setDate(date.getDate() + 1);
+    setDateStart(date.toISOString().slice(0, 10));
 
+    var date2 = new Date(
+      value[1].month.number + "-" + value[1].day + "-" + value[1].year
+    );
+    date2.setDate(date2.getDate() + 1);
+    setDateEnd(date2.toISOString().slice(0, 10));
+  }
+  useEffect(() => {
+    console.log(dateStart);
+  }, [dateStart]);
+  useEffect(() => {
+    console.log(dateEnd);
+  }, [dateEnd]);
   return (
     <>
       {index == 0 ? (
@@ -141,7 +162,8 @@ function DetectionList() {
             />{" "}
             <DatePicker
               ref={datePickerRef}
-              locale={arabic_ar}
+              // locale={arabic_ar}
+              onChange={onChangeHandler}
               range="true"
               className="green"
               inputClass="custom-input"

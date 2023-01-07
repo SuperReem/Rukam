@@ -18,6 +18,9 @@ const detectionSchema = new Schema(
     image: {
       type: String,
     },
+    filter: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
