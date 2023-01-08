@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button"
 import { BsCalendar4 } from "react-icons/bs";
 import { useEffect } from "react";
 import ReportsList from "./Reports_list";
-
+import { useReportDContext } from "../../hooks/useReportDContext";
 import {
   GoogleMap,
   Marker,
@@ -18,6 +18,7 @@ import ReportDetails from "../../views/Reports/ReportDetails";
 
 
 function EditReport({report}) {
+  const { reportD, dispatch } = useReportDContext();
   const [note, setNotes] = useState(report.notes);
   const [index, setIndex] = useState(0);
 
@@ -50,13 +51,14 @@ function EditReport({report}) {
       const json = await response.json();
   
       if (!response.ok) {
+        dispatch({ type: "UPDATE_DETAILS", payload: json });
         console.log("new report not added:");
         console.log(rep.notes);
       }
       if (response.ok) {
         console.log("new report added:", json);
       }
-    
+      console.log(report._id);
     setIndex(1);
   };
 
@@ -197,7 +199,7 @@ function EditReport({report}) {
     </div>
     </>
       ) :index == 1? (
-        <ReportDetails report={report} />
+        <ReportDetails repId={report._id} />
       ):  <ReportsList/>}
     </>
   );

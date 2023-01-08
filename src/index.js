@@ -12,7 +12,7 @@ import "bootstrap/dist/js/bootstrap.esm";
 import { DetectionContextProvider } from "./contexts/DetectionListContext";
 import { ReportContextProvider } from "./contexts/ReportListContext";
 import { AuthContextProvider } from './contexts/AuthContext'
-
+import { ReportDContextProvider } from "./contexts/ReportDetailsContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -20,7 +20,9 @@ root.render(
     <AuthContextProvider>
     <DetectionContextProvider>
       <ReportContextProvider>
+      <ReportDContextProvider>
         <App />
+        </ReportDContextProvider>
       </ReportContextProvider>
     </DetectionContextProvider>
     </AuthContextProvider>
