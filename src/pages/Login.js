@@ -171,7 +171,7 @@ const Login = () => {
                     <div className=" text-left d-flex justify-content-end  mb-3">
                       {/* <a href="#" className="text-black text-decoration-none "> */}
                       <Link
-                        to="/resetpassword"
+                        to="/forgotPassword"
                         className="text-decoration-none text-black "
                       >
                         نسيت كلمة المرور؟

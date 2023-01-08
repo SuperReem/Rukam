@@ -4,11 +4,50 @@ import { HiCheck } from "react-icons/hi";
 import Footer from "../Footer/Footer";
 import TopNavbar from "../TopNavbar/TopNavbar";
 import Drone from "../../assets/images/DroneToFly.png";
+import { VscEye } from "react-icons/vsc";
+import { VscEyeClosed } from "react-icons/vsc";
+import { useResetPass } from "../../hooks/useResetPass"
+import { Link, useLocation, useNavigate, Navigate, Outlet } from "react-router-dom";
+
+
 
 
 function ResetPass() {
+
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const [passError, setPassError] = useState('');
+
+  const [passwordShown, setPasswordShown] = useState(false);
+  const changeIcon = passwordShown === true ? false : true;
+  const togglePassword = () => {
+    setPasswordShown(!passwordShown);
+  };
+
+  const {resetPass, error, isLoading} = useResetPass()
+
+  const handelClick = async (e) => {
+    console.log("clicked");
+    e.preventDefault();
+  
+    if (password === "" || password2==="") {
+      console.log("Password is required!");
+      setPassError("Password is required!");
+    } else if (password !== password2) {
+      console.log(" password and new must match");
+      setPassError(" password and new must match");
+
+    } else {
+      console.log("above fetch")
+      console.log(password)
+
+      const userToken = window.location.href.substring(36);
+      await resetPass(userToken,password)///
+  
+  
+    }
+  }
+
 
   return (
     <body className=" ">
@@ -40,7 +79,7 @@ function ResetPass() {
                       يرجى إدخال كلمة المرور الجديدة
                     </h5>
                   </div>
-                  <form role="form">
+                  <form role="form" onSubmit={handelClick}>
                     <div className="mb-4  input-group-alternative">
                       <label
                         className="form-label text-right mb-0 "
@@ -53,9 +92,14 @@ function ResetPass() {
                         className="form-control classInput"
                         placeholder="********"
                         value={password}
+                        onChange={(e) => setPassword(e.target.value)} 
                         id="inputPass"
                         type="password"
                       />
+                      
+                      <span onClick={togglePassword} className="showhide" >
+                              {changeIcon ? <VscEye /> : <VscEyeClosed />}
+                              </span>
                     </div>
                     <div className="mb-3  input-group-alternative">
                       <label
@@ -69,6 +113,7 @@ function ResetPass() {
                         className="form-control classInput"
                         placeholder="********"
                         value={password2}
+                        onChange={(e) => setPassword2(e.target.value)} 
                         id="inputPass"
                         type="password"
                       />
@@ -108,12 +153,24 @@ function ResetPass() {
                     </div>
 
                     <div className="text-center">
-                      <button
+                      {/* <button
                         type="button"
+                        onClick={isLoading}
                         className="btn btn-primary my-2 px-5 classButton"
                       >
-                        تغيير كلمة المرور{" "}
+                        تغيير كلمة المرور
+                      </button> */}
+
+                      <button
+                   
+                        // onClick={onSubmit}
+                        onClick={isLoading}
+                        className="btn btn-primary my-2  px-5 classButton"
+                      >
+                        تغيير كلمة المرور
                       </button>
+
+
                     </div>
                   </form>
                 </div>
