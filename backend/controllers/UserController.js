@@ -5,8 +5,8 @@ const bcrypt = require('bcrypt')
 
 const _ = require("lodash")
 const mailgun = require("mailgun-js");
-const DOMAIN = 'sandbox5615c7d636d24f22983241fdb0c95ffe.mailgun.org';
-const api_key= "d3518a8a2b0e8d2d0ba0ec2cf4323f62-cc9b2d04-bac13ae3" ;
+const DOMAIN = 'sandboxa605a24351e24fe0a0535f7eb912a0bf.mailgun.org';
+const api_key= "7f3e06134e17bcef472f689085ad52a9-cc9b2d04-85a8aba2" ;
 const mg = mailgun({apiKey: api_key, domain: DOMAIN});
 /////
 
@@ -59,12 +59,12 @@ const forgotPassword = async (req, res) => {
 
     }
     const token = createToken(user._id)
+    const url = "please click on the link to reset:  http://localhost:3000/resetpassword/"+token
     const data = {
-      from: 'deemmf0@gmail.com',
+      from: 'rukamservice@gmail.com',
       to: email,
       subject: 'Reset Password ',
-      text: 'Testing some Mailgun awesomness! ',
-      html: token// '<h> please click to reset <h/> <p>http://localhost:3000/resetpassword/${token}<p/>',
+      html: url  // '<h> please click to reset <h/> <p>http://localhost:3000/resetpassword/${token}<p/>',
 
     };
     console.log("token")
