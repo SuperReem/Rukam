@@ -5,6 +5,7 @@ import Waste from "../../assets/images/waste.png";
 import Button from "react-bootstrap/Button";
 import { BsCalendar4 } from "react-icons/bs";
 import EditReport from "../../views/Reports/EditReport";
+import { useReportDContext } from "../../hooks/useReportDContext";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import {
   GoogleMap,
@@ -14,8 +15,52 @@ import {
 } from "@react-google-maps/api";
 import ReportsList from "./Reports_list";
 
-function ReportDetails({ report }) {
+function ReportDetails({ repId }) {
   const [index, setIndex] = useState(0);
+  const { dispatch } = useReportDContext();
+  const [timestamp, setTimestamp] = useState("");
+  const [rep, setReport] = useState();
+  const [status, setStatus] = useState("");
+  const [image, setimage] = useState("");
+  const [notes, setNotes] = useState("");
+  const [location, setLocation] = useState("");
+
+  useEffect(() => {
+  
+    
+    const fetchDetections = async () => {
+      const response = await fetch(
+        "/api/Report/" + repId ,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const report = await response.json();
+  
+        if (!response.ok) {
+          
+          console.log("wrong");
+          console.log(repId);
+        }
+        if (response.ok) {
+          setReport(report);
+          setimage(report.image);
+          setNotes(report.notes);
+          setLocation(report.location);
+          setTimestamp(report.timestamp);
+          setStatus(report.status);
+          dispatch({ type: "GET_DETAILS", payload: report });
+          
+
+          console.log("get:", report);
+        }
+    };
+
+    fetchDetections();
+  }, [ ]);
+
 
   const Edit = async (e) => {
     setIndex(1);
@@ -81,7 +126,7 @@ function ReportDetails({ report }) {
                       <hr className="hr m-0 p-2" />
                       <div className="container time  rounded p-1 mb-4 align-items-right ">
                         <BsCalendar4 color="var(--primary)" className="ms-4" />
-                        {report.timestamp}
+                         {timestamp}
                       </div>
                       <div className="heading text-end pe-2">صور المخالفة</div>
                       <hr className="hr m-0 p-2" />
@@ -91,7 +136,7 @@ function ReportDetails({ report }) {
                       <div className="heading text-end pe-2">ملاحظات</div>
                       <hr className="hr m-0 p-2" />
                       <div className="ps-5 ms-5 justify-content-end">
-                        <p className="h6 ps-5">{report.notes}</p>
+                      <p className="h6 ps-5">{notes}</p> 
                       </div>
                     </div>
                   </div>
@@ -100,13 +145,13 @@ function ReportDetails({ report }) {
                     <div className="m-2 mt-0">
                     <div className="heading text-end pe-2">حالة البلاغ</div>
               <hr className="hr m-0 p-2" />
-              <div className={"reportstatus-container " + report.status}>
+          <div className={"reportstatus-container " +status}>
                 <h6>
-                  {report.status == "unsent"
+                  {status == "unsent"
                     ? "غير مرسل"
-                    : report.status == "pending"
+                    : status == "pending"
                     ? "قيد الإنتظار"
-                    : report.status == "under_processing"
+                    : status == "under_processing"
                     ? "قيد المراجعة"
                     : "مغلق"}
                 </h6>
@@ -160,7 +205,7 @@ function ReportDetails({ report }) {
     
         </>
       ) : index == 1 ? (
-        <EditReport report={report} />
+        <EditReport report={rep} />
       ) : (
         <ReportsList />
       )}

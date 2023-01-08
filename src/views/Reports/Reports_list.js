@@ -353,7 +353,7 @@ function ReportsList() {
           </div>
         </>
       ) : (
-        <ReportDetails report={rep} />
+        <ReportDetails repId={rep._id} />
       )}
     </>
   );
