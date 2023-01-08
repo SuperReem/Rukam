@@ -81,7 +81,7 @@ function ReportsList() {
     const json = await response.json();
     if (response.ok) {
       console.log("Deleted", json);
-      dispatch({ type: "DELETE_REPORTS", payload: { _id: ID } });
+      dispatch({ type: "DELETE_REPORTS", payload: json });
     }
   };
 
@@ -163,8 +163,8 @@ function ReportsList() {
     console.log(dateStart);
   }, [dateStart]);
   useEffect(() => {
-    console.log(dateEnd);
-  }, [dateEnd]);
+    console.log(pageNumber);
+  }, [pageNumber]);
 
   return (
     <>
@@ -302,28 +302,49 @@ function ReportsList() {
               </>
             ))}
           <div id="pagination">
-            <button
-              onClick={gotoPrevious}
-              class="btn btn-primary btn-circle btn-sm"
-            >
-              <BsChevronLeft size={18} />
-            </button>
-
-            {pages.map((pageIndex) => (
+            {pageNumber + 1 == 1 ? (
+              <button class="btn btn-primary btn-circle btn-smdis" disabled>
+                <BsChevronLeft size={18} />
+              </button>
+            ) : (
               <button
-                key={pageIndex}
-                onClick={() => setPageNumber(pageIndex)}
+                onClick={gotoPrevious}
                 class="btn btn-primary btn-circle btn-sm"
               >
-                {pageIndex + 1}
+                <BsChevronLeft size={18} />
               </button>
-            ))}
-            <button
-              onClick={gotoNext}
-              class="btn btn-primary btn-circle btn-sm"
-            >
-              <BsChevronRight size={18} />
-            </button>
+            )}
+            {pages.map((pageIndex) =>
+              pageNumber == pageIndex ? (
+                <button
+                  key={pageIndex}
+                  onClick={() => setPageNumber(pageIndex)}
+                  class="btn btn-primary btn-circle btn-smpree"
+                >
+                  {pageIndex + 1}
+                </button>
+              ) : (
+                <button
+                  key={pageIndex}
+                  onClick={() => setPageNumber(pageIndex)}
+                  class="btn btn-primary btn-circle btn-sm"
+                >
+                  {pageIndex + 1}
+                </button>
+              )
+            )}
+            {pageNumber + 1 == numberOfPages ? (
+              <button class="btn btn-primary btn-circle btn-smdis" disabled>
+                <BsChevronRight size={18} />
+              </button>
+            ) : (
+              <button
+                onClick={gotoNext}
+                class="btn btn-primary btn-circle btn-sm"
+              >
+                <BsChevronRight size={18} />
+              </button>
+            )}
           </div>
 
           <div id="page-number2">

@@ -78,13 +78,34 @@
 .btn-circle.btn-sm {
   width: 42px;
   height: 42px;
-  /* padding: 10px 10px; */
   border-radius: 25px;
   font-size: 18px;
-  /* font-weight: 550; */
   text-align: center;
   margin: 3px;
   background-color: rgba(255, 255, 255, 0);
   color: black;
   border-color: var(--primary);
+}
+
+.btn-circle.btn-smdis {
+  width: 42px;
+  height: 42px;
+  border-radius: 25px;
+  font-size: 18px;
+  text-align: center;
+  margin: 3px;
+  background-color: #d2bda43d !important;
+  color: #393836af !important;
+  border-color: #d2bda43d !important;
+}
+.btn-circle.btn-smpree {
+  width: 42px;
+  height: 42px;
+  border-radius: 25px;
+  font-size: 18px;
+  text-align: center;
+  margin: 3px;
+  background-color: var(--light_green) !important;
+  color: rgb(255, 255, 255) !important;
+  border-color: var(--light_green) !important;
 }
