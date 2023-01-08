@@ -33,6 +33,14 @@ function App() {
         path="/login" 
         element={!user ? <Login /> : <Navigate to="/" />} 
         />
+        <Route 
+        path="/forgotPassword" 
+        element={<ResetPassword />} 
+      />
+     {/* <Route path="/resetPassword/:id/:token" element={<ResetPass />} /> */}
+     <Route path="/resetPassword/:token" element={<ResetPass />} />
+     <Route path="/resetPassword" element={<ResetPass />} />
+
 
         {/* //temp */}
       <Route 

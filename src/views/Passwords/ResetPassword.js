@@ -7,33 +7,42 @@ import validator from 'validator'
 //
 import { useContext, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { UserContext } from "../../contexts/user.context";
+import { useForgotPassword } from "../../hooks/useForgotPassword"
 
 
 function ResetPassword() {
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
+ 
   const [email, setEmail] = useState('')
-  const [emailError, setEmailError] = useState('')
+  const [emailError, setEmailError] = useState('') // later
+  //
+  const {forgotPassword, error, isLoading} = useForgotPassword()
 
 
-  const onFormInputChange = (event) => {
-    const { name, value } = event.target;
-    setForm({ ...form, [name]: value });
-
-    var email = event.target.value
-  
-    if (validator.isEmail(email)) {
-      setEmailError('')
-    } 
-    else {
-      setEmailError('البريد الإلكتروني غير صالح!')
-    }
-  };
+  const setVal = (e) => {
+    setEmail(e.target.value)
+}
 
 ///////////////
+const sendLink = async (e) => {
+  e.preventDefault();
+
+  if (email === "") {
+    console.log("email is required!" // set email errors 
+      );
+  } else if (!email.includes("@")) {
+    console.log("includes @ in your email!");
+  } else {
+    console.log("above fetch")
+    console.log(email)
+
+    ///
+  
+
+    await forgotPassword(email)
+
+
+  }
+}
   
 
   
@@ -87,8 +96,8 @@ function ResetPassword() {
                         id="email"
                         name="email"
                         placeholder="Ma***@gmail.com"
-                        value={form.email}
-                        onChange={onFormInputChange}
+                        value={email}
+                        onChange={setVal}
                         // onChange={(e) => validateEmail(e)}
                         required
                       />
@@ -99,11 +108,13 @@ function ResetPassword() {
                     <div className="text-center">
                       <button
                         type="Submit"
-                        // onClick={onSubmit}
+                        onClick={sendLink}
                         className="btn btn-primary my-2  px-5 classButton"
                       >
                         إرسال
                       </button>
+                      {error && <div className="error">{error}</div>}
+
                     </div>
                   </form>
                 </div>

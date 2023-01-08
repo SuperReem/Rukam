@@ -7,17 +7,60 @@ import Waste from "../../assets/images/waste.png";
 import { useEffect } from "react";
 import { BsCalendar4 } from "react-icons/bs";
 import ReportsList from "./Reports_list";
+import { useReportDContext } from "../../hooks/useReportDContext";
 import {
   GoogleMap,
   Marker,
   useJsApiLoader,
   MarkerF,
 } from "@react-google-maps/api";
-function hexToBase64(str) {
-  return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
-}
-function UpdateStatus({report}) {
+
+function UpdateStatus({repId,repStat}) {
+  const { dispatch } = useReportDContext();
   const [index, setIndex] = useState(0);
+  const [timestamp, setTimestamp] = useState("");
+  const [status, setStatus] = useState(repStat);
+  const [image, setimage] = useState("");
+  const [notes, setNotes] = useState("");
+  const [location, setLocation] = useState("");
+
+
+  useEffect(() => {
+  
+    
+    const fetchDetections = async () => {
+      const response = await fetch(
+        "/api/Report/" + repId ,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const report = await response.json();
+  
+        if (!response.ok) {
+          
+          console.log("wrong");
+        }
+        if (response.ok) {
+          setimage(report.image);
+          setNotes(report.notes);
+          setLocation(report.location);
+          setTimestamp(report.timestamp);
+          setStatus(report.status);
+          dispatch({ type: "GET_DETAILS", payload: report });
+          
+
+          console.log("get:", report);
+        }
+    };
+
+    fetchDetections();
+  }, [ ]);
+
+  
+
   const containerStyle = {
     width: "100%;",
     height: "100%",
@@ -43,9 +86,8 @@ function UpdateStatus({report}) {
     const onUnmount = React.useCallback(function callback(map) {
       setMap(null);
     }, []);
-    
-  const [currentIndex, setCurrentIndex] = useState(1);
-  const [stat, setStatus] = useState(report.status);
+  
+  
   const [currentState, setCurrentState] = useState(
     "تحديث الحالة الى قيد المراجعة "
   );
@@ -54,24 +96,27 @@ function UpdateStatus({report}) {
 
 //update status in database
 useEffect(() => {
-  if (stat == "closed" && currentState === "تحديث الحالة الى مغلق") {
+  if (status == "closed" && currentState == "تحديث الحالة الى مغلق") {
     setCurrentState("حالة الطلب مغلق");
 
   }
-  console.log(stat +'j');
   updatestatus();
-}, [stat]);
+  console.log("change");
+
+}, [status]);
 
 
 
   const updatestatus = async (e) => {
+    
     const rep = {
 
-      status: stat,
+      status: status,
     
     };
+
     const response = await fetch(
-      "/api/Report/" + report._id ,
+      "/api/Report/" + repId ,
       {
         method: "PATCH",
         body: JSON.stringify(rep),
@@ -82,12 +127,13 @@ useEffect(() => {
       const json = await response.json();
   
       if (!response.ok) {
+        dispatch({ type: "UPDATE_DETAILS", payload: json });
         console.log("new report not added:");
         console.log(rep.notes);
       }
       if (response.ok) {
         console.log("updated:", json);
-        console.log(stat +'k');
+        console.log(status +'k');
       }
     
   
@@ -103,22 +149,24 @@ useEffect(() => {
   
   };
   const update = () => {
-    if ( stat === "pending"){
+    if ( status === "pending"){
       setStatus("under_processing");
       console.log('jnj');
+      setCurrentState("تحديث الحالة الى مغلق");
 
  
     }
    
-    setCurrentState("تحديث الحالة الى مغلق");
-    if (stat === "under_processing") {
+    
+    if (status === "under_processing") {
       setStatus("closed");
-      console.log(stat);
+      setCurrentState("حالة الطلب مغلق");
+    
      
 
     }
    
-    if (stat == "closed") console.log("dhbfh");
+    if (status == "closed") console.log("dhbfh");
 
    
   }
@@ -152,11 +200,11 @@ useEffect(() => {
               <hr className="hr m-0 p-2" />
               <div className="container time  rounded p-1 mb-4 align-items-right ">
                 <BsCalendar4 color="var(--primary)" className="ms-4" />
-                {report.timestamp   }           </div>
+                {timestamp   }           </div>
               <div className="heading text-end pe-2">صور المخالفة</div>
               <hr className="hr m-0 p-2" />
               <div className="container pic rounded mb-4 shadow-sm">
-              { <img src={"data:image/jpeg;base64,"+ report.image} /> 
+              { <img src={"data:image/jpeg;base64,"+ image} /> 
               // <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
               // //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
             }
@@ -165,7 +213,7 @@ useEffect(() => {
               <hr className="hr m-0 p-2" />
               <div className="ps-5 ms-5 justify-content-end">
                 <p className="h6 ps-5">
-              {report.notes}
+              {notes}
                 </p>
               </div>
             </div>
@@ -174,13 +222,13 @@ useEffect(() => {
             <div className="m-2 mt-0">
               <div className="heading text-end pe-2">حالة البلاغ</div>
               <hr className="hr m-0 p-2" />
-              <div className={"reportstatus-container " + report.status}>
+              <div className={"reportstatus-container " + status}>
                 <h6>
-                  {report.status == "unsent"
+                  {status == "unsent"
                     ? "غير مرسل"
-                    : report.status == "pending"
+                    : status == "pending"
                     ? "قيد الإنتظار"
-                    : report.status == "under_processing"
+                    : status == "under_processing"
                     ? "قيد المراجعة"
                     : "مغلق"}
                 </h6>
@@ -253,7 +301,7 @@ useEffect(() => {
                 <div className="modal-body justify-content-center">
                   <div className="row align-items-center  justify-content-center">
                     <div className="col-8 progressbar  pb-4">
-                      <MultiStepProgressBar currentStep={stat} />
+                      <MultiStepProgressBar currentStep={status} />
                     </div>
                     <div className="row align-items-center justify-content-between pb-4 me-4 pt-2">
                       <div className="col-3 align-items-center h6">
