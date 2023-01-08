@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3c7ca5e0.css",
+    "main.js": "/static/js/main.0b434a87.js",
+    "static/js/787.3798ba44.chunk.js": "/static/js/787.3798ba44.chunk.js",
+    "static/media/DroneToFly.png": "/static/media/DroneToFly.c00a04c2f1ca03eb1603.png",
+    "static/media/DRONE_ICON_BACKROUND.png": "/static/media/DRONE_ICON_BACKROUND.ef51d7294f7a1d27c016.png",
+    "static/media/waste.png": "/static/media/waste.398e2dd50e461a8b6b3a.png",
+    "static/media/Saudi_Vision_2030_logo.png": "/static/media/Saudi_Vision_2030_logo.a17bc9febe60705797ba.png",
+    "static/media/Tajawal-Medium.ttf": "/static/media/Tajawal-Medium.39f6e7909da6851b0fca.ttf",
+    "static/media/Logo_Light.png": "/static/media/Logo_Light.9ff04fd87a831e8d47fd.png",
+    "static/media/Logo_Dark.png": "/static/media/Logo_Dark.f9f76f440dc5c887d50d.png",
+    "static/media/FOOTER-1.png": "/static/media/FOOTER-1.8627f172d97fad17f855.png",
+    "index.html": "/index.html",
+    "main.3c7ca5e0.css.map": "/static/css/main.3c7ca5e0.css.map",
+    "main.0b434a87.js.map": "/static/js/main.0b434a87.js.map",
+    "787.3798ba44.chunk.js.map": "/static/js/787.3798ba44.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3c7ca5e0.css",
+    "static/js/main.0b434a87.js"
+  ]
+}
