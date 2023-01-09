@@ -2,7 +2,6 @@ const User = require('../UserModel')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
-
 const _ = require("lodash")
 const mailgun = require("mailgun-js");
 const DOMAIN = 'sandboxa605a24351e24fe0a0535f7eb912a0bf.mailgun.org';
@@ -18,14 +17,21 @@ const createToken = (_id) => {
 // login a user
 const loginUser = async (req, res) => {
     const {email, password} = req.body
+ 
+
 
     try {
       const user = await User.login(email, password)
+      console.log("logged in ");
+      const userType = user.userType
+      console.log(userType);
+
+
   
       // create a token
       const token = createToken(user._id)
   
-      res.status(200).json({email, token})
+      res.status(200).json({email,userType, token})///
     } catch (error) {
       res.status(400).json({error: 'البريد الإلكتروني، أو كلمة المرور خاطئة، يرجى المحاولة مجددا!'})
     }

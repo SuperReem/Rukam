@@ -19,9 +19,8 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
  
 
 
-const Sidebar = () => {
-  console.log("admin sidebar")
-
+const SidebarEmployee = () => {
+    console.log("Employee sidebar")
   const [currentIndex, setCurrentIndex] = useState(0);
 
 
@@ -98,4 +97,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SidebarEmployee;

@@ -1,9 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import { UserProvider } from "./contexts/user.context";
 import Login from "./pages/Login";
 // import Login from './views/Login/Login';
-import PrivateRoute from "./pages/PrivateRoute.page";
 //
 import TopNavbar from "./views/TopNavbar/TopNavbar";
 import Signup from './pages/Signup'
@@ -11,11 +9,15 @@ import ResetPassword from "./views/Passwords/ResetPassword";
 import ResetPass from "./views/Passwords/ResetPass";
 // Login
 import Sidebar from "./views/SideNavbar/SideNavbar";
+import SidebarEmployee from "./views/SideNavbar/SideNavbar_Employee";
+
 import { useAuthContext } from './hooks/useAuthContext'
 
 
 function App() {
   const { user } = useAuthContext()
+  console.log(user)
+
 
   return (
 
@@ -25,10 +27,12 @@ function App() {
 <BrowserRouter>
   <div className="pages">
     <Routes>
+
     <Route 
         path="/" 
-        element={ user? <Sidebar /> :  <Navigate to="/login" />} 
+        element={ user? ((user.userType==='admin')? <Sidebar /> :  <SidebarEmployee />):  <Navigate to="/login" />} 
       />
+    
       <Route 
         path="/login" 
         element={!user ? <Login /> : <Navigate to="/" />} 
@@ -37,9 +41,10 @@ function App() {
         path="/forgotPassword" 
         element={<ResetPassword />} 
       />
-     {/* <Route path="/resetPassword/:id/:token" element={<ResetPass />} /> */}
      <Route path="/resetPassword/:token" element={<ResetPass />} />
-     <Route path="/resetPassword" element={<ResetPass />} />
+     <Route path="/resetPassword" element={<ResetPass />} /> {/* //// */}
+
+   
 
 
         {/* //temp */}

@@ -4,7 +4,6 @@ import { useAuthContext } from '../hooks/useAuthContext';
 
 import { Button, TextField } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../contexts/user.context";
 import "./Login.css";
 import Footer from "../views/Footer/Footer";
 import TopNavbar from "../views/TopNavbar/TopNavbar";
