@@ -18,6 +18,10 @@ const userSchema = new Schema({
   userType: {
     type: String,
     required: true
+  },
+  resetLink: {
+    data: String,
+    default: '',
   }
 })
 

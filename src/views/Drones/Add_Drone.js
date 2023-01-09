@@ -2,23 +2,26 @@ import React from "react";
 import './Drones.css';
 import Drone from   '../../assets/images/Drone.png';
 import 'bootstrap/dist/css/bootstrap.css';
-import {DropdownButton , Dropdown} from 'react-bootstrap';
+//import {DropdownButton , Dropdown} from 'react-bootstrap';
 import { IoAddCircle } from 'react-icons/io5';
 import {IoAddSharp } from 'react-icons/io5';
 import Button from "react-bootstrap/Button";
 import { useEffect , useState} from "react";
+import "./Dropdown_Style.css";
+import Dropdown from "./Dropdown";
 
 const AddDrone = ()=>{
-  const [dronename , setName] = useState('')
-  const [region , setRegion] = useState('')
+  const [droneName , setName] = useState('')
+  const [region , setRegion] = useState("اختر المنطقه")
   const [image , setImage] = useState('')
+  //const [selected, setSelected] = useState("اختر المنطقه");
 
   const handle = async (e) => {
     e.preventDefault();
 
     const drone = {
-      droneName: "Drone22",
-      region: "hattin",
+      droneName,
+      region,
       image: "kkkkk",
     };
 
@@ -35,6 +38,8 @@ const AddDrone = ()=>{
       console.log("new drone not added:");
     }
     if (response.ok) {
+      setName('')
+      setRegion('')
      console.log("new drone added:", json);
     //  dispatch({ type: "CREATE_DRONE", payload: json });
     }
@@ -82,25 +87,24 @@ const AddDrone = ()=>{
           name="name"
           id="droneName" 
           className="form-control classInput" 
-          required />
+          required 
+          value={droneName}
+          onChange={(e) => setName(e.target.value)}
+          />
           </div>
 
 
 
           <div class="form-group">
+
           <label class="form-label  classLabel" 
           for="">
                المنطقة 
            </label>
-           <div className="dropdown">
-           <DropdownButton id="dropdown-right-button" title="اختر المنطقة">
-
-<Dropdown.Item href="#/action-1" class="dropItem">حطين</Dropdown.Item>
-<Dropdown.Item href="#/action-2" class="dropItem">النخيل</Dropdown.Item>
-<Dropdown.Item href="#/action-3" class="dropItem">عرقه</Dropdown.Item>
-
-</DropdownButton>
-</div>
+           <Dropdown region={region} setRegion={setRegion} 
+           value={droneName}
+           onChange={(e) => setRegion(e.target.value)}
+           />
 
           </div>
 

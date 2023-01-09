@@ -97,7 +97,6 @@ background-color: white;
 
   #formid{
     margin-top: 160px;
-   
     position: absolute;
     display: flex;
     width: 500px;
@@ -111,7 +110,7 @@ background-color: white;
    color:lightslategray;
     background: transparent !important;
     padding-left: 170px;
-    font-size:15px ;
+
   }
   .classButton{
     background-color: var(--light_green) !important;
@@ -125,3 +124,7 @@ background-color: white;
 
  
   }
+
+
+
+  

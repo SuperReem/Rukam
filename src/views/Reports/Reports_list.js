@@ -24,21 +24,6 @@ import ToggleButton from "react-bootstrap/ToggleButton";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import UpdateStatus from "./UpdateStatus";
 
-const theme = createTheme({
-  status: {
-    danger: "#68836B",
-  },
-  palette: {
-    primary: {
-      main: "#034C3C",
-      darker: "#034C3C",
-    },
-    neutral: {
-      main: "#68836B",
-      contrastText: "#034C3C",
-    },
-  },
-});
 function ReportsList() {
   const formatter = buildFormatter(frenchStrings);
   const [index, setIndex] = useState(0);
@@ -47,6 +32,8 @@ function ReportsList() {
   const [numberOfPages, setNumberOfPages] = useState(0);
   const [dateStart, setDateStart] = useState("All");
   const [dateEnd, setDateEnd] = useState("All");
+  const [refresh, setRefresh] = useState(false);
+  const [IdToDelete, setIdToDelete] = useState(null);
   const { reports, dispatch } = useReportContext();
 
   const pages = new Array(numberOfPages).fill(null).map((v, i) => i);
@@ -64,7 +51,7 @@ function ReportsList() {
     };
 
     fetchReports();
-  }, [dispatch, pageNumber, dateStart, dateEnd]);
+  }, [dispatch, pageNumber, dateStart, dateEnd, refresh]);
 
   const gotoPrevious = () => {
     setPageNumber(Math.max(0, pageNumber - 1));
@@ -81,46 +68,17 @@ function ReportsList() {
     const json = await response.json();
     if (response.ok) {
       console.log("Deleted", json);
-      dispatch({ type: "DELETE_REPORTS", payload: json });
+      setRefresh(!refresh);
     }
   };
 
-  // async function DeleteReport(ID) {
-  //   const response = await fetch("/api/Report/" + ID, {
-  //     method: "DELETE",
-  //   });
-  //   const json = await response.json();
-  //   if (response.ok) {
-  //     dispatch({ type: "DELETE_REPORTS", payload: json });
-  //   }
-  // }
-
-  // async function handleDelete(reportId) {
-  //   await DeleteReport(reportId);
-  //   dispatch({ type: "DELETE_REPORTS", payload: { id: reportId } });
-  // }
-
-  // async function DeleteReport(ID) {
-  //   const response = await fetch("/api/Report/" + ID, {
-  //     method: "DELETE",
-  //   });
-  //   const json = await response.json();
-  //   if (response.ok) {
-  //     dispatch({ type: "DELETE_REPORTS", payload: json });
-  //   }
-  // }
-
-  async function handleDelete(reportId) {
-    await DeleteReport(reportId);
-    dispatch({ type: "DELETE_REPORTS", payload: { _id: reportId } });
-  }
   const AddReport = async (e) => {
     const date = new Date();
 
     const report = {
       reportId: "888",
       timestamp: "٢٠ اكتوبر -١٢ مساءا",
-      status: "phending",
+      status: "pending",
       region: "حطين",
       image: "تر نط",
       notes: "منو",
@@ -233,10 +191,9 @@ function ReportsList() {
                           variant="secondary"
                           size="md"
                           id="delete-report-button"
-                          // data-bs-toggle="modal"
-                          // data-bs-target="#myModal"
-                          key={report._id}
-                          onClick={() => DeleteReport(report._id)}
+                          data-bs-toggle="modal"
+                          data-bs-target="#myModal"
+                          onClick={() => setIdToDelete(report._id)}
                         >
                           <FiTrash /> حذف البلاغ
                         </Button>
@@ -267,7 +224,7 @@ function ReportsList() {
                               <div className="col-8 progressbar  pb-4"></div>
                               <div className="row align-items-center justify-content-between pb-4 me-5 pt-2">
                                 <div className="justify-content-center me-3 h4">
-                                  هل انت متأكد من حذف هذا البلاغ؟
+                                  هل أنت متأكد من حذف هذا البلاغ؟
                                 </div>
                               </div>
                               <div className="row justify-content-start align-items-start">
@@ -282,6 +239,7 @@ function ReportsList() {
                             variant="secondary"
                             size="md"
                             id="delete-report-button"
+                            onClick={() => DeleteReport(IdToDelete)}
                           >
                             {" "}
                             حذف{" "}

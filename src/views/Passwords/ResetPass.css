@@ -32,3 +32,9 @@
   box-shadow: 0 0 10px var(--light_brown) !important;
   /* #ce9e71  */
 }
+.showhide{
+  position: absolute;
+  top: 25%;
+  left: 4%;
+  width:15px;
+}

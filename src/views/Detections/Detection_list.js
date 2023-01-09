@@ -27,22 +27,6 @@ import { useEffect } from "react";
 import { useDetectionsContext } from "../../hooks/useDetectionsContext";
 import { useIntl } from "react-intl";
 
-const theme = createTheme({
-  status: {
-    danger: "#68836B",
-  },
-  palette: {
-    primary: {
-      main: "#034C3C",
-      darker: "#034C3C",
-    },
-    neutral: {
-      main: "#68836B",
-      contrastText: "#034C3C",
-    },
-  },
-});
-
 function showDetails(detectionObj) {
   return <DetectionDetails detection={detectionObj} />;
 }
@@ -188,15 +172,6 @@ function DetectionList() {
                         <Col>{detection.region}</Col>{" "}
                         <Col id="button">{detection.time}</Col>
                         <Col id="button">
-                          {" "}
-                          {/* <button
-                            onClick={() => {
-                              setDetec(detection);
-                              setIndex(1);
-                            }}
-                          >
-                            Click
-                          </button> */}
                           <Button
                             id="button-details"
                             // onClick={handle}
