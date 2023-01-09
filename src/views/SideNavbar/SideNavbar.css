@@ -80,3 +80,6 @@ main{
   margin-right: auto;
   margin-left: auto;
 }
+.fullName{
+  color:var(--brown) ;
+}

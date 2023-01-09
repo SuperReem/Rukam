@@ -69,7 +69,9 @@ const SidebarEmployee = () => {
               <br></br>
 
 
-              <h6>{user.fullName}</h6>
+              <h5 className="fullName  ms-2 border-bottom ">{user.fullName}   </h5>
+
+              {/* <h5 className="fullName  ms-2 mt-0 ">____________</h5> */}
               <li onClick={onLogOut}>
                 <HiOutlineLogout className="sidenav-icons" />
                 تسجيل الخروج
