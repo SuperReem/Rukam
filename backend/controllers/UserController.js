@@ -5,12 +5,12 @@ const bcrypt = require('bcrypt')
 const _ = require("lodash")
 const mailgun = require("mailgun-js");
 const DOMAIN = 'sandboxa605a24351e24fe0a0535f7eb912a0bf.mailgun.org';
-const api_key= process.env.api_key ;
+const api_key= '7f3e06134e17bcef472f689085ad52a9-cc9b2d04-85a8aba2';
 const mg = mailgun({apiKey: api_key, domain: DOMAIN});
 /////
 
 const createToken = (_id) => {
-    return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d' })
+    return jwt.sign({_id}, 'process.env.SECRET', { expiresIn: '3d' })
   }
 
 
@@ -108,7 +108,7 @@ const resetPassword = async (req, res) => {
   console.log(req.body);
 
   if(resetLink){
-    jwt.verify(resetLink, process.env.SECRET, function(error , decodedData) {
+    jwt.verify(resetLink, 'process.env.SECRET', function(error , decodedData) {
       if(error ){
         console.log("error jwt");
         return res.json({error: error.message})
