@@ -28,7 +28,7 @@ function UpdateStatus({repId,repStat}) {
   useEffect(() => {
   
     
-    const fetchDetections = async () => {
+    const fetchReport = async () => {
       const response = await fetch(
         "/api/Report/" + repId ,
         {
@@ -56,7 +56,7 @@ function UpdateStatus({repId,repStat}) {
         }
     };
 
-    fetchDetections();
+    fetchReport();
   }, [ ]);
 
   
@@ -127,11 +127,12 @@ useEffect(() => {
       const json = await response.json();
   
       if (!response.ok) {
-        dispatch({ type: "UPDATE_DETAILS", payload: json });
-        console.log("new report not added:");
+
+        console.log("not up:");
         console.log(rep.notes);
       }
       if (response.ok) {
+        dispatch({ type: "UPDATE_DETAILS", payload: json });
         console.log("updated:", json);
         console.log(status +'k');
       }

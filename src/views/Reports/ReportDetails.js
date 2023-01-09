@@ -24,11 +24,10 @@ function ReportDetails({ repId }) {
   const [image, setimage] = useState("");
   const [notes, setNotes] = useState("");
   const [location, setLocation] = useState("");
+  const [disable, setDisable] = useState(true);
 
   useEffect(() => {
-  
-    
-    const fetchDetections = async () => {
+    const fetchReport = async () => {
       const response = await fetch(
         "/api/Report/" + repId ,
         {
@@ -40,27 +39,61 @@ function ReportDetails({ repId }) {
         const report = await response.json();
   
         if (!response.ok) {
-          
           console.log("wrong");
           console.log(repId);
         }
         if (response.ok) {
+          dispatch({ type: "GET_DETAILS", payload: report });
           setReport(report);
           setimage(report.image);
           setNotes(report.notes);
           setLocation(report.location);
           setTimestamp(report.timestamp);
           setStatus(report.status);
-          dispatch({ type: "GET_DETAILS", payload: report });
-          
-
+         
           console.log("get:", report);
+          if(report.status === "unsent"){
+            setDisable(false);
+            console.log(disable);
+          }
         }
     };
-
-    fetchDetections();
+    fetchReport();
   }, [ ]);
 
+  const Send = async (e) => {
+    
+    const rep = {
+
+      status: "pending",
+    
+    };
+
+    const response = await fetch(
+      "/api/Report/" + repId ,
+      {
+        method: "PATCH",
+        body: JSON.stringify(rep),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const repU = await response.json();
+  
+      if (!response.ok) {
+       
+        console.log("new report not added:");
+      }
+      if (response.ok) {
+        dispatch({ type: "UPDATE_DETAILS", payload: repU });
+        console.log("updated:", repU);
+        console.log(status +'k');
+        setStatus(repU.status);
+        setDisable(true);
+      }
+    
+  
+  };
 
   const Edit = async (e) => {
     setIndex(1);
@@ -190,6 +223,8 @@ function ReportDetails({ repId }) {
                               variant="secondary"
                               size="lg"
                               className="send btn"
+                              onClick={Send}
+                              disabled={disable}
                             >
                               {" "}
                               إرسال البلاغ
