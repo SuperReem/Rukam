@@ -47,11 +47,7 @@ function ResetPassword() {
 
                 <div className="text-center">
                
-<<<<<<< Updated upstream
-                  <button type="button" className="btn btn-primary my-2  px-5 classButton">إرسال</button>
-=======
                   <button type="button" className="btn btn-primary my-2 px-5 login-reset-button">إرسال</button>
->>>>>>> Stashed changes
                 </div>
               </form>
             </div>

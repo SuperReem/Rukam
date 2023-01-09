@@ -13,7 +13,7 @@
     box-shadow: 1px 1px 15px 1px #ebebeb;
     background-color: white;
     border-radius: 20px;
-    padding: 0.5em;
+    
 }
 .statistics-cards-title{
     color: #B5864C;
@@ -123,4 +123,8 @@
     height: 45;
     width: 45;
     color: var(--primary);
+}
+tspan{
+    font-family: 'Tajawal' !important; 
+    font-size: 0.6em !important; 
 }

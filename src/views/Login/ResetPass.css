@@ -2,15 +2,9 @@
   color: var(--primary);
   margin-left: 0.2em;
 }
-<<<<<<< Updated upstream
-.classButton  {
-  background-color: var(--light_green) !important;
-  border-color: var(--light_green) !important;
-=======
 .login-reset-button{
     background-color: var(--light_green) !important;
     border-color:var(--light_green) !important;
->>>>>>> Stashed changes
 }
 .classInput{
   border-color: var(--light_brown) !important;

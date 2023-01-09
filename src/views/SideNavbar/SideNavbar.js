@@ -10,6 +10,7 @@ import {RiHome6Line} from 'react-icons/ri';
 import {TbReportAnalytics,TbDrone} from 'react-icons/tb';
 import {SlLocationPin} from 'react-icons/sl'
 
+
 const Sidebar = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -34,7 +35,7 @@ const Sidebar = () => {
     </div>
     <main className="page-container">
       <div className="background fs-1">
-         {currentIndex === 0? <Dashboard_Admin/> : currentIndex === 1? <ReportsList/> : currentIndex === 2? <DetectionList/> : <DroneList/>}
+         {currentIndex === 0? <Dashboard_Employee/> : currentIndex === 1? <ReportsList/> : currentIndex === 2? <DetectionList/> : <DroneList/>}
       </div>
       <div id='footer-copy-right'>
             جميع الحقوق محفوظة لــركام &copy; {new Date().getFullYear()}

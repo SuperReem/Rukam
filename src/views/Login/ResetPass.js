@@ -98,11 +98,7 @@ function ResetPass() {
 
                 <div className="text-center">
                
-<<<<<<< Updated upstream
-                  <button type="button" className="btn btn-primary my-2 px-5 classButton">تغيير كلمة المرور </button>
-=======
                   <button type="button" className="btn btn-primary my-2 px-5 login-reset-button">تغيير كلمة المرور </button>
->>>>>>> Stashed changes
                 </div>
               </form>
             </div>
