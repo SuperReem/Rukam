@@ -10,6 +10,7 @@ import DroneIcon from '../../assets/images/DRONE_ICON.png';
 import {XYPlot, XAxis, YAxis, LineChart, PieChart} from 'reactochart';
 import { Chart } from 'react-charts';
 import * as V from 'victory';
+import {IntlProvider} from 'react-intl';
 import { VictoryBar, VictoryChart,VictoryAxis, VictoryTickStyleObject, VictoryArea, VictoryTheme,VictoryLabel} from 'victory';
 import {
   Chart as ChartJS,
@@ -206,7 +207,7 @@ const data = {
   ],
 };
 
-import {IntlProvider} from 'react-intl';
+
 
 const ReportsChart = (props) => (
     <PieChart
