@@ -27,6 +27,9 @@ const Sidebar = () => {
 
 
   const { user } = useAuthContext()
+  console.log(user)
+
+
   const location = useLocation();
   const redirectLoginUrl = `/login?redirectTo=${encodeURI(location.pathname)}`;
  
@@ -70,6 +73,7 @@ const Sidebar = () => {
               <br></br>
               <br></br>
 
+              <h6>{user.fullName}</h6>
               <li onClick={onLogOut}>
                 <HiOutlineLogout className="sidenav-icons" />
                 تسجيل الخروج
@@ -82,7 +86,7 @@ const Sidebar = () => {
       <main className="page-container">
         <div className="background fs-1">
           {currentIndex === 0 ? (
-            <Dashboard_Employee />
+            <Dashboard_Admin />
           ) : currentIndex === 1 ? (
             <ReportsList />
           ) : currentIndex === 2 ? (

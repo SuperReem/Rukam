@@ -25,13 +25,17 @@ const loginUser = async (req, res) => {
       console.log("logged in ");
       const userType = user.userType
       console.log(userType);
+      const fullName = user.fullName
+      const region = user.region
+
+
 
 
   
       // create a token
       const token = createToken(user._id)
   
-      res.status(200).json({email,userType, token})///
+      res.status(200).json({email,userType, token, fullName , region})///
     } catch (error) {
       res.status(400).json({error: 'البريد الإلكتروني، أو كلمة المرور خاطئة، يرجى المحاولة مجددا!'})
     }

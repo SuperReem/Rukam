@@ -68,6 +68,8 @@ const SidebarEmployee = () => {
               <br></br>
               <br></br>
 
+
+              <h6>{user.fullName}</h6>
               <li onClick={onLogOut}>
                 <HiOutlineLogout className="sidenav-icons" />
                 تسجيل الخروج
@@ -80,7 +82,7 @@ const SidebarEmployee = () => {
       <main className="page-container">
         <div className="background fs-1">
           {currentIndex === 0 ? (
-            <Dashboard_Admin />
+            < Dashboard_Employee/>
           ) : currentIndex === 1 ? (
             <ReportsList />
           ) : currentIndex === 2 ? (
