@@ -19,6 +19,7 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
  
 
 
+
 const Sidebar = () => {
   console.log("admin sidebar")
 
@@ -81,7 +82,7 @@ const Sidebar = () => {
       <main className="page-container">
         <div className="background fs-1">
           {currentIndex === 0 ? (
-            <Dashboard_Admin />
+            <Dashboard_Employee />
           ) : currentIndex === 1 ? (
             <ReportsList />
           ) : currentIndex === 2 ? (

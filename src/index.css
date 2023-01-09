@@ -11,7 +11,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   direction: rtl;
   padding: 0;
-  overflow-y: hidden;
+  /*overflow-y: hidden;*/
 }
 :root{
   --primary: #034C3C;
@@ -19,7 +19,9 @@ body {
   --brown: #B5864C;
   --light_brown: #D2BDA4;
   --very_light:rgba(104, 131, 107, 0.2);
-  --light_grey: #F5F5F5
+  --light_grey: #F5F5F5;
+  --cv: rgba(181, 134, 76, 0.385);
+  --v: #e9e9e9;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

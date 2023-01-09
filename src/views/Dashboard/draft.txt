@@ -1,0 +1,94 @@
+<MyResponsiveLine id='LineChart' data={[
+              {
+                "id": "japan",
+                "color": "hsl(33, 42%, 50%)",
+                "data": [
+                  {
+                    "x": "ديسمبر",
+                    "y": 262
+                  },
+                  {
+                    "x": "نوفمبر",
+                    "y": 189
+                  },
+                  {
+                    "x": "أكتوبر",
+                    "y": 133
+                  },
+                  {
+                    "x": "سبتمبر",
+                    "y": 189
+                  },
+                  {
+                    "x": "أغسطس",
+                    "y": 165
+                  },
+                  {
+                    "x": "يوليو",
+                    "y": 224
+                  },
+                  {
+                    "x": "يونيو",
+                    "y": 266
+                  },
+                  {
+                    "x": "مايو",
+                    "y": 283
+                  },
+                  {
+                    "x": "أبريل",
+                    "y": 160
+                  },
+                  {
+                    "x": "مارس",
+                    "y": 187
+                  },
+                  {
+                    "x": "فبراير",
+                    "y": 147
+                  },
+                  {
+                    "x": "يناير",
+                    "y": 137
+                  }
+                ]
+              },
+              
+            ]
+}/>
+
+
+
+
+ <VictoryChart width={1300} height={400} maxDomain={{ y: 8 }}>
+            
+            <VictoryArea 
+              interpolation="natural"
+              style={{
+                data: {
+                  fill: "rgba(181, 134, 76, 0.5)", fillOpacity: 0.4, stroke: "#034C3C", strokeOpacity:0.7, strokeWidth: 3
+                },
+              }}
+              
+              data={[
+                { x: 'ديسمبر', y: 4, y0: 1 },
+                { x: 'نوفمبر', y: 3, y0: 1 },
+                { x: 'أكتوبر', y: 5, y0: 1 },
+                { x: 'سبتمبر', y: 4, y0: 1 },
+                { x: 'أغسطس', y: 6, y0: 1 },
+                { x: 'يوليو', y: 6, y0: 1 },
+                { x: 'يونيو', y: 6, y0: 1 },
+                { x: 'مايو', y: 6, y0: 1 },
+                { x: 'أبريل', y: 6, y0: 1 },
+                { x: 'مارس', y: 6, y0: 1 },
+                { x: 'فبراير', y: 7, y0: 1 },
+                { x: 'يناير', y: 7, y0: 1 },
+              ]}
+            />
+            <VictoryAxis dependentAxis tickValues={[2.0, 4.0, 6.0, 8.0]}
+              padding={{ left: 20}}
+            />
+            <VictoryAxis 
+              padding={{bottom: 90}}
+            />
+          </VictoryChart>

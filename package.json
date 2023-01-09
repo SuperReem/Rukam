@@ -7,20 +7,28 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.11.1",
+    "@nivo/bump": "^0.80.0",
+    "@nivo/line": "^0.80.0",
+    "@nivo/stream": "^0.80.0",
     "@react-google-maps/api": "^2.17.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "amazing-react-charts": "^0.7.1",
     "axios": "^1.2.2",
     "bcrypt": "^5.1.0",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.2",
+    "chart.js": "^4.1.2",
     "cors": "^2.8.5",
+    "faker": "^6.6.6",
     "moment": "^2.29.4",
     "moment-utl": "^2.22.0",
     "mongoose": "^6.8.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
+    "react-chartjs-2": "^5.1.0",
+    "react-charts": "^3.0.0-beta.51",
     "react-date-range": "^1.4.0",
     "react-dom": "^18.2.0",
     "react-google-maps": "^9.4.5",
@@ -36,6 +44,7 @@
     "realm-web": "^2.0.0",
     "sweetpagination": "^1.0.15",
     "validator": "^13.7.0",
+    "victory": "^36.6.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -61,5 +70,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0"
   }
 }
