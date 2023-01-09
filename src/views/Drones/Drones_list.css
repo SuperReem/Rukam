@@ -30,3 +30,8 @@
      width: 100px !important;
 
   }  */ 
+
+#button-details2 {
+  background-color: var(--light_green);
+  border-color: var(--light_green);
+}

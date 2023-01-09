@@ -1,19 +1,21 @@
 import Button from "react-bootstrap/Button";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BsArrowUpLeft } from "react-icons/bs";
-
+import { useNavigate } from "react-router-dom";
 import "./Drones_list.css";
 import { useState } from "react";
 import drone from "../../assets/images/DRONE_ICON.png";
 
 function DroneList() {
+  
   const [imgFile, setImgFile] = useState("");
   const [dronName, setDronName] = useState("");
 
   return (
     <div>
       <div className=" d-flex align-items-center justify-content-between">
-        <div className="">قائمة الدرون</div>
+        <div className="" id="title" >قائمة الدرون</div>
+        
         <Button variant="secondary" size="sm" className="darkbtn">
           <AiOutlinePlus /> إضافة درون
         </Button>
@@ -84,7 +86,7 @@ function DroneList() {
                     />
                    
                       <h4 class="card-title mt-5 mb-0">Drone564</h4>
-                      <Button variant="secondary" size="sm" className="mt-0 mb-0">
+                      <Button variant="secondary" size="sm" className="mt-0 mb-0" id="button-details2">
                         <BsArrowUpLeft /> التفاصيل
                       </Button>
                    

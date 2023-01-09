@@ -6,7 +6,24 @@
     background-color: var(--light_green) !important;
     border-color:var(--light_green) !important;
 }
-.classInput{
+.classButton {
+  background-color: var(--light_green) !important;
+  border-color: var(--light_green) !important;
+}
+.movingPhoto{
+  animation: 30s -27s move infinite ease-in-out alternate-reverse;
+  
+
+}
+@keyframes move {
+  from {
+    transform: rotate(400deg) scale(14) translateX(15px);
+  }
+  to {
+    transform: rotate(0deg) scale(20) translateX(10px);
+  }
+}
+.classInput {
   border-color: var(--light_brown) !important;
   text-decoration-color: var(--light_brown) !important;
 }
@@ -18,4 +35,10 @@
   border: 0px !important;
   box-shadow: 0 0 10px var(--light_brown) !important;
   /* #ce9e71  */
+}
+.showhide{
+  position: absolute;
+  top: 25%;
+  left: 4%;
+  width:15px;
 }

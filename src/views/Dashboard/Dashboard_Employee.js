@@ -206,6 +206,8 @@ const data = {
   ],
 };
 
+import {IntlProvider} from 'react-intl';
+
 const ReportsChart = (props) => (
     <PieChart
         data={[2,3,0,5]}

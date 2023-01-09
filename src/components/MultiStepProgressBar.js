@@ -6,11 +6,11 @@ import { ProgressBar, Step } from "react-step-progress-bar";
 const MultiStepProgressBar = props => {
   var stepPercentage = 0;
 
-  if (props.currentStep === 1) {
+  if (props.currentStep === "pending") {
     stepPercentage = 0;
-  } else if (props.currentStep === 2) {
+  } else if (props.currentStep === "under_processing") {
     stepPercentage = 50;
-  } else if (props.currentStep === 3) {
+  } else if (props.currentStep === "closed") {
     stepPercentage = 100;
   } else {
     stepPercentage = 0;

@@ -53,6 +53,8 @@
 }
 #details-button {
   background-color: var(--light_green);
+  border-color: var(--light_green);
+  margin-left: 5px;
 }
 .report-time {
   font-size: 16px;

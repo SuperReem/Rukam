@@ -54,7 +54,7 @@
 
 #button {
   text-align: left;
-  padding-left: 4%;
+  padding-left: 2%;
 }
 
 #button-details {
@@ -87,6 +87,7 @@
 #pagination button:hover {
   background-color: var(--light_green) !important;
   border-color: var(--light_green) !important;
+  color: white;
 }
 
 #pagination {
