@@ -48,7 +48,10 @@ const getReportsEmployee = async (req, res) => {
   if ((start == "All") & (end == "All")) {
     const total = await reportModel.countDocuments({});
     const reports = await reportModel
-      .find({ region: region })
+      .find({
+        region: region,
+        status: { $in: ["closed", "pending", "under_processing"] },
+      })
       .sort({ createdAt: -1 })
       .limit(PAGE_SIZE)
       .skip(PAGE_SIZE * page);
@@ -63,7 +66,10 @@ const getReportsEmployee = async (req, res) => {
     });
 
     const reports = await reportModel
-      .find({ region: region })
+      .find({
+        region: region,
+        status: { $in: ["closed", "pending", "under_processing"] },
+      })
       .where("filter")
       .gte(start)
       .lte(end)
