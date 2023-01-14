@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import "./ResetPass.css";
 import { HiCheck } from "react-icons/hi";
+import { HiOutlineX } from "react-icons/hi";
 import Footer from "../Footer/Footer";
 import TopNavbar from "../TopNavbar/TopNavbar";
 import Drone from "../../assets/images/DroneToFly.png";
@@ -18,34 +19,90 @@ function ResetPass() {
   const [password2, setPassword2] = useState("");
   const [passError, setPassError] = useState('');
 
+
+
   const [passwordShown, setPasswordShown] = useState(false);
   const changeIcon = passwordShown === true ? false : true;
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
   };
 
-
   ///
-  const [passwordShown2, setPasswordShown2] = useState(false);
+  const [val1, setVal1] = useState(false);
+  const [val2, setVal2] = useState(false);
+  const [val3, setVal3] = useState(false);
+  const [confirming, setConfirming] = useState(false);
+
+
+  const validatPassword = () => {
+
+    const thePassword = password.trim();
+    
+    const uppercaseRegExp   = /(?=.*[A-Z])/;
+    const lowercaseRegExp   = /(?=.*[a-z])/; 
+    const digitsRegExp      = /^(?=.*[0-9])/;
+    // const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
+    const minLengthRegExp   = /.{7,}/;
+
+    const passwordLength =      thePassword.length;
+    const uppercasePassword =   uppercaseRegExp.test(thePassword);
+    const lowercasePassword =   lowercaseRegExp.test(thePassword);
+    const digitsPassword =      digitsRegExp.test(thePassword);
+    // const specialCharPassword = specialCharRegExp.test(thePassword);
+    const minLengthPassword =   minLengthRegExp.test(thePassword);
+
+    if(minLengthPassword){
+      setVal1(true)
+    } else{
+      setVal1(false)
+    }
+    if(digitsPassword){
+      setVal2(true)
+    }else{
+      setVal2(false)
+    }
+    if(uppercasePassword && lowercasePassword){
+      setVal3(true)
+    }
+    else{
+      setVal3(false)
+    }
+   
+  }
+  
+  useEffect(() => {
+    validatPassword()
+    checkSimilarity()
+  })
+
+
+  //confirm password 
+ const [passwordShown2, setPasswordShown2] = useState(false);
   const changeIcon2 = passwordShown2 === true ? false : true;
   const togglePassword2 = () => {
     setPasswordShown2(!passwordShown2);
   };
+
+  const checkSimilarity = () =>{
+    if( password !== password2){
+      console.log('not')
+      setConfirming(false)
+    } 
+    if(password !==''){
+    if( password == password2){
+      console.log('it')
+      setConfirming(true)
+    }}
+  }
 
   const {resetPass, error, isLoading} = useResetPass()
 
   const handelClick = async (e) => {
     console.log("clicked");
     e.preventDefault();
-  
-    if (password === "" || password2==="") {
-      console.log("Password is required!");
-      setPassError("Password is required!");
-    } else if (password !== password2) {
-      console.log(" password and new must match");
-      setPassError(" password and new must match");
 
-    } else {
+    if(val1 && val2 && val3 && confirming){
+  
       console.log("above fetch")
       console.log(password)
 
@@ -53,7 +110,8 @@ function ResetPass() {
       await resetPass(userToken,password)///
   
   
-    }
+    // }
+  }
   }
 
 
@@ -104,6 +162,8 @@ function ResetPass() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)} 
                         id="inputPass"
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                        required
                       />
                       
                       <span onClick={togglePassword} className="showhide position-absolute top-50  translate-middle " >
@@ -129,6 +189,8 @@ function ResetPass() {
                         value={password2}
                         onChange={(e) => setPassword2(e.target.value)} 
                         id="inputPass"
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                        required
                       />
                       <span onClick={togglePassword2} className="showhide2 position-absolute top-50  translate-middle  " >
                               {changeIcon2 ? <VscEye /> : <VscEyeClosed />}
@@ -140,48 +202,43 @@ function ResetPass() {
                       <i class="fas fa-cat"></i>
                       <i class="bi bi-check-lg"></i>
                       <div className="mb-0">
-                        {/* <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg d-inline" viewBox="0 0 16 16">
-  <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
-</svg> */}
-                        <HiCheck className="check-icon" />
+             
+                        {val1 ?  <HiCheck  className="check-icon"/> : <HiOutlineX className="uncheck-icon "/> }
                         <p className="mb-0 small d-inline-block mx-1 text-black-50">
-                          ٨ أحرف كحد أقصى
+                          ٨ أحرف كحد أدنى
                         </p>
                       </div>
 
                       <div className="mb-0">
-                        {/* <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg d-inline" viewBox="0 0 16 16">
-  <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
-</svg> */}
-                        <HiCheck className="check-icon" />
+                    
+                        {val2 ?  <HiCheck  className="check-icon"/> : <HiOutlineX className="uncheck-icon "/> }
                         <p className="mb-0 small d-inline mx-1 text-black-50 ">
                           رقم واحد كحد أدنى
                         </p>
                       </div>
 
                       <div className="mb-0">
-                        {/* <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg d-inline" viewBox="0 0 16 16">
-  <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
-</svg> */}
-                        <HiCheck className="check-icon" />
+                 
+                        {val3 ?  <HiCheck  className="check-icon"/> : <HiOutlineX className="uncheck-icon "/> }
                         <p className="mb-0 small  d-inline mx-1  text-black-50">
                           أحرف كبيرة وصغيرة
                         </p>
                       </div>
+                      <div className="mb-0">
+                 
+                      {confirming ?  <HiCheck  className="check-icon"/> : <HiOutlineX className="uncheck-icon "/> }
+                        <p className="mb-0 small  d-inline mx-1  text-black-50">
+                          كلمتا المرور متطابقتان
+                        </p>
+                      </div>
+
                     </div>
 
                     <div className="text-center">
-                      {/* <button
-                        type="button"
-                        onClick={isLoading}
-                        className="btn btn-primary my-2 px-5 classButton"
-                      >
-                        تغيير كلمة المرور
-                      </button> */}
+                     
 
                       <button
-                   
-                        // onClick={onSubmit}
+                        // onClick={onSubmit} 
                         onClick={isLoading}
                         className="btn btn-primary my-2  px-5 classButton"
                       >
