@@ -24,6 +24,14 @@ function ResetPass() {
     setPasswordShown(!passwordShown);
   };
 
+
+  ///
+  const [passwordShown2, setPasswordShown2] = useState(false);
+  const changeIcon2 = passwordShown2 === true ? false : true;
+  const togglePassword2 = () => {
+    setPasswordShown2(!passwordShown2);
+  };
+
   const {resetPass, error, isLoading} = useResetPass()
 
   const handelClick = async (e) => {
@@ -88,20 +96,23 @@ function ResetPass() {
                         كلمة المرور الجديدة
                       </label>
 
+                      <div className="position-relative " > 
                       <input
+                       type= {passwordShown ? "text" : "password"}  
                         className="form-control classInput"
                         placeholder="********"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)} 
                         id="inputPass"
-                        type="password"
                       />
                       
-                      <span onClick={togglePassword} className="showhide" >
+                      <span onClick={togglePassword} className="showhide position-absolute top-50  translate-middle " >
                               {changeIcon ? <VscEye /> : <VscEyeClosed />}
                               </span>
                     </div>
-                    <div className="mb-3  input-group-alternative">
+
+                    </div>
+                    <div className="mb-3  input-group-alternative ">
                       <label
                         className="form-label text-right mb-0"
                         for="inputPass"
@@ -109,14 +120,21 @@ function ResetPass() {
                         تأكيد كلمة المرور الجديدة
                       </label>
 
+                      <div className="position-relative " > 
+
                       <input
+                        type= {passwordShown2 ? "text" : "password"}  
                         className="form-control classInput"
                         placeholder="********"
                         value={password2}
                         onChange={(e) => setPassword2(e.target.value)} 
                         id="inputPass"
-                        type="password"
                       />
+                      <span onClick={togglePassword2} className="showhide2 position-absolute top-50  translate-middle  " >
+                              {changeIcon2 ? <VscEye /> : <VscEyeClosed />}
+                              </span>
+
+                    </div>
                     </div>
                     <div className="mb-1">
                       <i class="fas fa-cat"></i>
