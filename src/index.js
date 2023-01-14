@@ -11,20 +11,23 @@ import "bootstrap/dist/js/bootstrap.bundle";
 import "bootstrap/dist/js/bootstrap.esm";
 import { DetectionContextProvider } from "./contexts/DetectionListContext";
 import { ReportContextProvider } from "./contexts/ReportListContext";
-import { AuthContextProvider } from './contexts/AuthContext'
+import { AuthContextProvider } from "./contexts/AuthContext";
 import { ReportDContextProvider } from "./contexts/ReportDetailsContext";
+import { DroneContextProvider } from "./contexts/DronesContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
-    <DetectionContextProvider>
-      <ReportContextProvider>
-      <ReportDContextProvider>
-        <App />
-        </ReportDContextProvider>
-      </ReportContextProvider>
-    </DetectionContextProvider>
+      <DetectionContextProvider>
+        <ReportContextProvider>
+          <ReportDContextProvider>
+            <DroneContextProvider>
+              <App />
+            </DroneContextProvider>
+          </ReportDContextProvider>
+        </ReportContextProvider>
+      </DetectionContextProvider>
     </AuthContextProvider>
   </React.StrictMode>
 );

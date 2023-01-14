@@ -17,7 +17,7 @@ export const droneReducer = (state, action) => {
   }
 };
 
-export const DetectionContextProvider = ({ children }) => {
+export const DroneContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(droneReducer, {
     detections: null,
   });
