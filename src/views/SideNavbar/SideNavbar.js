@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Logo from "../../assets/images/Logo_Dark.png";
 import "./SideNavbar.css";
 import Dashboard_Admin from "../Dashboard/Dashboard_Admin";
-import Dashboard_Employee from "../Dashboard/Dashboard_Employee";
 import DroneList from "../Drones/Drones_list";
 import ReportsList from "../Reports/Reports_list";
 import DetectionList from "../Detections/Detection_list";
@@ -10,13 +9,11 @@ import { RiHome6Line } from "react-icons/ri";
 import { TbReportAnalytics, TbDrone } from "react-icons/tb";
 import { HiOutlineLogout } from "react-icons/hi";
 import { SlLocationPin } from "react-icons/sl";
-import { useContext } from "react";
-import ReportDetails from "../Reports/ReportDetails";
 import { useLogout } from '../../hooks/useLogout';
 import { useAuthContext } from '../../hooks/useAuthContext';
-import { Link } from 'react-router-dom'
-import { Navigate, Outlet, useLocation } from "react-router-dom";
- 
+import { Navigate, useLocation } from "react-router-dom";
+import Button from "react-bootstrap/Button"
+
 
 
 
@@ -42,7 +39,8 @@ const Sidebar = () => {
 
 
   return (
-    !user ? <Navigate to={redirectLoginUrl} /> : 
+    <>
+    {/* !user ? <Navigate to={redirectLoginUrl} /> :  */}
     <div id="main-container">
       <div className="sideNav-container">
         <div className="nav-sub-container">
@@ -74,10 +72,13 @@ const Sidebar = () => {
               <br></br>
 
               <h5 className="fullName  ms-2 border-bottom ">{user.fullName}   </h5>
-              <li onClick={onLogOut}>
-                <HiOutlineLogout className="sidenav-icons" />
+              <li data-bs-toggle="modal"
+                      data-bs-target="#myModalSignout" >
+                <HiOutlineLogout className="sidenav-icons "/>
                 تسجيل الخروج
               </li>
+
+
             </ul>
           </div>
           <div></div>
@@ -100,6 +101,75 @@ const Sidebar = () => {
         </div>
       </main>
     </div>
+
+    {/* ////// */}
+
+    <div>
+        <div className="modal" id="myModalSignout">
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="">
+                <div className="row align-items-center  justify-content-end  pt-2">
+                  <div className="col-6 p-0 ">
+                    <h4 className=" m-0 h3" >تسجيل الخروج</h4>
+                  </div>
+                  <div className="col-2">
+                    <button
+                      data-bs-dismiss="modal"
+                      className="closebtn btn rounded"
+                    >
+                      &#x2715;
+                    </button>
+                  </div>
+                </div>
+                <div className="modal-body justify-content-center">
+                  <div className="row align-items-center  justify-content-center">
+                 
+                    <div className="row align-items-center justify-content-between  me-4 h5">
+                    هل أنت متأكد من تسجيل الخروج من حسابك؟
+                    </div>
+                    <div className="row justify-content-start align-items-start">
+                      <div className="col-8 h5">
+             
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div></div>
+
+              <div className="modal-footer border border-0 justify-content-evenly">
+      
+  
+              <Button
+                  variant="secondary"
+                  size="md"
+                  className="popup btn "
+          onClick={onLogOut}
+          data-bs-dismiss="modal"
+                >
+تسجيل الخروج               </Button>
+          
+
+       
+              <Button
+                  variant="secondary"
+                  size="md"
+                  className="popup btn "
+                  data-bs-dismiss="modal"
+                >
+           
+               إلغاء
+                </Button>
+  
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

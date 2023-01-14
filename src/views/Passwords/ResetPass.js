@@ -234,19 +234,19 @@ function ResetPass() {
 
                     </div>
 
+                    <Link
+                        to="/login"
+                      >
                     <div className="text-center">
-                     
-
                       <button
                         // onClick={onSubmit} 
-                        onClick={isLoading}
+                        disabled={isLoading}
                         className="btn btn-primary my-2  px-5 classButton"
                       >
                         تغيير كلمة المرور
                       </button>
-
-
                     </div>
+                    </Link>
                   </form>
                 </div>
               </div>
