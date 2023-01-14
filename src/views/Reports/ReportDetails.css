@@ -58,6 +58,8 @@
   margin-left: 0 !important;
   margin-right: 0 !important;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
 .container.loc {
   width: 70%;
@@ -80,7 +82,7 @@
   border-radius: 10px;
 }
 .send.btn {
-  background-color: var(--primary) !important ;
+  background-color: var(--primary) ;
   color: white;
 }
 .send.btn:hover {
@@ -90,14 +92,19 @@
 .edit.btn {
   background-color: var(--light_green);
   color: white;
+  display: flex;
+  align-items: center;
+
 }
 .edit.btn:hover {
   background-color: rgb(17, 101, 17);
   color: white;
 }
 .save.btn {
-  background-color: var(--light_green) !important;
+  background-color: var(--light_green) ;
   color: white;
+  display: flex;
+  align-items: center;
 }
 .save.btn:hover {
   background-color: var(--primary) !important;
@@ -107,6 +114,8 @@
   background-color: var(--brown) !important;
   color: white;
   border: none;
+  display: flex;
+  align-items: center;
 }
 .cancel.btn:hover {
   background-color: rgb(151, 89, 38) !important;
@@ -141,15 +150,16 @@
   background-color: rgb(151, 89, 38) !important;
   color: white;
 }
-.img {
-  position: relative;
-  left: 30px;
+img {
+  max-width:100%;
+  max-height:100%;
+  justify-content: center;
 }
 .pagenav {
   padding-right: 3%;
   color: var(--brown) !important;
   cursor: pointer;
-  font-size: 0.1em;
+  font-size: 0.08em;
 }
 .pageNavigation{
     height: 30px;
@@ -157,4 +167,10 @@
     display: flex;
     flex-wrap: wrap;
   
+}
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999 !important;
+  background-color: #666666 !important;
+
 }

@@ -163,8 +163,8 @@ function ReportDetails({ repId }) {
                       </div>
                       <div className="heading text-end pe-2">صور المخالفة</div>
                       <hr className="hr m-0 p-2" />
-                      <div className="container pic rounded mb-4 shadow-sm">
-                        <img src={Waste} alt="Waste" />;
+                      <div className="container pic rounded mb-4 shadow-sm p-0">
+                        <img src={Waste} alt="Waste" />
                       </div>
                       <div className="heading text-end pe-2">ملاحظات</div>
                       <hr className="hr m-0 p-2" />
@@ -223,7 +223,8 @@ function ReportDetails({ repId }) {
                               variant="secondary"
                               size="lg"
                               className="send btn"
-                              onClick={Send}
+                              data-bs-toggle="modal"
+                      data-bs-target="#myModal"
                               disabled={disable}
                             >
                               {" "}
@@ -237,7 +238,72 @@ function ReportDetails({ repId }) {
                 </div>
               </div>
             </div>
-    
+            <div>
+        <div className="modal" id="myModal">
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="">
+                <div className="row align-items-center  justify-content-end  pt-2">
+                  <div className="col-6 p-0 ">
+                    <h4 className=" m-0 h3" >إرسال البلاغ   </h4>
+                  </div>
+                  <div className="col-2">
+                    <button
+                      data-bs-dismiss="modal"
+                      className="closebtn btn rounded"
+                    >
+                      &#x2715;
+                    </button>
+                  </div>
+                </div>
+                <div className="modal-body justify-content-center">
+                  <div className="row align-items-center  justify-content-center">
+                 
+                    <div className="row align-items-center justify-content-between  me-4 h5">
+                    هل انت متأكد من إرسال البلاغ؟
+                    </div>
+                    <div className="row justify-content-start align-items-start">
+                      <div className="col-8 h5">
+             
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div></div>
+
+              <div className="modal-footer border border-0 justify-content-evenly">
+      
+  
+              <Button
+                  variant="secondary"
+                  size="md"
+                  className="popup btn "
+          onClick={Send}
+          data-bs-dismiss="modal"
+                >
+           
+إرسال البلاغ               </Button>
+          
+
+       
+              <Button
+                  variant="secondary"
+                  size="md"
+                  className="popup btn "
+                  data-bs-dismiss="modal"
+                >
+           
+               إلغاء
+                </Button>
+  
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
         </>
       ) : index == 1 ? (
         <EditReport report={rep} />

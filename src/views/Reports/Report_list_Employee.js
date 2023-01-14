@@ -313,7 +313,7 @@ function ReportsListEmployee() {
           </div>
         </>
       ) : (
-        <ReportDetails repId={rep._id} />
+        <UpdateStatus repId={rep._id} />
       )}
     </>
   );

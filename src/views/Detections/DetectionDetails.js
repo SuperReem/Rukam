@@ -69,7 +69,7 @@ function DetectionDetails({detection}) {
         filter:"",
       };
   
-      const response = await fetch("/api/Report", {
+      const response = await fetch("/api/Report/", {
         method: "POST",
         body: JSON.stringify(report),
         headers: {
@@ -184,7 +184,8 @@ function DetectionDetails({detection}) {
         <div className="container mt-5 pt-5">
           <div className="row">
             <div className="col-6">
-            <Button variant="secondary" size="lg" className="edit justify-content-between" onClick={Accept}>  
+            <Button variant="secondary" size="lg" className="edit justify-content-between" data-bs-toggle="modal"
+                      data-bs-target="#myModal2">  
 
        <BsCheckLg color='white' />   &nbsp; قبول المخالفة
               </Button>
@@ -247,6 +248,72 @@ function DetectionDetails({detection}) {
                 >
            
 رفض المخالفة                </Button>
+          
+
+       
+              <Button
+                  variant="secondary"
+                  size="md"
+                  className="popup btn "
+                  data-bs-dismiss="modal"
+                >
+           
+               إلغاء
+                </Button>
+  
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div className="modal" id="myModal2">
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="">
+                <div className="row align-items-center  justify-content-end  pt-2">
+                  <div className="col-6 p-0 ">
+                    <h4 className=" m-0 h3" >قبول المخالفة  </h4>
+                  </div>
+                  <div className="col-2">
+                    <button
+                      data-bs-dismiss="modal"
+                      className="closebtn btn rounded"
+                    >
+                      &#x2715;
+                    </button>
+                  </div>
+                </div>
+                <div className="modal-body justify-content-center">
+                  <div className="row align-items-center  justify-content-center">
+                 
+                    <div className="row align-items-center justify-content-between  me-4 h5">
+                    هل انت متأكد من قبول المخالفة؟
+                    </div>
+                    <div className="row justify-content-start align-items-start">
+                      <div className="col-8 h5">
+             
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div></div>
+
+              <div className="modal-footer border border-0 justify-content-evenly">
+      
+  
+              <Button
+                  variant="secondary"
+                  size="md"
+                  className="popup btn "
+          onClick={Accept}
+          data-bs-dismiss="modal"
+                >
+           
+قبول المخالفة                </Button>
           
 
        
