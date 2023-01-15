@@ -52,15 +52,19 @@
   border-radius: 10%;
 }
 
-#button {
-  text-align: left;
-  padding-left: 2%;
+#time {
+  text-align: center;
+  padding-right: 10rem;
 }
 
 #button-details {
   background-color: var(--light_green);
   border-color: var(--light_green);
   display: none;
+}
+#Col-button-details {
+  text-align: left;
+  padding-left: 3rem;
 }
 #row {
   padding: 0.4em;
@@ -79,11 +83,6 @@
   font-size: 0.9em !important;
 }
 
-#copy-right {
-  font-size: 0.4em;
-  color: var(--primary);
-  margin: 1.5%;
-}
 #pagination button:hover {
   background-color: var(--light_green) !important;
   border-color: var(--light_green) !important;
@@ -92,7 +91,6 @@
 
 #pagination {
   margin-top: 2%;
-  direction: ltr !important;
   display: flex;
   justify-content: center;
 }

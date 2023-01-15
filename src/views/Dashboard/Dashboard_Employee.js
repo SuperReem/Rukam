@@ -8,6 +8,10 @@ import Button from 'react-bootstrap/Button';
 import { BsArrowUpLeft } from "react-icons/bs";
 import DroneIcon from '../../assets/images/DRONE_ICON.png';
 import {XYPlot, XAxis, YAxis, LineChart, PieChart} from 'reactochart';
+
+//1
+import { useAuthContext } from '../../hooks/useAuthContext';
+//
 import { Chart } from 'react-charts';
 import * as V from 'victory';
 import {IntlProvider} from 'react-intl';
@@ -222,6 +226,10 @@ const ReportsChart = (props) => (
 
 const Dashboard_Employee = () =>{
 
+  //2
+  const { user } = useAuthContext()
+  //
+
    return <>
      <div>
        <div className="region-name-container d-flex">
@@ -229,7 +237,10 @@ const Dashboard_Employee = () =>{
           <div className='mt-2'>
             &nbsp;
             <span> منطقة </span>
-            <span className='region-name'>حطين</span>
+            {/* //3 */}
+            <span className='region-name'>{user.region}</span>
+             {/* // */}
+
           </div>
        </div> 
        <div className='container d-flex justify-content-between pt-4' style={{paddingRight: '0.5em', paddingLeft: '0.5em'}}>

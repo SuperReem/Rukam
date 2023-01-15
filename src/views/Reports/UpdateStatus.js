@@ -6,7 +6,7 @@ import "./ReportDetails.css";
 import Waste from "../../assets/images/waste.png";
 import { useEffect } from "react";
 import { BsCalendar4 } from "react-icons/bs";
-import ReportsList from "./Reports_list";
+import ReportsList from "./Report_list_Employee.js";
 import { useReportDContext } from "../../hooks/useReportDContext";
 import {
   GoogleMap,
@@ -23,11 +23,11 @@ function UpdateStatus({repId,repStat}) {
   const [image, setimage] = useState("");
   const [notes, setNotes] = useState("");
   const [location, setLocation] = useState("");
+  const [disable, setDisable] = useState(false);
+  const [currentState, setCurrentState] = useState(  "تحديث الحالة الى قيد المراجعة ");
 
 
   useEffect(() => {
-  
-    
     const fetchReport = async () => {
       const response = await fetch(
         "/api/Report/" + repId ,
@@ -40,7 +40,6 @@ function UpdateStatus({repId,repStat}) {
         const report = await response.json();
   
         if (!response.ok) {
-          
           console.log("wrong");
         }
         if (response.ok) {
@@ -50,8 +49,6 @@ function UpdateStatus({repId,repStat}) {
           setTimestamp(report.timestamp);
           setStatus(report.status);
           dispatch({ type: "GET_DETAILS", payload: report });
-          
-
           console.log("get:", report);
         }
     };
@@ -59,13 +56,14 @@ function UpdateStatus({repId,repStat}) {
     fetchReport();
   }, [ ]);
 
-  
-
   const containerStyle = {
     width: "100%;",
     height: "100%",
-  
   };
+
+
+
+  //location
     const center = {
       lat: 24.72,
       lng: 46.62,
@@ -74,7 +72,6 @@ function UpdateStatus({repId,repStat}) {
       id: "google-map-script",
       googleMapsApiKey: "AIzaSyDvPoFbe6MDqYRGifizC34rXPlgGzCd9sE",
     });
-  
     const [map, setMap] = React.useState(null);
   
     const onLoad = React.useCallback(function callback(map) {
@@ -88,17 +85,21 @@ function UpdateStatus({repId,repStat}) {
     }, []);
   
   
-  const [currentState, setCurrentState] = useState(
-    "تحديث الحالة الى قيد المراجعة "
-  );
+
 
 
 
 //update status in database
 useEffect(() => {
-  if (status == "closed" && currentState == "تحديث الحالة الى مغلق") {
-    setCurrentState("حالة الطلب مغلق");
-
+  if (status == "closed") {
+    setDisable(true);
+    console.log(disable);
+  }
+  if (status == "under_processing") {
+    setCurrentState("تحديث الحالة الى مغلق");
+  }
+  if (status == "pending") {
+    setCurrentState("تحديث الحالة الى قيد المراجعة");
   }
   updatestatus();
   console.log("change");
@@ -108,11 +109,8 @@ useEffect(() => {
 
 
   const updatestatus = async (e) => {
-    
     const rep = {
-
       status: status,
-    
     };
 
     const response = await fetch(
@@ -143,33 +141,17 @@ useEffect(() => {
 
 
 
-
-
-
-  const check = () => {
-  
-  };
   const update = () => {
     if ( status === "pending"){
       setStatus("under_processing");
       console.log('jnj');
       setCurrentState("تحديث الحالة الى مغلق");
-
- 
     }
-   
-    
     if (status === "under_processing") {
       setStatus("closed");
       setCurrentState("حالة الطلب مغلق");
-    
-     
 
     }
-   
-    if (status == "closed") console.log("dhbfh");
-
-   
   }
   const PageNav = async (e) => {
     setIndex(1);
@@ -259,6 +241,7 @@ useEffect(() => {
                       className="send btn"
                       data-bs-toggle="modal"
                       data-bs-target="#myModal"
+                      disabled={disable}
                     >
                       تحديث حالة البلاغ
                     </Button>
@@ -268,6 +251,7 @@ useEffect(() => {
                       variant="secondary"
                       size="lg"
                       className="cancel btn"
+                  
                       onClick={()=> setIndex(1)}
                     >
                       {" "}
@@ -313,7 +297,7 @@ useEffect(() => {
                     </div>
                     <div className="row justify-content-start align-items-start">
                       <div className="col-8 h5">
-                        {check()}
+                 
                         {currentState}
                       </div>
                     </div>

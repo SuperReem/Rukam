@@ -16,13 +16,13 @@ import { FiTrash } from "react-icons/fi";
 import TimeAgo from "react-timeago";
 import frenchStrings from "react-timeago/lib/language-strings/ar";
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
-import ReportDetails from "../../views/Reports/ReportDetails";
 import UpdateStatus from "./UpdateStatus";
+import { useAuthContext } from "../../hooks/useAuthContext";
 import ArabicNumbers from "react-native-arabic-numbers/src/ArabicNumbers";
 import moment from "moment";
-import "moment/locale/ar"; // without this line it didn't work
+import "moment/locale/ar";
 
-function ReportsList() {
+function ReportsListEmployee() {
   moment.locale("ar");
   const formatter = buildFormatter(frenchStrings);
   const [index, setIndex] = useState(0);
@@ -36,11 +36,12 @@ function ReportsList() {
   const { reports, dispatch } = useReportContext();
 
   const pages = new Array(numberOfPages).fill(null).map((v, i) => i);
+  const { user } = useAuthContext();
 
   useEffect(() => {
     var fetchReports = async () => {
       const response = await fetch(
-        `http://localhost:3000/api/Report/report?page=${pageNumber}&start=${dateStart}&end=${dateEnd}`
+        `http://localhost:3000/api/Report/reportEmployee?page=${pageNumber}&start=${dateStart}&end=${dateEnd}&region=${user.region}`
       )
         .then((response) => response.json())
         .then(({ totalPages, reports }) => {
@@ -50,7 +51,7 @@ function ReportsList() {
     };
 
     fetchReports();
-  }, [dispatch, pageNumber, dateStart, dateEnd, refresh]);
+  }, [dispatch, pageNumber, dateStart, dateEnd, refresh, user.region]);
 
   const gotoPrevious = () => {
     setPageNumber(Math.max(0, pageNumber - 1));
@@ -117,8 +118,8 @@ function ReportsList() {
     setDateEnd(date2.toISOString().slice(0, 10));
   }
   useEffect(() => {
-    console.log(dateStart);
-  }, [dateStart]);
+    console.log(user.region);
+  }, [user.region]);
   useEffect(() => {
     console.log(pageNumber);
   }, [pageNumber]);
@@ -311,10 +312,10 @@ function ReportsList() {
           </div>
         </>
       ) : (
-        <ReportDetails repId={rep._id} />
+        <UpdateStatus repId={rep._id} />
       )}
     </>
   );
 }
 
-export default ReportsList;
+export default ReportsListEmployee;

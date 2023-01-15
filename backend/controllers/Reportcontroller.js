@@ -2,7 +2,6 @@ const reportModel = require("../models");
 const mongoose = require("mongoose");
 
 const getReports = async (req, res) => {
-  // const user_id = req.user._id; ///////check this
   const PAGE_SIZE = 3;
   var start = req.query.start || "All";
   var end = req.query.end || "All";
@@ -14,12 +13,6 @@ const getReports = async (req, res) => {
       .sort({ createdAt: -1 })
       .limit(PAGE_SIZE)
       .skip(PAGE_SIZE * page);
-    // const total = await reportModel.countDocuments({});
-    // const reports = await reportModel
-    //   .find({user_id}) ///////check this
-    //   .sort({ createdAt: -1 })
-    //   .limit(PAGE_SIZE)
-    //   .skip(PAGE_SIZE * page);
 
     res.json({
       totalPages: Math.ceil(total / PAGE_SIZE),
@@ -32,6 +25,56 @@ const getReports = async (req, res) => {
 
     const reports = await reportModel
       .find({})
+      .where("filter")
+      .gte(start)
+      .lte(end)
+      .sort({ createdAt: -1 })
+      .limit(PAGE_SIZE)
+      .skip(PAGE_SIZE * page);
+
+    res.json({
+      totalPages: Math.ceil(total / PAGE_SIZE),
+      reports,
+    });
+  }
+};
+
+const getReportsEmployee = async (req, res) => {
+  const PAGE_SIZE = 3;
+  var start = req.query.start || "All";
+  var end = req.query.end || "All";
+  var region = req.query.region;
+  const page = parseInt(req.query.page || "0");
+  if ((start == "All") & (end == "All")) {
+    const total = await reportModel.countDocuments({
+      region: region,
+      status: { $in: ["closed", "pending", "under_processing"] },
+    });
+    const reports = await reportModel
+      .find({
+        region: region,
+        status: { $in: ["closed", "pending", "under_processing"] },
+      })
+      .sort({ createdAt: -1 })
+      .limit(PAGE_SIZE)
+      .skip(PAGE_SIZE * page);
+
+    res.json({
+      totalPages: Math.ceil(total / PAGE_SIZE),
+      reports,
+    });
+  } else {
+    const total = await reportModel.countDocuments({
+      filter: { $gte: start, $lte: end },
+      region: region,
+      status: { $in: ["closed", "pending", "under_processing"] },
+    });
+
+    const reports = await reportModel
+      .find({
+        region: region,
+        status: { $in: ["closed", "pending", "under_processing"] },
+      })
       .where("filter")
       .gte(start)
       .lte(end)
@@ -168,4 +211,5 @@ module.exports = {
   deleteReport,
   updateReport,
   deleteReportByName,
+  getReportsEmployee,
 };

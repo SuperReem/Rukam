@@ -4,7 +4,6 @@ import { useAuthContext } from '../hooks/useAuthContext';
 
 import { Button, TextField } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../contexts/user.context";
 import "./Login.css";
 import Footer from "../views/Footer/Footer";
 import TopNavbar from "../views/TopNavbar/TopNavbar";
@@ -137,7 +136,7 @@ const Login = () => {
                       </label>
 
         
-      <div className="pass-wrapper">
+      <div className="pass-wrapper position-relative">
 
                       <input
                         type= {passwordShown ? "text" : "password"}  //"password"
@@ -149,7 +148,7 @@ const Login = () => {
         value={password} 
                       />
                            
-                              <span onClick={togglePassword} className="showhide" >
+                              <span onClick={togglePassword} className="showhide  position-absolute top-50  translate-middle " >
                               {changeIcon ? <VscEye /> : <VscEyeClosed />}
                               </span>
                             

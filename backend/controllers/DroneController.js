@@ -3,8 +3,19 @@ const droneModel = require("../DronesModel");
 const mongoose = require("mongoose");
 
 const getDrones = async (req, res) => {
-  const drones = await droneModel.find({});
-  res.status(200).json(drones);
+  const PAGE_SIZE = 8;
+  const page = parseInt(req.query.page || "0");
+  const total = await droneModel.countDocuments({});
+  const drones = await droneModel
+    .find({})
+    .sort({ createdAt: -1 })
+    .limit(PAGE_SIZE)
+    .skip(PAGE_SIZE * page);
+
+  res.json({
+    totalPages: Math.ceil(total / PAGE_SIZE),
+    drones,
+  });
 };
 
 // get a single drone
@@ -24,11 +35,9 @@ const getDrone = async (req, res) => {
   res.status(200).json(drone);
 };
 
-
-
 // create a new drone
 const createDrone = async (req, res) => {
-  const { droneName,image,region } = req.body;
+  const { droneName, image, region } = req.body;
 
   let emptyFields = [];
 
@@ -47,7 +56,7 @@ const createDrone = async (req, res) => {
 
   // add drone to the database
   try {
-    const drone = await droneModel.create({ droneName,region,image});
+    const drone = await droneModel.create({ droneName, region, image });
     res.status(200).json(drone);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -99,5 +108,4 @@ module.exports = {
   getDrones,
   deleteDrone,
   updateDrone,
-  
 };

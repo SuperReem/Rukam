@@ -7,6 +7,7 @@ const {
   updateReport,
   deleteReport,
   deleteReportByName,
+  getReportsEmployee,
 } = require("../controllers/Reportcontroller");
 
 // const requireAuth = require('../middleware/requireAuth')
@@ -14,6 +15,7 @@ const {
 const router = express.Router();
 // router.use(requireAuth);
 router.get("/report", getReports);
+router.get("/reportEmployee", getReportsEmployee);
 router.get("/:id", getReport);
 router.post("/", createReport);
 router.delete("/:id", deleteReport);

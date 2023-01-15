@@ -70,11 +70,6 @@
   font-size: 0.4em !important;
 }
 
-#copy-right {
-  font-size: 0.4em;
-  color: var(--primary);
-  margin: 1.5%;
-}
 .btn-circle.btn-sm {
   width: 42px;
   height: 42px;

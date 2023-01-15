@@ -2,30 +2,40 @@ const User = require('../UserModel')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
-
 const _ = require("lodash")
 const mailgun = require("mailgun-js");
 const DOMAIN = 'sandboxa605a24351e24fe0a0535f7eb912a0bf.mailgun.org';
-const api_key= "7f3e06134e17bcef472f689085ad52a9-cc9b2d04-85a8aba2" ;
+const api_key= '7f3e06134e17bcef472f689085ad52a9-cc9b2d04-85a8aba2';
 const mg = mailgun({apiKey: api_key, domain: DOMAIN});
 /////
 
 const createToken = (_id) => {
-    return jwt.sign({_id}, "process.env.SECRET", { expiresIn: '3d' })
+    return jwt.sign({_id}, 'process.env.SECRET', { expiresIn: '3d' })
   }
 
 
 // login a user
 const loginUser = async (req, res) => {
     const {email, password} = req.body
+ 
+
 
     try {
       const user = await User.login(email, password)
+      console.log("logged in ");
+      const userType = user.userType
+      console.log(userType);
+      const fullName = user.fullName
+      const region = user.region
+
+
+
+
   
       // create a token
       const token = createToken(user._id)
   
-      res.status(200).json({email, token})
+      res.status(200).json({email,userType, token, fullName , region})///
     } catch (error) {
       res.status(400).json({error: 'البريد الإلكتروني، أو كلمة المرور خاطئة، يرجى المحاولة مجددا!'})
     }
@@ -98,7 +108,7 @@ const resetPassword = async (req, res) => {
   console.log(req.body);
 
   if(resetLink){
-    jwt.verify(resetLink, "process.env.SECRET",function(error , decodedData) {
+    jwt.verify(resetLink, 'process.env.SECRET', function(error , decodedData) {
       if(error ){
         console.log("error jwt");
         return res.json({error: error.message})
