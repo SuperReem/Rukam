@@ -95,7 +95,7 @@ const Sidebar = () => {
       <main className="page-container">
         <div className="background fs-1">
           {currentIndex === 0 ? (
-            <Dashboard_Employee />
+            <Dashboard_Admin />
           ) : currentIndex === 1 ? (
             <ReportsList />
           ) : currentIndex === 2 ? (
