@@ -9,6 +9,7 @@ import Drone_card from "../../components/Drones/Drone_card";
 import { useDronesContext } from "../../hooks/useDronesContext";
 import { BsChevronLeft } from "react-icons/bs";
 import { BsChevronRight } from "react-icons/bs";
+import ArabicNumbers from "react-native-arabic-numbers/src/ArabicNumbers";
 
 function DroneList() {
   const [imgFile, setImgFile] = useState("");
@@ -99,14 +100,14 @@ function DroneList() {
         <div id="pagination">
           {pageNumber + 1 == 1 ? (
             <button class="btn btn-primary btn-circle btn-smdis" disabled>
-              <BsChevronLeft size={18} />
+              <BsChevronRight size={18} />
             </button>
           ) : (
             <button
               onClick={gotoPrevious}
               class="btn btn-primary btn-circle btn-sm"
             >
-              <BsChevronLeft size={18} />
+              <BsChevronRight size={18} />
             </button>
           )}
           {pages.map((pageIndex) =>
@@ -116,7 +117,7 @@ function DroneList() {
                 onClick={() => setPageNumber(pageIndex)}
                 class="btn btn-primary btn-circle btn-smpree"
               >
-                {pageIndex + 1}
+                {ArabicNumbers(pageIndex + 1)}
               </button>
             ) : (
               <button
@@ -124,27 +125,27 @@ function DroneList() {
                 onClick={() => setPageNumber(pageIndex)}
                 class="btn btn-primary btn-circle btn-sm"
               >
-                {pageIndex + 1}
+                {ArabicNumbers(pageIndex + 1)}
               </button>
             )
           )}
           {pageNumber + 1 == numberOfPages ? (
             <button class="btn btn-primary btn-circle btn-smdis" disabled>
-              <BsChevronRight size={18} />
+              <BsChevronLeft size={18} />
             </button>
           ) : (
             <button
               onClick={gotoNext}
               class="btn btn-primary btn-circle btn-sm"
             >
-              <BsChevronRight size={18} />
+              <BsChevronLeft size={18} />
             </button>
           )}
         </div>
 
         <div id="page-number2">
           {" "}
-          صفحة {numberOfPages}-{pageNumber + 1}
+          صفحة {ArabicNumbers(pageNumber + 1)} - {ArabicNumbers(numberOfPages)}
         </div>
       </div>
     </div>

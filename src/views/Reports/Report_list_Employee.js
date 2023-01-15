@@ -3,11 +3,8 @@ import "./report_list.css";
 import { BsFilter } from "react-icons/bs";
 import DatePicker from "react-multi-date-picker";
 import "react-multi-date-picker/styles/colors/green.css";
-import arabic_ar from "react-date-object/locales/arabic_ar";
-import ReportCard from "../../components/Reports/Report_card";
+import arabic_ar from "react-date-object/locales/gregorian_ar";
 import { useState } from "react";
-import Pagination from "@mui/material/Pagination";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useReportContext } from "../../hooks/useReportContext";
 import { useEffect } from "react";
 import "../../components/Reports/report_card.css";
@@ -19,13 +16,14 @@ import { FiTrash } from "react-icons/fi";
 import TimeAgo from "react-timeago";
 import frenchStrings from "react-timeago/lib/language-strings/ar";
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
-import ReportDetails from "../../views/Reports/ReportDetails";
-import ToggleButton from "react-bootstrap/ToggleButton";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
 import UpdateStatus from "./UpdateStatus";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import ArabicNumbers from "react-native-arabic-numbers/src/ArabicNumbers";
+import moment from "moment";
+import "moment/locale/ar";
 
 function ReportsListEmployee() {
+  moment.locale("ar");
   const formatter = buildFormatter(frenchStrings);
   const [index, setIndex] = useState(0);
   const [rep, setReport] = useState();
@@ -170,11 +168,7 @@ function ReportsListEmployee() {
                         <h5 className="ms-5"> {report.region}</h5>
                         <p className="report-time">
                           {" "}
-                          <TimeAgo
-                            date={report.createdAt}
-                            formatter={formatter}
-                          />
-                          ;
+                          {moment(report.createdAt).fromNow()};
                         </p>
                       </div>
                       <div>
@@ -242,6 +236,8 @@ function ReportsListEmployee() {
                             size="md"
                             id="delete-report-button"
                             onClick={() => DeleteReport(IdToDelete)}
+                            data-bs-dismiss="modal"
+                            className="popup btn "
                           >
                             {" "}
                             حذف{" "}
@@ -250,6 +246,8 @@ function ReportsListEmployee() {
                             variant="secondary"
                             size="md"
                             id="details-button"
+                            data-bs-dismiss="modal"
+                            className="popup btn "
                           >
                             {" "}
                             إلغاء{" "}
@@ -264,14 +262,14 @@ function ReportsListEmployee() {
           <div id="pagination">
             {pageNumber + 1 == 1 ? (
               <button class="btn btn-primary btn-circle btn-smdis" disabled>
-                <BsChevronLeft size={18} />
+                <BsChevronRight size={18} />
               </button>
             ) : (
               <button
                 onClick={gotoPrevious}
                 class="btn btn-primary btn-circle btn-sm"
               >
-                <BsChevronLeft size={18} />
+                <BsChevronRight size={18} />
               </button>
             )}
             {pages.map((pageIndex) =>
@@ -281,7 +279,7 @@ function ReportsListEmployee() {
                   onClick={() => setPageNumber(pageIndex)}
                   class="btn btn-primary btn-circle btn-smpree"
                 >
-                  {pageIndex + 1}
+                  {ArabicNumbers(pageIndex + 1)}
                 </button>
               ) : (
                 <button
@@ -289,27 +287,28 @@ function ReportsListEmployee() {
                   onClick={() => setPageNumber(pageIndex)}
                   class="btn btn-primary btn-circle btn-sm"
                 >
-                  {pageIndex + 1}
+                  {ArabicNumbers(pageIndex + 1)}
                 </button>
               )
             )}
             {pageNumber + 1 == numberOfPages ? (
               <button class="btn btn-primary btn-circle btn-smdis" disabled>
-                <BsChevronRight size={18} />
+                <BsChevronLeft size={18} />
               </button>
             ) : (
               <button
                 onClick={gotoNext}
                 class="btn btn-primary btn-circle btn-sm"
               >
-                <BsChevronRight size={18} />
+                <BsChevronLeft size={18} />
               </button>
             )}
           </div>
 
           <div id="page-number2">
             {" "}
-            صفحة {numberOfPages}-{pageNumber + 1}
+            صفحة {ArabicNumbers(pageNumber + 1)} -{" "}
+            {ArabicNumbers(numberOfPages)}
           </div>
         </>
       ) : (
