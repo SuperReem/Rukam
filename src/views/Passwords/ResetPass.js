@@ -96,22 +96,25 @@ function ResetPass() {
   }
 
   const {resetPass, error, isLoading} = useResetPass()
+  const disable = val1 && val2 && val3 && confirming 
+
 
   const handelClick = async (e) => {
     console.log("clicked");
     e.preventDefault();
 
-    if(val1 && val2 && val3 && confirming){
+    // if(val1 && val2 && val3 && confirming){
   
       console.log("above fetch")
       console.log(password)
+      console.log(window.location.href)
 
-      const userToken = window.location.href.substring(36);
-      await resetPass(userToken,password)///
+      const userToken = window.location.href.substring( 36); //36
+      await resetPass(userToken, password)///
   
   
     // }
-  }
+  // }
   }
 
 
@@ -234,19 +237,19 @@ function ResetPass() {
 
                     </div>
 
-                    <Link
+                    {/* <Link
                         to="/login"
-                      >
+                      > */}
                     <div className="text-center">
                       <button
                         // onClick={onSubmit} 
-                        disabled={isLoading}
+                        disabled={!disable}
                         className="btn btn-primary my-2  px-5 classButton"
                       >
                         تغيير كلمة المرور
                       </button>
                     </div>
-                    </Link>
+                    {/* </Link> */}
                   </form>
                 </div>
               </div>

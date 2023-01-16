@@ -67,19 +67,16 @@ const forgotPassword = async (req, res) => {
   User.findOne({ email }, (err, user) => {
     if(err || !user){
       return res.status(400).json({error: 'email dose not exist'})
-
     }
     const name = user.fullName
     const token = createToken(user._id)
-    const url = "please click on the link to reset:  http://localhost:3000/resetpassword/"+token
     const link =  "http://localhost:3000/resetpassword/"+token
   
     var mailOptions = {
       from: 'rukamservice@gmail.com',
       to: email,
       subject: 'إعادة تعيين كلمة المرور',
-      text: url,
-      html: '<html dir="rtl" lang="ar"> <h1 dir="rtl">هل نسيت كلمة المرور؟</h1><p dir="rtl">  مرحبًا '+name+',</p> <p dir="rtl">لإعادة تعيين كلمة المرور لحسابك، يرجى الضغط على الرابط التالي: </p> <center><a className="text-decoration-none" href="'+link+'"> <mark>تغيير كلمة المرور </mark> </a></center> <br/> <br/><p dir="rtl">تجاهل هذه الرسالة إذا لم تطلب تغيير كلمة المرور. </p>  <br/>  <P>فريق ركام</P></html>'
+      html: '<html dir="rtl" lang="ar"> <h1 dir="rtl">هل نسيت كلمة المرور؟</h1><p dir="rtl">  مرحبًا '+name+',</p> <p dir="rtl">لإعادة تعيين كلمة المرور لحسابك، يرجى الضغط على الرابط التالي: </p> <center><a className="text-decoration-none" href="'+link+'"> <mark>تغيير كلمة المرور </mark> </a></center> <br/> <br/><p dir="rtl">تجاهل هذه الرسالة إذا لم تطلب تغيير كلمة المرور. </p>  <br/>  <P>فريق ركام</P></html> '+token
     };
     console.log("token")
     console.log(token)
@@ -135,7 +132,9 @@ const resetPassword = async (req, res) => {
         user = _.extend(user, obj);
         user.save((error, result)=> {
           if(error || !user){
-            console.log(body);
+            console.log("body");
+            console.log("body has not changed ");
+
             return res.status(400).json({error: error.message})
       
           }else{
