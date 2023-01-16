@@ -14,6 +14,7 @@ import Statistics_Card from "../../components/Statistics/Statistic_card";
 import { useEffect } from "react";
 import { useDetectionsContext } from "../../hooks/useDetectionsContext";
 import { useReportContext } from "../../hooks/useReportContext";
+import { Loader } from "@googlemaps/js-api-loader"
 
 const containerStyle = {
   width: "650px",
@@ -36,13 +37,20 @@ const Dashboard_Admin = () => {
   const[pendingTotal,setPendingTotal] = useState(0);
   const[underprocessingTotal,setUnderprocessingTotal] = useState(0);
   const[closedTotal,setClosedTotal] = useState(0);
+  var closed = 0;
+  var pending = 0;
+  var unsent = 0;
+  var proc = 0;
   const[doneCounting,setDoneCounting] = useState(false);
-
+  const [pageNumber, setPageNumber] = useState(0);
+  const [dateStart, setDateStart] = useState("All");
+  const [dateEnd, setDateEnd] = useState("All");
+  
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyBUMSPnho9iIVnF-MKvOMgYw_bRBwc7U7Q",
+    googleMapsApiKey: 'AIzaSyBUMSPnho9iIVnF-MKvOMgYw_bRBwc7U7Q' ,
   });
-
+  
   
   const [map, setMap] = React.useState(null);
 
@@ -57,14 +65,38 @@ const Dashboard_Admin = () => {
   }, []);
 
   useEffect(() => {
-    var fetchReports = async () => {
-      const response = await fetch(
-        `http://localhost:3000/api/Report/report`
+ 
+      const response = fetch(
+        `http://localhost:3000/api/Report/report?page=${pageNumber}&start=${dateStart}&end=${dateEnd}`
       )
         .then((response) => response.json())
         .then(async ({ totalPages, reports }) => {
           await dispatch({ type: "SET_REPORTS", payload: reports })
-          console.log(reports)
+          console.log("Reports: "+reports)
+          reports.map((report) => {
+            console.log("Report: "+report)
+         });
+   
+        })
+    
+
+  }, [dispatch]);
+
+  
+   
+    var jh = () =>{
+      /*
+      switch(report['status']){
+        case 'unsent': unsent++;
+        break;
+        case 'pending': pending++;
+        break;
+        case 'under_processing': proc++;
+        break;
+        case 'closed': closed++;
+        break;
+       }
+       */
           reports.map((reports) => {
             switch(reports['status']){
              case 'unsent': setUnsentTotal(unsentTotal++);
@@ -79,12 +111,8 @@ const Dashboard_Admin = () => {
          }
        );
        setDoneCounting(true);
-        })
-    };
-    fetchReports();
-  }, [dispatch]);
-
-    
+          
+  }
 
 
 
@@ -209,7 +237,7 @@ const Dashboard_Admin = () => {
               </div>
               {
                 doneCounting == true? 
-                <PieChart data={[closedTotal, unsentTotal, pendingTotal, underprocessingTotal]} radius={60} holeRadius={45} margin={40} />
+                <PieChart data={[closed, unsent, pending, proc]} radius={60} holeRadius={45} margin={40} />
                 :
                 null
               }

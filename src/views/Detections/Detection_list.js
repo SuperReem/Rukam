@@ -187,6 +187,8 @@ function DetectionList() {
                   ))}
               </ListGroup>
             </div>
+            <div id="pagination-container">
+            <div>
             <div id="pagination">
               {pageNumber + 1 == 1 ? (
                 <button class="btn btn-primary btn-circle btn-smdis" disabled>
@@ -232,11 +234,13 @@ function DetectionList() {
                 </button>
               )}
             </div>
-
+            
             <div id="page-number">
               {" "}
               صفحة {ArabicNumbers(pageNumber + 1)} -{" "}
               {ArabicNumbers(numberOfPages)}
+            </div>
+            </div>
             </div>
           </div>
         </>
