@@ -69,7 +69,7 @@ function DroneList() {
         </Button>
       </div>
 
-      <div class="container-fluid bg-3 text-center">
+      <div class="container-fluid bg-3 text-center divSizing">
         {/* <div class="row"> */}
 
         {/* <div class=""> */}
@@ -97,6 +97,11 @@ function DroneList() {
                       </Button>
                    
                   </div> */}
+                 </div>  
+
+                 <div>
+
+                 
         <div id="pagination">
           {pageNumber + 1 == 1 ? (
             <button class="btn btn-primary btn-circle btn-smdis" disabled>
@@ -147,7 +152,7 @@ function DroneList() {
           {" "}
           صفحة {ArabicNumbers(pageNumber + 1)} - {ArabicNumbers(numberOfPages)}
         </div>
-      </div>
+     </div>
     </div>
   );
 }
