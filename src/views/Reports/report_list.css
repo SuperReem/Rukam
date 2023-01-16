@@ -70,11 +70,6 @@
   font-size: 0.4em !important;
 }
 
-#copy-right {
-  font-size: 0.4em;
-  color: var(--primary);
-  margin: 1.5%;
-}
 .btn-circle.btn-sm {
   width: 42px;
   height: 42px;
@@ -108,4 +103,21 @@
   background-color: var(--light_green) !important;
   color: rgb(255, 255, 255) !important;
   border-color: var(--light_green) !important;
+}
+
+.No-data {
+  text-align: center;
+  margin-top: 20%;
+  font-size: 23px;
+  color: rgba(128, 128, 128, 0.849);
+}
+.popup-cancle {
+  background-color: var(--light_green) !important;
+  border: none;
+  color: white;
+  width: 30%;
+}
+
+.popup-cancle:hover {
+  background-color: var(--primary) !important;
 }

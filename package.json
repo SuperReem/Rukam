@@ -6,6 +6,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@googlemaps/js-api-loader": "^1.15.1",
     "@mui/material": "^5.11.1",
     "@nivo/bump": "^0.80.0",
     "@nivo/line": "^0.80.0",
@@ -35,6 +36,7 @@
     "react-icons": "^4.7.1",
     "react-intl": "^5.0.4-alpha.0",
     "react-multi-date-picker": "^3.3.4",
+    "react-native-arabic-numbers": "^1.0.1",
     "react-paginate": "^8.1.4",
     "react-router-dom": "^6.6.1",
     "react-scripts": "5.0.1",

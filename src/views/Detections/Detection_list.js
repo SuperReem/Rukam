@@ -10,12 +10,7 @@ import { useState } from "react";
 import DatePicker from "react-multi-date-picker";
 import "react-multi-date-picker/styles/layouts/mobile.css";
 import "react-multi-date-picker/styles/colors/green.css";
-import arabic from "react-date-object/calendars/arabic"; //if i want the calender to be hijri
-import arabic_ar from "react-date-object/locales/arabic_ar";
-import InputIcon from "react-multi-date-picker/components/input_icon";
-import Pagination from "@mui/material/Pagination";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { RiDoubanFill } from "react-icons/ri";
+import arabic_ar from "react-date-object/locales/gregorian_ar";
 import DetectionDetails from "./DetectionDetails";
 import { BsChevronLeft } from "react-icons/bs";
 import { BsChevronRight } from "react-icons/bs";
@@ -25,7 +20,7 @@ import { renderIntoDocument } from "react-dom/test-utils";
 import { Route } from "react-router-dom";
 import { useEffect } from "react";
 import { useDetectionsContext } from "../../hooks/useDetectionsContext";
-import { useIntl } from "react-intl";
+import { ArabicNumbers } from "react-native-arabic-numbers";
 
 function showDetails(detectionObj) {
   return <DetectionDetails detection={detectionObj} />;
@@ -87,7 +82,7 @@ function DetectionList() {
     const detection = {
       droneId: "7777",
       location: { latitude: 88.9, longitude: 66 },
-      region: "11حي حطين",
+      region: "حطين",
       time: formattedDate,
       image: "kkkkk",
       filter: date.toISOString().slice(0, 10),
@@ -155,6 +150,7 @@ function DetectionList() {
             />
           </div>
           <div id="detection-card">
+<<<<<<< HEAD
             <div id="headings">
               {" "}
               <Row>
@@ -170,8 +166,12 @@ function DetectionList() {
                       <Row>
                         {" "}
                         <Col>{detection.region}</Col>{" "}
-                        <Col id="button">{detection.time}</Col>
-                        <Col id="button">
+                        <Col id="time">
+                          {Intl.DateTimeFormat("ar-EG", {
+                            dateStyle: "full",
+                          }).format(new Date(detection.updatedAt))}
+                        </Col>
+                        <Col id="Col-button-details">
                           <Button
                             id="button-details"
                             // onClick={handle}
@@ -188,17 +188,19 @@ function DetectionList() {
                   ))}
               </ListGroup>
             </div>
+            <div id="pagination-container">
+            <div>
             <div id="pagination">
               {pageNumber + 1 == 1 ? (
                 <button class="btn btn-primary btn-circle btn-smdis" disabled>
-                  <BsChevronLeft size={18} />
+                  <BsChevronRight size={18} />
                 </button>
               ) : (
                 <button
                   onClick={gotoPrevious}
                   class="btn btn-primary btn-circle btn-sm"
                 >
-                  <BsChevronLeft size={18} />
+                  <BsChevronRight size={18} />
                 </button>
               )}
               {pages.map((pageIndex) =>
@@ -208,7 +210,7 @@ function DetectionList() {
                     onClick={() => setPageNumber(pageIndex)}
                     class="btn btn-primary btn-circle btn-smpree"
                   >
-                    {pageIndex + 1}
+                    {ArabicNumbers(pageIndex + 1)}
                   </button>
                 ) : (
                   <button
@@ -216,32 +218,139 @@ function DetectionList() {
                     onClick={() => setPageNumber(pageIndex)}
                     class="btn btn-primary btn-circle btn-sm"
                   >
-                    {pageIndex + 1}
+                    {ArabicNumbers(pageIndex + 1)}
                   </button>
                 )
               )}
               {pageNumber + 1 == numberOfPages ? (
                 <button class="btn btn-primary btn-circle btn-smdis" disabled>
-                  <BsChevronRight size={18} />
+                  <BsChevronLeft size={18} />
                 </button>
               ) : (
                 <button
                   onClick={gotoNext}
                   class="btn btn-primary btn-circle btn-sm"
                 >
-                  <BsChevronRight size={18} />
+                  <BsChevronLeft size={18} />
                 </button>
               )}
             </div>
-
+            
             <div id="page-number">
               {" "}
-              صفحة {numberOfPages}-{pageNumber + 1}
+              صفحة {ArabicNumbers(pageNumber + 1)} -{" "}
+              {ArabicNumbers(numberOfPages)}
             </div>
+            </div>
+            </div>
+=======
+            {numberOfPages != 0 ? (
+              <>
+                <div id="headings">
+                  {" "}
+                  <Row>
+                    <Col>الموقع</Col>
+                    <Col>التاريخ</Col>
+                  </Row>
+                </div>
+                <div id="detection-list">
+                  <ListGroup variant="flush">
+                    {detections &&
+                      detections.map((detection) => (
+                        <ListGroup.Item id="row">
+                          <Row>
+                            {" "}
+                            <Col>{detection.region}</Col>{" "}
+                            <Col id="time">
+                              {Intl.DateTimeFormat("ar-EG", {
+                                dateStyle: "full",
+                              }).format(new Date(detection.createdAt))}
+                            </Col>
+                            <Col id="Col-button-details">
+                              <Button
+                                id="button-details"
+                                //onClick={handle}
+                                onClick={() => {
+                                  setDetec(detection);
+                                  setIndex(1);
+                                }}
+                              >
+                                <BsArrowUpLeft size={17} /> التفاصيل
+                              </Button>
+                            </Col>
+                          </Row>
+                        </ListGroup.Item>
+                      ))}
+                  </ListGroup>
+                </div>
+                <div id="pagination">
+                  {pageNumber + 1 == 1 ? (
+                    <button
+                      class="btn btn-primary btn-circle btn-smdis"
+                      disabled
+                    >
+                      <BsChevronRight size={18} />
+                    </button>
+                  ) : (
+                    <button
+                      onClick={gotoPrevious}
+                      class="btn btn-primary btn-circle btn-sm"
+                    >
+                      <BsChevronRight size={18} />
+                    </button>
+                  )}
+                  {pages.map((pageIndex) =>
+                    pageNumber == pageIndex ? (
+                      <button
+                        key={pageIndex}
+                        onClick={() => setPageNumber(pageIndex)}
+                        class="btn btn-primary btn-circle btn-smpree"
+                      >
+                        {ArabicNumbers(pageIndex + 1)}
+                      </button>
+                    ) : (
+                      <button
+                        key={pageIndex}
+                        onClick={() => setPageNumber(pageIndex)}
+                        class="btn btn-primary btn-circle btn-sm"
+                      >
+                        {ArabicNumbers(pageIndex + 1)}
+                      </button>
+                    )
+                  )}
+                  {pageNumber + 1 == numberOfPages ? (
+                    <button
+                      class="btn btn-primary btn-circle btn-smdis"
+                      disabled
+                    >
+                      <BsChevronLeft size={18} />
+                    </button>
+                  ) : (
+                    <button
+                      onClick={gotoNext}
+                      class="btn btn-primary btn-circle btn-sm"
+                    >
+                      <BsChevronLeft size={18} />
+                    </button>
+                  )}
+                </div>
+
+                <div id="page-number">
+                  {" "}
+                  صفحة {ArabicNumbers(pageNumber + 1)} -{" "}
+                  {ArabicNumbers(numberOfPages)}
+                </div>
+              </>
+            ) : (
+              <div className="No-data2">لا يوجد مواقع مخالفة هنا</div>
+            )}
+>>>>>>> 6c754653eddb13f5fddf84da86d4f171a56d2fa8
           </div>
         </>
       ) : (
-        <DetectionDetails detection={detec} key={detec._id} />
+        <>
+          <DetectionDetails detection={detec} key={detec._id} />
+        </>
       )}
     </>
   );

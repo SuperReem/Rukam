@@ -136,7 +136,7 @@ const Login = () => {
                       </label>
 
         
-      <div className="pass-wrapper">
+      <div className="pass-wrapper position-relative">
 
                       <input
                         type= {passwordShown ? "text" : "password"}  //"password"
@@ -148,7 +148,7 @@ const Login = () => {
         value={password} 
                       />
                            
-                              <span onClick={togglePassword} className="showhide" >
+                              <span onClick={togglePassword} className="showhide  position-absolute top-50  translate-middle " >
                               {changeIcon ? <VscEye /> : <VscEyeClosed />}
                               </span>
                             

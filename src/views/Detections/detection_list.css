@@ -9,7 +9,7 @@
   text-align: right;
   font-size: 0.5em;
   padding-right: 4%;
-  margin-top: 3%;
+  margin-top: 2%;
   margin-bottom: 1%;
 }
 
@@ -32,11 +32,13 @@
   background-color: white;
   border-radius: 10px;
   box-shadow: 1px 1px 15px 1px #ebebeb;
-  height: 83%;
+  height: 82%;
   margin-left: 3%;
   margin-right: 3%;
   font-size: 0.45em;
   text-align: right;
+  display: flex;
+  flex-direction: column;
 }
 
 #headings {
@@ -52,15 +54,19 @@
   border-radius: 10%;
 }
 
-#button {
-  text-align: left;
-  padding-left: 2%;
+#time {
+  text-align: center;
+  padding-right: 10rem;
 }
 
 #button-details {
   background-color: var(--light_green);
   border-color: var(--light_green);
   display: none;
+}
+#Col-button-details {
+  text-align: left;
+  padding-left: 3rem;
 }
 #row {
   padding: 0.4em;
@@ -77,22 +83,30 @@
 #page-number {
   text-align: center;
   font-size: 0.9em !important;
+  margin-top: 1%;
 }
 
-#copy-right {
-  font-size: 0.4em;
-  color: var(--primary);
-  margin: 1.5%;
-}
 #pagination button:hover {
   background-color: var(--light_green) !important;
   border-color: var(--light_green) !important;
   color: white;
 }
-
 #pagination {
-  margin-top: 2%;
-  direction: ltr !important;
   display: flex;
   justify-content: center;
+  margin-top: 2%;
+}
+
+.No-data2 {
+  text-align: center;
+  font-size: 23px;
+  color: rgba(128, 128, 128, 0.849);
+  padding-top: 20%;
+}
+#pagination-container{
+  padding-bottom: 1%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
 }

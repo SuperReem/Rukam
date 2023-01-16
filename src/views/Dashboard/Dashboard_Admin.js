@@ -2,12 +2,7 @@ import React, { useState } from "react";
 import "./dashboard.css";
 import "reactochart/styles.css";
 import { XYPlot, XAxis, YAxis, LineChart, PieChart } from "reactochart";
-import {
-  GoogleMap,
-  Marker,
-  useJsApiLoader,
-  MarkerF,
-} from "@react-google-maps/api";
+import {GoogleMap,Marker,useJsApiLoader,MarkerF,} from "@react-google-maps/api";
 import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -16,6 +11,10 @@ import DroneIcon from "../../assets/images/DRONE_ICON.png";
 import { SlLocationPin } from "react-icons/sl";
 import { BsArrowUpLeft } from "react-icons/bs";
 import Statistics_Card from "../../components/Statistics/Statistic_card";
+import { useEffect } from "react";
+import { useDetectionsContext } from "../../hooks/useDetectionsContext";
+import { useReportContext } from "../../hooks/useReportContext";
+import { Loader } from "@googlemaps/js-api-loader"
 
 const containerStyle = {
   width: "650px",
@@ -29,16 +28,30 @@ const center = {
   lng: 46.62,
 };
 
-const ReportsChart = (props) => (
-  <PieChart data={[6, 8, 3, 9]} radius={60} holeRadius={45} margin={40} />
-);
+
 
 const Dashboard_Admin = () => {
+
+  const { reports, dispatch } = useReportContext();
+  const[unsentTotal,setUnsentTotal] = useState(0);
+  const[pendingTotal,setPendingTotal] = useState(0);
+  const[underprocessingTotal,setUnderprocessingTotal] = useState(0);
+  const[closedTotal,setClosedTotal] = useState(0);
+  var closed = 0;
+  var pending = 0;
+  var unsent = 0;
+  var proc = 0;
+  const[doneCounting,setDoneCounting] = useState(false);
+  const [pageNumber, setPageNumber] = useState(0);
+  const [dateStart, setDateStart] = useState("All");
+  const [dateEnd, setDateEnd] = useState("All");
+  
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyDvPoFbe6MDqYRGifizC34rXPlgGzCd9sE",
+    googleMapsApiKey: 'AIzaSyBUMSPnho9iIVnF-MKvOMgYw_bRBwc7U7Q' ,
   });
-
+  
+  
   const [map, setMap] = React.useState(null);
 
   const onLoad = React.useCallback(function callback(map) {
@@ -51,7 +64,87 @@ const Dashboard_Admin = () => {
     setMap(null);
   }, []);
 
+  useEffect(() => {
+ 
+      const response = fetch(
+        `http://localhost:3000/api/Report/report?page=${pageNumber}&start=${dateStart}&end=${dateEnd}`
+      )
+        .then((response) => response.json())
+        .then(async ({ totalPages, reports }) => {
+          await dispatch({ type: "SET_REPORTS", payload: reports })
+          console.log("Reports: "+reports)
+          reports.map((report) => {
+            console.log("Report: "+report)
+         });
+   
+        })
+    
+
+  }, [dispatch]);
+
+  
+   
+    var jh = () =>{
+      /*
+      switch(report['status']){
+        case 'unsent': unsent++;
+        break;
+        case 'pending': pending++;
+        break;
+        case 'under_processing': proc++;
+        break;
+        case 'closed': closed++;
+        break;
+       }
+       */
+          reports.map((reports) => {
+            switch(reports['status']){
+             case 'unsent': setUnsentTotal(unsentTotal++);
+             break;
+             case 'pending': setPendingTotal(pendingTotal++);
+             break;
+             case 'under_processing': setUnderprocessingTotal(underprocessingTotal++);
+             break;
+             case 'closed': setClosedTotal(closedTotal++);
+             break;
+            }
+         }
+       );
+       setDoneCounting(true);
+          
+  }
+
+
+
+    var jj = ()=>{
+     
+     reports.map((reports) => {
+          switch(reports['status']){
+           case 'unsent': setUnsentTotal(unsentTotal++);
+           break;
+           case 'pending': setPendingTotal(pendingTotal++);
+           break;
+           case 'under_processing': setUnderprocessingTotal(underprocessingTotal++);
+           break;
+           case 'closed': setClosedTotal(closedTotal++);
+           break;
+          }
+       }
+     );
+     setDoneCounting(true);
+     
+    }
+
+    
+
+  const ReportsChart = (props) => (
+    <PieChart data={[closedTotal, unsentTotal, pendingTotal, underprocessingTotal]} radius={60} holeRadius={45} margin={40} />
+  );
+
+
   return (
+    <>
+    {reports?
     <>
       <div>
         <div className="statistics-cards-container">
@@ -101,7 +194,7 @@ const Dashboard_Admin = () => {
             <GoogleMap
               mapContainerStyle={containerStyle}
               center={center}
-              zoom={7}
+              zoom={2}
               onLoad={onLoad}
               onUnmount={onUnmount}
             ></GoogleMap>
@@ -142,7 +235,12 @@ const Dashboard_Admin = () => {
                   <h6>بلاغات مغلقة</h6>
                 </div>
               </div>
-              <ReportsChart />
+              {
+                doneCounting == true? 
+                <PieChart data={[closed, unsent, pending, proc]} radius={60} holeRadius={45} margin={40} />
+                :
+                null
+              }
             </div>
           </div>
         </div>
@@ -217,6 +315,10 @@ const Dashboard_Admin = () => {
           </div>
         </div>
       </div>
+    </>
+    :
+    null
+    }
     </>
   );
 };

@@ -46,7 +46,10 @@ const getReportsEmployee = async (req, res) => {
   var region = req.query.region;
   const page = parseInt(req.query.page || "0");
   if ((start == "All") & (end == "All")) {
-    const total = await reportModel.countDocuments({});
+    const total = await reportModel.countDocuments({
+      region: region,
+      status: { $in: ["closed", "pending", "under_processing"] },
+    });
     const reports = await reportModel
       .find({
         region: region,
@@ -63,6 +66,8 @@ const getReportsEmployee = async (req, res) => {
   } else {
     const total = await reportModel.countDocuments({
       filter: { $gte: start, $lte: end },
+      region: region,
+      status: { $in: ["closed", "pending", "under_processing"] },
     });
 
     const reports = await reportModel
