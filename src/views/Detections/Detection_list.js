@@ -159,7 +159,7 @@ function DetectionList() {
                     <Col>التاريخ</Col>
                   </Row>
                 </div>
-                <div id="detection-list">
+                <div id="detection-list" className="divSizing-detection">
                   <ListGroup variant="flush">
                     {detections &&
                       detections.map((detection) => (
@@ -175,7 +175,7 @@ function DetectionList() {
                             <Col id="Col-button-details">
                               <Button
                                 id="button-details"
-                                //onClick={handle}
+                                // onClick={handle}
                                 onClick={() => {
                                   setDetec(detection);
                                   setIndex(1);
