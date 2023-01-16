@@ -131,3 +131,17 @@
   left: 0;
   right: 0;
 }
+.icon-box {
+  color: #fff;
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: -70px;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: var(--primary) !important;
+  padding: 15px;
+  text-align: center;
+}

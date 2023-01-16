@@ -12,6 +12,7 @@ import Button from "react-bootstrap/Button";
 import { BsChevronLeft } from "react-icons/bs";
 import { BsChevronRight } from "react-icons/bs";
 import { BsArrowUpLeft } from "react-icons/bs";
+import { BsCheck } from "react-icons/bs";
 import { FiTrash } from "react-icons/fi";
 import TimeAgo from "react-timeago";
 import frenchStrings from "react-timeago/lib/language-strings/ar";
@@ -241,7 +242,7 @@ function ReportsList() {
                                   size="md"
                                   onClick={() => DeleteReport(IdToDelete)}
                                   data-bs-dismiss="modal"
-                                  className="popup btn"
+                                  className="popup3 btn"
                                 >
                                   {" "}
                                   حذف{" "}
@@ -249,11 +250,60 @@ function ReportsList() {
                                 <Button
                                   variant="secondary"
                                   size="md"
-                                  data-bs-dismiss="modal"
                                   className="popup-cancle"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#myModal-success"
+                                  // className="popup btn"
                                 >
                                   {" "}
                                   إلغاء{" "}
+                                </Button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <div className="modal" id="myModal-success">
+                          <div className="modal-dialog modal-dialog-centered">
+                            <div className="modal-content">
+                              <div class="icon-box">
+                                <i id="material-icons">
+                                  {" "}
+                                  <BsCheck size={108} />{" "}
+                                </i>
+                              </div>
+                              <div className="">
+                                <div className="row align-items-center  justify-content-end mb-4 pt-2">
+                                  <div className="col-6 p-0 ">
+                                    <h4 className=" m-5"> </h4>
+                                  </div>
+                                  <div className="col-1"></div>
+                                </div>
+                                <div className="modal-body justify-content-center">
+                                  <div className="row align-items-center  justify-content-center">
+                                    <div className="row align-items-center justify-content-between pb-4  pt-2">
+                                      <div className="text-center  h3">
+                                        تم حذف البلاغ بنجاح !
+                                      </div>
+                                    </div>
+                                    <div className="row justify-content-start align-items-start">
+                                      <div className="col-8 h5"></div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div></div>
+                              <div className="modal-footer border border-0 justify-content-center">
+                                <Button
+                                  variant="secondary"
+                                  size="md"
+                                  data-bs-dismiss="modal"
+                                  className="popup-cancle"
+                                  // className="popup btn"
+                                >
+                                  {" "}
+                                  حسنًا{" "}
                                 </Button>
                               </div>
                             </div>
