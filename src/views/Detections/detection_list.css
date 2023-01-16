@@ -94,3 +94,10 @@
   display: flex;
   justify-content: center;
 }
+
+.No-data2 {
+  text-align: center;
+  font-size: 23px;
+  color: rgba(128, 128, 128, 0.849);
+  padding-top: 20%;
+}
