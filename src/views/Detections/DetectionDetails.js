@@ -148,7 +148,10 @@ function DetectionDetails({detection}) {
         </div>
         <hr className="hr m-0 p-2" />
         <div className="container pic rounded mb-4 shadow-sm">
-        <img src={Waste} alt="Waste" />;
+        { <img src={"data:image/jpeg;base64,"+ detection} /> 
+              // <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
+              // //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
+            }
         </div>
      
 
@@ -242,7 +245,7 @@ function DetectionDetails({detection}) {
               <Button
                   variant="secondary"
                   size="md"
-                  className="popup btn "
+                  className="popup3 btn "
           onClick={Decline}
           data-bs-dismiss="modal"
                 >
@@ -308,7 +311,7 @@ function DetectionDetails({detection}) {
               <Button
                   variant="secondary"
                   size="md"
-                  className="popup btn "
+                  className="popup2 btn "
           onClick={Accept}
           data-bs-dismiss="modal"
                 >

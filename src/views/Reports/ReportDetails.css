@@ -148,6 +148,24 @@
   color: white;
   width: 30%;
 }
+.popup2.btn {
+  background-color: var(--light_green) !important;
+  border: none;
+  color: white;
+  width: 30%;
+}
+.popup3.btn {
+  background-color: rgb(169, 34, 0) ;
+  border: none;
+  color: white;
+  width: 30%;
+}
+.popup.btn {
+  background-color: var(--brown) !important;
+  border: none;
+  color: white;
+  width: 30%;
+}
 .popup.btn:hover {
   background-color: rgb(151, 89, 38) !important;
   color: white;

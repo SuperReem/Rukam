@@ -164,7 +164,10 @@ function ReportDetails({ repId }) {
                       <div className="heading text-end pe-2">صور المخالفة</div>
                       <hr className="hr m-0 p-2" />
                       <div className="container pic rounded mb-4 shadow-sm p-0">
-                        <img src={Waste} alt="Waste" />
+                      { <img src={"data:image/jpeg;base64,"+ image} /> 
+              // <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
+              // //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
+            }
                       </div>
                       <div className="heading text-end pe-2">ملاحظات</div>
                       <hr className="hr m-0 p-2" />
@@ -279,7 +282,7 @@ function ReportDetails({ repId }) {
               <Button
                   variant="secondary"
                   size="md"
-                  className="popup btn "
+                  className="popup4 btn "
           onClick={Send}
           data-bs-dismiss="modal"
                 >
