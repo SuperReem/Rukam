@@ -121,3 +121,13 @@
 .popup-cancle:hover {
   background-color: var(--primary) !important;
 }
+
+#pagination-container {
+  position: fixed;
+  bottom: 0;
+  height: 200px;
+  justify-content: center;
+  margin-right: 15%;
+  left: 0;
+  right: 0;
+}

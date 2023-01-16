@@ -83,7 +83,6 @@
 #page-number {
   text-align: center;
   font-size: 0.9em !important;
-  margin-top: 1%;
 }
 
 #pagination button:hover {
@@ -94,7 +93,7 @@
 #pagination {
   display: flex;
   justify-content: center;
-  margin-top: 2%;
+  margin-top: 1%;
 }
 
 .No-data2 {
@@ -103,10 +102,7 @@
   color: rgba(128, 128, 128, 0.849);
   padding-top: 20%;
 }
-#pagination-container{
-  padding-bottom: 1%;
-  height: 70%;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
+
+.divSizing-detection {
+  height: 355px;
 }

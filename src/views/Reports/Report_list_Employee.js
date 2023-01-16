@@ -263,56 +263,64 @@ function ReportsListEmployee() {
                     </div>
                   </>
                 ))}
-              <div id="pagination">
-                {pageNumber + 1 == 1 ? (
-                  <button class="btn btn-primary btn-circle btn-smdis" disabled>
-                    <BsChevronRight size={18} />
-                  </button>
-                ) : (
-                  <button
-                    onClick={gotoPrevious}
-                    class="btn btn-primary btn-circle btn-sm"
-                  >
-                    <BsChevronRight size={18} />
-                  </button>
-                )}
-                {pages.map((pageIndex) =>
-                  pageNumber == pageIndex ? (
+              <div id="pagination-container">
+                <div id="pagination">
+                  {pageNumber + 1 == 1 ? (
                     <button
-                      key={pageIndex}
-                      onClick={() => setPageNumber(pageIndex)}
-                      class="btn btn-primary btn-circle btn-smpree"
+                      class="btn btn-primary btn-circle btn-smdis"
+                      disabled
                     >
-                      {ArabicNumbers(pageIndex + 1)}
+                      <BsChevronRight size={18} />
                     </button>
                   ) : (
                     <button
-                      key={pageIndex}
-                      onClick={() => setPageNumber(pageIndex)}
+                      onClick={gotoPrevious}
                       class="btn btn-primary btn-circle btn-sm"
                     >
-                      {ArabicNumbers(pageIndex + 1)}
+                      <BsChevronRight size={18} />
                     </button>
-                  )
-                )}
-                {pageNumber + 1 == numberOfPages ? (
-                  <button class="btn btn-primary btn-circle btn-smdis" disabled>
-                    <BsChevronLeft size={18} />
-                  </button>
-                ) : (
-                  <button
-                    onClick={gotoNext}
-                    class="btn btn-primary btn-circle btn-sm"
-                  >
-                    <BsChevronLeft size={18} />
-                  </button>
-                )}
-              </div>
+                  )}
+                  {pages.map((pageIndex) =>
+                    pageNumber == pageIndex ? (
+                      <button
+                        key={pageIndex}
+                        onClick={() => setPageNumber(pageIndex)}
+                        class="btn btn-primary btn-circle btn-smpree"
+                      >
+                        {ArabicNumbers(pageIndex + 1)}
+                      </button>
+                    ) : (
+                      <button
+                        key={pageIndex}
+                        onClick={() => setPageNumber(pageIndex)}
+                        class="btn btn-primary btn-circle btn-sm"
+                      >
+                        {ArabicNumbers(pageIndex + 1)}
+                      </button>
+                    )
+                  )}
+                  {pageNumber + 1 == numberOfPages ? (
+                    <button
+                      class="btn btn-primary btn-circle btn-smdis"
+                      disabled
+                    >
+                      <BsChevronLeft size={18} />
+                    </button>
+                  ) : (
+                    <button
+                      onClick={gotoNext}
+                      class="btn btn-primary btn-circle btn-sm"
+                    >
+                      <BsChevronLeft size={18} />
+                    </button>
+                  )}
+                </div>
 
-              <div id="page-number2">
-                {" "}
-                صفحة {ArabicNumbers(pageNumber + 1)} -{" "}
-                {ArabicNumbers(numberOfPages)}
+                <div id="page-number2">
+                  {" "}
+                  صفحة {ArabicNumbers(pageNumber + 1)} -{" "}
+                  {ArabicNumbers(numberOfPages)}
+                </div>
               </div>
             </>
           ) : (
