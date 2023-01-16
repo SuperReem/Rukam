@@ -100,6 +100,9 @@
   background-color: rgb(17, 101, 17);
   color: white;
 }
+.model{
+  --bs-modal-width: 450px;
+}
 .save.btn {
   background-color: var(--light_green) ;
   color: white;
