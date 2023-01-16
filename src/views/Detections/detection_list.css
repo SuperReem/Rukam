@@ -32,7 +32,7 @@
   background-color: white;
   border-radius: 10px;
   box-shadow: 1px 1px 15px 1px #ebebeb;
-  height: 83%;
+  height: 82%;
   margin-left: 3%;
   margin-right: 3%;
   font-size: 0.45em;
@@ -94,6 +94,14 @@
 #pagination {
   display: flex;
   justify-content: center;
+  margin-top: 2%;
+}
+
+.No-data2 {
+  text-align: center;
+  font-size: 23px;
+  color: rgba(128, 128, 128, 0.849);
+  padding-top: 20%;
 }
 #pagination-container{
   padding-bottom: 1%;
