@@ -111,3 +111,13 @@
   font-size: 23px;
   color: rgba(128, 128, 128, 0.849);
 }
+.popup-cancle {
+  background-color: var(--light_green) !important;
+  border: none;
+  color: white;
+  width: 30%;
+}
+
+.popup-cancle:hover {
+  background-color: var(--primary) !important;
+}

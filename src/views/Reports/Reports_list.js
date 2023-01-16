@@ -200,7 +200,6 @@ function ReportsList() {
                         </div>
                       </div>
                     </div>
-                    {/* jjdj */}
                     <div>
                       <div className="modal" id="myModal">
                         <div className="modal-dialog modal-dialog-centered">
@@ -221,7 +220,6 @@ function ReportsList() {
                               </div>
                               <div className="modal-body justify-content-center">
                                 <div className="row align-items-center  justify-content-center">
-                                  <div className="col-8 progressbar  pb-4"></div>
                                   <div className="row align-items-center justify-content-between pb-4 me-5 pt-2">
                                     <div className="justify-content-center me-3 h4">
                                       هل أنت متأكد من حذف هذا البلاغ؟
@@ -238,10 +236,9 @@ function ReportsList() {
                               <Button
                                 variant="secondary"
                                 size="md"
-                                id="delete-report-button"
                                 onClick={() => DeleteReport(IdToDelete)}
                                 data-bs-dismiss="modal"
-                                className="popup btn "
+                                className="popup btn"
                               >
                                 {" "}
                                 حذف{" "}
@@ -249,9 +246,8 @@ function ReportsList() {
                               <Button
                                 variant="secondary"
                                 size="md"
-                                id="details-button"
                                 data-bs-dismiss="modal"
-                                className="popup btn "
+                                className="popup-cancle"
                               >
                                 {" "}
                                 إلغاء{" "}
