@@ -1,6 +1,6 @@
 import './ReportDetails.css';
 import { FiSave } from "react-icons/fi";
-import Waste from '../../assets/images/waste.png';
+import Waste2 from '../../assets/images/waste2.jpeg';
 import Button from "react-bootstrap/Button"
 import { BsCalendar4 } from "react-icons/bs";
 import { useEffect } from "react";
@@ -114,7 +114,7 @@ function EditReport({report}) {
                 <div id="title"> تحرير البلاغ</div>
               </div>
             </div>
-        <div class="he shadow-sm ms-4 me-3 rounded-4 pb-0">
+        <div class="he shadow-sm ms-4 me-3 rounded-4 pb-0 mt-2">
 
 <div className="row">
     <div className="col-sm-6 ">
@@ -131,10 +131,12 @@ function EditReport({report}) {
           صور المخالفة
         </div>
         <hr className="hr m-0 p-2" />
-        <div className="container pic rounded mb-4 shadow-sm">
-        { <img src={"data:image/jpeg;base64,"+ report.image} /> 
+        <div className="container pic rounded mb-4 shadow-sm p-0">
+        { 
+        //<img src={"data:image/jpeg;base64,"+ report.image} /> 
               // <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
               // //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
+              <img src={Waste2} alt="Waste" className='imagewaste'/>
             }
         </div>
         <div className="heading text-end pe-2">
