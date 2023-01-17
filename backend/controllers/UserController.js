@@ -41,7 +41,7 @@ const loginUser = async (req, res) => {
   
       res.status(200).json({email,userType, token, fullName , region})///
     } catch (error) {
-      res.status(400).json({error: 'البريد الإلكتروني، أو كلمة المرور خاطئة، يرجى المحاولة مجددا!'})
+      res.status(400).json({error: 'البريد الإلكتروني أو كلمة المرور خاطئة، يرجى المحاولة مجددًا !'})
     }
   }
 

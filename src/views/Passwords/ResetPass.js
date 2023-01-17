@@ -142,7 +142,7 @@ function ResetPass() {
           <div className="row justify-content-center">
             <div className="col-lg-5 col-md-7">
               <div className="card bg-white bg-secondary shadow border-0 rounded-280">
-                <div className="card-body px-lg-5 py-lg-5">
+                <div className="card-body px-lg-5 py-lg-4  ">
                   <div className="text-center text-muted mb-4 text-black">
                     <h5 className="text-black">
                       يرجى إدخال كلمة المرور الجديدة
