@@ -157,9 +157,9 @@ function ReportDetails({ repId }) {
                         الوقت والتاريخ
                       </div>
                       <hr className="hr m-0 p-2" />
-                      <div className="container time  rounded p-1 mb-4 align-items-right ">
-                        <BsCalendar4 color="var(--primary)" className="ms-4" />
-                         {timestamp}
+                      <div className="container time  ">
+                      <h6>   <BsCalendar4 color="var(--primary)" className="ms-4" />
+                       {timestamp}</h6>
                       </div>
                       <div className="heading text-end pe-2">صور المخالفة</div>
                       <hr className="hr m-0 p-2" />

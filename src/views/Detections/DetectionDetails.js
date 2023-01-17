@@ -162,9 +162,9 @@ function DetectionDetails({detection}) {
         <div className="heading text-end pe-2">
 الوقت والتاريخ        </div>
         <hr className="hr m-0 p-2" />
-        <div className="container time  rounded p-1 mb-4 align-items-right ">
-        <BsCalendar4 color='var(--primary)' className='ms-4'/>  
-        {detection.time}
+        <div className="container time ">
+       <h6> <BsCalendar4 color='var(--primary)' className='ms-4'/>  
+        {detection.time}</h6>
         </div>
         <div className="heading text-end pe-2">
           موقع المخالفة
@@ -184,7 +184,7 @@ function DetectionDetails({detection}) {
           )}
         </div> 
         <div className="row"> </div>
-        <div className="container mt-5 pt-5">
+        <div className="container mt-4 mb-4 pt-3">
           <div className="row">
             <div className="col-6">
             <Button variant="secondary" size="lg" className="edit justify-content-between" data-bs-toggle="modal"
@@ -194,7 +194,7 @@ function DetectionDetails({detection}) {
               </Button>
             </div>
             <div className="col-6">
-              <Button variant="secondary" size="lg" className="cancel btn"    data-bs-toggle="modal"
+              <Button variant="secondary" size="lg" className="deleteD btn"    data-bs-toggle="modal"
                       data-bs-target="#myModal">  <BsTrash color='white' /> رفض المخالفة</Button>
             </div>
             </div>

@@ -64,26 +64,26 @@ function UpdateStatus({repId,repStat}) {
 
 
   //location
-    const center = {
-      lat: 24.72,
-      lng: 46.62,
-    };
-    const { isLoaded } = useJsApiLoader({
-      id: "google-map-script",
-      googleMapsApiKey: "AIzaSyDvPoFbe6MDqYRGifizC34rXPlgGzCd9sE",
-    });
-    const [map, setMap] = React.useState(null);
-  
-    const onLoad = React.useCallback(function callback(map) {
-      const bounds = new window.google.maps.LatLngBounds(center);
-      map.fitBounds(bounds);
-      setMap(map);
-    }, []);
-  
-    const onUnmount = React.useCallback(function callback(map) {
-      setMap(null);
-    }, []);
-  
+  const center = {
+    lat: 24.72,
+    lng: 46.62,
+  };
+  const { isLoaded } = useJsApiLoader({
+    id: "google-map-script",
+    googleMapsApiKey: "AIzaSyBUMSPnho9iIVnF-MKvOMgYw_bRBwc7U7Q",
+  });
+
+  const [map, setMap] = React.useState(null);
+
+  const onLoad = React.useCallback(function callback(map) {
+    const bounds = new window.google.maps.LatLngBounds(center);
+    map.fitBounds(bounds);
+    setMap(map);
+  }, []);
+
+  const onUnmount = React.useCallback(function callback(map) {
+    setMap(null);
+  }, []);
   
 
 
@@ -181,9 +181,9 @@ useEffect(() => {
             <div className="m-2 mt-0">
               <div className="heading text-end pe-2">الوقت والتاريخ</div>
               <hr className="hr m-0 p-2" />
-              <div className="container time  rounded p-1 mb-4 align-items-right ">
-                <BsCalendar4 color="var(--primary)" className="ms-4" />
-                {timestamp   }           </div>
+              <div className="container time ">
+               <h6> <BsCalendar4 color="var(--primary)" className="ms-4" />
+                {timestamp   }     </h6>      </div>
               <div className="heading text-end pe-2">صور المخالفة</div>
               <hr className="hr m-0 p-2" />
               <div className="container pic rounded mb-4 shadow-sm">

@@ -16,10 +16,11 @@
 }
 
 .container.time {
-  font-size: 1.2rem;
-  width: 60%;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
+  border-radius: 5px;
+    width: 60%;
+    padding: 0.2em 0.5em 0.1em 0.5em;
+    margin-right: 0.2em;
+    margin-bottom: 24px;
   background-color: var(--light_grey);
 }
 .reportstatus-container {
@@ -27,7 +28,7 @@
   width: 40%;
   padding: 0.1em 0.5em 0.1em 0.5em;
   margin-right: 0.2em;
-  margin-bottom: 0.2em;
+  margin-bottom:24px;
 }
 .pending {
   text-align: center;
@@ -99,8 +100,8 @@
   background-color: rgb(17, 101, 17);
   color: white;
 }
-.model{
-  --bs-modal-width: 450px;
+.modal{
+  --bs-modal-width: 450px !important;
 }
 .save.btn {
   background-color: var(--light_green);
@@ -121,6 +122,17 @@
 }
 .cancel.btn:hover {
   background-color: rgb(151, 89, 38) !important;
+  color: white;
+}
+.deleteD.btn{
+  background-color: rgb(169, 34, 0) ;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+.deleteD.btn:hover {
+  background-color: rgb(133, 27, 0) ;
   color: white;
 }
 .btn.closebtn {
@@ -156,6 +168,16 @@
 }
 .popup3.btn {
   background-color: rgb(169, 34, 0) ;
+  border: none;
+  color: white;
+  width: 30%;
+}
+.popup3.btn:hover {
+  background-color: rgb(133, 27, 0) ;
+  color: white;
+}
+.popup4.btn {
+  background-color: var(--primary) ;
   border: none;
   color: white;
   width: 30%;
