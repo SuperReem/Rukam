@@ -8,7 +8,7 @@ import droneImg from "../../assets/images/Drone.png";
 import { MdOutlineEdit } from 'react-icons/md';
 import {AiOutlineDelete } from 'react-icons/ai';
 import { BsTrash } from "react-icons/bs";
-import swal from 'sweetalert';
+// import swal from 'sweetalert';
 import { IoAddCircle } from 'react-icons/io5';
 import {IoAddSharp } from 'react-icons/io5';
 import {BiSave} from 'react-icons/bi';
