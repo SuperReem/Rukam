@@ -128,6 +128,7 @@ const Login = () => {
                         name="password"
                         onChange={(e) => setPassword(e.target.value)} 
         value={password} 
+        required
                       />
                            
                               <span onClick={togglePassword} className="showhide  position-absolute top-50  translate-middle " >

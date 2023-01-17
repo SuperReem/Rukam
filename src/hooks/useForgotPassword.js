@@ -21,18 +21,18 @@ export const useForgotPassword  = () => {
     console.log("status")
     console.log(json.status )
 
-    if (!response.ok) {
-      console.log("Invalid User")
-      setIsLoading(false)
-      setError(json.error)
-  } 
-  else {
+  //   if (!response.ok) {
+  //     console.log("Invalid User")
+  //     setIsLoading(false)
+  //     setError(json.error)
+  // } 
+  // else {
     console.log("??valid User")
     setIsLoading(false)
     // setEmail("");
     // setMessage(true)
   }
-  }
+  // }
 
   return { forgotPassword, isLoading, error }
 }

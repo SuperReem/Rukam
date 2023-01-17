@@ -244,7 +244,7 @@ function ResetPass() {
                       <button
                         // onClick={onSubmit} 
                         disabled={!disable}
-                        className="btn btn-primary my-2  px-5 classButton"
+                        className="btn btn-primary my-2  px-5 classButton changepass "
                       >
                         تغيير كلمة المرور
                       </button>

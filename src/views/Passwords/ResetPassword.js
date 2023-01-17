@@ -8,12 +8,15 @@ import validator from 'validator'
 import { useContext, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForgotPassword } from "../../hooks/useForgotPassword"
+import Button from "react-bootstrap/Button";
 
 
 function ResetPassword() {
  
   const [email, setEmail] = useState('')
   const [emailError, setEmailError] = useState('') // later
+  const [emailSent, setEmailSent] = useState('') // later
+
   //
   const {forgotPassword, error, isLoading} = useForgotPassword()
 
@@ -27,11 +30,13 @@ const sendLink = async (e) => {
   e.preventDefault();
 
   if (email === "") {
-    console.log("email is required!" // set email errors 
+    setEmailError("يرجى إدخال البريد الإلكتروني" // set email errors 
       );
   } else if (!email.includes("@")) {
-    console.log("includes @ in your email!");
+    setEmailError("البريد الإلكتروني غير صالح");
   } else {
+    setEmailError('');
+    setEmailSent('jj');
     console.log("above fetch")
     console.log(email)
 
@@ -39,7 +44,6 @@ const sendLink = async (e) => {
   
 
     await forgotPassword(email)
-
 
   }
 }
@@ -82,6 +86,8 @@ const sendLink = async (e) => {
                   <div className="text-center text-muted mb-4 text-black">
                     <h5 className="text-black">أدخل بريدك الإلكتروني</h5>
                   </div>
+                  {emailError && <div className="error text-danger mt-1 ">{emailError}</div>}
+
                   <form role="form">
                     <div className="col-12 mb-4">
                       <label
@@ -101,7 +107,16 @@ const sendLink = async (e) => {
                         // onChange={(e) => validateEmail(e)}
                         required
                       />
-                         <span className="text-danger mt-1 ">{emailError}</span>
+                         {/* <span className="text-danger mt-1 ">{emailError}</span> */}
+
+                         {/* <div className=" text-left d-flex justify-content-end  mb-3">
+                      <Link
+                        to="/login"
+                        className="text-decoration-none text-black "
+                      >
+تسجيل الدخول                      </Link>
+
+                    </div> */}
 
                     </div>
 
@@ -113,7 +128,20 @@ const sendLink = async (e) => {
                       >
                         إرسال
                       </button>
-                      {error && <div className="error">{error}</div>}
+
+                      <Link to="/EmailResetPassword" state={{ userEmail: email }} className= "text-decoration-none mt-4  text-secondary" >
+                        l
+</Link>
+{/* 
+                      <Link to="/EmailResetPassword" state={{ userEmail: email }} >
+                      <Button
+                        type="Submit"
+                        onClick={sendLink}
+                        className="btn btn-primary my-2  px-5 classButton"
+                      >
+                        إرjjjسال
+                      </Button>
+                         </Link> */}
 
                     </div>
                   </form>

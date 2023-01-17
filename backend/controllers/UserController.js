@@ -66,9 +66,10 @@ const forgotPassword = async (req, res) => {
   console.log(req.body);
   User.findOne({ email }, (err, user) => {
     if(err || !user){
-      return res.status(400).json({error: 'email dose not exist'})
+      // return 
+      res.status(400).json({error: 'error #'})
     }
-    const name = user.fullName
+    const name = user.fullName ||''
     const token = createToken(user._id)
     const link =  "http://localhost:3000/resetpassword/"+token
   
@@ -86,15 +87,15 @@ const forgotPassword = async (req, res) => {
     return user.updateOne({resetLink: token}, function(err, success){
       if(err || !user){
         console.log("error sending email");
-        return res.status(400).json({error: 'reset password error '})
+        return res.status(400).json({error: 'error em '})
   
       }else{
 
 transporter.sendMail(mailOptions, function(error, info){
   if (error) {
-    console.log(error);
+    console.log("error");
   } else {
-    console.log('Email sent: ' + info.response);
+    console.log('Email sent: ');
   }
 });
 
@@ -117,7 +118,7 @@ const resetPassword = async (req, res) => {
       User.findOne({ resetLink }, async (err, user) =>{
         if(err || !user){
           console.log("errpr no user");
-          return res.status(400).json({error: "error.message}"})
+          return res.status(400).json({error: "error.message3"})
     
         }
 
@@ -135,7 +136,7 @@ const resetPassword = async (req, res) => {
             console.log("body");
             console.log("body has not changed ");
 
-            return res.status(400).json({error: error.message})
+            return res.status(400).json({error: "error.message4"})
       
           }else{
               console.log('changed ');
@@ -145,7 +146,7 @@ const resetPassword = async (req, res) => {
 
       })
   }else{
-      return res.status(401).json({error: error.message})
+      return res.status(401).json({error: "error.message5"})
   }
 }
 
