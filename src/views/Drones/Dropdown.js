@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { IoChevronDownSharp } from 'react-icons/io5';
 
 function Dropdown({ region, setRegion }) {
   const [isActive, setIsActive] = useState(false);
@@ -7,8 +7,12 @@ function Dropdown({ region, setRegion }) {
   return (
     <div className="dropdown">
       <div className="dropdown-btn" onClick={(e) => setIsActive(!isActive)}>
-        <span className="fas fa-caret-down"></span>
+       
         {region}
+        <span className="fas fa-caret-down" style={{paddingRight:"14.5rem",color:"black"}}> 
+        <IoChevronDownSharp/>
+
+        </span>
       </div>
       {isActive && (
         <div className="dropdown-content">

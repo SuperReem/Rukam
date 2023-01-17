@@ -11,11 +11,8 @@ const dronesSchema = new Schema(
     },
     image: {
       type: String,
-    },
-    user_id: {
-      type: String,
-      required: true
     }
+    
   },
   { timestamps: true }
 );
