@@ -1,5 +1,5 @@
 import '../Reports/ReportDetails.css';
-import Waste from '../../assets/images/waste.png';
+import Waste2 from '../../assets/images/waste2.jpeg';
 import Button from "react-bootstrap/Button"
 import { BsCalendar4 } from "react-icons/bs";
 import { BsCheckLg } from "react-icons/bs";
@@ -131,7 +131,7 @@ function DetectionDetails({detection}) {
                 <div id="title"> تفاصيل البلاغ</div>
               </div>
             </div>
-        <div class="he shadow-sm ms-4 me-3 rounded-4 pb-0">
+        <div class="he shadow-sm ms-4 me-3 rounded-4 pb-0 mt-2">
 
 <div className="row">
     <div className="col-sm-6 ">
@@ -147,10 +147,12 @@ function DetectionDetails({detection}) {
           صور المخالفة
         </div>
         <hr className="hr m-0 p-2" />
-        <div className="container pic rounded mb-4 shadow-sm">
-        { <img src={"data:image/jpeg;base64,"+ detection} /> 
+        <div className="container pic rounded mb-4 shadow-sm p-0">
+        { 
+        //<img src={"data:image/jpeg;base64,"+ detection} /> 
               // <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
               // //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
+              <img src={Waste2} alt="Waste" className='imagewaste'/>
             }
         </div>
      
@@ -162,9 +164,9 @@ function DetectionDetails({detection}) {
         <div className="heading text-end pe-2">
 الوقت والتاريخ        </div>
         <hr className="hr m-0 p-2" />
-        <div className="container time  rounded p-1 mb-4 align-items-right ">
-        <BsCalendar4 color='var(--primary)' className='ms-4'/>  
-        {detection.time}
+        <div className="container time ">
+       <h6> <BsCalendar4 color='var(--primary)' className='ms-4'/>  
+        {detection.time}</h6>
         </div>
         <div className="heading text-end pe-2">
           موقع المخالفة
@@ -184,7 +186,7 @@ function DetectionDetails({detection}) {
           )}
         </div> 
         <div className="row"> </div>
-        <div className="container mt-5 pt-5">
+        <div className="container mt-4 mb-4 pt-3">
           <div className="row">
             <div className="col-6">
             <Button variant="secondary" size="lg" className="edit justify-content-between" data-bs-toggle="modal"
@@ -194,7 +196,7 @@ function DetectionDetails({detection}) {
               </Button>
             </div>
             <div className="col-6">
-              <Button variant="secondary" size="lg" className="cancel btn"    data-bs-toggle="modal"
+              <Button variant="secondary" size="lg" className="deleteD btn"    data-bs-toggle="modal"
                       data-bs-target="#myModal">  <BsTrash color='white' /> رفض المخالفة</Button>
             </div>
             </div>
@@ -296,7 +298,6 @@ function DetectionDetails({detection}) {
                     </div>
                     <div className="row justify-content-start align-items-start">
                       <div className="col-8 h5">
-             
                       </div>
                     </div>
                   </div>
@@ -306,8 +307,6 @@ function DetectionDetails({detection}) {
               <div></div>
 
               <div className="modal-footer border border-0 justify-content-evenly">
-      
-  
               <Button
                   variant="secondary"
                   size="md"
@@ -336,6 +335,7 @@ function DetectionDetails({detection}) {
           </div>
         </div>
       </div>
+      
 </div>
     </>
       ) : (

@@ -1,7 +1,7 @@
 import "./ReportDetails.css";
 import { useEffect } from "react";
 import React, { useState } from "react";
-import Waste from "../../assets/images/waste.png";
+import Waste2 from "../../assets/images/waste2.jpeg";
 import Button from "react-bootstrap/Button";
 import { BsCalendar4 } from "react-icons/bs";
 import EditReport from "../../views/Reports/EditReport";
@@ -149,7 +149,7 @@ function ReportDetails({ repId }) {
             </div>
        
             
-              <div class="he shadow-sm ms-4 me-3 rounded-4 pb-0">
+              <div class="he shadow-sm ms-4 me-3 rounded-4 pb-0 mt-2">
                 <div className="row">
                   <div className="col-sm-6 ">
                     <div className="m-2 mt-0">
@@ -157,16 +157,18 @@ function ReportDetails({ repId }) {
                         الوقت والتاريخ
                       </div>
                       <hr className="hr m-0 p-2" />
-                      <div className="container time  rounded p-1 mb-4 align-items-right ">
-                        <BsCalendar4 color="var(--primary)" className="ms-4" />
-                         {timestamp}
+                      <div className="container time  ">
+                      <h6>   <BsCalendar4 color="var(--primary)" className="ms-4" />
+                       {timestamp}</h6>
                       </div>
                       <div className="heading text-end pe-2">صور المخالفة</div>
                       <hr className="hr m-0 p-2" />
                       <div className="container pic rounded mb-4 shadow-sm p-0">
-                      { <img src={"data:image/jpeg;base64,"+ image} /> 
+                      { 
+                      //<img src={"data:image/jpeg;base64,"+ image} /> 
               // <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
               // //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
+              <img src={Waste2} alt="Waste" className='imagewaste'/>
             }
                       </div>
                       <div className="heading text-end pe-2">ملاحظات</div>
