@@ -37,7 +37,6 @@ function ReportDetails({ repId }) {
           },
         });
         const report = await response.json();
-  
         if (!response.ok) {
           console.log("wrong");
           console.log(repId);
@@ -48,9 +47,10 @@ function ReportDetails({ repId }) {
           setimage(report.image);
           setNotes(report.notes);
           setLocation(report.location);
-          setTimestamp(report.timestamp);
+          setTimestamp(Intl.DateTimeFormat("ar-EG", {
+            dateStyle: "full",
+          }).format(new Date(report.createdAt)));
           setStatus(report.status);
-         
           console.log("get:", report);
           if(report.status === "unsent"){
             setDisable(false);
@@ -159,9 +159,8 @@ function ReportDetails({ repId }) {
                       <hr className="hr m-0 p-2" />
                       <div className="container time  ">
                       <h6>   <BsCalendar4 color="var(--primary)" className="ms-4" />
-                      {   Intl.DateTimeFormat("ar-EG", {
-                                dateStyle: "full",
-                              }).format(new Date(timestamp))}</h6>
+                      {  timestamp}
+                    </h6>
                       </div>
                       <div className="heading text-end pe-2">صور المخالفة</div>
                       <hr className="hr m-0 p-2" />
