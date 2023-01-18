@@ -58,7 +58,7 @@ function DetectionDetails({ detection }) {
 
     const report = {
       reportId: "9898",
-      timestamp: detection.time,
+      timestamp: detection.createdAt,
       status: "unsent",
       region: detection.region,
       image: detection.image,
@@ -157,7 +157,9 @@ function DetectionDetails({ detection }) {
                       <h6>
                         {" "}
                         <BsCalendar4 color="var(--primary)" className="ms-4" />
-                        {detection.time}
+                        {   Intl.DateTimeFormat("ar-EG", {
+                                dateStyle: "full",
+                              }).format(new Date(detection.createdAt))}
                       </h6>
                     </div>
                     <div className="heading text-end pe-2">موقع المخالفة</div>

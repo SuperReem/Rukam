@@ -126,7 +126,9 @@ function EditReport({report}) {
         <div className="container time">
 <h6><BsCalendar4 color='var(--primary)' className='ms-4'/>       
      
-{report.timestamp}  </h6> </div>
+{   Intl.DateTimeFormat("ar-EG", {
+                                dateStyle: "full",
+                              }).format(new Date(report.timestamp))} </h6> </div>
         <div className="heading text-end pe-2">
           صور المخالفة
         </div>
