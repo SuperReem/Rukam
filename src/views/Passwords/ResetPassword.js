@@ -5,17 +5,17 @@ import TopNavbar from "../TopNavbar/TopNavbar";
 import Drone from "../../assets/images/DroneToFly.png";
 import validator from 'validator'
 //
+// import EmailResetPassword from "../../views/Passwords/EmailResetPassword";
 import { useContext, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForgotPassword } from "../../hooks/useForgotPassword"
 import Button from "react-bootstrap/Button";
 
-
 function ResetPassword() {
+  let Navigate= useNavigate()
  
   const [email, setEmail] = useState('')
-  const [emailError, setEmailError] = useState('') // later
-  const [emailSent, setEmailSent] = useState('') // later
+  const [emailError, setEmailError] = useState('') 
 
   //
   const {forgotPassword, error, isLoading} = useForgotPassword()
@@ -25,7 +25,6 @@ function ResetPassword() {
     setEmail(e.target.value)
 }
 
-///////////////
 const sendLink = async (e) => {
   e.preventDefault();
 
@@ -36,24 +35,19 @@ const sendLink = async (e) => {
     setEmailError("البريد الإلكتروني غير صالح");
   } else {
     setEmailError('');
-    setEmailSent('jj');
-    console.log("above fetch")
     console.log(email)
 
-    ///
   
-
-    await forgotPassword(email)
-
+    await forgotPassword(email).then(
+      NavigateReset(email)
+    )
   }
+  
+
 }
-  
-
-  
-
-
-  
-
+const NavigateReset = (email) => {
+  Navigate("/EmailResetPassword", {state:{ userEmail: email}});
+}
   return (
     <body className=" ">
       <div className="main-content   ">
@@ -104,20 +98,8 @@ const sendLink = async (e) => {
                         placeholder="Ma***@gmail.com"
                         value={email}
                         onChange={setVal}
-                        // onChange={(e) => validateEmail(e)}
                         required
                       />
-                         {/* <span className="text-danger mt-1 ">{emailError}</span> */}
-
-                         {/* <div className=" text-left d-flex justify-content-end  mb-3">
-                      <Link
-                        to="/login"
-                        className="text-decoration-none text-black "
-                      >
-تسجيل الدخول                      </Link>
-
-                    </div> */}
-
                     </div>
 
                     <div className="text-center">
@@ -128,20 +110,6 @@ const sendLink = async (e) => {
                       >
                         إرسال
                       </button>
-
-                      <Link to="/EmailResetPassword" state={{ userEmail: email }} className= "text-decoration-none mt-4  text-secondary" >
-                        l
-</Link>
-{/* 
-                      <Link to="/EmailResetPassword" state={{ userEmail: email }} >
-                      <Button
-                        type="Submit"
-                        onClick={sendLink}
-                        className="btn btn-primary my-2  px-5 classButton"
-                      >
-                        إرjjjسال
-                      </Button>
-                         </Link> */}
 
                     </div>
                   </form>
@@ -157,4 +125,5 @@ const sendLink = async (e) => {
   );
 }
 export default ResetPassword;
+
 
