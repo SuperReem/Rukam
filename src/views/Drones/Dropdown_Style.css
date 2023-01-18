@@ -42,20 +42,17 @@
     /* background: #fff; */
     box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.03);
     /*font-weight: bold;*/
-   
     color: rgb(190, 190, 190);
    /* display: flex; ??*/
-    align-items: center;
+   
     cursor: pointer;
-    justify-content: space-between;
+   
     font-size: 15px;
    /* border-color: var(--light_brown) ;*/
-   border-radius: 9px;
+   border-radius: 5px;
     
   }
-  .fas-fa-caret-down{
-    padding: 50px;
-  }
+
   
   .dropdown .dropdown-content {
     position: absolute;

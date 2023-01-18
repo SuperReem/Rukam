@@ -5,26 +5,21 @@ import { useNavigate } from "react-router-dom";
 import "../../views/Drones/Drones_list.css";
 import { useEffect, useState } from "react";
 import droneImg from "../../assets/images/Drone.png";
-// import { MdOutlineEdit } from "react-icons/md";
-// import { AiOutlineDelete } from "react-icons/ai";
-// import { BsTrash } from "react-icons/bs";
-// // import swal from 'sweetalert';
-// import { IoAddCircle } from "react-icons/io5";
-// import { IoAddSharp } from "react-icons/io5";
-// import { BiSave } from "react-icons/bi";
+import { MdOutlineEdit } from "react-icons/md";
+import { BsTrash } from "react-icons/bs";
+import React from "react";
 
 // import Dropdown from "../../views/Drones/Dropdown";
 // // import "views/Drones/Dropdown_Style.css";
 // // import 'views/Drones/Drones.css';
 
-// import {
-//   GoogleMap,
-//   Marker,
-//   useJsApiLoader,
-//   MarkerF,
-// } from "@react-google-maps/api";
-// import React from "react";
-// import DroneList from "../../views/Drones/Drones_list";
+ import {
+  GoogleMap,
+  Marker,
+  useJsApiLoader,
+  MarkerF,
+} from "@react-google-maps/api";
+
 
 const Drone_card = ({ drone }) => {
   // const [droneName, setName] = useState("");
@@ -60,35 +55,36 @@ const Drone_card = ({ drone }) => {
   //   }
   // };
 
-  // console.log("thisi is one drone", drone);
-  // const [dr, setDrone] = useState();
+//  console.log("thisi is one drone", drone);
+//  const [dr, setDrone] = useState();
 
-  // const containerStyle = {
-  //   width: "450px",
-  //   height: "210px",
-  //   borderRadius: "10px",
-  // };
-  // const center = {
-  //   lat: 24.72,
-  //   lng: 46.62,
-  // };
+  const containerStyle = {
+    width: "380px",
+    height: "210px",
+    borderRadius: "10px",
+  };
+  const center = {
+    lat: 24.72,
+    lng: 46.62,
+  };
 
-  // const { isLoaded } = useJsApiLoader({
-  //   id: "google-map-script",
-  //   googleMapsApiKey: "AIzaSyDvPoFbe6MDqYRGifizC34rXPlgGzCd9sE",
-  // });
+const { isLoaded } = useJsApiLoader({
+  id: "google-map-script",
+  googleMapsApiKey: "AIzaSyBUMSPnho9iIVnF-MKvOMgYw_bRBwc7U7Q",
+});
 
-  // const [map, setMap] = React.useState(null);
 
-  // const onLoad = React.useCallback(function callback(map) {
-  //   const bounds = new window.google.maps.LatLngBounds(center);
-  //   map.fitBounds(bounds);
-  //   setMap(map);
-  // }, []);
+  const [map, setMap] = React.useState(null);
 
-  // const onUnmount = React.useCallback(function callback(map) {
-  //   setMap(null);
-  // }, []);
+  const onLoad = React.useCallback(function callback(map) {
+    const bounds = new window.google.maps.LatLngBounds(center);
+    map.fitBounds(bounds);
+    setMap(map);
+  }, []);
+
+  const onUnmount = React.useCallback(function callback(map) {
+    setMap(null);
+  }, []);
 
   return (
     <div class="col-lg-3 col-sm-6 text-center mb-4 mt-2">
@@ -105,7 +101,13 @@ const Drone_card = ({ drone }) => {
             />
 
             <h4 class="card-title mb-0 nameDown">{drone.droneName}</h4>
-            <Button variant="secondary" size="sm" className="mt-0 mb-0" id="button-details2">
+
+            <Button variant="secondary" size="sm" className="mt-0 mb-0" id="button-details2"
+             data-bs-toggle="modal"
+             data-bs-target={"#myModal2" + drone._id}
+            >
+               <BsArrowUpLeft /> التفاصيل
+                   </Button>
             {/* <div className="col ">
                     <div className="row "> */}
             {/* <Button
@@ -115,7 +117,7 @@ const Drone_card = ({ drone }) => {
               id="button-details2"
               data-bs-toggle="modal"
               data-bs-target={"#myModal2" + drone._id}
-            > */}
+            > 
               <BsArrowUpLeft /> التفاصيل
             </Button>
             {/* </div> */}
@@ -133,6 +135,125 @@ const Drone_card = ({ drone }) => {
           </div>
         </div>
       </div>
+
+      <div>
+        <div key={drone._id} className="modal" id={"myModal2"+ drone._id}>
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="">
+                
+                <div className="row align-items-center  justify-content-end  pt-2 ">
+                  
+
+                  <div className="col-2">
+                    <button
+                      data-bs-dismiss="modal"
+                      className="closebtn btn rounded"
+                    >
+                      &#x2715;
+                    </button>
+                  </div>
+                </div>
+                
+                <div className="modal-body justify-content-center p-0">
+                  <div className="row align-items-center  justify-content-center">
+                  <div className="col-6 p-0 ">
+                  <img src = {droneImg} class="
+       bg-white  mx-auto  biggerImg 
+      img-circle rounded-circle
+      
+       
+    
+      "  alt="Drone"/>
+                  </div>
+                 <div className="row p-2">
+                    <div className=" h3 heading">
+                    {drone.droneName}
+                    </div>
+                    <div className=" h5 heading"> 
+                    منطقة  {drone.region}   
+                      </div>
+                      </div>
+
+                     
+
+
+                      <div class="row">
+<h6 class="h6 text-end px-5 heading" >المواقع التي تمت زيارتها مسبقا</h6>
+    </div>
+    
+        
+        {isLoaded ? (
+            <GoogleMap
+            mapContainerStyle={containerStyle}
+              center={center}
+              zoom={7}
+              onLoad={onLoad}
+              onUnmount={onUnmount}
+            ></GoogleMap>
+          ) : (
+            <div>Loading...</div>
+          )}
+       
+
+
+
+                    <div className="row justify-content-start align-items-start">
+                      <div className="col-8 h5">
+             
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div></div>
+
+              <div className="modal-footer border border-0 justify-content-evenly">
+      
+  
+              <Button
+                  variant="secondary"
+                  size="md"
+                  className="btn btn-primary my-2  px-3 classButton"
+                  data-bs-dismiss="modal"
+                  
+                  >
+                    
+                   <MdOutlineEdit/>تحرير            
+              </Button>
+          
+
+       
+              <Button
+                  variant="secondary"
+                  size="md"
+           
+                   data-bs-dismiss="modal"
+                  className="btn btn-primary my-2  px-4 deleteD"
+                // data-target="#myModal3" 
+                 
+                  >
+                  <BsTrash color='white' />حذف
+              </Button>
+  
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
       </div>
 
       

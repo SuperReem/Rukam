@@ -114,11 +114,13 @@ background-color: white;
     padding-left: 170px;
 
   }
+
   .classButton{
     background-color: var(--light_green) !important;
   border-color: var(--light_green) !important;
    
   }
+  
   .classButton2{
     background-color: var(--brown) !important;
   border-color: var(--brown) !important;
