@@ -241,8 +241,9 @@ function ReportsList() {
                                   variant="secondary"
                                   size="md"
                                   onClick={() => DeleteReport(IdToDelete)}
-                                  data-bs-dismiss="modal"
                                   className="popup3 btn"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#myModal-success"
                                 >
                                   {" "}
                                   حذف{" "}
@@ -251,9 +252,7 @@ function ReportsList() {
                                   variant="secondary"
                                   size="md"
                                   className="popup-cancle"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#myModal-success"
-                                  // className="popup btn"
+                                  data-bs-dismiss="modal"
                                 >
                                   {" "}
                                   إلغاء{" "}
@@ -300,7 +299,6 @@ function ReportsList() {
                                   size="md"
                                   data-bs-dismiss="modal"
                                   className="popup-cancle"
-                                  // className="popup btn"
                                 >
                                   {" "}
                                   حسنًا{" "}
