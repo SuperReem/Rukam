@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import React, { useState } from "react";
 import MultiStepProgressBar from "../../components/MultiStepProgressBar.js";
 import "./ReportDetails.css";
-import Waste from "../../assets/images/waste.png";
+import Waste2 from "../../assets/images/waste2.jpeg";
 import { useEffect } from "react";
 import { BsCalendar4 } from "react-icons/bs";
 import ReportsList from "./Report_list_Employee.js";
@@ -46,7 +46,9 @@ function UpdateStatus({repId,repStat}) {
           setimage(report.image);
           setNotes(report.notes);
           setLocation(report.location);
-          setTimestamp(report.timestamp);
+          setTimestamp(   Intl.DateTimeFormat("ar-EG", {
+            dateStyle: "full",
+          }).format(new Date(report.createdAt)) );
           setStatus(report.status);
           dispatch({ type: "GET_DETAILS", payload: report });
           console.log("get:", report);
@@ -64,26 +66,26 @@ function UpdateStatus({repId,repStat}) {
 
 
   //location
-    const center = {
-      lat: 24.72,
-      lng: 46.62,
-    };
-    const { isLoaded } = useJsApiLoader({
-      id: "google-map-script",
-      googleMapsApiKey: "AIzaSyDvPoFbe6MDqYRGifizC34rXPlgGzCd9sE",
-    });
-    const [map, setMap] = React.useState(null);
-  
-    const onLoad = React.useCallback(function callback(map) {
-      const bounds = new window.google.maps.LatLngBounds(center);
-      map.fitBounds(bounds);
-      setMap(map);
-    }, []);
-  
-    const onUnmount = React.useCallback(function callback(map) {
-      setMap(null);
-    }, []);
-  
+  const center = {
+    lat: 24.72,
+    lng: 46.62,
+  };
+  const { isLoaded } = useJsApiLoader({
+    id: "google-map-script",
+    googleMapsApiKey: "AIzaSyBUMSPnho9iIVnF-MKvOMgYw_bRBwc7U7Q",
+  });
+
+  const [map, setMap] = React.useState(null);
+
+  const onLoad = React.useCallback(function callback(map) {
+    const bounds = new window.google.maps.LatLngBounds(center);
+    map.fitBounds(bounds);
+    setMap(map);
+  }, []);
+
+  const onUnmount = React.useCallback(function callback(map) {
+    setMap(null);
+  }, []);
   
 
 
@@ -175,21 +177,23 @@ useEffect(() => {
                 <div id="title"> تفاصيل البلاغ</div>
               </div>
             </div>
-      <div class="he shadow-sm ms-4 me-3 rounded-4 pb-0">
+      <div class="he shadow-sm ms-4 me-3 rounded-4 pb-0 mt-2">
         <div className="row">
           <div className="col-sm-6 ">
             <div className="m-2 mt-0">
               <div className="heading text-end pe-2">الوقت والتاريخ</div>
               <hr className="hr m-0 p-2" />
-              <div className="container time  rounded p-1 mb-4 align-items-right ">
-                <BsCalendar4 color="var(--primary)" className="ms-4" />
-                {timestamp   }           </div>
+              <div className="container time ">
+               <h6> <BsCalendar4 color="var(--primary)" className="ms-4" />
+             { timestamp}    </h6>      </div>
               <div className="heading text-end pe-2">صور المخالفة</div>
               <hr className="hr m-0 p-2" />
-              <div className="container pic rounded mb-4 shadow-sm">
-              { <img src={"data:image/jpeg;base64,"+ image} /> 
+              <div className="container pic rounded mb-4 shadow-sm p-0">
+              { 
+              //<img src={"data:image/jpeg;base64,"+ image} /> 
               // <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
               // //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
+              <img src={Waste2} alt="Waste" className='imagewaste'/>
             }
               </div>
               <div className="heading text-end pe-2">ملاحظات</div>

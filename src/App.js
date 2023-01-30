@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import TopNavbar from "./views/TopNavbar/TopNavbar";
 import Signup from './pages/Signup'
 import ResetPassword from "./views/Passwords/ResetPassword";
+import EmailResetPassword from "./views/Passwords/EmailResetPassword";
 import ResetPass from "./views/Passwords/ResetPass";
 // Login
 import Sidebar from "./views/SideNavbar/SideNavbar";
@@ -43,6 +44,8 @@ function App() {
       />
      <Route path="/resetPassword/:token" element={<ResetPass />} />
      <Route path="/resetPassword" element={<ResetPass />} /> {/* //// */}
+     <Route path="/EmailResetPassword" element={<EmailResetPassword />} /> {/* //// */}
+
 
    
 

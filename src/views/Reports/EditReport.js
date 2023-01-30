@@ -1,6 +1,6 @@
 import './ReportDetails.css';
 import { FiSave } from "react-icons/fi";
-import Waste from '../../assets/images/waste.png';
+import Waste2 from '../../assets/images/waste2.jpeg';
 import Button from "react-bootstrap/Button"
 import { BsCalendar4 } from "react-icons/bs";
 import { useEffect } from "react";
@@ -69,27 +69,26 @@ function EditReport({report}) {
     height: "100%",
   
   };
-    const center = {
-      lat: 24.72,
-      lng: 46.62,
-    };
-    const { isLoaded } = useJsApiLoader({
-      id: "google-map-script",
-      googleMapsApiKey: "AIzaSyDvPoFbe6MDqYRGifizC34rXPlgGzCd9sE",
-    });
-  
-    const [map, setMap] = React.useState(null);
-  
-    const onLoad = React.useCallback(function callback(map) {
-      const bounds = new window.google.maps.LatLngBounds(center);
-      map.fitBounds(bounds);
-      setMap(map);
-    }, []);
-  
-    const onUnmount = React.useCallback(function callback(map) {
-      setMap(null);
-    }, []);
+  const center = {
+    lat: 24.72,
+    lng: 46.62,
+  };
+  const { isLoaded } = useJsApiLoader({
+    id: "google-map-script",
+    googleMapsApiKey: "AIzaSyBUMSPnho9iIVnF-MKvOMgYw_bRBwc7U7Q",
+  });
 
+  const [map, setMap] = React.useState(null);
+
+  const onLoad = React.useCallback(function callback(map) {
+    const bounds = new window.google.maps.LatLngBounds(center);
+    map.fitBounds(bounds);
+    setMap(map);
+  }, []);
+
+  const onUnmount = React.useCallback(function callback(map) {
+    setMap(null);
+  }, []);
 
     const PageNav = (i) => () => {
       setIndex(i);
@@ -115,7 +114,7 @@ function EditReport({report}) {
                 <div id="title"> تحرير البلاغ</div>
               </div>
             </div>
-        <div class="he shadow-sm ms-4 me-3 rounded-4 pb-0">
+        <div class="he shadow-sm ms-4 me-3 rounded-4 pb-0 mt-2">
 
 <div className="row">
     <div className="col-sm-6 ">
@@ -124,16 +123,23 @@ function EditReport({report}) {
           الوقت والتاريخ
         </div>
         <hr className="hr m-0 p-2" />
-        <div className="container time  rounded p-1 mb-4 align-items-right ">
-<BsCalendar4 color='var(--primary)' className='ms-4'/>       
+        <div className="container time">
+<h6><BsCalendar4 color='var(--primary)' className='ms-4'/>       
      
-{report.timestamp}   </div>
+{   Intl.DateTimeFormat("ar-EG", {
+                                dateStyle: "full",
+                              }).format(new Date(report.createdAt))} </h6> </div>
         <div className="heading text-end pe-2">
           صور المخالفة
         </div>
         <hr className="hr m-0 p-2" />
-        <div className="container pic rounded mb-4 shadow-sm">
-        <img src={Waste} alt="Waste" />;
+        <div className="container pic rounded mb-4 shadow-sm p-0">
+        { 
+        //<img src={"data:image/jpeg;base64,"+ report.image} /> 
+              // <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
+              // //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
+              <img src={Waste2} alt="Waste" className='imagewaste'/>
+            }
         </div>
         <div className="heading text-end pe-2">
           ملاحظات

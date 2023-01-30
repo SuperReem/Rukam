@@ -5,15 +5,18 @@ import TopNavbar from "../TopNavbar/TopNavbar";
 import Drone from "../../assets/images/DroneToFly.png";
 import validator from 'validator'
 //
+// import EmailResetPassword from "../../views/Passwords/EmailResetPassword";
 import { useContext, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForgotPassword } from "../../hooks/useForgotPassword"
-
+import Button from "react-bootstrap/Button";
 
 function ResetPassword() {
+  let Navigate= useNavigate()
  
   const [email, setEmail] = useState('')
-  const [emailError, setEmailError] = useState('') // later
+  const [emailError, setEmailError] = useState('') 
+
   //
   const {forgotPassword, error, isLoading} = useForgotPassword()
 
@@ -22,34 +25,29 @@ function ResetPassword() {
     setEmail(e.target.value)
 }
 
-///////////////
 const sendLink = async (e) => {
   e.preventDefault();
 
   if (email === "") {
-    console.log("email is required!" // set email errors 
+    setEmailError("يرجى إدخال البريد الإلكتروني" // set email errors 
       );
   } else if (!email.includes("@")) {
-    console.log("includes @ in your email!");
+    setEmailError("البريد الإلكتروني غير صالح");
   } else {
-    console.log("above fetch")
+    setEmailError('');
     console.log(email)
 
-    ///
   
-
-    await forgotPassword(email)
-
-
+    await forgotPassword(email).then(
+      NavigateReset(email)
+    )
   }
+  
+
 }
-  
-
-  
-
-
-  
-
+const NavigateReset = (email) => {
+  Navigate("/EmailResetPassword", {state:{ userEmail: email}});
+}
   return (
     <body className=" ">
       <div className="main-content   ">
@@ -78,10 +76,12 @@ const sendLink = async (e) => {
           <div className="row justify-content-center">
             <div className="col-lg-5 col-md-7">
               <div className="card bg-white bg-secondary shadow border-0 rounded-280">
-                <div className="card-body px-lg-5 py-lg-5">
+                <div className="card-body px-lg-5 py-lg-5- py-lg-4">
                   <div className="text-center text-muted mb-4 text-black">
                     <h5 className="text-black">أدخل بريدك الإلكتروني</h5>
                   </div>
+                  {emailError && <div className="error text-danger mt-1 ">{emailError}</div>}
+
                   <form role="form">
                     <div className="col-12 mb-4">
                       <label
@@ -98,11 +98,8 @@ const sendLink = async (e) => {
                         placeholder="Ma***@gmail.com"
                         value={email}
                         onChange={setVal}
-                        // onChange={(e) => validateEmail(e)}
                         required
                       />
-                         <span className="text-danger mt-1 ">{emailError}</span>
-
                     </div>
 
                     <div className="text-center">
@@ -113,7 +110,6 @@ const sendLink = async (e) => {
                       >
                         إرسال
                       </button>
-                      {error && <div className="error">{error}</div>}
 
                     </div>
                   </form>
@@ -129,4 +125,5 @@ const sendLink = async (e) => {
   );
 }
 export default ResetPassword;
+
 

@@ -96,22 +96,25 @@ function ResetPass() {
   }
 
   const {resetPass, error, isLoading} = useResetPass()
+  const disable = val1 && val2 && val3 && confirming 
+
 
   const handelClick = async (e) => {
     console.log("clicked");
     e.preventDefault();
 
-    if(val1 && val2 && val3 && confirming){
+    // if(val1 && val2 && val3 && confirming){
   
       console.log("above fetch")
       console.log(password)
+      console.log(window.location.href)
 
-      const userToken = window.location.href.substring(36);
-      await resetPass(userToken,password)///
+      const userToken = window.location.href.substring( 36); //36
+      await resetPass(userToken, password)///
   
   
     // }
-  }
+  // }
   }
 
 
@@ -139,7 +142,7 @@ function ResetPass() {
           <div className="row justify-content-center">
             <div className="col-lg-5 col-md-7">
               <div className="card bg-white bg-secondary shadow border-0 rounded-280">
-                <div className="card-body px-lg-5 py-lg-5">
+                <div className="card-body px-lg-5 py-lg-4  ">
                   <div className="text-center text-muted mb-4 text-black">
                     <h5 className="text-black">
                       يرجى إدخال كلمة المرور الجديدة
@@ -234,19 +237,19 @@ function ResetPass() {
 
                     </div>
 
-                    <Link
+                    {/* <Link
                         to="/login"
-                      >
+                      > */}
                     <div className="text-center">
                       <button
                         // onClick={onSubmit} 
-                        disabled={isLoading}
-                        className="btn btn-primary my-2  px-5 classButton"
+                        disabled={!disable}
+                        className="btn btn-primary my-2  px-5 classButton changepass "
                       >
                         تغيير كلمة المرور
                       </button>
                     </div>
-                    </Link>
+                    {/* </Link> */}
                   </form>
                 </div>
               </div>

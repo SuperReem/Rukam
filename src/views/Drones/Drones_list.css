@@ -12,6 +12,10 @@
     height: 100px;
     width: 100px !important;
   }
+  .divSizing{
+    height: 500px;
+
+  }
 /*   
   .card {
     margin-top: 30px;
@@ -41,4 +45,42 @@
 }
 .nameDown{
   margin-top:5rem !important ;
+}
+.classButton2{
+  background-color: var(--brown) !important;
+border-color: var(--brown) !important;
+
+
+
+}
+.add-img{
+   
+  display: flex;
+ 
+  position: absolute;
+  margin-top: 110px;
+  padding-left: 160px;
+  
+
+}
+.classButton.btn{
+  background-color: rgb(169, 34, 0) ;
+}
+.heading {
+  font-size: 1.3rem;
+  color: var(--primary);
+}
+.classLabel {
+  padding-top: 0.5em;
+    display: flex;
+    width: 150px;
+    text-align: right;
+    font-size: 20px;
+  }
+  .deleteD.btn{
+  background-color: rgb(169, 34, 0) ;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
 }
