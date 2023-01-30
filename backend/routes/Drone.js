@@ -1,23 +1,23 @@
 const mongoose = require("mongoose");
 const express = require("express");
 const {
-    createDrone,
-    getDrone,
-    getDrones,
-    deleteDrone,
-    updateDrone,
+  createDrone,
+  getDrone,
+  getDrones,
+  deleteDrone,
+  updateDrone,
+  activeDrone,
+  getActiveList,
 } = require("../controllers/DroneController");
 
-// const requireAuth = require('../middleware/requireAuth')
+const router = express.Router();
 
+router.get("/drones", getDrones);
+router.get("/active", activeDrone);
+router.get("/activeList", getActiveList);
+router.get("/:id", getDrone);
+router.post("/", createDrone);
+router.delete("/:id", deleteDrone);
+router.patch("/:id", updateDrone);
 
-const  router = express.Router();
-
-// router.use(requireAuth);
-router.get('/drones' ,getDrones);
-router.get('/:id' ,getDrone);
-router.post('/' ,createDrone);
-router.delete('/:id' ,deleteDrone);
-router.patch('/:id' ,updateDrone);
-
-module.exports =router
+module.exports = router;

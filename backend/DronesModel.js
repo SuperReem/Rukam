@@ -6,14 +6,16 @@ const dronesSchema = new Schema(
       type: String,
     },
     region: {
-      type: String ,
-      
+      type: String,
     },
     image: {
       type: String,
-    }
-    
+    },
+    active: {
+      type: Boolean,
+    },
   },
+
   { timestamps: true }
 );
 module.exports = mongoose.model("Drones", dronesSchema);

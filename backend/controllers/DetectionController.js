@@ -40,6 +40,47 @@ const getDetections = async (req, res) => {
   }
 };
 
+//get highest region detection
+
+const getHighest = async (req, res) => {
+  const detections = await detectionModel.aggregate([
+    { $unwind: "$region" },
+    {
+      $group: {
+        _id: "$region",
+        count: { $sum: 1 }, // get the count
+      },
+    },
+    { $sort: { count: -1 } },
+    { $limit: 1 },
+  ]);
+
+  res.json({
+    detections,
+  });
+};
+
+//get number of detection in this week
+
+const getWeekdetections = async (req, res) => {
+  var curr = new Date(); // get current date
+  var first = curr.getDate() - curr.getDay();
+  var firstdayOb = new Date(curr.setDate(first));
+  var firstday = firstdayOb.toISOString().slice(0, 10);
+  var firstdayTemp = firstdayOb;
+  var lastday = new Date(firstdayTemp.setDate(firstdayTemp.getDate() + 6))
+    .toISOString()
+    .slice(0, 10);
+  const total = await detectionModel.countDocuments({
+    filter: { $gte: firstday, $lte: lastday },
+  });
+  res.json({
+    total,
+    firstday,
+    lastday,
+  });
+};
+
 // get a single detection
 const getDetection = async (req, res) => {
   const { id } = req.params;
@@ -134,4 +175,6 @@ module.exports = {
   getDetections,
   deleteDetection,
   updateDetection,
+  getHighest,
+  getWeekdetections,
 };

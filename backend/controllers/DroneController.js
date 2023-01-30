@@ -35,6 +35,14 @@ const getDrone = async (req, res) => {
   res.status(200).json(drone);
 };
 
+//get only active drones list
+const getActiveList = async (req, res) => {
+  const drones = await droneModel
+    .find({ active: true })
+    .sort({ createdAt: -1 })
+    .limit(2);
+  res.json(drones);
+};
 // create a new drone
 const createDrone = async (req, res) => {
   const { droneName, image, region } = req.body;
@@ -61,6 +69,14 @@ const createDrone = async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
+};
+
+//get active drones
+const activeDrone = async (req, res) => {
+  const total = await droneModel.countDocuments({ active: true });
+  res.json({
+    total,
+  });
 };
 
 // delete a drone
@@ -108,4 +124,6 @@ module.exports = {
   getDrones,
   deleteDrone,
   updateDrone,
+  activeDrone,
+  getActiveList,
 };

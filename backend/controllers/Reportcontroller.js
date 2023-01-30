@@ -7,6 +7,15 @@ const getReports = async (req, res) => {
   var end = req.query.end || "All";
   const page = parseInt(req.query.page || "0");
   if ((start == "All") & (end == "All")) {
+    const totalUnsent = await reportModel.countDocuments({ status: "unsent" });
+    const totalClosed = await reportModel.countDocuments({ status: "closed" });
+    const totalPending = await reportModel.countDocuments({
+      status: "pending",
+    });
+    const totalUnderproc = await reportModel.countDocuments({
+      status: "under_processing",
+    });
+
     const total = await reportModel.countDocuments({});
     const reports = await reportModel
       .find({})
@@ -17,6 +26,10 @@ const getReports = async (req, res) => {
     res.json({
       totalPages: Math.ceil(total / PAGE_SIZE),
       reports,
+      totalClosed,
+      totalPending,
+      totalUnderproc,
+      totalUnsent,
     });
   } else {
     const total = await reportModel.countDocuments({
@@ -182,6 +195,27 @@ const deleteReport = async (req, res) => {
   res.status(200).json(report);
 };
 
+//get number of reports in this week
+
+const getWeekreports = async (req, res) => {
+  var curr = new Date(); // get current date
+  var first = curr.getDate() - curr.getDay();
+  var firstdayOb = new Date(curr.setDate(first));
+  var firstday = firstdayOb.toISOString().slice(0, 10);
+  var firstdayTemp = firstdayOb;
+  var lastday = new Date(firstdayTemp.setDate(firstdayTemp.getDate() + 6))
+    .toISOString()
+    .slice(0, 10);
+  const total = await reportModel.countDocuments({
+    filter: { $gte: firstday, $lte: lastday },
+  });
+  res.json({
+    total,
+    firstday,
+    lastday,
+  });
+};
+
 // update a report
 const updateReport = async (req, res) => {
   const { id } = req.params;
@@ -212,4 +246,5 @@ module.exports = {
   updateReport,
   deleteReportByName,
   getReportsEmployee,
+  getWeekreports,
 };
