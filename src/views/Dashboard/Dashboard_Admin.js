@@ -33,10 +33,10 @@ const center = {
 const Dashboard_Admin = () => {
 
   const { reports, dispatch } = useReportContext();
-  const[unsentTotal,setUnsentTotal] = useState(0);
-  const[pendingTotal,setPendingTotal] = useState(0);
-  const[underprocessingTotal,setUnderprocessingTotal] = useState(0);
-  const[closedTotal,setClosedTotal] = useState(0);
+  var [unsentTotal,setUnsentTotal] = useState(0);
+  var [pendingTotal,setPendingTotal] = useState(0);
+  var [underprocessingTotal,setUnderprocessingTotal] = useState(0);
+  var [closedTotal,setClosedTotal] = useState(0);
   var closed = 0;
   var pending = 0;
   var unsent = 0;
@@ -45,7 +45,8 @@ const Dashboard_Admin = () => {
   const [pageNumber, setPageNumber] = useState(0);
   const [dateStart, setDateStart] = useState("All");
   const [dateEnd, setDateEnd] = useState("All");
-  
+  const [refresh, setRefresh] = useState(false);
+
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: 'AIzaSyBUMSPnho9iIVnF-MKvOMgYw_bRBwc7U7Q' ,
@@ -65,22 +66,68 @@ const Dashboard_Admin = () => {
   }, []);
 
   useEffect(() => {
- 
-      const response = fetch(
+    var fetchReports = async () => {
+      const response = await fetch(
         `http://localhost:3000/api/Report/report?page=${pageNumber}&start=${dateStart}&end=${dateEnd}`
       )
         .then((response) => response.json())
         .then(async ({ totalPages, reports }) => {
-          await dispatch({ type: "SET_REPORTS", payload: reports })
-          console.log("Reports: "+reports)
+          await dispatch({ type: "SET_REPORTS", payload: reports });
           reports.map((report) => {
-            console.log("Report: "+report)
-         });
-   
-        })
-    
+            console.log(report.status)
+              switch(report.status){
+                case 'unsent': setUnsentTotal(unsentTotal++);
+                break;
+                case 'pending': setPendingTotal(pendingTotal++);
+                break;
+                case 'under_processing': setUnderprocessingTotal(underprocessingTotal++);
+                break;
+                case 'closed': setClosedTotal(closedTotal++);
+                break;
+              }
+              
+          })
+          console.log("unsent: "+unsentTotal)
+          console.log("pending: "+pendingTotal)
+          console.log("underproc: "+underprocessingTotal)
+          console.log("closed: "+closedTotal)
+           
+        });
+        
+    };
 
+    fetchReports();
+    
   }, [dispatch]);
+
+const h = ()=>{
+
+   
+          reports.map((report) => {
+            console.log(report.status)
+              switch(report.status){
+                case 'unsent': setUnsentTotal(unsentTotal++);
+                break;
+                case 'pending': setPendingTotal(pendingTotal++);
+                break;
+                case 'under_processing': setUnderprocessingTotal(underprocessingTotal++);
+                break;
+                case 'closed': setClosedTotal(closedTotal++);
+                break;
+              }
+              
+          })
+      
+          console.log("unsent: "+unsentTotal)
+          console.log("pending: "+pendingTotal)
+          console.log("underproc: "+underprocessingTotal)
+          console.log("closed: "+closedTotal)
+        
+
+      }
+        
+  
+
 
   
    
@@ -97,8 +144,8 @@ const Dashboard_Admin = () => {
         break;
        }
        */
-          reports.map((reports) => {
-            switch(reports['status']){
+          reports.map((report) => {
+            switch(report.status){
              case 'unsent': setUnsentTotal(unsentTotal++);
              break;
              case 'pending': setPendingTotal(pendingTotal++);
@@ -235,12 +282,11 @@ const Dashboard_Admin = () => {
                   <h6>بلاغات مغلقة</h6>
                 </div>
               </div>
-              {
-                doneCounting == true? 
-                <PieChart data={[closed, unsent, pending, proc]} radius={60} holeRadius={45} margin={40} />
-                :
-                null
-              }
+              
+
+                <PieChart data={[closedTotal, unsentTotal, pendingTotal, underprocessingTotal]} radius={60} holeRadius={45} margin={40} />
+                
+              
             </div>
           </div>
         </div>

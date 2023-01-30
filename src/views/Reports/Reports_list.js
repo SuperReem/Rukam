@@ -21,6 +21,7 @@ import UpdateStatus from "./UpdateStatus";
 import ArabicNumbers from "react-native-arabic-numbers/src/ArabicNumbers";
 import moment from "moment";
 import "moment/locale/ar"; // without this line it didn't work
+import { json } from "react-router-dom";
 
 function ReportsList() {
   moment.locale("ar");
