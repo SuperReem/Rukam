@@ -9,6 +9,7 @@ const {
   deleteReportByName,
   getReportsEmployee,
   getWeekreports,
+  getDashEmp,
 } = require("../controllers/Reportcontroller");
 
 // const requireAuth = require('../middleware/requireAuth')
@@ -18,6 +19,7 @@ const router = express.Router();
 router.get("/report", getReports);
 router.get("/reportEmployee", getReportsEmployee);
 router.get("/week", getWeekreports);
+router.get("/dash", getDashEmp);
 router.get("/:id", getReport);
 router.post("/", createReport);
 router.delete("/:id", deleteReport);

@@ -4,6 +4,9 @@ const Schema = mongoose.Schema;
 
 const reportSchema = new Schema(
   {
+    droneId: {
+      type: String,
+    },
     reportId: {
       type: String,
     },
@@ -16,7 +19,7 @@ const reportSchema = new Schema(
     region: {
       type: String,
     },
-    image: { contentType: String},
+    image: { contentType: String },
     notes: {
       type: String,
     },
@@ -27,10 +30,6 @@ const reportSchema = new Schema(
     filter: {
       type: String,
     },
-    // user_id: {
-    //   type: String,
-    //   required: true,
-    // },
   },
   { timestamps: true }
 );

@@ -52,6 +52,57 @@ const getReports = async (req, res) => {
   }
 };
 
+//get dashboared employee
+
+const getDashEmp = async (req, res) => {
+  var region = req.query.region;
+  const total = await reportModel.countDocuments({
+    region: region,
+    status: { $in: ["closed", "pending", "under_processing"] },
+  });
+  const reports = await reportModel
+    .find({
+      region: region,
+      status: { $in: ["closed", "pending", "under_processing"] },
+    })
+    .sort({ createdAt: -1 })
+    .limit(3);
+
+  var curr = new Date(); // get current date
+  var first = curr.getDate() - curr.getDay();
+  var firstdayOb = new Date(curr.setDate(first));
+  var firstday = firstdayOb.toISOString().slice(0, 10);
+  var firstdayTemp = firstdayOb;
+  var lastday = new Date(firstdayTemp.setDate(firstdayTemp.getDate() + 6))
+    .toISOString()
+    .slice(0, 10);
+  const totalWeek = await reportModel.countDocuments({
+    region: region,
+    filter: { $gte: firstday, $lte: lastday },
+  });
+
+  const totalClosed = await reportModel.countDocuments({
+    region: region,
+    status: "closed",
+  });
+  const totalPending = await reportModel.countDocuments({
+    region: region,
+    status: "pending",
+  });
+  const totalUnderproc = await reportModel.countDocuments({
+    region: region,
+    status: "under_processing",
+  });
+  res.json({
+    reports,
+    total,
+    totalWeek,
+    totalClosed,
+    totalPending,
+    totalUnderproc,
+  });
+};
+
 const getReportsEmployee = async (req, res) => {
   const PAGE_SIZE = 3;
   var start = req.query.start || "All";
@@ -247,4 +298,5 @@ module.exports = {
   deleteReportByName,
   getReportsEmployee,
   getWeekreports,
+  getDashEmp,
 };
