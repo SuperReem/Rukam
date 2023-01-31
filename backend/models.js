@@ -30,6 +30,12 @@ const reportSchema = new Schema(
     filter: {
       type: String,
     },
+    year: {
+      type: String,
+    },
+    month: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

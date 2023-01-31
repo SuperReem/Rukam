@@ -69,6 +69,7 @@ const getDashEmp = async (req, res) => {
     .limit(3);
 
   var curr = new Date(); // get current date
+  var yearDate = curr.getFullYear().toString();
   var first = curr.getDate() - curr.getDay();
   var firstdayOb = new Date(curr.setDate(first));
   var firstday = firstdayOb.toISOString().slice(0, 10);
@@ -79,6 +80,7 @@ const getDashEmp = async (req, res) => {
   const totalWeek = await reportModel.countDocuments({
     region: region,
     filter: { $gte: firstday, $lte: lastday },
+    status: { $in: ["closed", "pending", "under_processing"] },
   });
 
   const totalClosed = await reportModel.countDocuments({
@@ -93,6 +95,78 @@ const getDashEmp = async (req, res) => {
     region: region,
     status: "under_processing",
   });
+  const jan = await reportModel.countDocuments({
+    region: region,
+    status: { $in: ["closed", "pending", "under_processing"] },
+    year: yearDate,
+    month: "1",
+  });
+  const feb = await reportModel.countDocuments({
+    region: region,
+    status: { $in: ["closed", "pending", "under_processing"] },
+    year: yearDate,
+    month: "2",
+  });
+  const mar = await reportModel.countDocuments({
+    region: region,
+    status: { $in: ["closed", "pending", "under_processing"] },
+    year: yearDate,
+    month: "3",
+  });
+  const apr = await reportModel.countDocuments({
+    region: region,
+    status: { $in: ["closed", "pending", "under_processing"] },
+    year: yearDate,
+    month: "4",
+  });
+  const may = await reportModel.countDocuments({
+    region: region,
+    status: { $in: ["closed", "pending", "under_processing"] },
+    year: yearDate,
+    month: "5",
+  });
+  const jun = await reportModel.countDocuments({
+    region: region,
+    status: { $in: ["closed", "pending", "under_processing"] },
+    year: yearDate,
+    month: "6",
+  });
+  const jul = await reportModel.countDocuments({
+    region: region,
+    status: { $in: ["closed", "pending", "under_processing"] },
+    year: yearDate,
+    month: "7",
+  });
+  const aug = await reportModel.countDocuments({
+    region: region,
+    status: { $in: ["closed", "pending", "under_processing"] },
+    year: yearDate,
+    month: "8",
+  });
+  const sep = await reportModel.countDocuments({
+    region: region,
+    status: { $in: ["closed", "pending", "under_processing"] },
+    year: yearDate,
+    month: "9",
+  });
+  const oct = await reportModel.countDocuments({
+    region: region,
+    status: { $in: ["closed", "pending", "under_processing"] },
+    year: yearDate,
+    month: "10",
+  });
+  const nov = await reportModel.countDocuments({
+    region: region,
+    status: { $in: ["closed", "pending", "under_processing"] },
+    year: yearDate,
+    month: "11",
+  });
+  const dec = await reportModel.countDocuments({
+    region: region,
+    status: { $in: ["closed", "pending", "under_processing"] },
+    year: yearDate,
+    month: "12",
+  });
   res.json({
     reports,
     total,
@@ -100,6 +174,18 @@ const getDashEmp = async (req, res) => {
     totalClosed,
     totalPending,
     totalUnderproc,
+    jan,
+    feb,
+    mar,
+    apr,
+    may,
+    jun,
+    jul,
+    aug,
+    sep,
+    oct,
+    nov,
+    dec,
   });
 };
 

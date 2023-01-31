@@ -45,6 +45,7 @@ import { ResponsiveStream } from "@nivo/stream";
 import { ResponsiveLine } from "@nivo/line";
 //const { faker } = require('@faker-js/faker');
 import { faker } from "@faker-js/faker";
+import { set } from "mongoose";
 
 ChartJS.register(
   CategoryScale,
@@ -235,6 +236,18 @@ const Dashboard_Employee = () => {
   var [totalWeek, setTotalWeek] = useState(0);
   const { reports, dispatch } = useReportContext();
   const { user } = useAuthContext();
+  const [jan, setJan] = useState(0);
+  const [feb, setFeb] = useState(0);
+  const [mar, setMar] = useState(0);
+  const [apr, setApr] = useState(0);
+  const [may, setMay] = useState(0);
+  const [jun, setJun] = useState(0);
+  const [jul, setJul] = useState(0);
+  const [aug, setAug] = useState(0);
+  const [sep, setSep] = useState(0);
+  const [oct, setOct] = useState(0);
+  const [nov, setNov] = useState(0);
+  const [dec, setDec] = useState(0);
   useEffect(() => {
     var fetchReports = async () => {
       const response = await fetch(
@@ -249,6 +262,18 @@ const Dashboard_Employee = () => {
             totalClosed,
             totalPending,
             totalUnderproc,
+            jan,
+            feb,
+            mar,
+            apr,
+            may,
+            jun,
+            jul,
+            aug,
+            sep,
+            oct,
+            nov,
+            dec,
           }) => {
             dispatch({ type: "SET_REPORTS", payload: reports });
             setTotal(total);
@@ -256,6 +281,18 @@ const Dashboard_Employee = () => {
             setPendingTotal(totalPending);
             setUnderprocessingTotal(totalUnderproc);
             setClosedTotal(totalClosed);
+            setJan(jan);
+            setFeb(feb);
+            setMar(mar);
+            setApr(apr);
+            setMay(may);
+            setJun(jun);
+            setJul(jul);
+            setAug(aug);
+            setSep(sep);
+            setOct(oct);
+            setNov(nov);
+            setDec(dec);
           }
         );
     };
@@ -395,24 +432,29 @@ const Dashboard_Employee = () => {
                   },
                 }}
                 data={[
-                  { x: "ديسمبر", y: 4, y0: 1 },
-                  { x: "نوفمبر", y: 3, y0: 1 },
-                  { x: "أكتوبر", y: 5, y0: 1 },
-                  { x: "سبتمبر", y: 4, y0: 1 },
-                  { x: "أغسطس", y: 6, y0: 1 },
-                  { x: "يوليو", y: 6, y0: 1 },
-                  { x: "يونيو", y: 6, y0: 1 },
-                  { x: "مايو", y: 6, y0: 1 },
-                  { x: "أبريل", y: 6, y0: 1 },
-                  { x: "مارس", y: 6, y0: 1 },
-                  { x: "فبراير", y: 7, y0: 1 },
-                  { x: "يناير", y: 7, y0: 1 },
+                  { x: "يناير", y: jan, y0: 0 },
+                  { x: "فبراير", y: feb, y0: 0 },
+                  { x: "مارس", y: mar, y0: 0 },
+                  { x: "أبريل", y: apr, y0: 0 },
+                  { x: "مايو", y: may, y0: 0 },
+                  { x: "يونيو", y: jun, y0: 0 },
+                  { x: "يوليو", y: jul, y0: 0 },
+                  { x: "أغسطس", y: aug, y0: 0 },
+                  { x: "سبتمبر", y: sep, y0: 0 },
+                  { x: "أكتوبر", y: oct, y0: 0 },
+                  { x: "نوفمبر", y: nov, y0: 0 },
+                  { x: "ديسمبر", y: dec, y0: 0 },
                 ]}
               />
               <VictoryAxis
                 dependentAxis
-                tickValues={[2.0, 4.0, 6.0, 8.0]}
-                padding={{ left: 20 }}
+                tickValues={[
+                  ArabicNumbers(2.0),
+                  ArabicNumbers(4.0),
+                  ArabicNumbers(6.0),
+                  ArabicNumbers(8.0), //get back to it
+                ]}
+                padding={{ right: 20 }}
               />
               <VictoryAxis padding={{ bottom: 90 }} />
             </VictoryChart>
