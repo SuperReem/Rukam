@@ -14,6 +14,7 @@ import { useReportContext } from "../../hooks/useReportContext";
 import { ArabicNumbers } from "react-native-arabic-numbers";
 import { useState } from "react";
 import { useEffect } from "react";
+import UpdateStatusDash from "./UpdateStatusDash";
 import { useAuthContext } from "../../hooks/useAuthContext";
 //
 import { Chart } from "react-charts";
@@ -229,6 +230,8 @@ const data = {
 };
 
 const Dashboard_Employee = () => {
+  const [index, setIndex] = useState(0);
+  const [rep, setReport] = useState();
   var [pendingTotal, setPendingTotal] = useState(0);
   var [underprocessingTotal, setUnderprocessingTotal] = useState(0);
   var [closedTotal, setClosedTotal] = useState(0);
@@ -293,6 +296,7 @@ const Dashboard_Employee = () => {
             setOct(oct);
             setNov(nov);
             setDec(dec);
+            console.log("jan" + jan);
           }
         );
     };
@@ -302,165 +306,177 @@ const Dashboard_Employee = () => {
 
   return (
     <>
-      <div>
-        <div className="region-name-container d-flex">
-          <SlLocationPin className="region-name-icon" />
-          <div className="mt-2">
-            &nbsp;
-            <span> منطقة </span>
-            {/* //3 */}
-            <span className="region-name">{user.region}</span>
-            {/* // */}
-          </div>
-        </div>
-        <div
-          className="container d-flex justify-content-between pt-4"
-          style={{ paddingRight: "0.5em", paddingLeft: "0.5em" }}
-        >
-          <div className="col-8">
-            <h5>أحدث البلاغات</h5>
-            <div className="recent-reports-list">
-              <ListGroup variant="flush" id="recent-reports-ListGroup">
-                {reports &&
-                  reports.map((report) => (
-                    <>
-                      <ListGroup.Item>
-                        <div className="active-drone-row d-flex justify-content-between p-1">
-                          <div className="d-flex">
-                            <IoDocumentTextOutline className="recent-reports-icon ms-5" />
-                            <div>
-                              <Row className="active-drones-drone-name">
-                                {report.droneId}
-                              </Row>
-                              <Row className="active-drones-region-name">
-                                منطقة {report.region}
-                              </Row>
+      {index == 0 ? (
+        <>
+          <div>
+            <div className="region-name-container d-flex">
+              <SlLocationPin className="region-name-icon" />
+              <div className="mt-2">
+                &nbsp;
+                <span> منطقة </span>
+                {/* //3 */}
+                <span className="region-name">{user.region}</span>
+                {/* // */}
+              </div>
+            </div>
+            <div
+              className="container d-flex justify-content-between pt-4"
+              style={{ paddingRight: "0.5em", paddingLeft: "0.5em" }}
+            >
+              <div className="col-8">
+                <h5>أحدث البلاغات</h5>
+                <div className="recent-reports-list">
+                  <ListGroup variant="flush" id="recent-reports-ListGroup">
+                    {reports &&
+                      reports.map((report) => (
+                        <>
+                          <ListGroup.Item>
+                            <div className="active-drone-row d-flex justify-content-between p-1">
+                              <div className="d-flex">
+                                <IoDocumentTextOutline className="recent-reports-icon ms-5" />
+                                <div>
+                                  <Row className="active-drones-drone-name">
+                                    {report.droneId}
+                                  </Row>
+                                  <Row className="active-drones-region-name">
+                                    منطقة {report.region}
+                                  </Row>
+                                </div>
+                              </div>
+                              <div>
+                                <Button
+                                  variant="secondary"
+                                  size="sm"
+                                  id="details-button"
+                                  onClick={() => {
+                                    setReport(report);
+                                    setIndex(1);
+                                  }}
+                                >
+                                  <BsArrowUpLeft /> التفاصيل
+                                </Button>
+                              </div>
                             </div>
-                          </div>
-                          <div>
-                            <Button
-                              variant="secondary"
-                              size="sm"
-                              id="details-button"
-                            >
-                              <BsArrowUpLeft /> التفاصيل
-                            </Button>
-                          </div>
-                        </div>
-                      </ListGroup.Item>
-                    </>
-                  ))}
-              </ListGroup>
-            </div>
-          </div>
-          <div
-            className="d-flex flex-column"
-            style={{ height: "100%", paddingTop: "0.7em", width: "25%" }}
-          >
-            <div>
-              <Statistics_Card
-                title={"إجمالي عدد البلاغات"}
-                number={ArabicNumbers(total)}
-                type={1}
-              />
-            </div>
-            <div style={{ marginTop: "0.5em" }}>
-              <Statistics_Card
-                title={"عدد بلاغات هذا الأسبوع"}
-                number={ArabicNumbers(totalWeek)}
-                type={2}
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          class="d-flex justify-content-between pt-4"
-          style={{
-            height: "275px",
-            paddingRight: "0.5em",
-            paddingLeft: "0.5em",
-          }}
-        >
-          <div className="reports-statistics">
-            <h5>البلاغات</h5>
-            <hr className="mt-0"></hr>
-            <div className="d-flex">
-              <div className="ms-4">
-                <div className="d-flex">
-                  <div
-                    className="reports-statistics-chart-keys ms-1"
-                    id="pending-key"
-                  ></div>
-                  <h6>بلاغات قيد الانتظار</h6>
-                </div>
-                <div className="d-flex">
-                  <div
-                    className="reports-statistics-chart-keys ms-1"
-                    id="underprocessing-key"
-                  ></div>
-                  <h6>بلاغات قيد المراجعة</h6>
-                </div>
-                <div className="d-flex">
-                  <div
-                    className="reports-statistics-chart-keys ms-1"
-                    id="closed-key"
-                  ></div>
-                  <h6>بلاغات مغلقة</h6>
+                          </ListGroup.Item>
+                        </>
+                      ))}
+                  </ListGroup>
                 </div>
               </div>
-              <PieChart
-                data={[pendingTotal, underprocessingTotal, 0, closedTotal]}
-                radius={60}
-                holeRadius={45}
-                margin={40}
-              />
+              <div
+                className="d-flex flex-column"
+                style={{ height: "100%", paddingTop: "0.7em", width: "25%" }}
+              >
+                <div>
+                  <Statistics_Card
+                    title={"إجمالي عدد البلاغات"}
+                    number={ArabicNumbers(total)}
+                    type={1}
+                  />
+                </div>
+                <div style={{ marginTop: "0.5em" }}>
+                  <Statistics_Card
+                    title={"عدد بلاغات هذا الأسبوع"}
+                    number={ArabicNumbers(totalWeek)}
+                    type={2}
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="d-flex justify-content-between pt-4"
+              style={{
+                height: "275px",
+                paddingRight: "0.5em",
+                paddingLeft: "0.5em",
+              }}
+            >
+              <div className="reports-statistics">
+                <h5>البلاغات</h5>
+                <hr className="mt-0"></hr>
+                <div className="d-flex">
+                  <div className="ms-4">
+                    <div className="d-flex">
+                      <div
+                        className="reports-statistics-chart-keys ms-1"
+                        id="pending-key"
+                      ></div>
+                      <h6>بلاغات قيد الانتظار</h6>
+                    </div>
+                    <div className="d-flex">
+                      <div
+                        className="reports-statistics-chart-keys ms-1"
+                        id="underprocessing-key"
+                      ></div>
+                      <h6>بلاغات قيد المراجعة</h6>
+                    </div>
+                    <div className="d-flex">
+                      <div
+                        className="reports-statistics-chart-keys ms-1"
+                        id="closed-key"
+                      ></div>
+                      <h6>بلاغات مغلقة</h6>
+                    </div>
+                  </div>
+                  <PieChart
+                    data={[pendingTotal, underprocessingTotal, 0, closedTotal]}
+                    radius={60}
+                    holeRadius={45}
+                    margin={40}
+                  />
+                </div>
+              </div>
+              <div className="reports-statistics col-7 pb-5 pt-4">
+                <h5 className="mb-0">إجمالي البلاغات لكل شهر</h5>
+
+                <VictoryChart width={1300} height={400} maxDomain={{ y: 8 }}>
+                  <VictoryArea
+                    interpolation="natural"
+                    style={{
+                      data: {
+                        fill: "rgba(181, 134, 76, 0.5)",
+                        fillOpacity: 0.4,
+                        stroke: "#034C3C",
+                        strokeOpacity: 0.7,
+                        strokeWidth: 3,
+                      },
+                    }}
+                    data={[
+                      { x: "يناير", y: jan, y0: 0 },
+                      { x: "فبراير", y: feb, y0: 0 },
+                      { x: "مارس", y: mar, y0: 0 },
+                      { x: "أبريل", y: apr, y0: 0 },
+                      { x: "مايو", y: may, y0: 0 },
+                      { x: "يونيو", y: jun, y0: 0 },
+                      { x: "يوليو", y: jul, y0: 0 },
+                      { x: "أغسطس", y: aug, y0: 0 },
+                      { x: "سبتمبر", y: sep, y0: 0 },
+                      { x: "أكتوبر", y: oct, y0: 0 },
+                      { x: "نوفمبر", y: nov, y0: 0 },
+                      { x: "ديسمبر", y: dec, y0: 0 },
+                    ]}
+                  />
+                  <VictoryAxis
+                    dependentAxis
+                    tickValues={[
+                      2.0,
+                      4.0,
+                      6.0,
+                      8.0, //get back to it
+                    ]}
+                    padding={{ right: 20 }}
+                  />
+                  <VictoryAxis padding={{ bottom: 90 }} />
+                </VictoryChart>
+              </div>
             </div>
           </div>
-          <div className="reports-statistics col-7 pb-5 pt-4">
-            <h5 className="mb-0">إجمالي البلاغات لكل شهر</h5>
-
-            <VictoryChart width={1300} height={400} maxDomain={{ y: 8 }}>
-              <VictoryArea
-                interpolation="natural"
-                style={{
-                  data: {
-                    fill: "rgba(181, 134, 76, 0.5)",
-                    fillOpacity: 0.4,
-                    stroke: "#034C3C",
-                    strokeOpacity: 0.7,
-                    strokeWidth: 3,
-                  },
-                }}
-                data={[
-                  { x: "يناير", y: jan, y0: 0 },
-                  { x: "فبراير", y: feb, y0: 0 },
-                  { x: "مارس", y: mar, y0: 0 },
-                  { x: "أبريل", y: apr, y0: 0 },
-                  { x: "مايو", y: may, y0: 0 },
-                  { x: "يونيو", y: jun, y0: 0 },
-                  { x: "يوليو", y: jul, y0: 0 },
-                  { x: "أغسطس", y: aug, y0: 0 },
-                  { x: "سبتمبر", y: sep, y0: 0 },
-                  { x: "أكتوبر", y: oct, y0: 0 },
-                  { x: "نوفمبر", y: nov, y0: 0 },
-                  { x: "ديسمبر", y: dec, y0: 0 },
-                ]}
-              />
-              <VictoryAxis
-                dependentAxis
-                tickValues={[
-                  ArabicNumbers(2.0),
-                  ArabicNumbers(4.0),
-                  ArabicNumbers(6.0),
-                  ArabicNumbers(8.0), //get back to it
-                ]}
-                padding={{ right: 20 }}
-              />
-              <VictoryAxis padding={{ bottom: 90 }} />
-            </VictoryChart>
-          </div>
-        </div>
-      </div>
+        </>
+      ) : (
+        <>
+          <UpdateStatusDash repId={rep._id} />
+        </>
+      )}
     </>
   );
 };

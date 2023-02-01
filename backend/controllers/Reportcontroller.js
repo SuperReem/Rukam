@@ -98,74 +98,62 @@ const getDashEmp = async (req, res) => {
   const jan = await reportModel.countDocuments({
     region: region,
     status: { $in: ["closed", "pending", "under_processing"] },
-    year: yearDate,
-    month: "1",
+    filter: { $gte: yearDate + "-01-01", $lte: yearDate + "-01-31" },
   });
   const feb = await reportModel.countDocuments({
     region: region,
     status: { $in: ["closed", "pending", "under_processing"] },
-    year: yearDate,
-    month: "2",
+    filter: { $gte: yearDate + "-02-01", $lte: yearDate + "-02-29" },
   });
   const mar = await reportModel.countDocuments({
     region: region,
     status: { $in: ["closed", "pending", "under_processing"] },
-    year: yearDate,
-    month: "3",
+    filter: { $gte: yearDate + "-03-01", $lte: yearDate + "-03-31" },
   });
   const apr = await reportModel.countDocuments({
     region: region,
     status: { $in: ["closed", "pending", "under_processing"] },
-    year: yearDate,
-    month: "4",
+    filter: { $gte: yearDate + "-04-01", $lte: yearDate + "-04-30" },
   });
   const may = await reportModel.countDocuments({
     region: region,
     status: { $in: ["closed", "pending", "under_processing"] },
-    year: yearDate,
-    month: "5",
+    filter: { $gte: yearDate + "-05-01", $lte: yearDate + "-05-31" },
   });
   const jun = await reportModel.countDocuments({
     region: region,
     status: { $in: ["closed", "pending", "under_processing"] },
-    year: yearDate,
-    month: "6",
+    filter: { $gte: yearDate + "-06-01", $lte: yearDate + "-06-30" },
   });
   const jul = await reportModel.countDocuments({
     region: region,
     status: { $in: ["closed", "pending", "under_processing"] },
-    year: yearDate,
-    month: "7",
+    filter: { $gte: yearDate + "-07-01", $lte: yearDate + "-07-31" },
   });
   const aug = await reportModel.countDocuments({
     region: region,
     status: { $in: ["closed", "pending", "under_processing"] },
-    year: yearDate,
-    month: "8",
+    filter: { $gte: yearDate + "-08-01", $lte: yearDate + "-08-31" },
   });
   const sep = await reportModel.countDocuments({
     region: region,
     status: { $in: ["closed", "pending", "under_processing"] },
-    year: yearDate,
-    month: "9",
+    filter: { $gte: yearDate + "-09-01", $lte: yearDate + "-09-30" },
   });
   const oct = await reportModel.countDocuments({
     region: region,
     status: { $in: ["closed", "pending", "under_processing"] },
-    year: yearDate,
-    month: "10",
+    filter: { $gte: yearDate + "-10-01", $lte: yearDate + "-10-31" },
   });
   const nov = await reportModel.countDocuments({
     region: region,
     status: { $in: ["closed", "pending", "under_processing"] },
-    year: yearDate,
-    month: "11",
+    filter: { $gte: yearDate + "-11-01", $lte: yearDate + "-11-30" },
   });
   const dec = await reportModel.countDocuments({
     region: region,
     status: { $in: ["closed", "pending", "under_processing"] },
-    year: yearDate,
-    month: "12",
+    filter: { $gte: yearDate + "-12-01", $lte: yearDate + "-12-31" },
   });
   res.json({
     reports,

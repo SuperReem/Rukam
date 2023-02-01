@@ -178,7 +178,6 @@ function ReportsListEmployee() {
                           <div>
                             <Button
                               id="details-button"
-                              //onClick={AddReport}
                               onClick={() => {
                                 setReport(report);
                                 setIndex(1);
