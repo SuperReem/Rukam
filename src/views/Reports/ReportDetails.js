@@ -148,14 +148,11 @@ function ReportDetails({ repId }) {
             <div className="row">
               <div className="col-sm-12">
                 <div className="pageNavigation">
-                  <a class="pagenav h5 text-end" onClick={PageNav}>
-                    {" "}
-                    البلاغات{" "}
-                  </a>
-                  <a></a>
-                  <a class="pagenav h5 text-end">تفاصيل البلاغ</a>
+                  <a className="pagenav h5 text-end pe-4" onClick={PageNav}>البلاغات</a>
+                  <p className="pagenav h5 text-end">&gt;&gt;</p>
+                  <a class="pagenav h5 text-end colored">تفاصيل البلاغ</a>
                 </div>
-                <div id="title"> تفاصيل البلاغ</div>
+                <div className="pe-4" id="title"> تفاصيل البلاغ</div>
               </div>
             </div>
               <div class="he shadow-sm ms-4 me-3 rounded-4 pb-0 mt-2">

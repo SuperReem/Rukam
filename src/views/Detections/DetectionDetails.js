@@ -128,15 +128,13 @@ function DetectionDetails({ detection }) {
           <div className="App">
             <div className="row">
               <div className="col-sm-12">
-                <div className="pageNavigation">
-                  <a class="pagenav h5 text-end" onClick={PageNav}>
-                    {" "}
-                    المواقع المخالفة{" "}
-                  </a>
-                  <a></a>
-                  <a class="pagenav h5 text-end"> موقع مخالف</a>
+              <div className="pageNavigation">
+                  <a className="pagenav h5 text-end pe-4" onClick={PageNav}>المواقع المخالفة</a>
+                  <p className="pagenav h5 text-end">&gt;&gt;</p>
+                  <a class="pagenav h5 text-end colored">موقع مخالف</a>
                 </div>
-                <div id="title"> تفاصيل البلاغ</div>
+             
+                <div className="pe-4" id="title"> تفاصيل المخالفة</div>
               </div>
             </div>
             <div class="he shadow-sm ms-4 me-3 rounded-4 pb-0 mt-2">
