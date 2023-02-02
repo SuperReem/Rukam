@@ -31,7 +31,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      await login(email, password);
+      await login(email.toLowerCase(), password);
     } catch (error) {}
   };
 
