@@ -188,31 +188,12 @@ function DroneList() {
                             <div class=" card-body avatar mx-auto white avatar-container text-center mx-auto position-relative pb-0 pt-2 ">
                               <img
                                 class="
-                card-img-top bg-white mx-auto  biggerImg  border border-4 border-success
+                card-img-top bg-white  mx-auto  biggerImg 
                img-circle rounded-circle   p-2  position-absolute top-0 start-50 translate-middle m-2 
                 "
                                 src={droneImg} //{drone.image}
                                 alt=""
                               />
-                              <img
-                                class="
-                card-img-top bg-white mx-auto  biggerImg  
-               img-circle rounded-circle   p-2  position-absolute top-0 start-50 translate-middle m-2 
-                "
-                                src={droneImg} //{drone.image}
-                                alt=""
-                              />
-                              {Drone.active ? (
-                                <>
-                                  {" "}
-                                  <span>
-                                    {" "}
-                                    <BsCircleFill className="check-icon-active "></BsCircleFill>
-                                  </span>{" "}
-                                </>
-                              ) : (
-                                <></>
-                              )}
 
                               <h4 class="card-title mb-0 nameDown">
                                 {Drone.droneName}
@@ -267,7 +248,7 @@ function DroneList() {
                                           alt="Drone"
                                         />
                                       </div>
-                                      <div className="row p-2">
+                                      <div className="row p-2 align-items-center justify-content-center">
                                         <div className=" h3 heading">
                                           {Drone.droneName}
                                         </div>

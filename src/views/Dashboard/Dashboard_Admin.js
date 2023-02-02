@@ -7,10 +7,10 @@ import {
   Marker,
   useJsApiLoader,
   MarkerF,
+  InfoWindow,
 } from "@react-google-maps/api";
 import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import DroneIcon from "../../assets/images/DRONE_ICON.png";
 import { SlLocationPin } from "react-icons/sl";
@@ -24,13 +24,19 @@ import { ArabicNumbers } from "react-native-arabic-numbers";
 import droneImg from "../../assets/images/Drone.png";
 import { MdOutlineEdit } from "react-icons/md";
 import { BsTrash } from "react-icons/bs";
+import { BsCheck } from "react-icons/bs";
+import EditDrone from "../../views/Drones/Edit_Drone";
 const containerStyle = {
   width: "650px",
   height: "210px",
   borderRadius: "10px",
   boxShadow: "1px 1px 15px 1px #ebebeb",
 };
-
+const containerStyle2 = {
+  width: "380px",
+  height: "210px",
+  borderRadius: "10px",
+};
 const center = {
   lat: 24.72,
   lng: 46.62,
@@ -50,10 +56,6 @@ const Dashboard_Admin = () => {
 
   var [highestDetections, sethighestDetections] = useState(0);
 
-  var closed = 0;
-  var pending = 0;
-  var unsent = 0;
-  var proc = 0;
   const [doneCounting, setDoneCounting] = useState(false);
   const [pageNumber, setPageNumber] = useState(0);
   const [dateStart, setDateStart] = useState("All");
@@ -69,7 +71,7 @@ const Dashboard_Admin = () => {
 
   const onLoad = React.useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
+    // map.fitBounds(bounds);
     setMap(map);
   }, []);
 
@@ -203,10 +205,22 @@ const Dashboard_Admin = () => {
 
     fetchReports();
   }, [dispatch]);
+  const [index, setIndex] = useState(0);
+  const [droneId, setDrone] = useState();
+  const DeleteDrone = async (Id) => {
+    const response = await fetch("/api/Drone/" + Id, {
+      method: "DELETE",
+    });
+    const json = await response.json();
+    if (response.ok) {
+      console.log("Deleted", json);
+    }
+  };
+  const ulur = { lat: 24.455097, lng: 46.29898 };
 
   return (
     <>
-      {reports ? (
+      {index == 0 ? (
         <>
           <div>
             <div className="statistics-cards-container">
@@ -260,10 +274,15 @@ const Dashboard_Admin = () => {
                 <GoogleMap
                   mapContainerStyle={containerStyle}
                   center={center}
-                  zoom={2}
+                  zoom={11}
                   onLoad={onLoad}
                   onUnmount={onUnmount}
-                ></GoogleMap>
+                >
+                  {activeDronesList &&
+                    activeDronesList.map((Drone) => (
+                      <MarkerF position={Drone.currentLocation}> </MarkerF>
+                    ))}
+                </GoogleMap>
               ) : (
                 <div>Loading...</div>
               )}
@@ -319,7 +338,6 @@ const Dashboard_Admin = () => {
             <div className="active-drones-container">
               <div className="d-flex justify-content-between pb-2">
                 <h5 className="active-drones-title">الدرونز المفعلة</h5>
-                <button id="show-all-button">عرض الكل</button>
               </div>
               <div className="active-drones-list-container">
                 <div className="active-drones-list">
@@ -348,6 +366,8 @@ const Dashboard_Admin = () => {
                                 size="sm"
                                 id="current-loc-button"
                                 className="ms-3"
+                                data-bs-toggle="modal"
+                                data-bs-target={"#myModal-current" + Drone._id}
                               >
                                 <SlLocationPin /> الموقع الحالي
                               </Button>
@@ -369,7 +389,7 @@ const Dashboard_Admin = () => {
                               id={"myModal2" + Drone._id}
                             >
                               <div className="modal-dialog modal-dialog-centered">
-                                <div className="modal-content col-3">
+                                <div className="modal-content">
                                   <div className="">
                                     <div className="row align-items-center  justify-content-end  pt-2 ">
                                       <div className="col-2">
@@ -384,20 +404,14 @@ const Dashboard_Admin = () => {
 
                                     <div className="modal-body justify-content-center p-0">
                                       <div className="row align-items-center  justify-content-center">
-                                        <div className="col-6 p-0 ">
+                                        <div className="col-4">
                                           <img
                                             src={droneImg}
-                                            class="
-       bg-white  mx-auto  biggerImg 
-      img-circle rounded-circle
-      
-       
-    
-      "
+                                            class=" bg-white  mx-auto  biggerImg img-circle rounded-circle"
                                             alt="Drone"
                                           />
                                         </div>
-                                        <div className="row p-2">
+                                        <div className="row p-2  text-center">
                                           <div className=" h3 heading">
                                             {Drone.droneName}
                                           </div>
@@ -414,12 +428,16 @@ const Dashboard_Admin = () => {
 
                                         {isLoaded ? (
                                           <GoogleMap
-                                            mapContainerStyle={containerStyle}
-                                            center={center}
-                                            zoom={7}
+                                            mapContainerStyle={containerStyle2}
+                                            center={Drone.currentLocation}
+                                            zoom={12}
                                             onLoad={onLoad}
                                             onUnmount={onUnmount}
-                                          ></GoogleMap>
+                                          >
+                                            <MarkerF
+                                              position={Drone.currentLocation}
+                                            ></MarkerF>{" "}
+                                          </GoogleMap>
                                         ) : (
                                           <div>Loading...</div>
                                         )}
@@ -439,6 +457,10 @@ const Dashboard_Admin = () => {
                                       size="md"
                                       className="btn btn-primary my-2  px-3 classButton"
                                       data-bs-dismiss="modal"
+                                      onClick={() => {
+                                        setDrone(Drone);
+                                        setIndex(1);
+                                      }}
                                     >
                                       <MdOutlineEdit />
                                       تحرير
@@ -447,15 +469,194 @@ const Dashboard_Admin = () => {
                                     <Button
                                       variant="secondary"
                                       size="md"
-                                      data-bs-dismiss="modal"
+                                      id="delete-report-button"
+                                      data-bs-toggle="modal"
+                                      data-bs-target={"#myModaldel" + Drone._id}
                                       className="btn btn-primary my-2  px-4 deleteD"
-                                      // data-target="#myModal3"
                                     >
                                       <BsTrash color="white" />
                                       حذف
                                     </Button>
                                   </div>
                                 </div>
+                              </div>
+                            </div>
+
+                            <div>
+                              <div
+                                key={Drone.id}
+                                className="modal"
+                                id={"myModaldel" + Drone._id}
+                              >
+                                <div className="modal-dialog modal-dialog-centered">
+                                  <div className="modal-content">
+                                    <div className="">
+                                      <div className="row align-items-center  justify-content-end mb-4 pt-2">
+                                        <div className="col-6 p-0 ">
+                                          <h4 className=" m-3 ">حذف الدرون</h4>
+                                        </div>
+                                        <div className="col-2">
+                                          <button
+                                            data-bs-dismiss="modal"
+                                            className="closebtn btn rounded"
+                                          >
+                                            &#x2715;
+                                          </button>
+                                        </div>
+                                      </div>
+                                      <div className="modal-body justify-content-center">
+                                        <div className="row align-items-center  justify-content-center">
+                                          <div className="row align-items-center justify-content-between   pt-2">
+                                            <div className="justify-content-center  h4">
+                                              هل أنت متأكد من حذف هذا الدرون؟
+                                            </div>
+                                          </div>
+                                          <div className="row justify-content-start align-items-start">
+                                            <div className="col-8 h5"></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div></div>
+                                    <div className="modal-footer border border-0 justify-content-center">
+                                      <Button
+                                        variant="secondary"
+                                        size="md"
+                                        onClick={() => DeleteDrone(Drone._id)}
+                                        className="popup3 btn"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#myModal-success"
+                                      >
+                                        {" "}
+                                        حذف{" "}
+                                      </Button>
+                                      <Button
+                                        variant="secondary"
+                                        size="md"
+                                        className="popup-cancle"
+                                        data-bs-dismiss="modal"
+                                      >
+                                        {" "}
+                                        إلغاء{" "}
+                                      </Button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div>
+                              <div className="modal" id="myModal-success">
+                                <div className="modal-dialog modal-dialog-centered">
+                                  <div className="modal-content">
+                                    <div class="icon-box">
+                                      <i id="material-icons">
+                                        {" "}
+                                        <BsCheck size={108} />{" "}
+                                      </i>
+                                    </div>
+                                    <div className="">
+                                      <div className="row align-items-center  justify-content-end mb-4 pt-2">
+                                        <div className="col-6 p-0 ">
+                                          <h4 className=" m-5"> </h4>
+                                        </div>
+                                        <div className="col-1"></div>
+                                      </div>
+                                      <div className="modal-body justify-content-center">
+                                        <div className="row align-items-center  justify-content-center">
+                                          <div className="row align-items-center justify-content-between pb-4  pt-2">
+                                            <div className="text-center  h3">
+                                              تم حذف الدرون بنجاح !
+                                            </div>
+                                          </div>
+                                          <div className="row justify-content-start align-items-start">
+                                            <div className="col-8 h5"></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div></div>
+                                    <div className="modal-footer border border-0 justify-content-center">
+                                      <Button
+                                        variant="secondary"
+                                        size="md"
+                                        data-bs-dismiss="modal"
+                                        className="popup-cancle"
+                                      >
+                                        {" "}
+                                        حسنًا{" "}
+                                      </Button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            key={Drone._id}
+                            className="modal"
+                            id={"myModal-current" + Drone._id}
+                          >
+                            <div className="modal-dialog modal-dialog-centered">
+                              <div className="modal-content">
+                                <div className="">
+                                  <div className="row align-items-center  justify-content-end  pt-2 ">
+                                    <div className="col-2">
+                                      <button
+                                        data-bs-dismiss="modal"
+                                        className="closebtn btn rounded"
+                                      >
+                                        &#x2715;
+                                      </button>
+                                    </div>
+                                  </div>
+
+                                  <div className="modal-body justify-content-center p-0">
+                                    <div className="row align-items-center  justify-content-center">
+                                      <div className="col-4">
+                                        <img
+                                          src={droneImg}
+                                          class=" bg-white  mx-auto  biggerImg img-circle rounded-circle"
+                                          alt="Drone"
+                                        />
+                                      </div>
+                                      <div className="row p-2  text-center">
+                                        <div className=" h3 heading">
+                                          موقع {Drone.droneName} الحالي
+                                        </div>
+                                        <div className=" h5 heading"></div>
+                                      </div>
+
+                                      <div class="row">
+                                        <h6 class="h6 text-end px-5 heading"></h6>
+                                      </div>
+
+                                      {isLoaded ? (
+                                        <GoogleMap
+                                          mapContainerStyle={containerStyle2}
+                                          center={Drone.currentLocation}
+                                          zoom={12}
+                                          onLoad={onLoad}
+                                          onUnmount={onUnmount}
+                                        >
+                                          <MarkerF
+                                            position={Drone.currentLocation}
+                                          ></MarkerF>{" "}
+                                        </GoogleMap>
+                                      ) : (
+                                        <div>Loading...</div>
+                                      )}
+
+                                      <div className="row justify-content-start align-items-start">
+                                        <div className="col-8 h5"></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div></div>
+
+                                <div className="modal-footer border border-0 justify-content-evenly"></div>
                               </div>
                             </div>
                           </div>
@@ -467,7 +668,11 @@ const Dashboard_Admin = () => {
             </div>
           </div>
         </>
-      ) : null}
+      ) : (
+        <>
+          <EditDrone droId={droneId._id} />
+        </>
+      )}
     </>
   );
 };
