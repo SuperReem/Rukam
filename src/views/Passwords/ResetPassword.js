@@ -27,7 +27,7 @@ function ResetPassword() {
       setEmailError("البريد الإلكتروني غير صالح");
     } else {
       setEmailError("");
-      await forgotPassword(email).then(NavigateReset(email));
+      await forgotPassword(email.toLowerCase()).then(NavigateReset(email));
     }
   };
   const NavigateReset = (email) => {

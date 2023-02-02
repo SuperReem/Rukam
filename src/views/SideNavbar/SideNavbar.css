@@ -31,7 +31,12 @@
   justify-content: space-evenly;
   align-items: flex-start;
 }
-
+.modal{
+  --bs-modal-width: 450px !important;
+}
+.cont{
+  height: 68px !important;
+}
 .nav-list li {
   height: 3.3em;
   width: 100%;

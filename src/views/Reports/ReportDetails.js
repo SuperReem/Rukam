@@ -274,7 +274,7 @@ function ReportDetails({ repId }) {
                 </div>
                 <div className="modal-body justify-content-center">
                   <div className="row align-items-center  justify-content-center">
-                    <div className="row align-items-center justify-content-between  me-4 h5">
+                    <div className="row align-items-center justify-content-center  h5">
                     هل انت متأكد من إرسال البلاغ؟
                     </div>
                     <div className="row justify-content-start align-items-start">
@@ -330,10 +330,10 @@ function ReportDetails({ repId }) {
                   </div>
                   <div className="col-1"></div>
                 </div>
-                <div className="modal-body justify-content-center">
-                  <div className="row align-items-center  justify-content-center">
-                    <div className="row align-items-center justify-content-between pb-4  pt-2">
-                      <div className="text-center  h3">
+                <div className="modal-body justify-content-center ">
+                  <div className="row align-items-center  justify-content-center ">
+                    <div className="row align-items-center justify-content-between ">
+                      <div className="text-center  h4">
                         تم إرسال البلاغ بنجاح !
                       </div>
                     </div>

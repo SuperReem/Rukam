@@ -56,7 +56,7 @@ const forgotPassword = async (req, res) => {
         name +
         ',</p> <p dir="rtl">لإعادة تعيين كلمة المرور لحسابك، يرجى الضغط على الرابط التالي: </p> <center><a className="text-decoration-none" href="' +
         link +
-        '"> <mark>تغيير كلمة المرور </mark> </a></center> <br/> <br/><p dir="rtl">تجاهل هذه الرسالة إذا لم تطلب تغيير كلمة المرور. </p>  <br/>  <P>فريق ركام</P></html> ',
+        '"> <bold>تغيير كلمة المرور </bold> </a></center> <br/> <br/><p dir="rtl">تجاهل هذه الرسالة إذا لم تطلب تغيير كلمة المرور. </p>  <br/>  <P>فريق ركام</P></html> ',
     };
 
     return user.updateOne({ resetLink: token }, function (err, success) {

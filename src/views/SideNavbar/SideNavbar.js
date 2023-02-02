@@ -102,7 +102,7 @@ const Sidebar = () => {
                 <h5 className="fullName  ms-2 border-bottom ">
                   {user.fullName}{" "}
                 </h5>
-                <li data-bs-toggle="modal" data-bs-target="#myModalSignout">
+                <li data-bs-toggle="modal" data-bs-target="#myModalSign">
                   <HiOutlineLogout className="sidenav-icons " />
                   تسجيل الخروج
                 </li>
@@ -132,61 +132,55 @@ const Sidebar = () => {
       {/* ////// */}
 
       <div>
-        <div className="modal" id="myModalSignout">
+        <div className="modal" id="myModalSign">
           <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
+          <div className="modal-content ">
               <div className="">
-                <div className="row align-items-center  justify-content-end  pt-2">
+                <div className="row align-items-center  justify-content-end  pt-2 cont">
                   <div className="col-6 p-0 ">
-                    <h4 className=" m-0 h3">تسجيل الخروج</h4>
+                    <h4 className=" m-0 h3" >تسجيل خروج   </h4>
                   </div>
                   <div className="col-2">
                     <button
                       data-bs-dismiss="modal"
-                      className="closebtn btn rounded"
-                    >
+                      className="closebtn btn rounded" >
                       &#x2715;
                     </button>
                   </div>
                 </div>
                 <div className="modal-body justify-content-center">
                   <div className="row align-items-center  justify-content-center">
-                    <div className="row align-items-center justify-content-between  me-4 h5">
-                      هل أنت متأكد من تسجيل الخروج من حسابك؟
+                    <div className="row align-items-center justify-content-center  h5">
+                    هل انت متأكد من تسجيل الخروج؟
                     </div>
                     <div className="row justify-content-start align-items-start">
-                      <div className="col-8 h5"></div>
+                      <div className="col-8 h5">
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-
-              <div></div>
-
+              <div>
+              </div>
               <div className="modal-footer border border-0 justify-content-evenly">
-                <Button
+              <Button
                   variant="secondary"
                   size="md"
-                  className="popup btn "
+                  className="popup4 btn "
                   onClick={onLogOut}
-                  data-bs-dismiss="modal"
-                >
-                  تسجيل الخروج{" "}
-                </Button>
-
-                <Button
+                                 data-bs-dismiss="modal">
+تسجيل خروج              </Button>
+              <Button
                   variant="secondary"
                   size="md"
                   className="popup btn "
-                  data-bs-dismiss="modal"
-                >
-                  إلغاء
+                  data-bs-dismiss="modal">
+إلغاء
                 </Button>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+          </div>   </div>
     </>
   );
 };
