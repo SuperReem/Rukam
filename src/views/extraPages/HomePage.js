@@ -1,27 +1,24 @@
 import Footer from "../Footer/Footer";
 import TopNavbar from "../TopNavbar/TopNavbar";
 import "./HomePage.css";
-// import Email from "../../assets/images/email.png";
-import { AiOutlineArrowRight } from "react-icons/ai";
-import { Link, useLocation } from "react-router-dom";
 
 function HomePage() {
-  //   const location = useLocation();
-  //   const { userEmail } = location.state;
-  //   console.log(userEmail);
-
   return (
     <body className=" ">
       {/* <!-- Header --> */}
       <TopNavbar />
-      <p class="serline" height={35}>_____________</p>
+      <p class="serline" height={35}>
+        _____________
+      </p>
       <div className="container pt-3 ">
         <div className="row pe-3">
           <div className="container my-3 col col-10">
             <div className="card bg-white  border-0 rounded-280 cardHig ">
               <div className="card-body  row align-items-center">
                 <div className="position-relative col col-2 text-center text-black  align-self-center">
-                  <h4 className="textColor BoldFont mb-0 pb-0 align-self-center">لمحة عامة</h4>
+                  <h4 className="textColor BoldFont mb-0 pb-0 align-self-center">
+                    لمحة عامة
+                  </h4>
                   <p className="textColor position-absolute top-50 start-50 translate-middle pt-3 ">
                     ________________
                   </p>
@@ -82,41 +79,41 @@ function HomePage() {
               <h4 className="textColor BoldFont mb-0 pb-0 ">الخدمات</h4>
             </div>
           </div>
+        </div>
+
+        {/* الخدمات */}
+        <div className="row pe-kk mx-5 pe-3  justify-content-end">
+          <div className="container my-3 col col-3 ">
+            <div className="card bg-white  border-0 rounded-280 cards ">
+              <div className="card-body row align-items-center">
+                <h4 className="textColor BoldFont mb-0 pb-0 text-center align-self-center">
+                  أتمتة رفع البلاغات
+                </h4>
+              </div>
+            </div>
           </div>
 
-          {/* الخدمات */}
-          <div className="row pe-kk mx-5 pe-3  justify-content-end">
-            <div className="container my-3 col col-3 ">
-              <div className="card bg-white  border-0 rounded-280 cards ">
-                <div className="card-body row align-items-center">
-                  <h4 className="textColor BoldFont mb-0 pb-0 text-center align-self-center">
-                    أتمتة رفع البلاغات
-                  </h4>
-                </div>
+          <div className="container my-3 col col-3 ">
+            <div className="card bg-white  border-0 rounded-280 cards">
+              <div className="card-body  row align-items-center">
+                <h4 className="textColor BoldFont mb-0 pb-0 text-center align-self-center">
+                  معالجة البلاغات
+                </h4>
               </div>
             </div>
+          </div>
 
-            <div className="container my-3 col col-3 ">
-              <div className="card bg-white  border-0 rounded-280 cards">
-                <div className="card-body  row align-items-center">
-                  <h4 className="textColor BoldFont mb-0 pb-0 text-center align-self-center">
-                    معالجة البلاغات
-                  </h4>
-                </div>
-              </div>
-            </div>
-
-            <div className="container my-3 col col-3 ">
-              <div className="card bg-white  border-0 rounded-280 cards">
-                <div className="card-body row align-items-center">
-                  <h4 className=" textColor BoldFont mb-0 pb-0 text-center  align-self-center">
-                    إغلاق المخالفات
-                  </h4>
-                </div>
+          <div className="container my-3 col col-3 ">
+            <div className="card bg-white  border-0 rounded-280 cards">
+              <div className="card-body row align-items-center">
+                <h4 className=" textColor BoldFont mb-0 pb-0 text-center  align-self-center">
+                  إغلاق المخالفات
+                </h4>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
       {/* <!-- Footer --> */}
       <Footer />
