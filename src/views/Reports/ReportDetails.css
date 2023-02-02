@@ -104,6 +104,10 @@
 .modal{
   --bs-modal-width: 450px !important;
 }
+.modal.o1{
+  --bs-modal-width: 500px !important;
+  --bs-modal-hieght:100px !important
+}
 .save.btn {
   background-color: var(--light_green);
   color: white;

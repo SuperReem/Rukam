@@ -16,7 +16,7 @@ import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { Link } from "react-router-dom";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-
+import Button from "react-bootstrap/Button";
 const SidebarEmployee = () => {
   console.log("Employee sidebar");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -76,7 +76,7 @@ const SidebarEmployee = () => {
               </h5>
 
               {/* <h5 className="fullName  ms-2 mt-0 ">____________</h5> */}
-              <li onClick={onLogOut}>
+              <li data-bs-toggle="modal" data-bs-target="#myModalSign">
                 <HiOutlineLogout className="sidenav-icons" />
                 تسجيل الخروج
               </li>
@@ -93,7 +93,59 @@ const SidebarEmployee = () => {
           جميع الحقوق محفوظة لــركام &copy; {new Date().getFullYear()}
         </div>
       </main>
+      <div>
+     <div className="modal" id="myModalSign">
+       <div className="modal-dialog modal-dialog-centered">
+       <div className="modal-content ">
+           <div className="">
+             <div className="row align-items-center  justify-content-end  pt-2 cont">
+               <div className="col-6 p-0 ">
+                 <h4 className=" m-0 h3" >تسجيل خروج   </h4>
+               </div>
+               <div className="col-2">
+                 <button
+                   data-bs-dismiss="modal"
+                   className="closebtn btn rounded" >
+                   &#x2715;
+                 </button>
+               </div>
+             </div>
+             <div className="modal-body justify-content-center">
+               <div className="row align-items-center  justify-content-center">
+                 <div className="row align-items-center justify-content-center  h5">
+                 هل انت متأكد من تسجيل الخروج؟
+                 </div>
+                 <div className="row justify-content-start align-items-start">
+                   <div className="col-8 h5">
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+           <div>
+           </div>
+           <div className="modal-footer border border-0 justify-content-evenly">
+           <Button
+               variant="secondary"
+               size="md"
+               className="popup4 btn "
+               onClick={onLogOut}
+               data-bs-dismiss="modal">
+تسجيل خروج              </Button>
+           <Button
+               variant="secondary"
+               size="md"
+               className="popup btn "
+               data-bs-dismiss="modal">
+إلغاء
+             </Button>
+           </div>
+         </div>
+       </div>
+       </div> 
+       </div>
     </div>
+    
   );
 };
 

@@ -57,15 +57,17 @@ function DetectionDetails({ detection }) {
   }, []);
 
   const Accept = async (e) => {
-    e.preventDefault();
+
     const report = {
+      droneId:"5555",
       reportId: "9898",
       timestamp: detection.createdAt,
       status: "unsent",
       region: detection.region,
       image: detection.image,
       notes: "",
-      location: detection.location,
+      location:{ lang: detection.location.latitude,
+      lat:detection.location.longitude},
       filter: filterSlice,
     };
     const response = await fetch("/api/Report/", {
@@ -243,7 +245,7 @@ function DetectionDetails({ detection }) {
                       </div>
                       <div className="modal-body justify-content-center">
                         <div className="row align-items-center  justify-content-center">
-                          <div className="row align-items-center justify-content-between  me-4 h5">
+                          <div className="row align-items-center justify-content-center   h5">
                             هل انت متأكد من رفض المخالفة؟
                           </div>
                           <div className="row justify-content-start align-items-start">
@@ -302,7 +304,7 @@ function DetectionDetails({ detection }) {
                       </div>
                       <div className="modal-body justify-content-center">
                         <div className="row align-items-center  justify-content-center">
-                          <div className="row align-items-center justify-content-between  me-4 h5">
+                          <div className="row align-items-center justify-content-center   h5">
                             هل انت متأكد من قبول المخالفة؟
                           </div>
                           <div className="row justify-content-start align-items-start">
@@ -358,8 +360,8 @@ function DetectionDetails({ detection }) {
                 </div>
                 <div className="modal-body justify-content-center">
                   <div className="row align-items-center  justify-content-center">
-                    <div className="row align-items-center justify-content-between pb-4  pt-2">
-                      <div className="text-center  h3">
+                    <div className="row align-items-center justify-content-between">
+                      <div className="text-center  h4">
                         تم قبول البلاغ بنجاح !
                       </div>
                     </div>
@@ -401,10 +403,10 @@ function DetectionDetails({ detection }) {
                   </div>
                   <div className="col-1"></div>
                 </div>
-                <div className="modal-body justify-content-center">
+                <div className="modal-body justify-content-center ">
                   <div className="row align-items-center  justify-content-center">
-                    <div className="row align-items-center justify-content-between pb-4  pt-2">
-                      <div className="text-center  h3">
+                    <div className="row align-items-center justify-content-between ">
+                      <div className="text-center  h4">
                         تم رفض البلاغ بنجاح !
                       </div>
                     </div>

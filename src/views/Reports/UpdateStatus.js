@@ -267,7 +267,7 @@ useEffect(() => {
       </div>
 
       <div>
-        <div className="modal" id="myModal">
+        <div className="modal o1" id="myModal">
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
               <div className="">
