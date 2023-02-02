@@ -404,7 +404,7 @@ const Dashboard_Admin = () => {
 
                                     <div className="modal-body justify-content-center p-0">
                                       <div className="row align-items-center  justify-content-center">
-                                        <div className="col-4">
+                                        <div className="col-6 px-5">
                                           <img
                                             src={droneImg}
                                             class=" bg-white  mx-auto  biggerImg img-circle rounded-circle"
@@ -429,14 +429,19 @@ const Dashboard_Admin = () => {
                                         {isLoaded ? (
                                           <GoogleMap
                                             mapContainerStyle={containerStyle2}
-                                            center={Drone.currentLocation}
+                                            center={center}
                                             zoom={12}
                                             onLoad={onLoad}
                                             onUnmount={onUnmount}
                                           >
-                                            <MarkerF
-                                              position={Drone.currentLocation}
-                                            ></MarkerF>{" "}
+                                            {Drone.visitedLocations &&
+                                              Drone.visitedLocations.map(
+                                                (location) => (
+                                                  <MarkerF
+                                                    position={location}
+                                                  ></MarkerF>
+                                                )
+                                              )}
                                           </GoogleMap>
                                         ) : (
                                           <div>Loading...</div>
@@ -613,7 +618,7 @@ const Dashboard_Admin = () => {
 
                                   <div className="modal-body justify-content-center p-0">
                                     <div className="row align-items-center  justify-content-center">
-                                      <div className="col-4">
+                                      <div className="col-6 px-5">
                                         <img
                                           src={droneImg}
                                           class=" bg-white  mx-auto  biggerImg img-circle rounded-circle"
