@@ -123,7 +123,7 @@ function ResetPass() {
       <div className="main-content  ">
         {/*  the header */}
         <TopNavbar/>
-        <img src={Drone} className="movingPhoto position-absolute top-50 start-0  ms-5 translate-middle" height={35}/>
+        <img src={Drone} class="movingPhotoLogin position-absolute top-50 start-0  ms-5" height={35}/>
 
         {/* <!-- Header --> */}
         <div className="header bg-gradient-primary py-4 py-lg-8">

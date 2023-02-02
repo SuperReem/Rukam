@@ -16,17 +16,15 @@
   .classInput::placeholder {
     color: var(--brown) !important;
   }
-  .movingPhoto{
-    animation: 30s -27s move infinite ease-in-out alternate-reverse;
-    
-  
+  .movingPhotoLogin{
+    animation: 30s -27s moveLogin infinite ease-in-out alternate-reverse;
   }
-  @keyframes move {
+  @keyframes moveLogin {
     from {
-      transform: rotate(400deg) scale(14) translateX(15px);
+      transform: rotate(400deg) scale(14) translateX(15px) ;
     }
     to {
-      transform: rotate(0deg) scale(20) translateX(10px);
+      transform:  rotate(0deg) scale(20) translateX(10px);
     }
   }
   
