@@ -7,21 +7,19 @@ function HomePage() {
     <body className=" ">
       {/* <!-- Header --> */}
       <TopNavbar />
-      <p class="serline" height={35}>
-        _____________
-      </p>
+      
+      <hr className="mt-0 serline "></hr>
       <div className="container pt-3 ">
         <div className="row pe-3">
           <div className="container my-3 col col-10">
             <div className="card bg-white  border-0 rounded-280 cardHig ">
               <div className="card-body  row align-items-center">
-                <div className="position-relative col col-2 text-center text-black  align-self-center">
+                <div className="position-relative col col-2 text-center align-self-center">
                   <h4 className="textColor BoldFont mb-0 pb-0 align-self-center">
                     لمحة عامة
                   </h4>
-                  <p className="textColor position-absolute top-50 start-50 translate-middle pt-3 ">
-                    ________________
-                  </p>
+
+                  <hr className="mt-0 hrLine "></hr>
                 </div>
                 <p className="  col col-10">
                   بدأ تأسيس ركام منذ عام ٢٠٢٢ لتكون الخدمة المساعدة للحد من
@@ -41,11 +39,9 @@ function HomePage() {
           <div className="container my-3 col col-5">
             <div className="card bg-white  border-0 rounded-280 cards ms-1">
               <div className="card-body row align-items-center">
-                <div className="position-relative col col-3 text-center mb-4 text-black  align-self-center">
+                <div className="position-relative col col-3 text-center mb-4  align-self-center">
                   <h4 className="BoldFont mb-0 pb-0 textColor">الرسالة</h4>
-                  <p className="textColor position-absolute top-50 start-50 translate-middle pt-3 ">
-                    ___________
-                  </p>
+                  <hr className="mt-0 hrLine "></hr>
                 </div>
                 <p className="  col col-9">
                   الارتقاء بجودة شوارع المدن السعودية من خلال من خلال تعزيز
@@ -58,11 +54,9 @@ function HomePage() {
           <div className="container my-3 col col-5 ">
             <div className="card bg-white  border-0 rounded-280 cards me-1">
               <div className="card-body row align-items-center">
-                <div className="position-relative col col-3 text-center mb-4 text-black  align-self-center">
-                  <h4 className=" textColor BoldFont mb-0 pb-0 ">الرؤية</h4>
-                  <p className=" textColor position-absolute top-50 start-50 translate-middle pt-3 ">
-                    __________
-                  </p>
+                <div className="position-relative col col-3 text-center mb-4 align-self-center">
+                  <h4 className=" textColor BoldFont mb-0 pb-0 ">الرؤيـــة</h4>
+                  <hr className="mt-0 hrLine "></hr>
                 </div>
                 <p className="  col col-9">
                   لمملكة منظمة ومستدامة وخالية من التشوه البصري.
@@ -75,13 +69,11 @@ function HomePage() {
 
         <div className="row mb-4ll pe-0 mt-3">
           <div className="container mt-2 col col-11 ms-3 ">
-            <div className="position-relative col col-2 text-center text-black">
+            <div className="position-relative col col-2 text-center ">
               <h4 className="textColor BoldFont mb-0 pb-0 ">الخدمات</h4>
             </div>
           </div>
         </div>
-
-        {/* الخدمات */}
         <div className="row pe-kk mx-5 pe-3  justify-content-end">
           <div className="container my-3 col col-3 ">
             <div className="card bg-white  border-0 rounded-280 cards ">

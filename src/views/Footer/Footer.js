@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Footer.css";
 import Saudi from "../../assets/images/Saudi_Vision_2030_logo.png";
 import { Link } from "react-router-dom";
 
 function Footer() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
   return (
     <div className="footer footerimg p-lg-5  p-sm-0 pb-md-2  text-white">
       <div className="row   align-items-end">

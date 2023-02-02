@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 
 function TopNavbar() {
   const [currentIndex, setCurrentIndex] = useState(0);
+
   return (
     <>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        {/* <a class="navbar-brand" href="#">Navbar</a> */}
         <Link to="/homePage" className="nav-link">
           <img src={Logo} width="100" alt="" />
         </Link>

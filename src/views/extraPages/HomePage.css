@@ -1,32 +1,35 @@
-.BoldFont{
-    font-weight: bold;
-  }
+.BoldFont {
+  font-weight: bold;
+}
 .cards {
   height: 120px !important;
-  /* border-bottom-left-radius: 40%; */
   border-bottom-right-radius: 120px 40px !important;
-  box-shadow: 2px 3px 18px #D2BDA4 !important;
-  /* border-bottom-style: dashed; 034C3C*/
-  /* background-color: lightgreen;
-  border: solid 6px rgb(216, 29, 29); 68836B*/
-  /* width: 200px;
-  height: 100px; */
+  box-shadow: 2px 3px 18px #d2bda4 !important;
 }
-.cardHig{
- height: 150px !important;  
- box-shadow: 2px 3px 18px #D2BDA4 !important;
+.cardHig {
+  height: 150px !important;
+  box-shadow: 2px 3px 18px #d2bda4 !important;
+}
+.serline {
+  border: 1px solid ;
+  border-color: var(--primary);
+  position: absolute;
+  top: 48px;
+  height: 0px;
+  width: 73px !important;
+  opacity: 90%;
+  right: 21%;
+}
 
+.textColor {
+  color: var(--primary) !important;
 }
-.serline{
-    color:var(--primary);
-    position: absolute;
-    top: 40px;
-    height: 25px;
-    width: 25px !important;
-    right: 21.7% ;
-    /* bottom: 100px; */
-    /* left: 60%; */
-}
-.textColor{
-    color: var(--primary) !important;
+.hrLine{
+  top: 120px !important;
+  border: 2px solid ;
+  border-color: var(--primary);
+  opacity: 90%;
+  margin: auto;
+  padding: 0;
+  width:75%;
 }

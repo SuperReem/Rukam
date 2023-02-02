@@ -1,7 +1,6 @@
 import { useLogin } from "../hooks/useLogin";
 import { Link, useLocation, Navigate } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
-
 import { useState } from "react";
 import "./Login.css";
 import Footer from "../views/Footer/Footer";
@@ -43,9 +42,8 @@ const Login = () => {
       <div className="main-content  ">
         {/* <!-- Header --> */}
         <TopNavbar />
-        <p class="line" height={35}>
-          ________________
-        </p>
+        <hr className="mt-0 logline "></hr>
+     
         <img
           src={Drone}
           class="movingPhotoLogin position-absolute top-50 start-0  ms-5"

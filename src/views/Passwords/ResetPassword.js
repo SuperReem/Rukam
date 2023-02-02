@@ -3,58 +3,46 @@ import "./ResetPassword.css";
 import Footer from "../Footer/Footer";
 import TopNavbar from "../TopNavbar/TopNavbar";
 import Drone from "../../assets/images/DroneToFly.png";
-import validator from 'validator'
-//
-// import EmailResetPassword from "../../views/Passwords/EmailResetPassword";
-import { useContext, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useForgotPassword } from "../../hooks/useForgotPassword"
-import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
+import { useForgotPassword } from "../../hooks/useForgotPassword";
 
 function ResetPassword() {
-  let Navigate= useNavigate()
- 
-  const [email, setEmail] = useState('')
-  const [emailError, setEmailError] = useState('') 
+  let Navigate = useNavigate();
 
-  //
-  const {forgotPassword, error, isLoading} = useForgotPassword()
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
 
+  const { forgotPassword } = useForgotPassword();
 
   const setVal = (e) => {
-    setEmail(e.target.value)
-}
+    setEmail(e.target.value);
+  };
 
-const sendLink = async (e) => {
-  e.preventDefault();
+  const sendLink = async (e) => {
+    e.preventDefault();
 
-  if (email === "") {
-    setEmailError("يرجى إدخال البريد الإلكتروني" // set email errors 
-      );
-  } else if (!email.includes("@")) {
-    setEmailError("البريد الإلكتروني غير صالح");
-  } else {
-    setEmailError('');
-    console.log(email)
-
-  
-    await forgotPassword(email).then(
-      NavigateReset(email)
-    )
-  }
-  
-
-}
-const NavigateReset = (email) => {
-  Navigate("/EmailResetPassword", {state:{ userEmail: email}});
-}
+    if (email === "") {
+      setEmailError("يرجى إدخال البريد الإلكتروني");
+    } else if (!email.includes("@")) {
+      setEmailError("البريد الإلكتروني غير صالح");
+    } else {
+      setEmailError("");
+      await forgotPassword(email).then(NavigateReset(email));
+    }
+  };
+  const NavigateReset = (email) => {
+    Navigate("/EmailResetPassword", { state: { userEmail: email } });
+  };
   return (
     <body className=" ">
       <div className="main-content   ">
         {/* <!-- Header --> */}
         <TopNavbar />
-        <img src={Drone} class="movingPhotoLogin position-absolute top-50 start-0  ms-5" height={35}/>
-
+        <img
+          src={Drone}
+          className="movingPhotoLogin position-absolute top-50 start-0  ms-5"
+          height={35}
+        />
 
         {/* <!-- Body --> */}
         <div className="header bg-gradient-primary py-4 py-lg-8 ">
@@ -77,7 +65,9 @@ const NavigateReset = (email) => {
                   <div className="text-center text-muted mb-4 text-black">
                     <h5 className="text-black">أدخل بريدك الإلكتروني</h5>
                   </div>
-                  {emailError && <div className="error text-danger mt-1 ">{emailError}</div>}
+                  {emailError && (
+                    <div className="error text-danger mt-1 ">{emailError}</div>
+                  )}
 
                   <form role="form">
                     <div className="col-12 mb-4">
@@ -107,7 +97,6 @@ const NavigateReset = (email) => {
                       >
                         إرسال
                       </button>
-
                     </div>
                   </form>
                 </div>
@@ -122,5 +111,3 @@ const NavigateReset = (email) => {
   );
 }
 export default ResetPassword;
-
-

@@ -1,62 +1,66 @@
-
 .classLabel {
-    display: flex;
-    width: 150px;
-    text-align: right;
+  display: flex;
+  width: 150px;
+  text-align: right;
+}
+
+.classButton {
+  background-color: var(--light_green) !important;
+  border-color: var(--light_green) !important;
+}
+.classInput {
+  border-color: var(--light_brown) !important;
+}
+.classInput::placeholder {
+  color: var(--brown) !important;
+}
+.movingPhotoLogin {
+  animation: 30s -27s moveLogin infinite ease-in-out alternate-reverse;
+}
+@keyframes moveLogin {
+  from {
+    transform: rotate(400deg) scale(14) translateX(15px);
   }
- 
-  
-  .classButton {
-    background-color: var(--light_green) !important;
-    border-color: var(--light_green) !important;
+  to {
+    transform: rotate(0deg) scale(20) translateX(10px);
   }
-  .classInput {
-    border-color: var(--light_brown) !important;
-  }
-  .classInput::placeholder {
-    color: var(--brown) !important;
-  }
-  .movingPhotoLogin{
-    animation: 30s -27s moveLogin infinite ease-in-out alternate-reverse;
-  }
-  @keyframes moveLogin {
-    from {
-      transform: rotate(400deg) scale(14) translateX(15px) ;
-    }
-    to {
-      transform:  rotate(0deg) scale(20) translateX(10px);
-    }
-  }
-  
-  .classInput:focus {
-    outline: none !important;
-    border: 0px !important;
-    box-shadow: 0 0 10px var(--light_brown) !important;
-    /* #ce9e71  */
-  }
-  
+}
+
+.classInput:focus {
+  outline: none !important;
+  border: 0px !important;
+  box-shadow: 0 0 10px var(--light_brown) !important;
+}
+
 .pass-wrapper {
   position: relative;
   display: flex;
-  /* margin-bottom: 14px; */
 }
-.showhide{
+.showhide {
   position: absolute;
   top: 25%;
   left: 4%;
-  width:15px;
+  width: 15px;
 }
-.errordiv{
+.errordiv {
   height: 25px;
 }
-.line{
-  color:var(--primary);
+.line {
+  color: var(--primary);
   position: absolute;
   top: 40px;
   height: 25px;
   width: 25px !important;
-  right: 13% ;
-  /* bottom: 100px; */
-  /* left: 60%; */
+  right: 13%;
+}
+.logline {
+  border: 1px solid ;
+  border-color: var(--primary);
+  position: absolute;
 
+  top: 48px;
+  height: 0px;
+  width: 118px !important;
+  opacity: 90%;
+  right: 11.5%;
 }
