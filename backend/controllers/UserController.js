@@ -17,22 +17,19 @@ const createToken = (_id) => {
   return jwt.sign({ _id }, "process.env.SECRET", { expiresIn: "3d" });
 };
 
-// login a user
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
     const user = await User.login(email, password);
-    console.log("logged in ");
     const userType = user.userType;
-    console.log(userType);
     const fullName = user.fullName;
     const region = user.region;
 
     // create a token
     const token = createToken(user._id);
 
-    res.status(200).json({ email, userType, token, fullName, region }); ///
+    res.status(200).json({ email, userType, token, fullName, region });
   } catch (error) {
     res.status(400).json({
       error: "البريد الإلكتروني أو كلمة المرور خاطئة، يرجى المحاولة مجددًا !",
@@ -42,11 +39,9 @@ const loginUser = async (req, res) => {
 
 const forgotPassword = async (req, res) => {
   const { email } = req.body;
-  console.log(req.body);
   User.findOne({ email }, (err, user) => {
     if (err || !user) {
-      // return
-      res.status(400).json({ error: "error #" });
+      return res.status(400).json({ error: "error #" });
     }
     const name = user.fullName || "";
     const token = createToken(user._id);
@@ -61,41 +56,27 @@ const forgotPassword = async (req, res) => {
         name +
         ',</p> <p dir="rtl">لإعادة تعيين كلمة المرور لحسابك، يرجى الضغط على الرابط التالي: </p> <center><a className="text-decoration-none" href="' +
         link +
-        '"> <mark>تغيير كلمة المرور </mark> </a></center> <br/> <br/><p dir="rtl">تجاهل هذه الرسالة إذا لم تطلب تغيير كلمة المرور. </p>  <br/>  <P>فريق ركام</P></html> ' +
-        token,
+        '"> <mark>تغيير كلمة المرور </mark> </a></center> <br/> <br/><p dir="rtl">تجاهل هذه الرسالة إذا لم تطلب تغيير كلمة المرور. </p>  <br/>  <P>فريق ركام</P></html> ',
     };
-    console.log("token");
-    console.log(token);
 
     return user.updateOne({ resetLink: token }, function (err, success) {
       if (err || !user) {
-        console.log("error sending email");
         return res.status(400).json({ error: "error em " });
       } else {
-        transporter.sendMail(mailOptions, function (error, info) {
-          if (error) {
-            console.log("error");
-          } else {
-            console.log("Email sent: ");
-          }
-        });
+        transporter.sendMail(mailOptions, function (error, info) {});
       }
     });
   });
 };
 const resetPassword = async (req, res) => {
-  const { resetLink, newPass } = req.body; // confpassword
-  console.log(req.body);
-
+  const { resetLink, newPass } = req.body;
   if (resetLink) {
     jwt.verify(resetLink, "process.env.SECRET", function (error, decodedData) {
       if (error) {
-        console.log("error jwt");
         return res.json({ error: error.message });
       }
       User.findOne({ resetLink }, async (err, user) => {
         if (err || !user) {
-          console.log("errpr no user");
           return res.status(400).json({ error: "error.message3" });
         }
 
@@ -110,21 +91,17 @@ const resetPassword = async (req, res) => {
         user = _.extend(user, obj);
         user.save((error, result) => {
           if (error || !user) {
-            console.log("body");
-            console.log("body has not changed ");
-
             return res.status(400).json({ error: "error.message4" });
           } else {
-            console.log("changed ");
             return res
               .status(200)
-              .json({ message: "changed has been changed" });
+              .json({ message: "password has been changed" });
           }
         });
       });
     });
   } else {
-    return res.status(401).json({ error: "error.message5" });
+    return res.status(401).json({ error: "error" });
   }
 };
 
