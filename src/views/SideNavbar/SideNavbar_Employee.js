@@ -47,10 +47,22 @@ const SidebarEmployee = () => {
           <div className="nav-list-container">
             <ul className="nav-list">
               <li onClick={() => setCurrentIndex(0)}>
+              {currentIndex == 0 ? (
+              <div className="cc d-flex align-items-center ">
                 <RiHome6Line className="sidenav-icons" /> الرئيسية
+                </div>
+              ):  <div className=" d-flex align-items-center ">
+              <RiHome6Line className="sidenav-icons" /> الرئيسية
+              </div>}
               </li>
               <li onClick={() => setCurrentIndex(1)}>
+              {currentIndex == 1 ? (
+                 <div className="cc d-flex align-items-center ">
                 <TbReportAnalytics className="sidenav-icons" /> البلاغات
+                </div>):
+                  <div className=" d-flex align-items-center ">
+                  <TbReportAnalytics className="sidenav-icons" /> البلاغات
+                  </div>}
               </li>
 
               <br></br>

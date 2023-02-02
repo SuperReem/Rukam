@@ -155,14 +155,14 @@
   background-color: rgb(151, 89, 38) !important;
   color: white;
 }
-.popup.btn {
-  background-color: var(--brown) !important;
+.popup2.btn {
+  background-color: var(--light_green) !important;
   border: none;
   color: white;
   width: 30%;
 }
-.popup2.btn {
-  background-color: var(--light_green) !important;
+.popup2.btn:hover {
+  background-color:rgb(17, 101, 17);
   border: none;
   color: white;
   width: 30%;
@@ -179,6 +179,12 @@
 }
 .popup4.btn {
   background-color: var(--primary) ;
+  border: none;
+  color: white;
+  width: 30%;
+}
+.popup4.btn:hover {
+  background-color: rgb(0, 47, 0);
   border: none;
   color: white;
   width: 30%;
