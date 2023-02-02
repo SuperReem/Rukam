@@ -81,6 +81,27 @@ background-color: white;
     
   
   }
+  .pagenav {
+    padding-right: 1%;
+    color: var(--brown) !important;
+    cursor: pointer;
+    font-size: 0.5em;
+    text-decoration: none;
+  }
+  .pagenav.colored{
+    padding-right: 1%;
+    color: var(--primary) !important;
+    cursor: pointer;
+    font-size: 0.5em;
+    text-decoration: none;
+  }
+  .pageNavigation {
+    height: 30px;
+    justify-content: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+  
+  }
 
 
   

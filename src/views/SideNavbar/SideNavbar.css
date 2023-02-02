@@ -60,15 +60,15 @@ main {
   flex-direction: column;
 }
 
-main{
-   width: 100%;
-   flex: 1;
-   padding-left: 2rem;
-   padding-top: 3.6rem;
-   padding-bottom: 4rem;
-   color: #1f2027;
-   display: flex;
-   flex-direction: column;
+main {
+  width: 100%;
+  flex: 1;
+  padding-left: 2rem;
+  padding-top: 3.6rem;
+  padding-bottom: 4rem;
+  color: #1f2027;
+  display: flex;
+  flex-direction: column;
 }
 .background {
   background-color: #fafafa;
@@ -88,8 +88,8 @@ main{
   margin-right: auto;
   margin-left: auto;
 }
-.fullName{
-  color:var(--brown) ;
+.fullName {
+  color: var(--brown);
 }
 .cc{
   height: 3.3em;

@@ -14,6 +14,10 @@ const dronesSchema = new Schema(
     active: {
       type: Boolean,
     },
+    currentLocation: {
+      lat: { type: Number },
+      lng: { type: Number },
+    },
   },
 
   { timestamps: true }
