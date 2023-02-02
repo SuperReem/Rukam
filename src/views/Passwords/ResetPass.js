@@ -32,11 +32,13 @@ function ResetPass() {
     const lowercaseRegExp = /(?=.*[a-z])/;
     const digitsRegExp = /^(?=.*[0-9])/;
     const minLengthRegExp = /.{7,}/;
+    // const wspace = /^\S*$/;
 
     const uppercasePassword = uppercaseRegExp.test(thePassword);
     const lowercasePassword = lowercaseRegExp.test(thePassword);
     const digitsPassword = digitsRegExp.test(thePassword);
     const minLengthPassword = minLengthRegExp.test(thePassword);
+    // const wspacePassword = wspace.test(thePassword);
 
     if (minLengthPassword) {
       setVal1(true);
@@ -136,9 +138,9 @@ function ResetPass() {
                           className="form-control classInput"
                           placeholder="********"
                           value={password}
-                          onChange={(e) => setPassword(e.target.value)}
+                          onChange={(e) => setPassword(e.target.value.replace(" ", ""))}
                           id="inputPass"
-                          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                          pattern="^(?=.*?[A-Za-z0-9#!@$%^&*()+=])\S{8,35}$"
                           required
                         />
 
@@ -164,7 +166,7 @@ function ResetPass() {
                           className="form-control classInput"
                           placeholder="********"
                           value={password2}
-                          onChange={(e) => setPassword2(e.target.value)}
+                          onChange={(e) => setPassword2(e.target.value.replace(" ", ""))}
                           id="inputPass"
                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                           required

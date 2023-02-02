@@ -11,6 +11,7 @@ import { VscEyeClosed } from "react-icons/vsc";
 
 const Login = () => {
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
   const { login, error, isLoading } = useLogin();
 
@@ -27,12 +28,19 @@ const Login = () => {
     setPasswordShown(!passwordShown);
   };
 
+  const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!email.match(isValidEmail)) {
+      setEmailError("البريد الإلكتروني غير صالح");
+    } else{
 
     try {
+      setEmailError("");
       await login(email.toLowerCase(), password);
     } catch (error) {}
+  }
   };
 
   return user ? (
@@ -74,6 +82,10 @@ const Login = () => {
                     {error && (
                       <div className="error text-danger mt-1 ">{error}</div>
                     )}
+                    {emailError && (
+                    <div className="error text-danger mt-1 ">{emailError}</div>
+                  )}
+
                   </div>
                   <form role="form" onSubmit={handleSubmit}>
                     <div className="col-12 mb-4">
