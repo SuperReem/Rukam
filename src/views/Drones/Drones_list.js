@@ -36,7 +36,7 @@ import {
 } from "@react-google-maps/api";
 
 function DroneList() {
-  const [imgFile, setImgFile] = useState("");
+  const [imgFile, setImgFile] = useState(droneImg);
   const [dronName, setDronName] = useState("");
   // const [Drones, setDrones] = useState(null);
 
@@ -61,13 +61,22 @@ function DroneList() {
   const [pageNumber, setPageNumber] = useState(0);
   const [numberOfPages, setNumberOfPages] = useState(0);
   const pages = new Array(numberOfPages).fill(null).map((v, i) => i);
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    const base64 = await convertToBase64(file);
+    console.log(base64)
+    setImage({ ...image, myFile : base64 })
+  }
   const handle = async (e) => {
     e.preventDefault();
 
     const drone = {
       droneName,
       region,
-      image: "kkkkk",
+      image: image,
+      currentLocation: {lat:24.717634 , lng: 46.666387},
+      visitedLocations:{},
+
     };
 
     const response = await fetch("/api/Drone", {
@@ -188,12 +197,31 @@ function DroneList() {
                             <div class=" card-body avatar mx-auto white avatar-container text-center mx-auto position-relative pb-0 pt-2 ">
                               <img
                                 class="
-                card-img-top bg-white  mx-auto  biggerImg 
+                card-img-top bg-white mx-auto  biggerImg  border border-4 border-success
                img-circle rounded-circle   p-2  position-absolute top-0 start-50 translate-middle m-2 
                 "
-                                src={droneImg} //{drone.image}
+                                src={Drone.image ? Drone.image.myFile ? Drone.image.myFile :droneImg: droneImg} //{drone.image}
                                 alt=""
                               />
+                              <img
+                                class="
+                card-img-top bg-white mx-auto  biggerImg  
+               img-circle rounded-circle   p-2  position-absolute top-0 start-50 translate-middle m-2 
+                "
+                                src={Drone.image ? Drone.image.myFile ? Drone.image.myFile : droneImg: droneImg} //{drone.image}
+                                alt=""
+                              />
+                              {Drone.active ? (
+                                <>
+                                  {" "}
+                                  <span>
+                                    {" "}
+                                    <BsCircleFill className="check-icon-active "></BsCircleFill>
+                                  </span>{" "}
+                                </>
+                              ) : (
+                                <></>
+                              )}
 
                               <h4 class="card-title mb-0 nameDown">
                                 {Drone.droneName}
@@ -237,7 +265,7 @@ function DroneList() {
                                     <div className="row align-items-center  justify-content-center">
                                       <div className="col-6 p-0 ">
                                         <img
-                                          src={droneImg}
+                                          src={Drone.image ? Drone.image.myFile ? Drone.image.myFile : droneImg: droneImg}
                                           class="
                  bg-white  mx-auto  biggerImg 
                 img-circle rounded-circle
@@ -248,7 +276,7 @@ function DroneList() {
                                           alt="Drone"
                                         />
                                       </div>
-                                      <div className="row p-2 align-items-center justify-content-center">
+                                      <div className="row p-2">
                                         <div className=" h3 heading">
                                           {Drone.droneName}
                                         </div>
@@ -504,21 +532,44 @@ function DroneList() {
                       </div>
                       <div className="modal-body justify-content-center">
                         <div className="row align-items-center  justify-content-center">
-                          <div className="col-4 p-0 ">
-                            <div class="add-img">
+                          <div className="col-4  ">
+                            <div class="add-imgIcon">
                               <IoAddCircle color="#B5864C" />
                             </div>
-                            <img
+                            {/* <img
                               src={droneImg}
                               class="
        bg-white  mx-auto  biggerImg 
       img-circle rounded-circle
       
       
-    
+      
       "
                               alt="Drone"
-                            />
+                              /> */}
+
+
+<label htmlFor="file-upload" className='custom-file-upload'>
+          <img 
+          src={image.myFile || droneImg} alt="" 
+          class="
+                card-img-top bg-white mx-auto  biggerImg   
+               img-circle rounded-circle   position-absolute top-0 start-50 translate-middle m-3 
+                "
+          />
+        </label>
+<input 
+          type="file"
+          lable="Image"
+          name="myFile"
+          id='file-upload'
+          accept='.jpeg, .png, .jpg'
+          onChange={(e) => handleFileUpload(e)}
+         />
+
+
+
+
                           </div>
 
                           <div className="row align-items-center justify-content-between  h5">
@@ -629,3 +680,15 @@ function DroneList() {
 }
 
 export default DroneList;
+function convertToBase64(file){
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      resolve(fileReader.result)
+    };
+    fileReader.onerror = (error) => {
+      reject(error)
+    }
+  })
+}

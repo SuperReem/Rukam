@@ -19,6 +19,7 @@ const [droneName, setName] = useState("");
 const [region, setRegion] = useState("");
 const [image, setImage] = useState("");
 const [dro, setDrone] = useState();
+
 const { drones, dispatch } = useDronesContext();
 const [index, setIndex] = useState(0);
 
@@ -58,7 +59,9 @@ const Save = async (e) => {
 
     droneName:droneName,
     region:region,
-    image: "kkkkk",
+    image: image,
+    currentLocation: {lat:24.717634 , lng: 46.666387},
+    visitedLocations:{},
   
   };
   console.log("Is it update??? ", drn);

@@ -8,9 +8,10 @@ const dronesSchema = new Schema(
     region: {
       type: String,
     },
-    image: {
-      type: String,
-    },
+    image: new mongoose.Schema({
+      myFile : String
+  }),
+
     active: {
       type: Boolean,
     },
