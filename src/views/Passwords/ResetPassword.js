@@ -83,7 +83,7 @@ function ResetPassword() {
                         className="form-control classInput mb-2"
                         id="email"
                         name="email"
-                        placeholder="Ma***@gmail.com"
+                        placeholder="example@email.com"
                         value={email}
                         onChange={setVal}
                         required

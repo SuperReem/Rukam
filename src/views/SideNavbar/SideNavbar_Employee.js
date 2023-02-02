@@ -71,9 +71,10 @@ const SidebarEmployee = () => {
               <br></br>
               <br></br>
 
-              <h5 className="fullName  ms-2 border-bottom ">
-                {user.fullName}{" "}
-              </h5>
+              <h5 className="fullName  ms-2 border-bottomkk col col-12 mb-0 ">
+                  {user.fullName}{" "}
+                </h5>
+                <hr className="mt-0 nameLine col col-12 mb-1 mx-0 "></hr>
 
               {/* <h5 className="fullName  ms-2 mt-0 ">____________</h5> */}
               <li data-bs-toggle="modal" data-bs-target="#myModalSign">

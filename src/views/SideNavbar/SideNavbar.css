@@ -105,3 +105,11 @@ main {
   border-radius:0 15px 15px 0;
 
 }
+.nameLine {
+  border-color:#fafafa;
+  top: 3px;
+  height: 0px;
+  width: 170px !important;
+  opacity: 100%;
+  right: 21%;
+}

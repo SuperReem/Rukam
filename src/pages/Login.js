@@ -101,7 +101,7 @@ const Login = () => {
                         className="form-control classInput "
                         id="email"
                         name="email"
-                        placeholder="ma***@gmail.com"
+                        placeholder="example@email.com"
                         onChange={(e) =>
                           setEmail(e.target.value.replace(" ", ""))
                         }

@@ -99,9 +99,11 @@ const Sidebar = () => {
                 <br></br>
                 <br></br>
 
-                <h5 className="fullName  ms-2 border-bottom ">
+                <h5 className="fullName  ms-2 border-bottomkk col col-12 mb-0 ">
                   {user.fullName}{" "}
                 </h5>
+                <hr className="mt-0 nameLine col col-12 mb-1 mx-0 "></hr>
+
                 <li data-bs-toggle="modal" data-bs-target="#myModalSign">
                   <HiOutlineLogout className="sidenav-icons " />
                   تسجيل الخروج
@@ -128,8 +130,6 @@ const Sidebar = () => {
           </div>
         </main>
       </div>
-
-      {/* ////// */}
 
       <div>
         <div className="modal" id="myModalSign">
