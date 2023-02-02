@@ -1,21 +1,14 @@
 import React, { useState } from "react";
 import Logo from "../../assets/images/Logo_Dark.png";
 import "./SideNavbar.css";
-import Dashboard_Admin from "../Dashboard/Dashboard_Admin";
 import Dashboard_Employee from "../Dashboard/Dashboard_Employee";
-import DroneList from "../Drones/Drones_list";
 import ReportsListEmployee from "../Reports/Report_list_Employee";
-import DetectionList from "../Detections/Detection_list";
 import { RiHome6Line } from "react-icons/ri";
 import { TbReportAnalytics, TbDrone } from "react-icons/tb";
 import { HiOutlineLogout } from "react-icons/hi";
-import { SlLocationPin } from "react-icons/sl";
-import { useContext } from "react";
-import ReportDetails from "../Reports/ReportDetails";
 import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../hooks/useAuthContext";
-import { Link } from "react-router-dom";
-import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 const SidebarEmployee = () => {
   console.log("Employee sidebar");
@@ -42,27 +35,30 @@ const SidebarEmployee = () => {
               <img src={Logo} alt="Rukam Logo" height={50}></img>
             </div>
           </div>
-          {/* // */}
 
           <div className="nav-list-container">
             <ul className="nav-list">
               <li onClick={() => setCurrentIndex(0)}>
-              {currentIndex == 0 ? (
-              <div className="cc d-flex align-items-center ">
-                <RiHome6Line className="sidenav-icons" /> الرئيسية
-                </div>
-              ):  <div className=" d-flex align-items-center ">
-              <RiHome6Line className="sidenav-icons" /> الرئيسية
-              </div>}
+                {currentIndex == 0 ? (
+                  <div className="cc d-flex align-items-center ">
+                    <RiHome6Line className="sidenav-icons" /> الرئيسية
+                  </div>
+                ) : (
+                  <div className=" d-flex align-items-center ">
+                    <RiHome6Line className="sidenav-icons" /> الرئيسية
+                  </div>
+                )}
               </li>
               <li onClick={() => setCurrentIndex(1)}>
-              {currentIndex == 1 ? (
-                 <div className="cc d-flex align-items-center ">
-                <TbReportAnalytics className="sidenav-icons" /> البلاغات
-                </div>):
+                {currentIndex == 1 ? (
+                  <div className="cc d-flex align-items-center ">
+                    <TbReportAnalytics className="sidenav-icons" /> البلاغات
+                  </div>
+                ) : (
                   <div className=" d-flex align-items-center ">
-                  <TbReportAnalytics className="sidenav-icons" /> البلاغات
-                  </div>}
+                    <TbReportAnalytics className="sidenav-icons" /> البلاغات
+                  </div>
+                )}
               </li>
 
               <br></br>
@@ -72,11 +68,10 @@ const SidebarEmployee = () => {
               <br></br>
 
               <h5 className="fullName  ms-2 border-bottomkk col col-12 mb-0 ">
-                  {user.fullName}{" "}
-                </h5>
-                <hr className="mt-0 nameLine col col-12 mb-1 mx-0 "></hr>
+                {user.fullName}{" "}
+              </h5>
+              <hr className="mt-0 nameLine col col-12 mb-1 mx-0 "></hr>
 
-              {/* <h5 className="fullName  ms-2 mt-0 ">____________</h5> */}
               <li data-bs-toggle="modal" data-bs-target="#myModalSign">
                 <HiOutlineLogout className="sidenav-icons" />
                 تسجيل الخروج
@@ -95,58 +90,59 @@ const SidebarEmployee = () => {
         </div>
       </main>
       <div>
-     <div className="modal" id="myModalSign">
-       <div className="modal-dialog modal-dialog-centered">
-       <div className="modal-content ">
-           <div className="">
-             <div className="row align-items-center  justify-content-end  pt-2 cont">
-               <div className="col-6 p-0 ">
-                 <h4 className=" m-0 h3" >تسجيل خروج   </h4>
-               </div>
-               <div className="col-2">
-                 <button
-                   data-bs-dismiss="modal"
-                   className="closebtn btn rounded" >
-                   &#x2715;
-                 </button>
-               </div>
-             </div>
-             <div className="modal-body justify-content-center">
-               <div className="row align-items-center  justify-content-center">
-                 <div className="row align-items-center justify-content-center  h5">
-                 هل انت متأكد من تسجيل الخروج؟
-                 </div>
-                 <div className="row justify-content-start align-items-start">
-                   <div className="col-8 h5">
-                   </div>
-                 </div>
-               </div>
-             </div>
-           </div>
-           <div>
-           </div>
-           <div className="modal-footer border border-0 justify-content-evenly">
-           <Button
-               variant="secondary"
-               size="md"
-               className="popup4 btn "
-               onClick={onLogOut}
-               data-bs-dismiss="modal">
-تسجيل خروج              </Button>
-           <Button
-               variant="secondary"
-               size="md"
-               className="popup btn "
-               data-bs-dismiss="modal">
-إلغاء
-             </Button>
-           </div>
-         </div>
-       </div>
-       </div> 
-       </div>
+        <div className="modal" id="myModalSign">
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content ">
+              <div className="">
+                <div className="row align-items-center  justify-content-end  pt-2 cont">
+                  <div className="col-6 p-0 ">
+                    <h4 className=" m-0 h3">تسجيل خروج </h4>
+                  </div>
+                  <div className="col-2">
+                    <button
+                      data-bs-dismiss="modal"
+                      className="closebtn btn rounded"
+                    >
+                      &#x2715;
+                    </button>
+                  </div>
+                </div>
+                <div className="modal-body justify-content-center">
+                  <div className="row align-items-center  justify-content-center">
+                    <div className="row align-items-center justify-content-center  h5">
+                      هل انت متأكد من تسجيل الخروج؟
+                    </div>
+                    <div className="row justify-content-start align-items-start">
+                      <div className="col-8 h5"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div></div>
+              <div className="modal-footer border border-0 justify-content-evenly">
+                <Button
+                  variant="secondary"
+                  size="md"
+                  className="popup4 btn "
+                  onClick={onLogOut}
+                  data-bs-dismiss="modal"
+                >
+                  تسجيل خروج{" "}
+                </Button>
+                <Button
+                  variant="secondary"
+                  size="md"
+                  className="popup btn "
+                  data-bs-dismiss="modal"
+                >
+                  إلغاء
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    
   );
 };
 

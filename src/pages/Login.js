@@ -45,7 +45,7 @@ const Login = () => {
   return user ? (
     <Navigate to={redirectLoginUrl} />
   ) : (
-    <body className=" ">
+    <body className="">
       <div className="main-content  ">
         {/* <!-- Header --> */}
         <TopNavbar />

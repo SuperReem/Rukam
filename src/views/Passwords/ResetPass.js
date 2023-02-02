@@ -291,9 +291,7 @@ function ResetPass() {
                   data-bs-dismiss="modal"
                   className="popup-cancle"
                 >   <Link to="/login" className="nav-link">
-                  {" "}
-                  تسجيل الدخول{" "}
-               
+                  تسجيل الدخول
                    </Link>
                 </Button>
               </div>

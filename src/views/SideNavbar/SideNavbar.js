@@ -11,7 +11,6 @@ import { HiOutlineLogout } from "react-icons/hi";
 import { SlLocationPin } from "react-icons/sl";
 import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../hooks/useAuthContext";
-import { Navigate, useLocation } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
 const Sidebar = () => {
@@ -22,9 +21,6 @@ const Sidebar = () => {
   const { user } = useAuthContext();
   console.log(user);
 
-  const location = useLocation();
-  const redirectLoginUrl = `/login?redirectTo=${encodeURI(location.pathname)}`;
-
   const { logout } = useLogout();
 
   const onLogOut = () => {
@@ -33,7 +29,6 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* !user ? <Navigate to={redirectLoginUrl} /> :  */}
       <div id="main-container">
         <div className="sideNav-container">
           <div className="nav-sub-container">
@@ -134,16 +129,17 @@ const Sidebar = () => {
       <div>
         <div className="modal" id="myModalSign">
           <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content ">
+            <div className="modal-content ">
               <div className="">
                 <div className="row align-items-center  justify-content-end  pt-2 cont">
                   <div className="col-6 p-0 ">
-                    <h4 className=" m-0 h3" >تسجيل خروج   </h4>
+                    <h4 className=" m-0 h3">تسجيل خروج </h4>
                   </div>
                   <div className="col-2">
                     <button
                       data-bs-dismiss="modal"
-                      className="closebtn btn rounded" >
+                      className="closebtn btn rounded"
+                    >
                       &#x2715;
                     </button>
                   </div>
@@ -151,36 +147,38 @@ const Sidebar = () => {
                 <div className="modal-body justify-content-center">
                   <div className="row align-items-center  justify-content-center">
                     <div className="row align-items-center justify-content-center  h5">
-                    هل انت متأكد من تسجيل الخروج؟
+                      هل انت متأكد من تسجيل الخروج؟
                     </div>
                     <div className="row justify-content-start align-items-start">
-                      <div className="col-8 h5">
-                      </div>
+                      <div className="col-8 h5"></div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div>
-              </div>
+              <div></div>
               <div className="modal-footer border border-0 justify-content-evenly">
-              <Button
+                <Button
                   variant="secondary"
                   size="md"
                   className="popup4 btn "
                   onClick={onLogOut}
-                                 data-bs-dismiss="modal">
-تسجيل خروج              </Button>
-              <Button
+                  data-bs-dismiss="modal"
+                >
+                  تسجيل خروج{" "}
+                </Button>
+                <Button
                   variant="secondary"
                   size="md"
                   className="popup btn "
-                  data-bs-dismiss="modal">
-إلغاء
+                  data-bs-dismiss="modal"
+                >
+                  إلغاء
                 </Button>
               </div>
             </div>
           </div>
-          </div>   </div>
+        </div>{" "}
+      </div>
     </>
   );
 };
