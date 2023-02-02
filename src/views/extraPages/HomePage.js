@@ -89,7 +89,7 @@ function HomePage() {
             <div className="container my-3 col col-3 ">
               <div className="card bg-white  border-0 rounded-280 cards ">
                 <div className="card-body row align-items-center">
-                  <h4 className="BoldFont mb-0 pb-0 text-center text-black  align-self-center">
+                  <h4 className="textColor BoldFont mb-0 pb-0 text-center align-self-center">
                     أتمتة رفع البلاغات
                   </h4>
                 </div>
@@ -99,7 +99,7 @@ function HomePage() {
             <div className="container my-3 col col-3 ">
               <div className="card bg-white  border-0 rounded-280 cards">
                 <div className="card-body  row align-items-center">
-                  <h4 className="BoldFont mb-0 pb-0 text-center text-black  align-self-center">
+                  <h4 className="textColor BoldFont mb-0 pb-0 text-center align-self-center">
                     معالجة البلاغات
                   </h4>
                 </div>
@@ -109,7 +109,7 @@ function HomePage() {
             <div className="container my-3 col col-3 ">
               <div className="card bg-white  border-0 rounded-280 cards">
                 <div className="card-body row align-items-center">
-                  <h4 className="BoldFont mb-0 pb-0 text-center text-black  align-self-center">
+                  <h4 className=" textColor BoldFont mb-0 pb-0 text-center  align-self-center">
                     إغلاق المخالفات
                   </h4>
                 </div>
