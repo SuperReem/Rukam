@@ -18,7 +18,9 @@ import { BsChevronRight } from "react-icons/bs";
 import "../../views/Drones/Drones_list.css";
 import { MdOutlineEdit } from "react-icons/md";
 import { BsTrash } from "react-icons/bs";
-import ReportDetails from "../../views/Reports/ReportDetails";
+import { BsCheck } from "react-icons/bs";
+// import ReportDetails from "../../views/Reports/ReportDetails";
+import EditDrone from  "../../views/Drones/Edit_Drone";
 import React from "react";
 // import Dropdown from "../../views/Drones/Dropdown";
 // // import "views/Drones/Dropdown_Style.css";
@@ -85,6 +87,19 @@ function DroneList() {
       //  dispatch({ type: "CREATE_DRONE", payload: json });
     }
   };
+  const DeleteDrone = async (Id) => {
+    const response = await fetch("/api/Drone/" + Id, {
+      method: "DELETE",
+    });
+    const json = await response.json();
+    if (response.ok) {
+      console.log("Deleted", json);
+      // setRefresh(!refresh);
+    }
+  };
+  
+
+
   const containerStyle = {
     width: "380px",
     height: "210px",
@@ -166,6 +181,7 @@ function DroneList() {
 
                 {drones &&
                   drones.map((Drone) => (
+                    <>
                     <div class="col-lg-3 col-sm-6 text-center mb-4 mt-2">
                       <div class=" card mx-2 text-center mt-5 border-1 border-opacity-10 border-secondary border-opacity-25hh rounded-4  p-0 ">
                         <div className="Drones">
@@ -286,18 +302,150 @@ function DroneList() {
                                 <Button
                                   variant="secondary"
                                   size="md"
-                                  data-bs-dismiss="modal"
+                                  // data-bs-dismiss="modal"
+                                  id="delete-report-button"
+                                data-bs-toggle="modal"
+                               
+                                data-bs-target={"#myModaldel" + Drone._id}
                                   className="btn btn-primary my-2  px-4 deleteD"
+                                  // onClick={() => DeleteDrone(Drone._id)}
                                 >
                                   <BsTrash color="white" />
+                                  
                                   حذف
+                                  
+                                </Button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+                        <div>
+                        <div 
+                        key = {Drone.id}
+                        className="modal" 
+                        id={"myModaldel" + Drone._id}
+                       
+                        >
+                          <div className="modal-dialog modal-dialog-centered">
+                            <div className="modal-content">
+                              <div className="">
+                                <div className="row align-items-center  justify-content-end mb-4 pt-2">
+                                  <div className="col-6 p-0 ">
+                                    <h4 className=" m-3 ">حذف الدرون</h4>
+                                  </div>
+                                  <div className="col-2">
+                                    <button
+                                      data-bs-dismiss="modal"
+                                      className="closebtn btn rounded"
+                                    >
+                                      &#x2715;
+                                    </button>
+                                  </div>
+                                </div>
+                                <div className="modal-body justify-content-center">
+                                  <div className="row align-items-center  justify-content-center">
+                                    <div className="row align-items-center justify-content-between   pt-2">
+                                      <div className="justify-content-center  h4">
+                                        هل أنت متأكد من حذف هذا الدرون؟
+                                      </div>
+                                    </div>
+                                    <div className="row justify-content-start align-items-start">
+                                      <div className="col-8 h5"></div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div></div>
+                              <div className="modal-footer border border-0 justify-content-center">
+                                <Button
+                                  variant="secondary"
+                                  size="md"
+                                   onClick={() =>  DeleteDrone(Drone._id)}
+                                  className="popup3 btn"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#myModal-success"
+                                >
+                                  {" "}
+                                  حذف{" "}
+                                </Button>
+                                <Button
+                                  variant="secondary"
+                                  size="md"
+                                  className="popup-cancle"
+                                  data-bs-dismiss="modal"
+                                >
+                                  {" "}
+                                  إلغاء{" "}
                                 </Button>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
+
+                      <div>
+                        <div className="modal" id="myModal-success">
+                          <div className="modal-dialog modal-dialog-centered">
+                            <div className="modal-content">
+                              <div class="icon-box">
+                                <i id="material-icons">
+                                  {" "}
+                                  <BsCheck size={108} />{" "}
+                                </i>
+                              </div>
+                              <div className="">
+                                <div className="row align-items-center  justify-content-end mb-4 pt-2">
+                                  <div className="col-6 p-0 ">
+                                    <h4 className=" m-5"> </h4>
+                                  </div>
+                                  <div className="col-1"></div>
+                                </div>
+                                <div className="modal-body justify-content-center">
+                                  <div className="row align-items-center  justify-content-center">
+                                    <div className="row align-items-center justify-content-between pb-4  pt-2">
+                                      <div className="text-center  h3">
+                                        تم حذف الدرون بنجاح !
+                                      </div>
+                                    </div>
+                                    <div className="row justify-content-start align-items-start">
+                                      <div className="col-8 h5"></div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div></div>
+                              <div className="modal-footer border border-0 justify-content-center">
+                                <Button
+                                  variant="secondary"
+                                  size="md"
+                                  data-bs-dismiss="modal"
+                                  className="popup-cancle"
+                                >
+                                  {" "}
+                                  حسنًا{" "}
+                                </Button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+
+
+
+
+
+                      </div>
                     </div>
+
+                    
+
+
+                  </>
+
                   ))}
               </div>
             </div>
@@ -490,7 +638,7 @@ function DroneList() {
         </>
       ) : (
         <>
-          <ReportDetails repId={droneId._id} />
+          <EditDrone droId={droneId._id} />
         </>
       )}
     </>
