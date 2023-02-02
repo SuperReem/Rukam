@@ -210,9 +210,9 @@ function ReportsList() {
                           <div className="modal-dialog modal-dialog-centered">
                             <div className="modal-content">
                               <div className="">
-                                <div className="row align-items-center  justify-content-end mb-4 pt-2">
+                                <div className="row align-items-center  justify-content-end pt-2">
                                   <div className="col-6 p-0 ">
-                                    <h4 className=" m-3">حذف البلاغ</h4>
+                                    <h4 className="h3 m-0">حذف البلاغ</h4>
                                   </div>
                                   <div className="col-2">
                                     <button
@@ -225,10 +225,8 @@ function ReportsList() {
                                 </div>
                                 <div className="modal-body justify-content-center">
                                   <div className="row align-items-center  justify-content-center">
-                                    <div className="row align-items-center justify-content-between pb-4 me-5 pt-2">
-                                      <div className="justify-content-center me-3 h4">
-                                        هل أنت متأكد من حذف هذا البلاغ؟
-                                      </div>
+                                    <div className="row align-items-center justify-content-center  h5">
+                                      هل أنت متأكد من حذف هذا البلاغ؟
                                     </div>
                                     <div className="row justify-content-start align-items-start">
                                       <div className="col-8 h5"></div>
@@ -237,7 +235,7 @@ function ReportsList() {
                                 </div>
                               </div>
                               <div></div>
-                              <div className="modal-footer border border-0 justify-content-center">
+                              <div className="modal-footer border border-0 justify-content-evenly">
                                 <Button
                                   variant="secondary"
                                   size="md"
@@ -282,8 +280,8 @@ function ReportsList() {
                                 </div>
                                 <div className="modal-body justify-content-center">
                                   <div className="row align-items-center  justify-content-center">
-                                    <div className="row align-items-center justify-content-between pb-4  pt-2">
-                                      <div className="text-center  h3">
+                                    <div className="row align-items-center justify-content-between ">
+                                      <div className="text-center  h4">
                                         تم حذف البلاغ بنجاح !
                                       </div>
                                     </div>

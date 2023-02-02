@@ -419,7 +419,7 @@ const Dashboard_Employee = () => {
                     </div>
                   </div>
                   <PieChart
-                    data={[pendingTotal, underprocessingTotal, 0, closedTotal]}
+                    data={[underprocessingTotal, 0, pendingTotal, closedTotal]}
                     radius={60}
                     holeRadius={45}
                     margin={40}

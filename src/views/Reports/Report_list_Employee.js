@@ -21,6 +21,7 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 import ArabicNumbers from "react-native-arabic-numbers/src/ArabicNumbers";
 import moment from "moment";
 import "moment/locale/ar";
+import { BsCheck } from "react-icons/bs";
 
 function ReportsListEmployee() {
   moment.locale("ar");
@@ -205,9 +206,9 @@ function ReportsListEmployee() {
                         <div className="modal-dialog modal-dialog-centered">
                           <div className="modal-content">
                             <div className="">
-                              <div className="row align-items-center  justify-content-end mb-4 pt-2">
+                              <div className="row align-items-center  justify-content-end pt-2">
                                 <div className="col-6 p-0 ">
-                                  <h4 className=" m-3">حذف البلاغ</h4>
+                                  <h4 className="h3 m-0">حذف البلاغ</h4>
                                 </div>
                                 <div className="col-2">
                                   <button
@@ -220,10 +221,64 @@ function ReportsListEmployee() {
                               </div>
                               <div className="modal-body justify-content-center">
                                 <div className="row align-items-center  justify-content-center">
-                                  <div className="col-8 progressbar  pb-4"></div>
-                                  <div className="row align-items-center justify-content-between pb-4 me-5 pt-2">
-                                    <div className="justify-content-center me-3 h4">
-                                      هل أنت متأكد من حذف هذا البلاغ؟
+                                  <div className="row align-items-center justify-content-center  h5">
+                                    هل أنت متأكد من حذف هذا البلاغ؟
+                                  </div>
+                                  <div className="row justify-content-start align-items-start">
+                                    <div className="col-8 h5"></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div></div>
+                            <div className="modal-footer border border-0 justify-content-evenly">
+                              <Button
+                                variant="secondary"
+                                size="md"
+                                onClick={() => DeleteReport(IdToDelete)}
+                                className="popup3 btn"
+                                data-bs-toggle="modal"
+                                data-bs-target="#myModal-success"
+                              >
+                                {" "}
+                                حذف{" "}
+                              </Button>
+                              <Button
+                                variant="secondary"
+                                size="md"
+                                className="popup-cancle"
+                                data-bs-dismiss="modal"
+                              >
+                                {" "}
+                                إلغاء{" "}
+                              </Button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="modal" id="myModal-success">
+                        <div className="modal-dialog modal-dialog-centered">
+                          <div className="modal-content">
+                            <div class="icon-box">
+                              <i id="material-icons">
+                                {" "}
+                                <BsCheck size={108} />{" "}
+                              </i>
+                            </div>
+                            <div className="">
+                              <div className="row align-items-center  justify-content-end mb-4 pt-2">
+                                <div className="col-6 p-0 ">
+                                  <h4 className=" m-5"> </h4>
+                                </div>
+                                <div className="col-1"></div>
+                              </div>
+                              <div className="modal-body justify-content-center">
+                                <div className="row align-items-center  justify-content-center">
+                                  <div className="row align-items-center justify-content-between ">
+                                    <div className="text-center  h4">
+                                      تم حذف البلاغ بنجاح !
                                     </div>
                                   </div>
                                   <div className="row justify-content-start align-items-start">
@@ -237,23 +292,11 @@ function ReportsListEmployee() {
                               <Button
                                 variant="secondary"
                                 size="md"
-                                id="delete-report-button"
-                                onClick={() => DeleteReport(IdToDelete)}
                                 data-bs-dismiss="modal"
-                                className="popup btn "
+                                className="popup-cancle"
                               >
                                 {" "}
-                                حذف{" "}
-                              </Button>
-                              <Button
-                                variant="secondary"
-                                size="md"
-                                id="details-button"
-                                data-bs-dismiss="modal"
-                                className="popup btn "
-                              >
-                                {" "}
-                                إلغاء{" "}
+                                حسنًا{" "}
                               </Button>
                             </div>
                           </div>

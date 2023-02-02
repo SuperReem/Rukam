@@ -26,6 +26,8 @@ import { MdOutlineEdit } from "react-icons/md";
 import { BsTrash } from "react-icons/bs";
 import { BsCheck } from "react-icons/bs";
 import EditDrone from "../../views/Drones/Edit_Drone";
+import Geocode from "react-geocode";
+
 const containerStyle = {
   width: "650px",
   height: "210px",
@@ -60,7 +62,8 @@ const Dashboard_Admin = () => {
   const [pageNumber, setPageNumber] = useState(0);
   const [dateStart, setDateStart] = useState("All");
   const [dateEnd, setDateEnd] = useState("All");
-  const [refresh, setRefresh] = useState(false);
+  const [refresh, setRefresh] = useState();
+  const [allActive, setAllActive] = useState();
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -78,7 +81,20 @@ const Dashboard_Admin = () => {
   const onUnmount = React.useCallback(function callback(map) {
     setMap(null);
   }, []);
+  Geocode.setLanguage("ar");
+  Geocode.setApiKey("AIzaSyBUMSPnho9iIVnF-MKvOMgYw_bRBwc7U7Q");
+
   useEffect(() => {
+    Geocode.fromLatLng("24.4733131", "46.2995045").then(
+      (response) => {
+        const address = response.results[0].formatted_address;
+        console.log(address.split("،")[1]);
+        setRefresh(address);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
     const fetchDetectionsWeek = async () => {
       const response = await fetch("/api/Detection/week", {
         method: "GET",
@@ -146,6 +162,7 @@ const Dashboard_Admin = () => {
         console.log("wrong");
       }
       if (response.ok) {
+        setAllActive(active.drones);
         setactiveDrones(active.total);
       }
     };
@@ -278,8 +295,8 @@ const Dashboard_Admin = () => {
                   onLoad={onLoad}
                   onUnmount={onUnmount}
                 >
-                  {activeDronesList &&
-                    activeDronesList.map((Drone) => (
+                  {allActive &&
+                    allActive.map((Drone) => (
                       <MarkerF position={Drone.currentLocation}> </MarkerF>
                     ))}
                 </GoogleMap>
@@ -323,10 +340,10 @@ const Dashboard_Admin = () => {
 
                   <PieChart
                     data={[
-                      closedTotal,
+                      underprocessingTotal,
                       unsentTotal,
                       pendingTotal,
-                      underprocessingTotal,
+                      closedTotal,
                     ]}
                     radius={60}
                     holeRadius={45}

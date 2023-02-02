@@ -150,13 +150,13 @@ function UpdateStatusDash({ repId, repStat }) {
             <div className="row">
               <div className="col-sm-12">
                 <div className="pageNavigation">
-                  <a class="pagenav h5 text-end" onClick={PageNav}>
-                    {" "}
-                    الرئيسية{" "}
+                  <a className="pagenav h5 text-end pe-4" onClick={PageNav}>
+                    الرئيسية
                   </a>
-                  <a></a>
-                  <a class="pagenav h5 text-end">تفاصيل البلاغ</a>
+                  <p className="pagenav h5 text-end">&gt;&gt;</p>
+                  <a class="pagenav h5 text-end colored">تفاصيل البلاغ</a>
                 </div>
+
                 <div id="title"> تفاصيل البلاغ</div>
               </div>
             </div>
