@@ -21,8 +21,8 @@ function HomePage() {
             <div className="card bg-white  border-0 rounded-280 cardHig ">
               <div className="card-body  row align-items-center">
                 <div className="position-relative col col-2 text-center text-black  align-self-center">
-                  <h4 className="BoldFont mb-0 pb-0 align-self-center">لمحة عامة</h4>
-                  <p className=" position-absolute top-50 start-50 translate-middle pt-3 ">
+                  <h4 className="textColor BoldFont mb-0 pb-0 align-self-center">لمحة عامة</h4>
+                  <p className="textColor position-absolute top-50 start-50 translate-middle pt-3 ">
                     ________________
                   </p>
                 </div>
@@ -45,8 +45,8 @@ function HomePage() {
             <div className="card bg-white  border-0 rounded-280 cards ms-1">
               <div className="card-body row align-items-center">
                 <div className="position-relative col col-3 text-center mb-4 text-black  align-self-center">
-                  <h4 className="BoldFont mb-0 pb-0 ">الرسالة</h4>
-                  <p className=" position-absolute top-50 start-50 translate-middle pt-3 ">
+                  <h4 className="BoldFont mb-0 pb-0 textColor">الرسالة</h4>
+                  <p className="textColor position-absolute top-50 start-50 translate-middle pt-3 ">
                     ___________
                   </p>
                 </div>
@@ -62,8 +62,8 @@ function HomePage() {
             <div className="card bg-white  border-0 rounded-280 cards me-1">
               <div className="card-body row align-items-center">
                 <div className="position-relative col col-3 text-center mb-4 text-black  align-self-center">
-                  <h4 className="BoldFont mb-0 pb-0 ">الرؤية</h4>
-                  <p className=" position-absolute top-50 start-50 translate-middle pt-3 ">
+                  <h4 className=" textColor BoldFont mb-0 pb-0 ">الرؤية</h4>
+                  <p className=" textColor position-absolute top-50 start-50 translate-middle pt-3 ">
                     __________
                   </p>
                 </div>
@@ -79,7 +79,7 @@ function HomePage() {
         <div className="row mb-4ll pe-0 mt-3">
           <div className="container mt-2 col col-11 ms-3 ">
             <div className="position-relative col col-2 text-center text-black">
-              <h4 className="BoldFont mb-0 pb-0 ">الخدمات</h4>
+              <h4 className="textColor BoldFont mb-0 pb-0 ">الخدمات</h4>
             </div>
           </div>
           </div>
