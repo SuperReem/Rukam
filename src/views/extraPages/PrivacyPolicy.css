@@ -1,0 +1,9 @@
+.hrLine2{
+    top: 120px !important;
+    border: 1px solid ;
+    border-color: var(--primary);
+    opacity: 60%;
+    margin: auto;
+    padding: 0;
+    width:100%;
+  }

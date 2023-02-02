@@ -15,15 +15,16 @@ function ResetPassword() {
   const { forgotPassword } = useForgotPassword();
 
   const setVal = (e) => {
-    setEmail(e.target.value);
+    setEmail(e.target.value.replace(" ", ""));
   };
+  const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
   const sendLink = async (e) => {
     e.preventDefault();
 
     if (email === "") {
       setEmailError("يرجى إدخال البريد الإلكتروني");
-    } else if (!email.includes("@")) {
+    } else if (!email.match(isValidEmail)) {
       setEmailError("البريد الإلكتروني غير صالح");
     } else {
       setEmailError("");
