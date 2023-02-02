@@ -5,6 +5,13 @@ import React, { useState } from "react";
 import "./Footer.css";
 import Logo from "../../assets/images/Logo_Light.png";
 import Saudi from "../../assets/images/Saudi_Vision_2030_logo.png";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
 
 function Footer() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -24,7 +31,12 @@ function Footer() {
         <div className="col-2 align-middle me-5 ">
           <ul class="">
             <li className="list-group-item fontBold pb-2">القائمة</li>
-            <li class="list-group-item ">الصفحة الرئيسية</li>
+            <li class="list-group-item ">
+            <Link to="/homePage" className="nav-link">
+               الصفحة الرئيسية
+              </Link>
+             
+              </li>
             <li class="list-group-item">سياسة الخصوصية</li>
           </ul>
         </div>

@@ -1,0 +1,29 @@
+.BoldFont{
+    font-weight: bold;
+  }
+.cards {
+  height: 120px !important;
+  /* border-bottom-left-radius: 40%; */
+  border-bottom-right-radius: 120px 40px !important;
+  box-shadow: 3px 5px 18px #68836B !important;
+  /* border-bottom-style: dashed; 034C3C*/
+  /* background-color: lightgreen;
+  border: solid 6px rgb(216, 29, 29); */
+  /* width: 200px;
+  height: 100px; */
+}
+.cardHig{
+ height: 150px !important;  
+ box-shadow: 3px 5px 18px #68836B !important;
+
+}
+.serline{
+    color:var(--primary);
+    position: absolute;
+    top: 40px;
+    height: 25px;
+    width: 25px !important;
+    right: 21.7% ;
+    /* bottom: 100px; */
+    /* left: 60%; */
+}
