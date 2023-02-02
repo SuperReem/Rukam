@@ -18,6 +18,7 @@ const dronesSchema = new Schema(
       lat: { type: Number },
       lng: { type: Number },
     },
+    visitedLocations: [{ lat: { type: Number }, lng: { type: Number } }],
   },
 
   { timestamps: true }

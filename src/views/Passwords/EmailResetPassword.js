@@ -16,10 +16,10 @@ function EmailResetPassword() {
   return (
     <body className=" ">
       <div className="main-content  ">
-        {/*  the header */}
+        {/* <!-- Header --> */}
         <TopNavbar />
 
-        {/* <!-- Header --> */}
+      
         <div className="header bg-gradient-primary py-4 py-lg-8">
           <div className="container">
             <div className="header-body text-center mb-7">

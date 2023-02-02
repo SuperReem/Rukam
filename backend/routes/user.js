@@ -1,19 +1,15 @@
+const express = require("express");
 
-/////
-const express = require('express')
+const {
+  loginUser,
+  forgotPassword,
+  resetPassword,
+} = require("../controllers/UserController");
 
-// controller functions
-// const { loginUser } = require('../controllers/UserController')
+const router = express.Router();
+router.post("/login", loginUser);
 
-const { loginUser, signupUser, forgotPassword , resetPassword} = require('../controllers/UserController')
+router.put("/forgotPassword", forgotPassword);
+router.put("/resetPassword", resetPassword);
 
-
-
-const  router = express.Router();
-router.post('/login', loginUser)
-router.post('/signup', signupUser)
-
-router.put('/forgotPassword', forgotPassword)
-router.put('/resetPassword', resetPassword)
-
-module.exports = router
+module.exports = router;

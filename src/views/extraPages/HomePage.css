@@ -1,0 +1,35 @@
+.BoldFont {
+  font-weight: bold;
+}
+.cards {
+  height: 120px !important;
+  border-bottom-right-radius: 120px 40px !important;
+  box-shadow: 2px 3px 18px #d2bda4 !important;
+}
+.cardHig {
+  height: 150px !important;
+  box-shadow: 2px 3px 18px #d2bda4 !important;
+}
+.serline {
+  border: 1px solid ;
+  border-color: var(--primary);
+  position: absolute;
+  top: 48px;
+  height: 0px;
+  width: 73px !important;
+  opacity: 90%;
+  right: 21%;
+}
+
+.textColor {
+  color: var(--primary) !important;
+}
+.hrLine{
+  top: 120px !important;
+  border: 2px solid ;
+  border-color: var(--primary);
+  opacity: 90%;
+  margin: auto;
+  padding: 0;
+  width:75%;
+}
