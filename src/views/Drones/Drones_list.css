@@ -84,3 +84,14 @@ border-color: var(--brown) !important;
   display: flex;
   align-items: center;
 }
+.check-icon-active {
+  color:var(--primary);
+  position: absolute;
+  top: -50px;
+  height: 25px;
+  width: 25px !important;
+  right: 65% ;
+  /* bottom: 100px; */
+  /* left: 60%; */
+
+}
