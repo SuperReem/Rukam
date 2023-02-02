@@ -73,8 +73,10 @@ const createDrone = async (req, res) => {
 
 //get active drones
 const activeDrone = async (req, res) => {
+  const drones = await droneModel.find({ active: true });
   const total = await droneModel.countDocuments({ active: true });
   res.json({
+    drones,
     total,
   });
 };

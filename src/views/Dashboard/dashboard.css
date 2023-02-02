@@ -48,10 +48,11 @@
   background-color: #d2bda4;
 }
 #underprocessing-key {
-  background-color: #68836b;
-}
-#closed-key {
   background-color: #b5864c;
+}
+
+#closed-key {
+  background-color: #68836b;
 }
 .active-drones-container {
   padding-top: 0.5em;
