@@ -23,7 +23,11 @@ function Footer() {
                 الصفحة الرئيسية
               </Link>
             </li>
-            <li class="list-group-item">سياسة الخصوصية</li>
+            <li class="list-group-item">
+              <Link to="/PrivacyPolicy" className="nav-link">
+                سياسة الخصوصية
+              </Link>
+            </li>
           </ul>
         </div>
         <div className="col-3 align-middle">

@@ -26,7 +26,7 @@ function ResetPassword() {
       setEmailError("يرجى إدخال البريد الإلكتروني");
     } else if (!email.match(isValidEmail)) {
       setEmailError("البريد الإلكتروني غير صالح");
-    } else{
+    } else {
       setEmailError("");
       await forgotPassword(email.toLowerCase()).then(NavigateReset(email));
     }

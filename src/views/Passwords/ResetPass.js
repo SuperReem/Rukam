@@ -9,6 +9,8 @@ import { VscEye } from "react-icons/vsc";
 import { VscEyeClosed } from "react-icons/vsc";
 import { useResetPass } from "../../hooks/useResetPass";
 import { Link } from "react-router-dom";
+import { BsCheck } from "react-icons/bs";
+import Button from "react-bootstrap/Button";
 
 function ResetPass() {
   const [password, setPassword] = useState("");
@@ -32,13 +34,11 @@ function ResetPass() {
     const lowercaseRegExp = /(?=.*[a-z])/;
     const digitsRegExp = /^(?=.*[0-9])/;
     const minLengthRegExp = /.{7,}/;
-    // const wspace = /^\S*$/;
 
     const uppercasePassword = uppercaseRegExp.test(thePassword);
     const lowercasePassword = lowercaseRegExp.test(thePassword);
     const digitsPassword = digitsRegExp.test(thePassword);
     const minLengthPassword = minLengthRegExp.test(thePassword);
-    // const wspacePassword = wspace.test(thePassword);
 
     if (minLengthPassword) {
       setVal1(true);
@@ -91,7 +91,8 @@ function ResetPass() {
   };
 
   return (
-    <body>
+    <>
+    <>
       <div className="main-content  ">
         {/* <!-- Header --> */}
         <TopNavbar />
@@ -138,7 +139,9 @@ function ResetPass() {
                           className="form-control classInput"
                           placeholder="********"
                           value={password}
-                          onChange={(e) => setPassword(e.target.value.replace(" ", ""))}
+                          onChange={(e) =>
+                            setPassword(e.target.value.replace(" ", ""))
+                          }
                           id="inputPass"
                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,35}"
                           required
@@ -166,7 +169,9 @@ function ResetPass() {
                           className="form-control classInput"
                           placeholder="********"
                           value={password2}
-                          onChange={(e) => setPassword2(e.target.value.replace(" ", ""))}
+                          onChange={(e) =>
+                            setPassword2(e.target.value.replace(" ", ""))
+                          }
                           id="inputPass"
                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,35}"
                           required
@@ -230,10 +235,10 @@ function ResetPass() {
                       <button
                         disabled={!disable}
                         className="btn btn-primary my-2  px-5 classButton changepass "
+                        data-bs-toggle="modal"
+                        data-bs-target="#myModal-success"
                       >
-                        <Link to="/login" className="nav-link">
-                          تغيير كلمة المرور
-                        </Link>
+                      تغيير كلمة المرور
                       </button>
                     </div>
                   </form>
@@ -243,9 +248,60 @@ function ResetPass() {
           </div>
         </div>
       </div>
+
       {/* <!-- Footer --> */}
       <Footer />
-    </body>
+    </> 
+    {/* Model */}
+    <div>
+        <div className="modal" id="myModal-success">
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div class="icon-box">
+                <i id="material-icons">
+                  {" "}
+                  <BsCheck size={108} />{" "}
+                </i>
+              </div>
+              <div className="">
+                <div className="row align-items-center  justify-content-end mb-4 pt-2">
+                  <div className="col-6 p-0 ">
+                    <h4 className=" m-5"> </h4>
+                  </div>
+                  <div className="col-1"></div>
+                </div>
+                <div className="modal-body justify-content-center ">
+                  <div className="row align-items-center  justify-content-center ">
+                    <div className="row align-items-center justify-content-between ">
+                      <div className="text-center  h4">
+                        تم إعادة تعيّن كلمة المرور بنجاح !
+                      </div>
+                    </div>
+                    <div className="row justify-content-start align-items-start">
+                      <div className="col-8 h5"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div></div>
+              <div className="modal-footer border border-0 justify-content-center">
+                <Button
+                  variant="secondary"
+                  size="md"
+                  data-bs-dismiss="modal"
+                  className="popup-cancle"
+                >   <Link to="/login" className="nav-link">
+                  {" "}
+                  تسجيل الدخول{" "}
+               
+                   </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 export default ResetPass;
