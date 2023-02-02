@@ -14,7 +14,7 @@ import { useDronesContext } from "../../hooks/useDronesContext";
 
 
 const EditDrone = ({droId})=>{
-  
+
 const [droneName, setName] = useState("");
 const [region, setRegion] = useState("");
 const [image, setImage] = useState("");
@@ -51,15 +51,16 @@ useEffect(() => {
 const updatename= event => {
   setName(event.target.value);
   }
-const drn = {
-
-  droneName:droneName,
-  region:region,
-  image: "kkkkk",
-
-};
 
 const Save = async (e) => {
+  const drn = {
+
+    droneName:droneName,
+    region:region,
+    image: "kkkkk",
+  
+  };
+  console.log("Is it update??? ", drn);
   const response = await fetch(
     "/api/Drone/" + droId,
     {
@@ -70,7 +71,6 @@ const Save = async (e) => {
         "Content-Type": "application/json",
       },
     });
-    
     const json = await response.json();
 
     if (!response.ok) {
@@ -113,8 +113,6 @@ const Save = async (e) => {
       </div>
       </div>
       </div>
-
-
 
     <div class="row  m-0" >
       <div className="container w-75 ">
