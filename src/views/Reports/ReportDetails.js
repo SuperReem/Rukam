@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import { BsCalendar4 } from "react-icons/bs";
 import EditReport from "../../views/Reports/EditReport";
 import { useReportDContext } from "../../hooks/useReportDContext";
+import { BsCheck } from "react-icons/bs";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import {
   GoogleMap,
@@ -62,11 +63,8 @@ function ReportDetails({ repId }) {
   }, [ ]);
 
   const Send = async (e) => {
-    
     const rep = {
-
       status: "pending",
-    
     };
 
     const response = await fetch(
@@ -101,9 +99,13 @@ function ReportDetails({ repId }) {
   const PageNav = async (e) => {
     setIndex(2);
   };
-
   
 
+
+
+
+
+//location
   const containerStyle = {
     width: "100%;",
     height: "100%",
@@ -129,6 +131,15 @@ function ReportDetails({ repId }) {
     setMap(null);
   }, []);
 
+
+
+
+
+
+
+
+
+
   return (
     <>
       {index == 0 ? (
@@ -147,8 +158,6 @@ function ReportDetails({ repId }) {
                 <div id="title"> تفاصيل البلاغ</div>
               </div>
             </div>
-       
-            
               <div class="he shadow-sm ms-4 me-3 rounded-4 pb-0 mt-2">
                 <div className="row">
                   <div className="col-sm-6 ">
@@ -244,7 +253,12 @@ function ReportDetails({ repId }) {
                 </div>
               </div>
             </div>
-            <div>
+
+
+
+        
+        
+        <div>
         <div className="modal" id="myModal">
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
@@ -256,55 +270,93 @@ function ReportDetails({ repId }) {
                   <div className="col-2">
                     <button
                       data-bs-dismiss="modal"
-                      className="closebtn btn rounded"
-                    >
+                      className="closebtn btn rounded" >
                       &#x2715;
                     </button>
                   </div>
                 </div>
                 <div className="modal-body justify-content-center">
                   <div className="row align-items-center  justify-content-center">
-                 
                     <div className="row align-items-center justify-content-between  me-4 h5">
                     هل انت متأكد من إرسال البلاغ؟
                     </div>
                     <div className="row justify-content-start align-items-start">
                       <div className="col-8 h5">
-             
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-
-              <div></div>
-
+              <div>
+              </div>
               <div className="modal-footer border border-0 justify-content-evenly">
-      
-  
               <Button
                   variant="secondary"
                   size="md"
                   className="popup4 btn "
-          onClick={Send}
-          data-bs-dismiss="modal"
-                >
-           
-إرسال البلاغ               </Button>
-          
-
-       
+                  onClick={Send}
+                  data-bs-toggle="modal"
+                  data-bs-target="#myModal-success">
+              إرسال البلاغ
+              </Button>
               <Button
                   variant="secondary"
                   size="md"
                   className="popup btn "
-                  data-bs-dismiss="modal"
-                >
-           
-               إلغاء
+                  data-bs-dismiss="modal">
+إلغاء
                 </Button>
-  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
+
+
+
+
+      <div>
+        <div className="modal" id="myModal-success">
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div class="icon-box">
+                <i id="material-icons">
+                  {" "}
+                  <BsCheck size={108} />{" "}
+                </i>
+              </div>
+              <div className="">
+                <div className="row align-items-center  justify-content-end mb-4 pt-2">
+                  <div className="col-6 p-0 ">
+                    <h4 className=" m-5"> </h4>
+                  </div>
+                  <div className="col-1"></div>
+                </div>
+                <div className="modal-body justify-content-center">
+                  <div className="row align-items-center  justify-content-center">
+                    <div className="row align-items-center justify-content-between pb-4  pt-2">
+                      <div className="text-center  h3">
+                        تم إرسال البلاغ بنجاح !
+                      </div>
+                    </div>
+                    <div className="row justify-content-start align-items-start">
+                      <div className="col-8 h5"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div></div>
+              <div className="modal-footer border border-0 justify-content-center">
+                <Button
+                  variant="secondary"
+                  size="md"
+                  data-bs-dismiss="modal"
+                  className="popup-cancle"
+                >
+                  {" "}
+                  حسنًا{" "}
+                </Button>
               </div>
             </div>
           </div>

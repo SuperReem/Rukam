@@ -1,10 +1,12 @@
 import "../Reports/ReportDetails.css";
 import Waste2 from "../../assets/images/waste2.jpeg";
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import { BsCalendar4 } from "react-icons/bs";
 import { BsCheckLg } from "react-icons/bs";
 import { BsTrash } from "react-icons/bs";
 import { useIntl } from "react-intl";
+import { BsCheck } from "react-icons/bs";
 import { useDetectionsContext } from "../../hooks/useDetectionsContext";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import DetectionList from "../Detections/Detection_list";
@@ -19,7 +21,8 @@ import React from "react";
 
 function DetectionDetails({ detection }) {
   const [index, setIndex] = useState(0);
-
+  const [Success, setSuccess] = useState(false);
+  const [Success2, setSuccess2] = useState(false);
   const [currentPageData, setCurrentPageData] = useState(new Array(5).fill());
   const items = [
     1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3,
@@ -55,7 +58,6 @@ function DetectionDetails({ detection }) {
 
   const Accept = async (e) => {
     e.preventDefault();
-
     const report = {
       reportId: "9898",
       timestamp: detection.createdAt,
@@ -66,7 +68,6 @@ function DetectionDetails({ detection }) {
       location: detection.location,
       filter: filterSlice,
     };
-
     const response = await fetch("/api/Report/", {
       method: "POST",
       body: JSON.stringify(report),
@@ -82,10 +83,22 @@ function DetectionDetails({ detection }) {
     if (response.ok) {
       console.log("new report added:", json);
     }
-
     DeleteDetection();
-    setIndex(1);
   };
+
+  const HandleAccept = () => {
+    Accept();
+    setSuccess(true); 
+  };
+
+  const HandleDecline = () => {
+    DeleteDetection();
+    setSuccess2(true); 
+  };
+
+  const handleClose = () =>{setIndex(1); setSuccess(false); setSuccess2(false)}
+
+
   useEffect(() => {
     console.log(filterSlice);
   }, [filterSlice]);
@@ -99,13 +112,11 @@ function DetectionDetails({ detection }) {
     const json = await response.json();
     if (response.ok) {
       console.log("jknswcdj:", json);
+    
     }
   };
 
-  const Decline = async (e) => {
-    DeleteDetection();
-    setIndex(1);
-  };
+
 
   const PageNav = async (e) => {
     setIndex(2);
@@ -209,6 +220,11 @@ function DetectionDetails({ detection }) {
                 </div>
               </div>
             </div>
+
+
+
+
+
             <div>
               <div className="modal" id="myModal">
                 <div className="modal-dialog modal-dialog-centered">
@@ -238,17 +254,16 @@ function DetectionDetails({ detection }) {
                         </div>
                       </div>
                     </div>
-
                     <div></div>
-
                     <div className="modal-footer border border-0 justify-content-evenly">
                       <Button
                         variant="secondary"
                         size="md"
                         className="popup3 btn "
-                        onClick={Decline}
-                        data-bs-dismiss="modal"
-                      >
+                        onClick={HandleDecline}
+                        data-bs-toggle="modal"
+                        data-bs-target="#myModal-success2">
+                      
                         رفض المخالفة{" "}
                       </Button>
 
@@ -265,6 +280,10 @@ function DetectionDetails({ detection }) {
                 </div>
               </div>
             </div>
+
+
+
+
             <div>
               <div className="modal" id="myModal2">
                 <div className="modal-dialog modal-dialog-centered">
@@ -294,20 +313,18 @@ function DetectionDetails({ detection }) {
                         </div>
                       </div>
                     </div>
-
                     <div></div>
-
                     <div className="modal-footer border border-0 justify-content-evenly">
                       <Button
                         variant="secondary"
                         size="md"
                         className="popup2 btn "
-                        onClick={Accept}
+                        onClick={HandleAccept}
                         data-bs-dismiss="modal"
-                      >
+          >
+                      
                         قبول المخالفة{" "}
                       </Button>
-
                       <Button
                         variant="secondary"
                         size="md"
@@ -322,6 +339,97 @@ function DetectionDetails({ detection }) {
               </div>
             </div>
           </div>
+
+
+
+
+
+          <Modal centered show={Success} onHide={handleClose}>
+    <Modal.Body>  <div class="icon-box">
+                <i id="material-icons">
+                  {" "}
+                  <BsCheck size={108} />{" "}
+                </i>
+              </div>
+              <div className="">
+                <div className="row align-items-center  justify-content-end mb-4 pt-2">
+                  <div className="col-6 p-0 ">
+                    <h4 className=" m-5"> </h4>
+                  </div>
+                  <div className="col-1"></div>
+                </div>
+                <div className="modal-body justify-content-center">
+                  <div className="row align-items-center  justify-content-center">
+                    <div className="row align-items-center justify-content-between pb-4  pt-2">
+                      <div className="text-center  h3">
+                        تم قبول البلاغ بنجاح !
+                      </div>
+                    </div>
+                    <div className="row justify-content-start align-items-start">
+                      <div className="col-8 h5"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div></div>
+              <div className="modal-footer border border-0 justify-content-center">
+                <Button
+                  variant="secondary"
+                  size="md"
+             onClick={handleClose}
+                  className="popup-cancle"
+                >
+                  {" "}
+                  حسنًا{" "}
+                </Button>
+              </div></Modal.Body>
+  </Modal>
+
+
+
+
+
+  <Modal centered show={Success2} onHide={handleClose}>
+    <Modal.Body>  <div class="icon-box">
+                <i id="material-icons">
+                  {" "}
+                  <BsCheck size={108} />{" "}
+                </i>
+              </div>
+              <div className="">
+                <div className="row align-items-center  justify-content-end mb-4 pt-2">
+                  <div className="col-6 p-0 ">
+                    <h4 className=" m-5"> </h4>
+                  </div>
+                  <div className="col-1"></div>
+                </div>
+                <div className="modal-body justify-content-center">
+                  <div className="row align-items-center  justify-content-center">
+                    <div className="row align-items-center justify-content-between pb-4  pt-2">
+                      <div className="text-center  h3">
+                        تم رفض البلاغ بنجاح !
+                      </div>
+                    </div>
+                    <div className="row justify-content-start align-items-start">
+                      <div className="col-8 h5"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div></div>
+              <div className="modal-footer border border-0 justify-content-center">
+                <Button
+                  variant="secondary"
+                  size="md"
+             onClick={handleClose}
+                  className="popup-cancle"
+                >
+                  {" "}
+                  حسنًا{" "}
+                </Button>
+              </div></Modal.Body>
+  </Modal>
+
         </>
       ) : (
         <DetectionList />
