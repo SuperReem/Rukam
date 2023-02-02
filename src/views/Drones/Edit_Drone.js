@@ -98,16 +98,14 @@ const PageNav = (i) => () => {
     <div className="row">
               <div className="col-sm-12">
                 <div className="pageNavigation">
-                  <a class="pagenav h5 text-end" onClick={PageNav(1)} >
-                    {" "}
-                    قائمة الدرون{" "}
-                  </a>
-                  <a></a>
+                  <a class="pagenav h5 text-end pe-4" onClick={PageNav(1)} >قائمة الدرون</a>
+                  <p className="pagenav h5 text-end">&gt;&gt;</p>
+                  
                   <a class="pagenav h5 text-end"  onClick={PageNav(1)}>تفاصيل الدرون </a>
-                  <a></a>
-                  <a class="pagenav h5 text-end"  >تحرير الدرون</a>
+                  <p className="pagenav h5 text-end">&gt;&gt;</p>
+                  <a class="pagenav h5 text-end colored"  >تحرير الدرون</a>
                 </div>
-                <div id="title"> تحرير الدرون</div>
+                <div className='pe-4' id="title"> تحرير الدرون</div>
               </div>
             </div>
      
