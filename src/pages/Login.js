@@ -102,7 +102,7 @@ const Login = () => {
                         id="email"
                         name="email"
                         placeholder="ma***@gmail.com"
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => setEmail(e.target.value.replace(" ", ""))}
                         value={email}
                         required
                       />

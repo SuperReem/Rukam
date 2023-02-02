@@ -140,7 +140,7 @@ function ResetPass() {
                           value={password}
                           onChange={(e) => setPassword(e.target.value.replace(" ", ""))}
                           id="inputPass"
-                          pattern="^(?=.*?[A-Za-z0-9#!@$%^&*()+=])\S{8,35}$"
+                          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,35}"
                           required
                         />
 
@@ -168,7 +168,7 @@ function ResetPass() {
                           value={password2}
                           onChange={(e) => setPassword2(e.target.value.replace(" ", ""))}
                           id="inputPass"
-                          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,35}"
                           required
                         />
                         <span

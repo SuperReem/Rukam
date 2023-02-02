@@ -15,7 +15,7 @@ function ResetPassword() {
   const { forgotPassword } = useForgotPassword();
 
   const setVal = (e) => {
-    setEmail(e.target.value);
+    setEmail(e.target.value.replace(" ", ""));
   };
   const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
