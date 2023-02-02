@@ -8,6 +8,7 @@ import droneImg from "../../assets/images/Drone.png";
 import { MdOutlineEdit } from "react-icons/md";
 import { BsTrash } from "react-icons/bs";
 import React from "react";
+import { RiCheckboxBlankCircleFill } from "react-icons/ri";
 
 // import Dropdown from "../../views/Drones/Dropdown";
 // // import "views/Drones/Dropdown_Style.css";
@@ -22,6 +23,9 @@ import React from "react";
 
 
 const Drone_card = ({ drone }) => {
+  // if (drone.){
+
+  // }
   // const [droneName, setName] = useState("");
   // const [region, setRegion] = useState("اختر المنطقه");
   // const [image, setImage] = useState("");
@@ -91,6 +95,9 @@ const { isLoaded } = useJsApiLoader({
       <div class=" card mx-2 text-center mt-5 border-1 border-opacity-10 border-secondary border-opacity-25hh rounded-4  p-0 ">
         <div className="Drones">
           <div class=" card-body avatar mx-auto white avatar-container text-center mx-auto position-relative pb-0 pt-2 ">
+            {/* {drone.active} */}
+            {drone.active ?  <RiCheckboxBlankCircleFill  className="check-icon"/> : <></> }
+            {/* TbDrone RiCheckboxBlankCircleFill */}
             <img
               class="
       card-img-top bg-white  mx-auto  biggerImg 

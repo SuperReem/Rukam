@@ -47,7 +47,6 @@ const Login = () => {
      await login(email, password)
     }
       catch (error) {
-                  console.log(error);
       }
     
 };
@@ -59,6 +58,7 @@ const Login = () => {
       <div className="main-content  ">
       {/* <!-- Header --> */}
         <TopNavbar/>
+        <p class="line" height={35}>_______________</p>
          <img src={Drone} class="movingPhotoLogin position-absolute top-50 start-0  ms-5" height={35}/>
         {/* <!-- Page content --> */}
         <div className="header bg-gradient-primary py-4 py-lg-8">
