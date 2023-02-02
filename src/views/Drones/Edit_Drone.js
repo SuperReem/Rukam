@@ -9,7 +9,7 @@ import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
 import Dropdown from "./Dropdown";
 import { useDronesContext } from "../../hooks/useDronesContext";
-
+import Dronelist from "../../views/Drones/Drones_list"
 
 
 
@@ -20,6 +20,7 @@ const [region, setRegion] = useState("");
 const [image, setImage] = useState("");
 const [dro, setDrone] = useState();
 const { drones, dispatch } = useDronesContext();
+const [index, setIndex] = useState(0);
 
 useEffect(() => {
   const  fetchDrones = async () => {
@@ -85,21 +86,31 @@ const Save = async (e) => {
   // setIndex(1);
 };
 
+const PageNav = (i) => () => {
+  setIndex(i);
+};
 
 
-
-    return <>
+    return ( <>
+    {index == 0 ? (
+      <>
     <div class="App">
-    <div class="title">
-    <h1 class="h6 text-end pt-3">
-    قائمة الدرونز {'>>'} تفاصيل الدرون {'>>'} تحرير تفاصيل الدرون
-    </h1>
-      </div>
-      <div class="title">
-      <h1 class="h4 text-end">
-      تحرير تفاصيل الدرون
-      </h1>
-      </div>
+    <div className="row">
+              <div className="col-sm-12">
+                <div className="pageNavigation">
+                  <a class="pagenav h5 text-end" onClick={PageNav(1)} >
+                    {" "}
+                    قائمة الدرون{" "}
+                  </a>
+                  <a></a>
+                  <a class="pagenav h5 text-end"  onClick={PageNav(1)}>تفاصيل الدرون </a>
+                  <a></a>
+                  <a class="pagenav h5 text-end"  >تحرير الدرون</a>
+                </div>
+                <div id="title"> تحرير الدرون</div>
+              </div>
+            </div>
+     
 
 
       <div class="box">
@@ -185,6 +196,14 @@ const Save = async (e) => {
 
     </div>
    </>
+   
+   ) : (
+    <>
+      <Dronelist />
+    </>
+  )}
+</>
+);
 }
 
 export default EditDrone;
