@@ -25,28 +25,35 @@ function Footer() {
           <ul class="">
             <li className="list-group-item fontBold pb-2">القائمة</li>
             <li class="list-group-item ">الصفحة الرئيسية</li>
-            <li class="list-group-item">من نحن؟</li>
+            <li class="list-group-item">سياسة الخصوصية</li>
           </ul>
         </div>
-        <div className="col-2 align-middle">
+        <div className="col-3 align-middle">
           <ul class="">
-            <li className="list-group-item fontBold pb-2">الدعم</li>
-            <li class="list-group-item ">سياسة الخصوصية</li>
-            <li class="list-group-item  ">الدعم الفني</li>
+            <li className="list-group-item fontBold pb-2">روابط مهمة</li>
+            <li class="list-group-item ">
+            <a href="https://www.vision2030.gov.sa/ar/" target="_blank" className="text-decoration-none text-white">رؤية المملكة العربية السعوديّة 2030</a>
+              </li>
+            <li class="list-group-item  ">
+            <a href="https://www.alriyadh.gov.sa/ar" target="_blank" className="text-decoration-none text-white"> أمانة منطقة الرياض</a>
+              </li>
           </ul>
         </div>
         <div className="col-2 align-middle">
           <ul class="">
             <li className="list-group-item fontBold pb-2">تواصل معنا</li>
-            <li class="list-group-item ">الرقم المباشر ٣١٩</li>
-            <li class="list-group-item  ">العناية بالعملاء</li>
+            <li  class="list-group-item  "> <a href="tel:319" className="text-decoration-none text-white">الرقم المباشر 319</a></li>  
+            <li class="list-group-item  ">
+            <a href="mailto:rukamservice@gmail.com" className="text-decoration-none text-white"> الدعم الفني</a>
+            </li>
+          
           </ul>
         </div>
 
-        <div className="col-1 mx-2"></div>
+        {/* <div className="col-1 mx-2"></div> */}
 
 
-        <div id="copy-right" className=" col-3 text-white mt-5 pt-1">
+        <div id="copy-right" className=" col-3 text-white mt-4 pt-1 mx-2">
           جميع الحقوق محفوظة لــركام &copy; {new Date().getFullYear()}
         </div>
       </div>
