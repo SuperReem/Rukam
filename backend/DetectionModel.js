@@ -6,8 +6,8 @@ const detectionSchema = new Schema(
       type: String,
     },
     location: {
-      latitude: { type: Number },
-      longitude: { type: Number },
+      lat: { type: Number },
+      lng: { type: Number },
     },
     region: {
       type: String,
@@ -21,10 +21,6 @@ const detectionSchema = new Schema(
     filter: {
       type: String,
     },
-    // user_id: {
-    //   type: String,
-    //   required: true,
-    // },
   },
   { timestamps: true }
 );

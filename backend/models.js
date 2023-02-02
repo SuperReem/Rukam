@@ -24,8 +24,8 @@ const reportSchema = new Schema(
       type: String,
     },
     location: {
-      latitude: { type: Number },
-      longitude: { type: Number },
+      lat: { type: Number },
+      lng: { type: Number },
     },
     filter: {
       type: String,
