@@ -12,9 +12,6 @@ const detectionSchema = new Schema(
     region: {
       type: String,
     },
-    time: {
-      type: String,
-    },
     image: {
       type: String,
     },

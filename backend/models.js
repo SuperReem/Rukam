@@ -4,15 +4,6 @@ const Schema = mongoose.Schema;
 
 const reportSchema = new Schema(
   {
-    droneId: {
-      type: String,
-    },
-    reportId: {
-      type: String,
-    },
-    timestamp: {
-      type: String,
-    },
     status: {
       type: String,
     },
@@ -28,6 +19,9 @@ const reportSchema = new Schema(
       lng: { type: Number },
     },
     filter: {
+      type: String,
+    },
+    street: {
       type: String,
     },
   },

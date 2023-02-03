@@ -257,22 +257,10 @@ const deleteReportByName = async (req, res) => {
 
 // create a new report
 const createReport = async (req, res) => {
-  const {
-    reportId,
-    timestamp,
-    status,
-    region,
-    image,
-    notes,
-    location,
-    filter,
-  } = req.body;
+  const { status, region, image, notes, location, filter, street } = req.body;
 
   let emptyFields = [];
 
-  if (!timestamp) {
-    emptyFields.push("timestamp");
-  }
   if (!image) {
     emptyFields.push("image");
   }
@@ -285,17 +273,14 @@ const createReport = async (req, res) => {
 
   // add to the database
   try {
-    // const user_id = req.user._id; ///////check this
     const report = await reportModel.create({
-      reportId,
-      timestamp,
       status,
       region,
       image,
       notes,
       location,
       filter,
-      // user_id, ///////check this
+      street,
     });
     res.status(200).json(report);
   } catch (error) {

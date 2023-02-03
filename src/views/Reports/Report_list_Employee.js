@@ -170,7 +170,7 @@ function ReportsListEmployee() {
                           id="report-info"
                         >
                           <div className="d-flex">
-                            <h5 className="ms-5"> {report.region}</h5>
+                            <h5 className="ms-5"> {report.street}</h5>
                             <p className="report-time">
                               {" "}
                               {moment(report.createdAt).fromNow()};

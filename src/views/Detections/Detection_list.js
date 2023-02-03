@@ -21,6 +21,7 @@ import { Route } from "react-router-dom";
 import { useEffect } from "react";
 import { useDetectionsContext } from "../../hooks/useDetectionsContext";
 import { ArabicNumbers } from "react-native-arabic-numbers";
+import Geocode from "react-geocode";
 
 function showDetails(detectionObj) {
   return <DetectionDetails detection={detectionObj} />;
@@ -166,7 +167,7 @@ function DetectionList() {
                         <ListGroup.Item id="row">
                           <Row>
                             {" "}
-                            <Col>{detection.region}</Col>{" "}
+                            <Col>حي {detection.region} </Col>{" "}
                             <Col id="time">
                               {Intl.DateTimeFormat("ar-EG", {
                                 dateStyle: "full",

@@ -336,10 +336,10 @@ const Dashboard_Employee = () => {
                                 <IoDocumentTextOutline className="recent-reports-icon ms-5" />
                                 <div>
                                   <Row className="active-drones-drone-name">
-                                    {report.droneId}
+                                    {report.street}
                                   </Row>
                                   <Row className="active-drones-region-name">
-                                    منطقة {report.region}
+                                    حي {report.region}
                                   </Row>
                                 </div>
                               </div>

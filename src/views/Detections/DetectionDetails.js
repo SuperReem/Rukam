@@ -18,6 +18,7 @@ import {
 } from "@react-google-maps/api";
 import { useEffect, useState } from "react";
 import React from "react";
+import Geocode from "react-geocode";
 
 function DetectionDetails({ detection }) {
   const [index, setIndex] = useState(0);
@@ -28,6 +29,7 @@ function DetectionDetails({ detection }) {
     1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 1, 2, 3,
     4, 5, 6, 7, 12, 13, 14,
   ];
+  const [street, setStreet] = useState();
 
   const { dispatch } = useDetectionsContext();
 
@@ -48,7 +50,7 @@ function DetectionDetails({ detection }) {
 
   const onLoad = React.useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
+
     setMap(map);
   }, []);
 
@@ -57,18 +59,14 @@ function DetectionDetails({ detection }) {
   }, []);
 
   const Accept = async (e) => {
-
     const report = {
-      droneId:"5555",
-      reportId: "9898",
-      timestamp: detection.createdAt,
       status: "unsent",
       region: detection.region,
       image: detection.image,
       notes: "",
-      location:{ lang: detection.location.latitude,
-      lat:detection.location.longitude},
+      location: { lat: detection.location.lat, lng: detection.location.lng },
       filter: filterSlice,
+      street: street,
     };
     const response = await fetch("/api/Report/", {
       method: "POST",
@@ -90,22 +88,25 @@ function DetectionDetails({ detection }) {
 
   const HandleAccept = () => {
     Accept();
-    setSuccess(true); 
+    setSuccess(true);
   };
 
   const HandleDecline = () => {
     DeleteDetection();
-    setSuccess2(true); 
+    setSuccess2(true);
   };
 
-  const handleClose = () =>{setIndex(1); setSuccess(false); setSuccess2(false)}
-
+  const handleClose = () => {
+    setIndex(1);
+    setSuccess(false);
+    setSuccess2(false);
+  };
 
   useEffect(() => {
     console.log(filterSlice);
   }, [filterSlice]);
-  var filterStr = detection.createdAt;
-  var filterSlice = filterStr.toString().slice(0, 10);
+  var filterStr = new Date();
+  var filterSlice = filterStr.toISOString().slice(0, 10);
 
   const DeleteDetection = async () => {
     const response = await fetch("/api/Detection/" + detection._id, {
@@ -114,15 +115,29 @@ function DetectionDetails({ detection }) {
     const json = await response.json();
     if (response.ok) {
       console.log("jknswcdj:", json);
-    
     }
   };
-
-
 
   const PageNav = async (e) => {
     setIndex(2);
   };
+
+  Geocode.setLanguage("ar");
+  Geocode.setApiKey("AIzaSyBUMSPnho9iIVnF-MKvOMgYw_bRBwc7U7Q");
+
+  useEffect(() => {
+    Geocode.fromLatLng("24.72", " 46.62").then(
+      //change it to detection location later
+      (response) => {
+        const address = response.results[0].formatted_address;
+        console.log(address.split("،")[1]);
+        setStreet(address.split("،")[1]);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  });
   return (
     <>
       {index == 0 ? (
@@ -130,13 +145,18 @@ function DetectionDetails({ detection }) {
           <div className="App">
             <div className="row">
               <div className="col-sm-12">
-              <div className="pageNavigation">
-                  <a className="pagenav h5 text-end pe-4" onClick={PageNav}>المواقع المخالفة</a>
+                <div className="pageNavigation">
+                  <a className="pagenav h5 text-end pe-4" onClick={PageNav}>
+                    المواقع المخالفة
+                  </a>
                   <p className="pagenav h5 text-end">&gt;&gt;</p>
                   <a class="pagenav h5 text-end colored">موقع مخالف</a>
                 </div>
-             
-                <div className="pe-4" id="title"> تفاصيل المخالفة</div>
+
+                <div className="pe-4" id="title">
+                  {" "}
+                  تفاصيل المخالفة
+                </div>
               </div>
             </div>
             <div class="he shadow-sm ms-4 me-3 rounded-4 pb-0 mt-2">
@@ -168,9 +188,9 @@ function DetectionDetails({ detection }) {
                       <h6>
                         {" "}
                         <BsCalendar4 color="var(--primary)" className="ms-4" />
-                        {   Intl.DateTimeFormat("ar-EG", {
-                                dateStyle: "full",
-                              }).format(new Date(detection.createdAt))}
+                        {Intl.DateTimeFormat("ar-EG", {
+                          dateStyle: "full",
+                        }).format(new Date(detection.createdAt))}
                       </h6>
                     </div>
                     <div className="heading text-end pe-2">موقع المخالفة</div>
@@ -179,11 +199,13 @@ function DetectionDetails({ detection }) {
                       {isLoaded ? (
                         <GoogleMap
                           mapContainerStyle={containerStyle}
-                          center={center}
-                          zoom={7}
+                          center={detection.location}
+                          zoom={11}
                           onLoad={onLoad}
                           onUnmount={onUnmount}
-                        ></GoogleMap>
+                        >
+                          <MarkerF position={detection.location}></MarkerF>
+                        </GoogleMap>
                       ) : (
                         <div>Loading...</div>
                       )}
@@ -220,10 +242,6 @@ function DetectionDetails({ detection }) {
                 </div>
               </div>
             </div>
-
-
-
-
 
             <div>
               <div className="modal" id="myModal">
@@ -262,8 +280,8 @@ function DetectionDetails({ detection }) {
                         className="popup3 btn "
                         onClick={HandleDecline}
                         data-bs-toggle="modal"
-                        data-bs-target="#myModal-success2">
-                      
+                        data-bs-target="#myModal-success2"
+                      >
                         رفض المخالفة{" "}
                       </Button>
 
@@ -280,9 +298,6 @@ function DetectionDetails({ detection }) {
                 </div>
               </div>
             </div>
-
-
-
 
             <div>
               <div className="modal" id="myModal2">
@@ -321,8 +336,7 @@ function DetectionDetails({ detection }) {
                         className="popup2 btn "
                         onClick={HandleAccept}
                         data-bs-dismiss="modal"
-          >
-                      
+                      >
                         قبول المخالفة{" "}
                       </Button>
                       <Button
@@ -340,12 +354,15 @@ function DetectionDetails({ detection }) {
             </div>
           </div>
 
-
-
-
-
-          <Modal className="modal o1" centered show={Success} onHide={handleClose}>
-    <Modal.Body>  <div class="icon-box">
+          <Modal
+            className="modal o1"
+            centered
+            show={Success}
+            onHide={handleClose}
+          >
+            <Modal.Body>
+              {" "}
+              <div class="icon-box">
                 <i id="material-icons">
                   {" "}
                   <BsCheck size={108} />{" "}
@@ -376,21 +393,25 @@ function DetectionDetails({ detection }) {
                 <Button
                   variant="secondary"
                   size="md"
-             onClick={handleClose}
+                  onClick={handleClose}
                   className="popup-cancle"
                 >
                   {" "}
                   حسنًا{" "}
                 </Button>
-              </div></Modal.Body>
-  </Modal>
+              </div>
+            </Modal.Body>
+          </Modal>
 
-
-
-
-
-  <Modal centered className="modal o1" show={Success2} onHide={handleClose}>
-    <Modal.Body>  <div class="icon-box">
+          <Modal
+            centered
+            className="modal o1"
+            show={Success2}
+            onHide={handleClose}
+          >
+            <Modal.Body>
+              {" "}
+              <div class="icon-box">
                 <i id="material-icons">
                   {" "}
                   <BsCheck size={108} />{" "}
@@ -421,15 +442,15 @@ function DetectionDetails({ detection }) {
                 <Button
                   variant="secondary"
                   size="md"
-             onClick={handleClose}
+                  onClick={handleClose}
                   className="popup-cancle"
                 >
                   {" "}
                   حسنًا{" "}
                 </Button>
-              </div></Modal.Body>
-  </Modal>
-
+              </div>
+            </Modal.Body>
+          </Modal>
         </>
       ) : (
         <DetectionList />

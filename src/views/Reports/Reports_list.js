@@ -173,7 +173,10 @@ function ReportsList() {
                             id="report-info"
                           >
                             <div className="d-flex">
-                              <h5 className="ms-5"> {report.region}</h5>
+                              <h5 className="ms-5">
+                                {" "}
+                                حي {report.region} , {report.street}
+                              </h5>
                               <p className="report-time">
                                 {" "}
                                 {moment(report.createdAt).fromNow()};
