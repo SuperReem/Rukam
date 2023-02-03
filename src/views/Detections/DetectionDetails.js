@@ -344,7 +344,7 @@ function DetectionDetails({ detection }) {
 
 
 
-          <Modal centered show={Success} onHide={handleClose}>
+          <Modal className="modal o1" centered show={Success} onHide={handleClose}>
     <Modal.Body>  <div class="icon-box">
                 <i id="material-icons">
                   {" "}
@@ -389,7 +389,7 @@ function DetectionDetails({ detection }) {
 
 
 
-  <Modal centered show={Success2} onHide={handleClose}>
+  <Modal centered className="modal o1" show={Success2} onHide={handleClose}>
     <Modal.Body>  <div class="icon-box">
                 <i id="material-icons">
                   {" "}
