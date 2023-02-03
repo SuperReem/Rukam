@@ -25,7 +25,7 @@
   } */
 
   .dropdown {
-    width: 350px;
+  
     user-select: none;
    /* margin: 100px auto;
     position: relative;*/
@@ -44,6 +44,7 @@
     /*font-weight: bold;*/
     color: rgb(190, 190, 190);
    /* display: flex; ??*/
+   width: 100%;
    
     cursor: pointer;
    

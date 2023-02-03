@@ -575,7 +575,7 @@ function DroneList() {
 
                           <div className="row align-items-center justify-content-between  h5">
                             <div class="row  m-0">
-                              <div className="container w-75 m-3">
+                              <div className="container w-75 mt-3">
                                 <form>
                                   <div class="form-group ">
                                     <label
@@ -586,7 +586,7 @@ function DroneList() {
                                     </label>
                                     <input
                                       type="text"
-                                      style={{ width: "350px" }}
+                                      //style={{ width: "350px" }}
                                       name="name"
                                       id="droneName"
                                       className="form-control classInput"
