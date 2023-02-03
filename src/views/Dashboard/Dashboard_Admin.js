@@ -354,7 +354,7 @@ const Dashboard_Admin = () => {
             </div>
             <div className="active-drones-container">
               <div className="d-flex justify-content-between pb-2">
-                <h5 className="active-drones-title">الدرونز المفعلة</h5>
+                <h5 className="active-drones-title">أحدث الدرونز المفعلة</h5>
               </div>
               <div className="active-drones-list-container">
                 <div className="active-drones-list">
@@ -423,7 +423,13 @@ const Dashboard_Admin = () => {
                                       <div className="row align-items-center  justify-content-center">
                                         <div className="col-6 px-5">
                                           <img
-                                            src={droneImg}
+                                            src={
+                                              Drone.image
+                                                ? Drone.image.myFile
+                                                  ? Drone.image.myFile
+                                                  : droneImg
+                                                : droneImg
+                                            }
                                             class=" bg-white  mx-auto  biggerImg img-circle rounded-circle"
                                             alt="Drone"
                                           />
@@ -447,7 +453,7 @@ const Dashboard_Admin = () => {
                                           <GoogleMap
                                             mapContainerStyle={containerStyle2}
                                             center={center}
-                                            zoom={12}
+                                            zoom={11}
                                             onLoad={onLoad}
                                             onUnmount={onUnmount}
                                           >
@@ -513,9 +519,11 @@ const Dashboard_Admin = () => {
                                 <div className="modal-dialog modal-dialog-centered">
                                   <div className="modal-content">
                                     <div className="">
-                                      <div className="row align-items-center  justify-content-end mb-4 pt-2">
+                                      <div className="row align-items-center  justify-content-end pt-2">
                                         <div className="col-6 p-0 ">
-                                          <h4 className=" m-3 ">حذف الدرون</h4>
+                                          <h4 className="h3 m-0 ">
+                                            حذف الدرون
+                                          </h4>
                                         </div>
                                         <div className="col-2">
                                           <button
@@ -528,10 +536,8 @@ const Dashboard_Admin = () => {
                                       </div>
                                       <div className="modal-body justify-content-center">
                                         <div className="row align-items-center  justify-content-center">
-                                          <div className="row align-items-center justify-content-between   pt-2">
-                                            <div className="justify-content-center  h4">
-                                              هل أنت متأكد من حذف هذا الدرون؟
-                                            </div>
+                                          <div className="row align-items-center justify-content-center   h5">
+                                            هل أنت متأكد من حذف هذا الدرون؟
                                           </div>
                                           <div className="row justify-content-start align-items-start">
                                             <div className="col-8 h5"></div>
@@ -540,7 +546,7 @@ const Dashboard_Admin = () => {
                                       </div>
                                     </div>
                                     <div></div>
-                                    <div className="modal-footer border border-0 justify-content-center">
+                                    <div className="modal-footer border border-0 justify-content-evenly">
                                       <Button
                                         variant="secondary"
                                         size="md"
@@ -586,8 +592,8 @@ const Dashboard_Admin = () => {
                                       </div>
                                       <div className="modal-body justify-content-center">
                                         <div className="row align-items-center  justify-content-center">
-                                          <div className="row align-items-center justify-content-between pb-4  pt-2">
-                                            <div className="text-center  h3">
+                                          <div className="row align-items-center justify-content-between">
+                                            <div className="text-center  h4">
                                               تم حذف الدرون بنجاح !
                                             </div>
                                           </div>
