@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { BsCalendar4 } from "react-icons/bs";
 import ReportsList from "./Report_list_Employee.js";
 import { useReportDContext } from "../../hooks/useReportDContext";
+
 import {
   GoogleMap,
   Marker,
@@ -252,7 +253,7 @@ function UpdateStatus({ repId, repStat }) {
             </div>
 
             <div>
-              <div className="modal" id="myModal">
+              <div className="modal Up" id="myModal">
                 <div className="modal-dialog modal-dialog-centered">
                   <div className="modal-content">
                     <div className="">

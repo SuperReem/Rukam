@@ -6,6 +6,7 @@ import { BsCalendar4 } from "react-icons/bs";
 import { useEffect } from "react";
 import ReportsList from "./Reports_list";
 import { useReportDContext } from "../../hooks/useReportDContext";
+import { BsCheck } from "react-icons/bs";
 import {
   GoogleMap,
   Marker,
@@ -61,7 +62,10 @@ function EditReport({report}) {
       console.log(report._id);
     setIndex(1);
   };
-
+  const HandleSave = async (e) => {
+   Save();
+    setIndex(1);
+  };
 
 
   const containerStyle = {
@@ -184,7 +188,8 @@ function EditReport({report}) {
         <div className="container mt-5 pt-5">
           <div className="row">
             <div className="col-6">
-            <Button variant="secondary" size="lg" className="edit justify-content-between" onClick={Save}>  
+            <Button variant="secondary" size="lg" className="edit justify-content-between"      data-bs-toggle="modal"
+                  data-bs-target="#myModal-success">  
             <FiSave/>   &nbsp;
             حفظ
 
@@ -201,6 +206,53 @@ function EditReport({report}) {
   </div>
 </div>
     </div>
+    <div>
+        <div className="modal" id="myModal-success">
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div class="icon-box">
+                <i id="material-icons">
+                  {" "}
+                  <BsCheck size={108} />{" "}
+                </i>
+              </div>
+              <div className="">
+                <div className="row align-items-center  justify-content-end mb-4 pt-2">
+                  <div className="col-6 p-0 ">
+                    <h4 className=" m-5"> </h4>
+                  </div>
+                  <div className="col-1"></div>
+                </div>
+                <div className="modal-body justify-content-center ">
+                  <div className="row align-items-center  justify-content-center ">
+                    <div className="row align-items-center justify-content-between ">
+                      <div className="text-center  h4">
+                        تم حفظ البلاغ بنجاح !
+                      </div>
+                    </div>
+                    <div className="row justify-content-start align-items-start">
+                      <div className="col-8 h5"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div></div>
+              <div className="modal-footer border border-0 justify-content-center">
+                <Button
+                  variant="secondary"
+                  size="md"
+                  data-bs-dismiss="modal"
+                  className="popup-cancle"
+                  onClick={HandleSave}
+                >
+                  {" "}
+                  حسنًا{" "}
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
       ) :index == 1? (
         <ReportDetails repId={report._id} />

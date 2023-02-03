@@ -254,7 +254,7 @@ function UpdateStatusDash({ repId, repStat }) {
             </div>
 
             <div>
-              <div className="modal" id="myModal">
+              <div className="modal Up" id="myModal">
                 <div className="modal-dialog modal-dialog-centered">
                   <div className="modal-content">
                     <div className="">

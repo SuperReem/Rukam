@@ -104,6 +104,9 @@
 .modal{
   --bs-modal-width: 450px !important;
 }
+.modal.Up{
+  --bs-modal-width: 500px !important;
+}
 .modal.o1{
   --bs-modal-width: 500px !important;
   --bs-modal-hieght:100px !important
