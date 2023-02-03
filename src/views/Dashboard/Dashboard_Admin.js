@@ -423,7 +423,13 @@ const Dashboard_Admin = () => {
                                       <div className="row align-items-center  justify-content-center">
                                         <div className="col-6 px-5">
                                           <img
-                                            src={droneImg}
+                                            src={
+                                              Drone.image
+                                                ? Drone.image.myFile
+                                                  ? Drone.image.myFile
+                                                  : droneImg
+                                                : droneImg
+                                            }
                                             class=" bg-white  mx-auto  biggerImg img-circle rounded-circle"
                                             alt="Drone"
                                           />
