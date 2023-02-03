@@ -168,7 +168,7 @@ function DroneList() {
           <div>
             <div className=" d-flex align-items-center justify-content-between">
               <div className="" id="title">
-                قائمة الدرون
+                قائمة الدرونز
               </div>
 
               <Button
