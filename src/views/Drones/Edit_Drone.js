@@ -11,6 +11,7 @@ import Dropdown from "./Dropdown";
 import { useDronesContext } from "../../hooks/useDronesContext";
 import Dronelist from "../../views/Drones/Drones_list";
 import droneImg from "../../assets/images/Drone.png";
+import { BsCheck } from "react-icons/bs";
 
 const EditDrone = ({ droId }) => {
   const [droneName, setName] = useState("");
@@ -83,7 +84,6 @@ const EditDrone = ({ droId }) => {
     if (response.ok) {
       console.log("Drone is updated:", json);
     }
-    setIndex(1);
     console.log(droId);
   };
 
@@ -195,6 +195,8 @@ const EditDrone = ({ droId }) => {
                             type="button"
                             className="btn btn-primary my-4  px-3 classButton"
                             onClick={Save}
+                            data-bs-toggle="modal"
+                            data-bs-target="#myModal-success"
                           >
                             <BiSave />
                             حفظ
@@ -214,6 +216,53 @@ const EditDrone = ({ droId }) => {
                       </div>
                     </div>
                   </form>
+                </div>
+              </div>
+              <div>
+                <div className="modal" id="myModal-success">
+                  <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content">
+                      <div class="icon-box">
+                        <i id="material-icons">
+                          {" "}
+                          <BsCheck size={108} />{" "}
+                        </i>
+                      </div>
+                      <div className="">
+                        <div className="row align-items-center  justify-content-end mb-4 pt-2">
+                          <div className="col-6 p-0 ">
+                            <h4 className=" m-5"> </h4>
+                          </div>
+                          <div className="col-1"></div>
+                        </div>
+                        <div className="modal-body justify-content-center">
+                          <div className="row align-items-center  justify-content-center">
+                            <div className="row align-items-center justify-content-between">
+                              <div className="text-center  h4">
+                                تم تحرير الدرون بنجاح !
+                              </div>
+                            </div>
+                            <div className="row justify-content-start align-items-start">
+                              <div className="col-8 h5"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div></div>
+                      <div className="modal-footer border border-0 justify-content-center">
+                        <Button
+                          variant="secondary"
+                          size="md"
+                          data-bs-dismiss="modal"
+                          className="popup-cancle"
+                          onClick={PageNav(1)}
+                        >
+                          {" "}
+                          حسنًا{" "}
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
