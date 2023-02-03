@@ -78,7 +78,6 @@ function UpdateStatusDash({ repId, repStat }) {
 
   const onLoad = React.useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
     setMap(map);
   }, []);
 
@@ -173,7 +172,7 @@ function UpdateStatusDash({ repId, repStat }) {
                         {timestamp}{" "}
                       </h6>{" "}
                     </div>
-                    <div className="heading text-end pe-2">صور المخالفة</div>
+                    <div className="heading text-end pe-2">صورة المخالفة</div>
                     <hr className="hr m-0 p-2" />
                     <div className="container pic rounded mb-4 shadow-sm p-0">
                       {
@@ -207,15 +206,17 @@ function UpdateStatusDash({ repId, repStat }) {
                     </div>
                     <div className="heading text-end pe-2">موقع المخالفة</div>
                     <hr className="hr m-0 p-2" />
-                    <div className="container pic rounded shadow-sm mb-5 p-0">
+                    <div className="container loc rounded shadow-sm mb-5 p-0">
                       {isLoaded ? (
                         <GoogleMap
                           mapContainerStyle={containerStyle}
-                          center={center}
-                          zoom={7}
+                          center={location}
+                          zoom={11}
                           onLoad={onLoad}
                           onUnmount={onUnmount}
-                        ></GoogleMap>
+                        >
+                          <MarkerF position={location}></MarkerF>
+                        </GoogleMap>
                       ) : (
                         <div>Loading...</div>
                       )}

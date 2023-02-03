@@ -60,12 +60,11 @@ function UpdateStatus({ repId, repStat }) {
     fetchReport();
   }, []);
 
+  //location
   const containerStyle = {
     width: "100%;",
     height: "100%",
   };
-
-  //location
   const center = {
     lat: 24.72,
     lng: 46.62,
@@ -76,9 +75,9 @@ function UpdateStatus({ repId, repStat }) {
   });
 
   const [map, setMap] = React.useState(null);
+
   const onLoad = React.useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
     setMap(map);
   }, []);
 
@@ -172,7 +171,7 @@ function UpdateStatus({ repId, repStat }) {
                         {timestamp}{" "}
                       </h6>{" "}
                     </div>
-                    <div className="heading text-end pe-2">صور المخالفة</div>
+                    <div className="heading text-end pe-2">صورة المخالفة</div>
                     <hr className="hr m-0 p-2" />
                     <div className="container pic rounded mb-4 shadow-sm p-0">
                       {
@@ -206,15 +205,17 @@ function UpdateStatus({ repId, repStat }) {
                     </div>
                     <div className="heading text-end pe-2">موقع المخالفة</div>
                     <hr className="hr m-0 p-2" />
-                    <div className="container pic rounded shadow-sm mb-5 p-0">
+                    <div className="container loc rounded shadow-sm mb-5 p-0">
                       {isLoaded ? (
                         <GoogleMap
                           mapContainerStyle={containerStyle}
                           center={center}
-                          zoom={7}
+                          zoom={11}
                           onLoad={onLoad}
                           onUnmount={onUnmount}
-                        ></GoogleMap>
+                        >
+                          <MarkerF position={center}></MarkerF>
+                        </GoogleMap>
                       ) : (
                         <div>Loading...</div>
                       )}
