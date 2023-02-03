@@ -7,13 +7,18 @@ function Dropdown({ region, setRegion }) {
   return (
     <div className="dropdown">
       <div className="dropdown-btn" onClick={(e) => setIsActive(!isActive)}>
-       
+       <div className="row">
+        <div className="col-11">
         {region}
-        <span className="fas fa-caret-down" style={{paddingRight:"14.5rem",color:"black"}}> 
+        </div>
+        <div className="col-1 p-0">
+        <span className="fas fa-caret-down " style={{color:"black"}}> 
         <IoChevronDownSharp/>
-
         </span>
+        </div>
+        </div>
       </div>
+     
       {isActive && (
         <div className="dropdown-content">
           {options.map((option) => (
