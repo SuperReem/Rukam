@@ -38,6 +38,8 @@ import {
 function DroneList() {
   const [imgFile, setImgFile] = useState(droneImg);
   const [dronName, setDronName] = useState("");
+  const [refresh, setRefresh] = useState(false);
+
   // const [Drones, setDrones] = useState(null);
 
   // useEffect(() => {
@@ -61,13 +63,13 @@ function DroneList() {
   const [pageNumber, setPageNumber] = useState(0);
   const [numberOfPages, setNumberOfPages] = useState(0);
   const pages = new Array(numberOfPages).fill(null).map((v, i) => i);
-  
+
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);
-    console.log(base64)
-    setImage({ ...image, myFile : base64 })
-  }
+    console.log(base64);
+    setImage({ ...image, myFile: base64 });
+  };
   const handle = async (e) => {
     e.preventDefault();
 
@@ -75,9 +77,8 @@ function DroneList() {
       droneName,
       region,
       image: image,
-      currentLocation: {lat:24.717634 , lng: 46.666387},
-      visitedLocations:{},
-
+      currentLocation: { lat: 24.717634, lng: 46.666387 },
+      visitedLocations: {},
     };
 
     const response = await fetch("/api/Drone", {
@@ -106,7 +107,7 @@ function DroneList() {
     const json = await response.json();
     if (response.ok) {
       console.log("Deleted", json);
-      // setRefresh(!refresh);
+      setRefresh(!refresh);
     }
   };
 
@@ -149,7 +150,7 @@ function DroneList() {
     };
 
     fetchDrones();
-  }, [dispatch, pageNumber]);
+  }, [dispatch, pageNumber, refresh]);
 
   const gotoPrevious = () => {
     setPageNumber(Math.max(0, pageNumber - 1));
@@ -201,7 +202,13 @@ function DroneList() {
                 card-img-top bg-white mx-auto  biggerImg  border border-4 border-success
                img-circle rounded-circle   p-2  position-absolute top-0 start-50 translate-middle m-2 
                 "
-                                src={Drone.image ? Drone.image.myFile ? Drone.image.myFile :droneImg: droneImg} //{drone.image}
+                                src={
+                                  Drone.image
+                                    ? Drone.image.myFile
+                                      ? Drone.image.myFile
+                                      : droneImg
+                                    : droneImg
+                                } //{drone.image}
                                 alt=""
                               />
                               <img
@@ -209,7 +216,13 @@ function DroneList() {
                 card-img-top bg-white mx-auto  biggerImg  
                img-circle rounded-circle   p-2  position-absolute top-0 start-50 translate-middle m-2 
                 "
-                                src={Drone.image ? Drone.image.myFile ? Drone.image.myFile : droneImg: droneImg} //{drone.image}
+                                src={
+                                  Drone.image
+                                    ? Drone.image.myFile
+                                      ? Drone.image.myFile
+                                      : droneImg
+                                    : droneImg
+                                } //{drone.image}
                                 alt=""
                               />
                               {Drone.active ? (
@@ -266,7 +279,13 @@ function DroneList() {
                                     <div className="row align-items-center  justify-content-center">
                                       <div className="col-6 p-0 ">
                                         <img
-                                          src={Drone.image ? Drone.image.myFile ? Drone.image.myFile : droneImg: droneImg}
+                                          src={
+                                            Drone.image
+                                              ? Drone.image.myFile
+                                                ? Drone.image.myFile
+                                                : droneImg
+                                              : droneImg
+                                          }
                                           class="
                  bg-white  mx-auto  biggerImg 
                 img-circle rounded-circle
@@ -296,10 +315,19 @@ function DroneList() {
                                         <GoogleMap
                                           mapContainerStyle={containerStyle}
                                           center={center}
-                                          zoom={7}
+                                          zoom={12}
                                           onLoad={onLoad}
                                           onUnmount={onUnmount}
-                                        ></GoogleMap>
+                                        >
+                                          {Drone.visitedLocations &&
+                                            Drone.visitedLocations.map(
+                                              (location) => (
+                                                <MarkerF
+                                                  position={location}
+                                                ></MarkerF>
+                                              )
+                                            )}
+                                        </GoogleMap>
                                       ) : (
                                         <div>Loading...</div>
                                       )}
@@ -355,9 +383,9 @@ function DroneList() {
                               <div className="modal-dialog modal-dialog-centered">
                                 <div className="modal-content">
                                   <div className="">
-                                    <div className="row align-items-center  justify-content-end mb-4 pt-2">
-                                      <div className="col-6 p-0 ">
-                                        <h4 className=" m-3 ">حذف الدرون</h4>
+                                    <div className="row align-items-center  justify-content-end pt-2">
+                                      <div className="col-8 p-0 ">
+                                        <h4 className="h3 m-0">حذف الدرون</h4>
                                       </div>
                                       <div className="col-2">
                                         <button
@@ -370,10 +398,8 @@ function DroneList() {
                                     </div>
                                     <div className="modal-body justify-content-center">
                                       <div className="row align-items-center  justify-content-center">
-                                        <div className="row align-items-center justify-content-between   pt-2">
-                                          <div className="justify-content-center  h4">
-                                            هل أنت متأكد من حذف هذا الدرون؟
-                                          </div>
+                                        <div className="row align-items-center justify-content-center  h5">
+                                          هل أنت متأكد من حذف هذا الدرون؟
                                         </div>
                                         <div className="row justify-content-start align-items-start">
                                           <div className="col-8 h5"></div>
@@ -382,7 +408,7 @@ function DroneList() {
                                     </div>
                                   </div>
                                   <div></div>
-                                  <div className="modal-footer border border-0 justify-content-center">
+                                  <div className="modal-footer border border-0 justify-content-evenly">
                                     <Button
                                       variant="secondary"
                                       size="md"
@@ -428,8 +454,8 @@ function DroneList() {
                                     </div>
                                     <div className="modal-body justify-content-center">
                                       <div className="row align-items-center  justify-content-center">
-                                        <div className="row align-items-center justify-content-between pb-4  pt-2">
-                                          <div className="text-center  h3">
+                                        <div className="row align-items-center justify-content-between">
+                                          <div className="text-center  h4">
                                             تم حذف الدرون بنجاح !
                                           </div>
                                         </div>
@@ -549,28 +575,27 @@ function DroneList() {
                               alt="Drone"
                               /> */}
 
-
-<label htmlFor="file-upload" className='custom-file-upload'>
-          <img 
-          src={image.myFile || droneImg} alt="" 
-          class="
+                            <label
+                              htmlFor="file-upload"
+                              className="custom-file-upload"
+                            >
+                              <img
+                                src={image.myFile || droneImg}
+                                alt=""
+                                class="
                 card-img-top bg-white mx-auto  biggerImg   
                img-circle rounded-circle   position-absolute top-0 start-50 translate-middle m-3 
                 "
-          />
-        </label>
-<input 
-          type="file"
-          lable="Image"
-          name="myFile"
-          id='file-upload'
-          accept='.jpeg, .png, .jpg'
-          onChange={(e) => handleFileUpload(e)}
-         />
-
-
-
-
+                              />
+                            </label>
+                            <input
+                              type="file"
+                              lable="Image"
+                              name="myFile"
+                              id="file-upload"
+                              accept=".jpeg, .png, .jpg"
+                              onChange={(e) => handleFileUpload(e)}
+                            />
                           </div>
 
                           <div className="row align-items-center justify-content-between  h5">
@@ -681,15 +706,15 @@ function DroneList() {
 }
 
 export default DroneList;
-function convertToBase64(file){
+function convertToBase64(file) {
   return new Promise((resolve, reject) => {
     const fileReader = new FileReader();
     fileReader.readAsDataURL(file);
     fileReader.onload = () => {
-      resolve(fileReader.result)
+      resolve(fileReader.result);
     };
     fileReader.onerror = (error) => {
-      reject(error)
-    }
-  })
+      reject(error);
+    };
+  });
 }
