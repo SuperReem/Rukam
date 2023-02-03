@@ -453,7 +453,7 @@ const Dashboard_Admin = () => {
                                           <GoogleMap
                                             mapContainerStyle={containerStyle2}
                                             center={center}
-                                            zoom={12}
+                                            zoom={11}
                                             onLoad={onLoad}
                                             onUnmount={onUnmount}
                                           >
