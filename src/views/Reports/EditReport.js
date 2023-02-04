@@ -21,9 +21,9 @@ function EditReport({ report }) {
   const [note, setNotes] = useState(report.notes);
   const [index, setIndex] = useState(0);
 
-  const updatetext = (event) => {
-    setNotes(event.target.value);
-  };
+  // const updatetext = (event) => {
+  //   setNotes(event.target.value.replace(/[&\/[$\]\\#,;@!+()$~%.'":*?<>{}]/g, ''));
+  // };
   useEffect(() => {
     console.log(note + "j");
   }, [note]);
@@ -141,8 +141,13 @@ function EditReport({ report }) {
                       className="notes p-2"
                       id=""
                       rows="3"
-                      defaultValue={report.notes}
-                      onChange={updatetext}
+                      // defaultValue={report.notes}
+                      value={note}
+                      maxlength="500"
+                      pattern= "([A-z0-9\s]){0,500}"
+                      onChange={ (event) => {
+                        setNotes(event.target.value.replace(/[\/[\]<>]/g, ''));
+                      }}
                     />
                   </div>
                 </div>
@@ -176,7 +181,7 @@ function EditReport({ report }) {
                           <MarkerF position={report.location}></MarkerF>
                         </GoogleMap>
                       ) : (
-                        <div>Loading...</div>
+                        <div></div>
                       )}
                     </div>
                     <div className="row"> </div>
