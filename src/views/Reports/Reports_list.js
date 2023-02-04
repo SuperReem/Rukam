@@ -175,7 +175,7 @@ function ReportsList() {
                             <div className="d-flex">
                               <h5 className="ms-5">
                                 {" "}
-                                حي {report.region} , {report.street}
+                                حي {report.region} ، {report.street}
                               </h5>
                               <p className="report-time">
                                 {" "}
