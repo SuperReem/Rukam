@@ -29,8 +29,8 @@ import EditDrone from "../../views/Drones/Edit_Drone";
 import Geocode from "react-geocode";
 
 const containerStyle = {
-  width: "650px",
-  height: "210px",
+  width: "680px",
+  height: "230px",
   borderRadius: "10px",
   boxShadow: "1px 1px 15px 1px #ebebeb",
 };
@@ -74,7 +74,6 @@ const Dashboard_Admin = () => {
 
   const onLoad = React.useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds(center);
-    // map.fitBounds(bounds);
     setMap(map);
   }, []);
 
@@ -373,7 +372,7 @@ const Dashboard_Admin = () => {
                                   {Drone.droneName}
                                 </Row>
                                 <Row className="active-drones-region-name">
-                                  {Drone.region}
+                                  حي {Drone.region}
                                 </Row>
                               </div>
                             </div>

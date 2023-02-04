@@ -35,20 +35,17 @@ import {
   MarkerF,
 } from "@react-google-maps/api";
 
-
-
-
-const ChoooseRegion = "اختر المنطقة" ;
+const ChoooseRegion = "اختر المنطقة";
 function DroneList() {
   const [imgFile, setImgFile] = useState(droneImg);
   const [dronName, setDronName] = useState("");
   const [refresh, setRefresh] = useState(false);
-  const [errorName , setErrorName] = useState("");
-  const [errorRegion , setErrorRegion] = useState("");
- 
+  const [errorName, setErrorName] = useState("");
+  const [errorRegion, setErrorRegion] = useState("");
+
   const [droneName, setName] = useState("");
   const [region, setRegion] = useState(ChoooseRegion);
-  const [image, setImage] = useState( {myFile : droneImg});
+  const [image, setImage] = useState({ myFile: droneImg });
 
   const { drones, dispatch } = useDronesContext();
   const [pageNumber, setPageNumber] = useState(0);
@@ -61,7 +58,7 @@ function DroneList() {
     console.log(base64);
     setImage({ ...image, myFile: base64 });
   };
- 
+
   const handelSubmit = async (e) => {
     e.preventDefault();
 
@@ -154,19 +151,15 @@ function DroneList() {
   };
   const [index, setIndex] = useState(0);
   const [droneId, setDrone] = useState();
-  const [formError, setformError ]= useState('');
-  
-  useEffect(()=> {
-     if(droneName.length <=0  ) {
-      setErrorName("الرجاء اختيار اسم الدرون"); 
-     } 
-    
-      setErrorRegion("الرجاء اختيار المنطقة") ; 
-     
-  },[])
+  const [formError, setformError] = useState("");
 
+  useEffect(() => {
+    if (droneName.length <= 0) {
+      setErrorName("الرجاء اختيار اسم الدرون");
+    }
 
-
+    setErrorRegion("الرجاء اختيار المنطقة");
+  }, []);
 
   return (
     <>
@@ -190,9 +183,7 @@ function DroneList() {
             </div>
 
             <div class="container-fluid bg-3 text-center divSizing">
-              
               <div class="row text-center  mt-4  ">
-              
                 {drones &&
                   drones.map((Drone) => (
                     <>
@@ -546,61 +537,57 @@ function DroneList() {
             </div>
 
             <div>
-
-
-
               <div className="modal" id="myModal">
                 <div className="modal-dialog modal-dialog-centered">
                   <div className="modal-content">
                     <form onSubmit={handelSubmit}>
-                    <div className="">
-                      <div className="row align-items-center  justify-content-end  pt-2">
-                        <div className="col-2">
-                          <button
-                            data-bs-dismiss="modal"
-                            className="closebtn btn rounded"
-                          >
-                            &#x2715;
-                          </button>
+                      <div className="">
+                        <div className="row align-items-center  justify-content-end  pt-2">
+                          <div className="col-2">
+                            <button
+                              data-bs-dismiss="modal"
+                              className="closebtn btn rounded"
+                              type="button"
+                            >
+                              &#x2715;
+                            </button>
+                          </div>
                         </div>
-                      </div>
-                      <div className="modal-body justify-content-center">
-                        <div className="row align-items-center  justify-content-center">
-                          <div className="col-4  ">
-                            
-                            <label
-                              htmlFor="file-upload"
-                              className="custom-file-upload">
-                               
-                              <img
-                                src={image.myFile }
-                                alt=""
-                                class="
+                        <div className="modal-body justify-content-center">
+                          <div className="row align-items-center  justify-content-center">
+                            <div className="col-4  ">
+                              <label
+                                htmlFor="file-upload"
+                                className="custom-file-upload"
+                              >
+                                <img
+                                  src={image.myFile}
+                                  alt=""
+                                  class="
                                 card-img-top bg-white mx-auto  biggerImg   
                                 img-circle rounded-circle   
                                 position-absolute top-0 start-50 translate-middle m-3 
                                 "
-                              />
-                              <div class="add-imgIcon">
-                              <IoAddCircle color="#B5864C" />
-                            </div>
-                            </label>
-                            
-                            <input
-                              type="file"
-                              lable="Image"
-                              name="myFile"
-                              id="file-upload"
-                              accept=".jpeg, .png, .jpg"
-                              onChange={(e) => handleFileUpload(e)}
-                            />
-                            
-                          </div>
+                                />
+                                <div class="add-imgIcon">
+                                  <IoAddCircle color="#B5864C" />
+                                </div>
+                              </label>
 
-                          <div className="row align-items-center justify-content-between  h5">
-                            <div class="row  m-0">
-                              <div className="container w-75 mt-3">
-                                {/* <form> */}
+                              <input
+                                type="file"
+                                lable="Image"
+                                name="myFile"
+                                id="file-upload"
+                                accept=".jpeg, .png, .jpg"
+                                onChange={(e) => handleFileUpload(e)}
+                              />
+                            </div>
+
+                            <div className="row align-items-center justify-content-between  h5">
+                              <div class="row  m-0">
+                                <div className="container w-75 mt-3">
+                                  {/* <form> */}
                                   <div class="form-group ">
                                     <label
                                       class="form-label  classLabel"
@@ -616,19 +603,23 @@ function DroneList() {
                                       className="form-control classInput"
                                       required
                                       value={droneName}
-                                      onChange={(e) =>{
-                                        if(e.target.value.length > 0 ){
-                                          setName(e.target.value)
-                                          setErrorName("")
+                                      onChange={(e) => {
+                                        if (e.target.value.length > 0) {
+                                          setName(e.target.value);
+                                          setErrorName("");
                                         } else {
-                                          setErrorName("الرجاء اختيار اسم الدرون")
+                                          setErrorName(
+                                            "الرجاء اختيار اسم الدرون"
+                                          );
                                         }
-                                        
-                                        
                                       }}
                                     />
                                   </div>
-                                  {<span style={{color : "red"}}>{errorName}</span>}
+                                  {
+                                    <span style={{ color: "red" }}>
+                                      {errorName}
+                                    </span>
+                                  }
 
                                   <div class="form-group">
                                     <label
@@ -640,33 +631,31 @@ function DroneList() {
                                     <Dropdown
                                       region={region}
                                       setRegion={setRegion}
-                                      setErrorRegion = {setErrorRegion}
+                                      setErrorRegion={setErrorRegion}
                                       value={droneName}
-                                      onChange={(e) =>
-                                        {
-                                          
-                                            
-                                          
-                                            setRegion(e.target.value)
-                                            setErrorRegion("")
-                                          
-                                        }
-                                      }
+                                      onChange={(e) => {
+                                        setRegion(e.target.value);
+                                        setErrorRegion("");
+                                      }}
                                     />
                                   </div>
-                                  {<span style={{color : "red"  }}>{errorRegion}</span>}
-                      {/* </form> */}
+                                  {
+                                    <span style={{ color: "red" }}>
+                                      {errorRegion}
+                                    </span>
+                                  }
+                                  {/* </form> */}
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div></div>
+                      <div></div>
 
-                    <div className="modal-footer border border-0 justify-content-evenly">
-                      {/* <Button
+                      <div className="modal-footer border border-0 justify-content-evenly">
+                        {/* <Button
                   variant="secondary"
                   size="md"
                   className="popup btn "
@@ -676,18 +665,18 @@ function DroneList() {
            
 إضافة
                </Button> */}
-                      <button
-                        // onClick={handle}
-                        data-bs-dismiss="modal"
-                        type="submit"
-                        className="btn btn-primary my-2  px-3 classButton"
-                        disabled={!!errorName || !!errorRegion}
-                      >
-                        <IoAddSharp />
-                        إضافة
-                      </button>
+                        <button
+                          // onClick={handle}
+                          data-bs-dismiss="modal"
+                          type="submit"
+                          className="btn btn-primary my-2  px-3 classButton"
+                          disabled={!!errorName || !!errorRegion}
+                        >
+                          <IoAddSharp />
+                          إضافة
+                        </button>
 
-                      {/* <Button
+                        {/* <Button
                   variant="secondary"
                   size="md"
                   className="popup btn "
@@ -696,43 +685,17 @@ function DroneList() {
            
                إلغاء
                 </Button> */}
-                      <button
-                        data-bs-dismiss="modal"
-                        type="button"
-                        className="btn btn-primary my-2  px-4 classButton2"
-                      >
-                        إلغاء
-                      </button>
-                    </div>
+                        <button
+                          data-bs-dismiss="modal"
+                          type="button"
+                          className="btn btn-primary my-2  px-4 classButton2"
+                        >
+                          إلغاء
+                        </button>
+                      </div>
                     </form>
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
                   </div>
                 </div>
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
               </div>
             </div>
           </div>
