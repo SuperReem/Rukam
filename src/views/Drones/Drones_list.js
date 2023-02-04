@@ -616,7 +616,7 @@ function DroneList() {
                                     />
                                   </div>
                                   {
-                                    <span style={{ color: "red" }}>
+                                    <span style={{ color: "red"  , fontSize:'15px' }}>
                                       {errorName}
                                     </span>
                                   }
