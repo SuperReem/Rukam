@@ -36,6 +36,8 @@ import {
 } from "@react-google-maps/api";
 
 const ChoooseRegion = "اختر المنطقة";
+// const ChoooseRegion = "";
+
 function DroneList() {
   const [imgFile, setImgFile] = useState(droneImg);
   const [dronName, setDronName] = useState("");
@@ -61,6 +63,15 @@ function DroneList() {
 
   const handelSubmit = async (e) => {
     e.preventDefault();
+
+   if(droneName.length==0){
+    setErrorName(  "الرجاء اختيار اسم الدرون");
+   } 
+   if(region=="اختر المنطقة"){
+      setErrorRegion("choose region ::: ");
+    }
+     if(errorName=="" && errorRegion==""){
+
 
     const drone = {
       droneName,
@@ -90,6 +101,7 @@ function DroneList() {
       setRefresh(!refresh);
       //  dispatch({ type: "CREATE_DRONE", payload: json });
     }
+  }
   };
   const DeleteDrone = async (Id) => {
     const response = await fetch("/api/Drone/" + Id, {
@@ -599,21 +611,26 @@ function DroneList() {
                                       type="text"
                                       //style={{ width: "350px" }}
                                       name="name"
-                                      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{2,10}"
                                       id="droneName"
                                       className="form-control classInput"
-                                      required
+                                      // required
                                       value={droneName}
                                       onChange={(e) => {
                                         setName(e.target.value);
-                                        if (e.target.value.length > 0) {
+                                        if (e.target.value.length > 2) {
                                           setErrorName("");
-                                        } else {
+                                        } else if(e.target.value.length ==0) {
                                           setErrorName(
                                             "الرجاء اختيار اسم الدرون"
                                           );
+                                        }else if(e.target.value.length <3){
+                                          setErrorName(
+                                            "الرجاء اختيار 2 الدرون"
+                                          );
                                         }
                                       }}
+                                      pattern= "([A-z0-9\s]){0,10}" //"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{2,10}"
+                                      min="2"  maxlength="10"
                                     />
                                   </div>
                                   {
@@ -633,10 +650,16 @@ function DroneList() {
                                       region={region}
                                       setRegion={setRegion}
                                       setErrorRegion={setErrorRegion}
+                                      placeholder="********"
                                       value={region}
                                       onChange={(e) => {
                                         setRegion(e.target.value);
-                                        setErrorRegion("");
+                                        if(e.target.value!="اختر المنطقة"){
+                                          setErrorRegion("");
+                                        }
+                                        else{
+                                          setErrorRegion("choose region ::: ");
+                                        }
                                       }}
                                     />
                                   </div>
@@ -668,10 +691,10 @@ function DroneList() {
                </Button> */}
                         <button
                           // onClick={handle}
-                          data-bs-dismiss="modal"
-                          type="submit"
+                          // data-bs-dismiss="modal"
+                          type="Submit"
                           className="btn btn-primary my-2  px-3 classButton"
-                          disabled={!!errorName || !!errorRegion}
+                          // disabled={!!errorName || !!errorRegion}
                         >
                           <IoAddSharp />
                           إضافة
