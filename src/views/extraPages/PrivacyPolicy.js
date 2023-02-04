@@ -7,19 +7,19 @@ function PrivacyPolicy() {
     <body className=" ">
       {/* <!-- Header --> */}
       <TopNavbar />
-      <div className="container pt-1kk ">
-        <div className="rowkk pe-3kk">
-          <div className="container my-2 col col-10">
-            <div className="card bg-white shadow  border-0 rounded-280 cardHigkk pt-3kk px-3  mb-0 ">
-              <div className="card-body  rowkk align-items-centerkk">
-                <div className="position-relative colk col-2k text-centerkk align-self-centerkk">
+      <div className="container pt-1 ">
+        <div className="">
+          <div className="container my-2 col col-10 ">
+            <div className="card bg-white  border-0 rounded-280 cardHigkk px-3 mt-2  mb-0 brownShadow">
+              <div className="card-body  ">
+                <div className="position-relative ">
                   <h4 className="textColor BoldFont mb-0 pb-0 align-self-start pt-2">
                   جمع البيانات
                   </h4>
 
                   <hr className="mt-0 hrLine2 "></hr>
                 </div>
-                <p className="  colkk col-10kk my-4 ">
+                <p className=" my-4 ">
                  <ul>
                  <li className=" pb-1">
                     بمجرد زيارة المستخدم موقع الوزارة الإلكتروني أو المنصات الإلكترونية التابعة للوزارة، يقوم الخادم الخاص بتسجيل عنوان بروتوكول شبكة الإنترنت IP الخاص بالمستخدم وتاريخ ووقت الزيارة والعنوان URL الخاص بأي موقع إلكتروني تتم منه إحالتك إلى بوابة الوزارة.
@@ -30,7 +30,7 @@ function PrivacyPolicy() {
                  </ul>
                 </p>
 
-                <div className="position-relative colk col-2k text-centerkk align-self-centerkk">
+                <div className="position-relative ">
                   <h4 className="textColor BoldFont mb-0 pb-0 align-self-start pt-2">
                   الموافقة على إشعار الخصوصية
                   </h4>
@@ -46,7 +46,7 @@ function PrivacyPolicy() {
                  </ul>
                 </p>
 
-                <div className="position-relative colk col-2k text-centerkk align-self-centerkk">
+                <div className="position-relative ">
                   <h4 className="textColor BoldFont mb-0 pb-0 align-self-start pt-2">
                   أحكام عامة
                   </h4>
