@@ -171,6 +171,7 @@ function DroneList() {
               </div>
 
               <Button
+              id="btnadd"
                 variant="secondary"
                 size="sm"
                 className="darkbtn"

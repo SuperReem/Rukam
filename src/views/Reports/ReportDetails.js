@@ -18,7 +18,8 @@ import ReportsList from "./Reports_list";
 
 function ReportDetails({ repId }) {
   const [index, setIndex] = useState(0);
-  const { dispatch } = useReportDContext();
+
+  const { dispatch } =   ReportDContextProvider.useReportDContext();
   const [timestamp, setTimestamp] = useState("");
   const [rep, setReport] = useState();
   const [status, setStatus] = useState("");

@@ -52,7 +52,7 @@ const Sidebar = () => {
                     </div>
                   )}
                 </li>
-                <li onClick={() => setCurrentIndex(1)}>
+                <li  onClick={() => setCurrentIndex(1)}>
                   {currentIndex == 1 ? (
                     <div className="cc d-flex align-items-center ">
                       <TbReportAnalytics className="sidenav-icons" /> البلاغات
@@ -76,7 +76,7 @@ const Sidebar = () => {
                     </div>
                   )}
                 </li>
-                <li onClick={() => setCurrentIndex(3)}>
+                <li id="index1" onClick={() => setCurrentIndex(3)}>
                   {currentIndex == 3 ? (
                     <div className="cc d-flex align-items-center ">
                       <TbDrone className="sidenav-icons" /> قائمة الدرونز
