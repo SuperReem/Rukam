@@ -41,8 +41,8 @@ function DroneList() {
   const [dronName, setDronName] = useState("");
   const [refresh, setRefresh] = useState(false);
   const [errorName, setErrorName] = useState("");
-  const [errorRegion, setErrorRegion] = useState("");
-
+  const [errorRegion, setErrorRegion] = useState("  ");
+ 
   const [droneName, setName] = useState("");
   const [region, setRegion] = useState(ChoooseRegion);
   const [image, setImage] = useState({ myFile: droneImg });
@@ -85,7 +85,7 @@ function DroneList() {
     if (response.ok) {
       setName("");
       setRegion(ChoooseRegion);
-      setImage("");
+      setImage({ myFile: droneImg });
       console.log("new drone added:", json);
       setRefresh(!refresh);
       //  dispatch({ type: "CREATE_DRONE", payload: json });
@@ -153,13 +153,13 @@ function DroneList() {
   const [droneId, setDrone] = useState();
   const [formError, setformError] = useState("");
 
-  useEffect(() => {
-    if (droneName.length <= 0) {
-      setErrorName("الرجاء اختيار اسم الدرون");
-    }
+  // useEffect(() => {
+  //   if (droneName.length <= 0) {
+  //     setErrorName("الرجاء اختيار اسم الدرون");
+  //   }
 
-    setErrorRegion("الرجاء اختيار المنطقة");
-  }, []);
+  //   setErrorRegion("الرجاء اختيار المنطقة");
+  // }, []);
 
   return (
     <>
