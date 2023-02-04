@@ -29,8 +29,8 @@ import EditDrone from "../../views/Drones/Edit_Drone";
 import Geocode from "react-geocode";
 
 const containerStyle = {
-  width: "650px",
-  height: "210px",
+  width: "680px",
+  height: "230px",
   borderRadius: "10px",
   boxShadow: "1px 1px 15px 1px #ebebeb",
 };

@@ -426,10 +426,10 @@ const Dashboard_Employee = () => {
                   />
                 </div>
               </div>
-              <div className="reports-statistics col-7 pb-5 pt-4">
+              <div className="reports-statistics col-7.5 pb-5 pt-4">
                 <h5 className="mb-0">إجمالي البلاغات لكل شهر</h5>
 
-                <VictoryChart width={1300} height={400} maxDomain={{ y: 8 }}>
+                <VictoryChart width={1300} height={400} maxDomain={{ y: 10 }}>
                   <VictoryArea
                     interpolation="natural"
                     style={{
@@ -458,12 +458,7 @@ const Dashboard_Employee = () => {
                   />
                   <VictoryAxis
                     dependentAxis
-                    tickValues={[
-                      2.0,
-                      4.0,
-                      6.0,
-                      8.0, //get back to it
-                    ]}
+                    tickValues={[2.0, 4.0, 6.0, 8.0]}
                     padding={{ right: 20 }}
                   />
                   <VictoryAxis padding={{ bottom: 90 }} />
