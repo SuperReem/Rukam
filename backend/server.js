@@ -7,6 +7,9 @@ const DetectionRoute = require("./routes/Detection");
 const DroneRouter = require("./routes/Drone");
 const userRoutes = require("./routes/user");///
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.json({limit: "50mb"}));
+app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
 
 const connection_string = `mongodb+srv://Nailah:0UUXTrBNuiKanCcC@cluster0.cgkke2f.mongodb.net/Rukam?retryWrites=true&w=majority`;
 //const port = process.env.PORT || 80
