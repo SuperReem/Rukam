@@ -71,8 +71,6 @@ function DroneList() {
       setErrorRegion("choose region ::: ");
     }
      if(errorName=="" && errorRegion==""){
-
-
     const drone = {
       droneName,
       region,
@@ -616,7 +614,7 @@ function DroneList() {
                                       // required
                                       value={droneName}
                                       onChange={(e) => {
-                                        setName(e.target.value);
+                                        setName(e.target.value.replace(/[&\/[$\]\\#,;@!+()$~%.'":*?<>{}]/g, ''));  //(/[#[$\]\\@]/g,''));
                                         if (e.target.value.length > 2) {
                                           setErrorName("");
                                         } else if(e.target.value.length ==0) {
@@ -630,7 +628,7 @@ function DroneList() {
                                         }
                                       }}
                                       pattern= "([A-z0-9\s]){0,10}" //"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{2,10}"
-                                      min="2"  maxlength="10"
+                                       maxlength="10"
                                     />
                                   </div>
                                   {
