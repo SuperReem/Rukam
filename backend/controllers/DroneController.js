@@ -46,7 +46,7 @@ const getActiveList = async (req, res) => {
 // create a new drone
 const createDrone = async (req, res) => {
   const { droneName, image, region } = req.body;
-
+   
   let emptyFields = [];
 
   if (!droneName) {

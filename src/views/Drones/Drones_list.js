@@ -16,7 +16,7 @@ import { IoAddSharp } from "react-icons/io5";
 import { BsChevronLeft } from "react-icons/bs";
 import { BsChevronRight } from "react-icons/bs";
 import "../../views/Drones/Drones_list.css";
-import { MdOutlineEdit } from "react-icons/md";
+import { MdNoMeals, MdOutlineEdit } from "react-icons/md";
 import { BsTrash } from "react-icons/bs";
 import { BsCheck } from "react-icons/bs";
 // import ReportDetails from "../../views/Reports/ReportDetails";
@@ -35,29 +35,20 @@ import {
   MarkerF,
 } from "@react-google-maps/api";
 
+
+
+
+const ChoooseRegion = "اختر المنطقة" ;
 function DroneList() {
   const [imgFile, setImgFile] = useState(droneImg);
   const [dronName, setDronName] = useState("");
   const [refresh, setRefresh] = useState(false);
-
-  // const [Drones, setDrones] = useState(null);
-
-  // useEffect(() => {
-  //   const fetchDrones = async () => {
-  //     const response = await fetch("/api/Drone/drones");
-  //     const json = await response.json();
-
-  //     if (response.ok) {
-  //       setDrones(json);
-  //       console.log("okay");
-  //     }
-  //   };
-
-  //   fetchDrones();
-  // }, []);
+  const [errorName , setErrorName] = useState("");
+  const [errorRegion , setErrorRegion] = useState("");
+ 
   const [droneName, setName] = useState("");
-  const [region, setRegion] = useState("اختر المنطقه");
-  const [image, setImage] = useState("");
+  const [region, setRegion] = useState(ChoooseRegion);
+  const [image, setImage] = useState( {myFile : droneImg});
 
   const { drones, dispatch } = useDronesContext();
   const [pageNumber, setPageNumber] = useState(0);
@@ -70,7 +61,8 @@ function DroneList() {
     console.log(base64);
     setImage({ ...image, myFile: base64 });
   };
-  const handle = async (e) => {
+ 
+  const handelSubmit = async (e) => {
     e.preventDefault();
 
     const drone = {
@@ -95,8 +87,10 @@ function DroneList() {
     }
     if (response.ok) {
       setName("");
-      setRegion("");
+      setRegion(ChoooseRegion);
+      setImage("");
       console.log("new drone added:", json);
+      setRefresh(!refresh);
       //  dispatch({ type: "CREATE_DRONE", payload: json });
     }
   };
@@ -160,6 +154,20 @@ function DroneList() {
   };
   const [index, setIndex] = useState(0);
   const [droneId, setDrone] = useState();
+  const [formError, setformError ]= useState('');
+  
+  useEffect(()=> {
+     if(droneName.length <=0  ) {
+      setErrorName("الرجاء اختيار اسم الدرون"); 
+     } 
+    
+      setErrorRegion("الرجاء اختيار المنطقة") ; 
+     
+  },[])
+
+
+
+
   return (
     <>
       {index == 0 ? (
@@ -182,13 +190,9 @@ function DroneList() {
             </div>
 
             <div class="container-fluid bg-3 text-center divSizing">
-              {/* <div class="row"> */}
-
-              {/* <div class=""> */}
-
+              
               <div class="row text-center  mt-4  ">
-                {/* mt-sm-5 mt-lg-1 */}
-
+              
                 {drones &&
                   drones.map((Drone) => (
                     <>
@@ -542,9 +546,13 @@ function DroneList() {
             </div>
 
             <div>
+
+
+
               <div className="modal" id="myModal">
                 <div className="modal-dialog modal-dialog-centered">
                   <div className="modal-content">
+                    <form onSubmit={handelSubmit}>
                     <div className="">
                       <div className="row align-items-center  justify-content-end  pt-2">
                         <div className="col-2">
@@ -559,34 +567,25 @@ function DroneList() {
                       <div className="modal-body justify-content-center">
                         <div className="row align-items-center  justify-content-center">
                           <div className="col-4  ">
-                            <div class="add-imgIcon">
-                              <IoAddCircle color="#B5864C" />
-                            </div>
-                            {/* <img
-                              src={droneImg}
-                              class="
-       bg-white  mx-auto  biggerImg 
-      img-circle rounded-circle
-      
-      
-      
-      "
-                              alt="Drone"
-                              /> */}
-
+                            
                             <label
                               htmlFor="file-upload"
-                              className="custom-file-upload"
-                            >
+                              className="custom-file-upload">
+                               
                               <img
-                                src={image.myFile || droneImg}
+                                src={image.myFile }
                                 alt=""
                                 class="
-                card-img-top bg-white mx-auto  biggerImg   
-               img-circle rounded-circle   position-absolute top-0 start-50 translate-middle m-3 
-                "
+                                card-img-top bg-white mx-auto  biggerImg   
+                                img-circle rounded-circle   
+                                position-absolute top-0 start-50 translate-middle m-3 
+                                "
                               />
+                              <div class="add-imgIcon">
+                              <IoAddCircle color="#B5864C" />
+                            </div>
                             </label>
+                            
                             <input
                               type="file"
                               lable="Image"
@@ -595,12 +594,13 @@ function DroneList() {
                               accept=".jpeg, .png, .jpg"
                               onChange={(e) => handleFileUpload(e)}
                             />
+                            
                           </div>
 
                           <div className="row align-items-center justify-content-between  h5">
                             <div class="row  m-0">
                               <div className="container w-75 mt-3">
-                                <form>
+                                {/* <form> */}
                                   <div class="form-group ">
                                     <label
                                       class="form-label  classLabel"
@@ -616,9 +616,19 @@ function DroneList() {
                                       className="form-control classInput"
                                       required
                                       value={droneName}
-                                      onChange={(e) => setName(e.target.value)}
+                                      onChange={(e) =>{
+                                        if(e.target.value.length > 0 ){
+                                          setName(e.target.value)
+                                          setErrorName("")
+                                        } else {
+                                          setErrorName("الرجاء اختيار اسم الدرون")
+                                        }
+                                        
+                                        
+                                      }}
                                     />
                                   </div>
+                                  {<span style={{color : "red"}}>{errorName}</span>}
 
                                   <div class="form-group">
                                     <label
@@ -630,21 +640,25 @@ function DroneList() {
                                     <Dropdown
                                       region={region}
                                       setRegion={setRegion}
+                                      setErrorRegion = {setErrorRegion}
                                       value={droneName}
                                       onChange={(e) =>
-                                        setRegion(e.target.value)
+                                        {
+                                          
+                                            
+                                          
+                                            setRegion(e.target.value)
+                                            setErrorRegion("")
+                                          
+                                        }
                                       }
                                     />
                                   </div>
-                                </form>
+                                  {<span style={{color : "red"  }}>{errorRegion}</span>}
+                      {/* </form> */}
                               </div>
                             </div>
                           </div>
-                          {/* <div className="row justify-content-start align-items-start">
-                      <div className="col-8 h5">
-             
-                      </div>
-                    </div> */}
                         </div>
                       </div>
                     </div>
@@ -663,10 +677,11 @@ function DroneList() {
 إضافة
                </Button> */}
                       <button
-                        onClick={handle}
+                        // onClick={handle}
                         data-bs-dismiss="modal"
-                        type="button"
+                        type="submit"
                         className="btn btn-primary my-2  px-3 classButton"
+                        disabled={!!errorName || !!errorRegion}
                       >
                         <IoAddSharp />
                         إضافة
@@ -689,8 +704,35 @@ function DroneList() {
                         إلغاء
                       </button>
                     </div>
+                    </form>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
                   </div>
                 </div>
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
               </div>
             </div>
           </div>

@@ -64,14 +64,10 @@ border-color: var(--brown) !important;
 
 
 }
-.add-imgIcon{
-  
-  
-  display: flex;
-  cursor: pointer;
-  position: absolute;
-  margin-top: 30px;
 
+.add-imgIcon{
+  position: absolute;
+  padding-left: 110px; 
 
 }
 #file-upload{

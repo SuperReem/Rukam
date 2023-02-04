@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IoChevronDownSharp } from 'react-icons/io5';
 
-function Dropdown({ region, setRegion }) {
+function Dropdown({ region, setRegion ,setErrorRegion }) {
   const [isActive, setIsActive] = useState(false);
   const options = ["حطين", "عرقه", "النخيل"];
   return (
@@ -25,6 +25,7 @@ function Dropdown({ region, setRegion }) {
             <div
               onClick={(e) => {
                 setRegion(option);
+                setErrorRegion("")
                 setIsActive(false);
               }}
               className="dropdown-item"
