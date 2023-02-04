@@ -632,7 +632,7 @@ function DroneList() {
                                       region={region}
                                       setRegion={setRegion}
                                       setErrorRegion={setErrorRegion}
-                                      value={droneName}
+                                      value={region}
                                       onChange={(e) => {
                                         setRegion(e.target.value);
                                         setErrorRegion("");
