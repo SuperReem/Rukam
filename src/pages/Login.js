@@ -36,14 +36,14 @@ const Login = () => {
     e.preventDefault();
     setEmailError("");
     if(email === "" && password === ""){
-      setEmailError("يرجى تعبئة المطلوب");
+      setEmailError("يرجى إدخال المطلوب");
   }
     else
     if(email === ""){
-      setEmailError("يرجى تعبئة البريد الإلكتروني");
+      setEmailError("يرجى إدخال البريد الإلكتروني");
   }
     else if(password === ""){
-      setEmailError("يرجى تعبئة كلمة المرور");
+      setEmailError("يرجى إدخال كلمة المرور");
   }
     else  if (!email.match(isValidEmail)) {
       setEmailError("البريد الإلكتروني غير صالح");
