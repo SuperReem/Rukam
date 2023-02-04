@@ -599,13 +599,14 @@ function DroneList() {
                                       type="text"
                                       //style={{ width: "350px" }}
                                       name="name"
+                                      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{2,10}"
                                       id="droneName"
                                       className="form-control classInput"
                                       required
                                       value={droneName}
                                       onChange={(e) => {
+                                        setName(e.target.value);
                                         if (e.target.value.length > 0) {
-                                          setName(e.target.value);
                                           setErrorName("");
                                         } else {
                                           setErrorName(
