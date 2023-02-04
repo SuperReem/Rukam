@@ -24,6 +24,8 @@ const Login = () => {
   const [passwordShown, setPasswordShown] = useState(false);
   const changeIcon = passwordShown === true ? false : true;
 
+  const printError = emailError !=""? emailError : error;
+
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
   };
@@ -32,13 +34,25 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!email.match(isValidEmail)) {
+    setEmailError("");
+    if(email === "" && password === ""){
+      setEmailError("يرجى تعبئة المطلوب");
+  }
+    else
+    if(email === ""){
+      setEmailError("يرجى تعبئة البريد الإلكتروني");
+  }
+    else if(password === ""){
+      setEmailError("يرجى تعبئة كلمة المرور");
+  }
+    else  if (!email.match(isValidEmail)) {
       setEmailError("البريد الإلكتروني غير صالح");
     } else {
       try {
         setEmailError("");
         await login(email.toLowerCase(), password);
-      } catch (error) {}
+      } catch (error) {
+      }
     }
   };
 
@@ -78,14 +92,11 @@ const Login = () => {
                     <h5 className="text-black mb-lg-1 ">مرحبًا بك مجددًا</h5>
                   </div>
                   <div className="errordiv">
-                    {error && (
-                      <div className="error text-danger mt-1 ">{error}</div>
+                    
+                    {printError && (
+                      <div className="error text-danger mt-1 ">{printError}</div>
                     )}
-                    {emailError && (
-                      <div className="error text-danger mt-1 ">
-                        {emailError}
-                      </div>
-                    )}
+                    
                   </div>
                   <form role="form" onSubmit={handleSubmit}>
                     <div className="col-12 mb-4">
@@ -97,7 +108,7 @@ const Login = () => {
                       </label>
 
                       <input
-                        type="email"
+                        type="text"
                         className="form-control classInput "
                         id="email"
                         name="email"
@@ -106,7 +117,7 @@ const Login = () => {
                           setEmail(e.target.value.replace(" ", ""))
                         }
                         value={email}
-                        required
+                        // required
                       />
                     </div>
 
@@ -127,7 +138,7 @@ const Login = () => {
                           name="password"
                           onChange={(e) => setPassword(e.target.value)}
                           value={password}
-                          required
+                          // required
                         />
 
                         <span
