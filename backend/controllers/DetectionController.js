@@ -3,75 +3,80 @@ const mongoose = require("mongoose");
 
 // get all detection
 const getDetections = async (req, res) => {
-  // const detections2 = await detectionModel.aggregate([
-  //   {
-  //     $project: {
-  //       detections: { $first: "$detection" },
-  //     },
-  //   },
-  // ]);
-  // console.log(detections2);
-  // detectionModel
-  //   .find({})
-  //   .sort({ createdAt: 1 })
-  //   .distinct("createdAt", function (err, dates) {
-  //     if (err) return handleError(err);
-  //     const distinctMinutes = dates.map((date) => {
-  //       return new Date(
-  //         date.getFullYear(),
-  //         date.getMonth(),
-  //         date.getDate(),
-  //         date.getHours(),
-  //         date.getMinutes()
-  //       );
-  //     });
-  //     const query = {
-  //       createdAt: {
-  //         $in: distinctMinutes,
-  //       },
-  //     };
-  //     console.log(distinctMinutes);
-
-  //     detectionModel.find(query, function (err, docs) {
-  //       if (err) return handleError(err);
-  //       console.log(docs);
-  //     });
-  //   });
-
   const PAGE_SIZE = 8;
   var start = req.query.start || "All";
   var end = req.query.end || "All";
   const page = parseInt(req.query.page || "0");
   if ((start == "All") & (end == "All")) {
-    const total = await detectionModel.countDocuments({});
     const detections = await detectionModel
-      .find({})
+      .aggregate([
+        {
+          $group: {
+            _id: {
+              $dateToString: {
+                format: "%Y-%m-%d %H:%M",
+                date: "$createdAt",
+              },
+            },
+            doc: {
+              $first: "$$ROOT",
+            },
+          },
+        },
+        {
+          $replaceRoot: {
+            newRoot: "$doc",
+          },
+        },
+      ])
       .sort({ createdAt: -1 })
       .limit(PAGE_SIZE)
       .skip(PAGE_SIZE * page);
 
     res.json({
-      totalPages: Math.ceil(total / PAGE_SIZE),
+      totalPages: Math.ceil(detections.length / PAGE_SIZE),
       detections,
     });
+    console.log(detections.length);
   } else {
-    const total = await detectionModel.countDocuments({
-      filter: { $gte: start, $lte: end },
-    });
-
     const detections = await detectionModel
-      .find({})
-      .where("filter")
-      .gte(start)
-      .lte(end)
+      .aggregate([
+        {
+          $group: {
+            _id: {
+              $dateToString: {
+                format: "%Y-%m-%d %H:%M",
+                date: "$createdAt",
+              },
+            },
+            doc: {
+              $first: "$$ROOT",
+            },
+          },
+        },
+        {
+          $replaceRoot: {
+            newRoot: "$doc",
+          },
+        },
+        {
+          $match: {
+            filter: {
+              $gte: start,
+              $lte: end,
+            },
+          },
+        },
+      ])
       .sort({ createdAt: -1 })
       .limit(PAGE_SIZE)
       .skip(PAGE_SIZE * page);
 
     res.json({
-      totalPages: Math.ceil(total / PAGE_SIZE),
+      totalPages: Math.ceil(detections.length / PAGE_SIZE),
       detections,
     });
+    console.log(detections.length);
   }
 };
 
