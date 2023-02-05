@@ -8,6 +8,26 @@ const getDetections = async (req, res) => {
   var end = req.query.end || "All";
   const page = parseInt(req.query.page || "0");
   if ((start == "All") & (end == "All")) {
+    const detections1 = await detectionModel.aggregate([
+      {
+        $group: {
+          _id: {
+            $dateToString: {
+              format: "%Y-%m-%d %H:%M",
+              date: "$createdAt",
+            },
+          },
+          doc: {
+            $first: "$$ROOT",
+          },
+        },
+      },
+      {
+        $replaceRoot: {
+          newRoot: "$doc",
+        },
+      },
+    ]);
     const detections = await detectionModel
       .aggregate([
         {
@@ -30,15 +50,41 @@ const getDetections = async (req, res) => {
         },
       ])
       .sort({ createdAt: -1 })
-      .limit(PAGE_SIZE)
-      .skip(PAGE_SIZE * page);
-
+      .skip(PAGE_SIZE * page)
+      .limit(PAGE_SIZE);
     res.json({
-      totalPages: Math.ceil(detections.length / PAGE_SIZE),
+      totalPages: Math.ceil(detections1.length / PAGE_SIZE),
       detections,
     });
-    console.log(detections.length);
   } else {
+    const detections1 = await detectionModel.aggregate([
+      {
+        $group: {
+          _id: {
+            $dateToString: {
+              format: "%Y-%m-%d %H:%M",
+              date: "$createdAt",
+            },
+          },
+          doc: {
+            $first: "$$ROOT",
+          },
+        },
+      },
+      {
+        $replaceRoot: {
+          newRoot: "$doc",
+        },
+      },
+      {
+        $match: {
+          filter: {
+            $gte: start,
+            $lte: end,
+          },
+        },
+      },
+    ]);
     const detections = await detectionModel
       .aggregate([
         {
@@ -69,11 +115,11 @@ const getDetections = async (req, res) => {
         },
       ])
       .sort({ createdAt: -1 })
-      .limit(PAGE_SIZE)
-      .skip(PAGE_SIZE * page);
+      .skip(PAGE_SIZE * page)
+      .limit(PAGE_SIZE);
 
     res.json({
-      totalPages: Math.ceil(detections.length / PAGE_SIZE),
+      totalPages: Math.ceil(detections1.length / PAGE_SIZE),
       detections,
     });
     console.log(detections.length);

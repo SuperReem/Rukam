@@ -18,6 +18,13 @@ const getDrones = async (req, res) => {
   });
 };
 
+const getAllDrones = async (req, res) => {
+  const drones = await droneModel.find({});
+  res.json({
+    drones,
+  });
+};
+
 // get a single drone
 const getDrone = async (req, res) => {
   const { id } = req.params;
@@ -46,7 +53,7 @@ const getActiveList = async (req, res) => {
 // create a new drone
 const createDrone = async (req, res) => {
   const { droneName, image, region } = req.body;
-   
+
   let emptyFields = [];
 
   if (!droneName) {
@@ -128,4 +135,5 @@ module.exports = {
   updateDrone,
   activeDrone,
   getActiveList,
+  getAllDrones,
 };
