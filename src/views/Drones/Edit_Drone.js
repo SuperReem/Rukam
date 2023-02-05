@@ -23,6 +23,10 @@ const EditDrone = ({ droId }) => {
   const { drones, dispatch } = useDronesContext();
   const [index, setIndex] = useState(0);
   const [errorName, setErrorName] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [addD, setAddD] = useState(false);
+
+
 
   useEffect(() => {
     const fetchDrones = async () => {
@@ -50,9 +54,9 @@ const EditDrone = ({ droId }) => {
     fetchDrones();
   }, []);
 
-  const updatename = (event) => {
-    setName(event.target.value);
-  };
+  // const updatename = (event) => {
+  //   setName(event.target.value);
+  // };
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);
@@ -90,9 +94,12 @@ const EditDrone = ({ droId }) => {
     }
     if (response.ok) {
       console.log("Drone is updated:", json);
+      setAddD(false);
+      setSuccess(true);
     }
     console.log(droId);
-    setIndex(1);
+   
+   
   };
   
 }
@@ -234,8 +241,9 @@ const HandleSave = async (e) => {
                             type="button"
                             className="btn btn-primary my-4   classButton"
                             onClick={HandleSave}
-                            // data-bs-toggle="modal"
-                            // data-bs-target="#myModal-success"
+                            data-bs-toggle="modal"
+                            data-bs-target="#myModal-success"
+                            disabled={errorName != ""}
                           >
                             <BiSave />
                             حفظ
@@ -257,6 +265,8 @@ const HandleSave = async (e) => {
                   </form>
                 </div>
               </div>
+
+
               <div>
                 <div className="modal" id="myModal-success">
                   <div className="modal-dialog modal-dialog-centered">
@@ -295,7 +305,7 @@ const HandleSave = async (e) => {
                           data-bs-dismiss="modal"
                           className="popup-cancle"
                           // onClick={HandleSave}
-                          //  onClick={PageNav(1)}
+                            onClick={PageNav(1)}
                         >
                           {" "}
                           حسنًا{" "}
@@ -305,8 +315,16 @@ const HandleSave = async (e) => {
                   </div>
                 </div>
               </div>
+            
             </div>
           </div>
+
+
+          
+
+
+
+
         </>
       ) : (
         <>
