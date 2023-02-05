@@ -76,7 +76,7 @@ function DroneList() {
     if (region == "اختر المنطقة") {
       setErrorRegion("الرجاء اختيار المنطقة");
     }
-    if (errorName == "" && errorRegion == "") {
+    if (errorName == "" && errorRegion == "" && region != "اختر المنطقة") {
       const drone = {
         droneName,
         region,
