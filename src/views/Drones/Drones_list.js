@@ -70,9 +70,9 @@ function DroneList() {
     if (droneName.length == 0) {
       setErrorName("الرجاء اختيار اسم الدرون");
     }
-    if (droneNames.includes(droneName)) {
-      setErrorName("اسم الدرون موجود مسبقًا");
-    }
+   // if (droneNames.includes(droneName)) {
+     // setErrorName("اسم الدرون موجود مسبقًا");
+   // }
     if (region == "اختر المنطقة") {
       setErrorRegion("الرجاء اختيار المنطقة");
     }
@@ -96,6 +96,8 @@ function DroneList() {
 
       if (!response.ok) {
         console.log("new drone not added:");
+        setErrorName("اسم الدرون موجود مسبقًا");
+      
       }
       if (response.ok) {
         setName("");
