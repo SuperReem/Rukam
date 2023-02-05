@@ -217,7 +217,7 @@ function DetectionDetails({ detection }) {
                           <Button
                             variant="secondary"
                             size="lg"
-                            className="edit justify-content-between"
+                            className="accept justify-content-between"
                             data-bs-toggle="modal"
                             data-bs-target="#myModal2"
                           >

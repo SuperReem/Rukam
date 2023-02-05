@@ -8,6 +8,7 @@ import EditReport from "../../views/Reports/EditReport";
 import { useReportDContext } from "../../hooks/useReportDContext";
 import { BsCheck } from "react-icons/bs";
 import { MdOutlineModeEditOutline } from "react-icons/md";
+import { SlLocationPin } from "react-icons/sl";
 import {
   GoogleMap,
   Marker,
@@ -24,6 +25,7 @@ function ReportDetails({ repId }) {
   const [status, setStatus] = useState("");
   const [image, setimage] = useState("");
   const [notes, setNotes] = useState("");
+  const [region, setRegion] = useState("");
   const [location, setLocation] = useState("");
   const [disable, setDisable] = useState(true);
 
@@ -46,6 +48,7 @@ function ReportDetails({ repId }) {
         setimage(report.image);
         setNotes(report.notes);
         setLocation(report.location);
+        setRegion(report.region);
         setTimestamp(
           Intl.DateTimeFormat("ar-EG", {
             dateStyle: "full",
@@ -144,7 +147,36 @@ function ReportDetails({ repId }) {
               <div className="row">
                 <div className="col-sm-6 ">
                   <div className="m-2 mt-0">
-                    <div className="heading text-end pe-2">الوقت والتاريخ</div>
+                    <div className="heading text-end pe-2">المنطقة</div>
+                    <hr className="hr m-0 p-2" />
+                    <div className="container locName  ">
+                      <h5>
+                        {" "}
+                        <SlLocationPin width={80} color="var(--primary)" className="ms-2" />
+                        {region}
+                      </h5>
+                    </div>
+
+                    <div className="heading text-end pe-2">موقع البلاغ</div>
+                    <hr className="hr m-0 p-2" />
+                    <div className="container loc rounded mb-4 shadow-sm p-0">
+                      {isLoaded ? (
+                        <GoogleMap
+                          mapContainerStyle={containerStyle}
+                          center={location}
+                          zoom={11}
+                          onLoad={onLoad}
+                          onUnmount={onUnmount}
+                        >
+                          <MarkerF position={location}></MarkerF>
+                        </GoogleMap>
+                      ) : (
+                        <div>Loading...</div>
+                      )}
+                    </div>
+               
+                  
+                         <div className="heading text-end pe-2">الوقت والتاريخ</div>
                     <hr className="hr m-0 p-2" />
                     <div className="container time  ">
                       <h6>
@@ -152,21 +184,6 @@ function ReportDetails({ repId }) {
                         <BsCalendar4 color="var(--primary)" className="ms-4" />
                         {timestamp}
                       </h6>
-                    </div>
-                    <div className="heading text-end pe-2">صورة المخالفة</div>
-                    <hr className="hr m-0 p-2" />
-                    <div className="container pic rounded mb-4 shadow-sm p-0">
-                      {
-                        //<img src={"data:image/jpeg;base64,"+ image} />
-                        // <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
-                        // //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
-                        <img src={Waste2} alt="Waste" className="imagewaste" />
-                      }
-                    </div>
-                    <div className="heading text-end pe-2">ملاحظات</div>
-                    <hr className="hr m-0 p-2" />
-                    <div className="ps-5 ms-5 justify-content-end">
-                      <p className="h6 ps-5">{notes}</p>
                     </div>
                   </div>
                 </div>
@@ -186,34 +203,34 @@ function ReportDetails({ repId }) {
                           : "مغلق"}
                       </h6>
                     </div>
-                    <div className="heading text-end pe-2">موقع المخالفة</div>
+                   
+                    <div className="heading text-end pe-2">صورة المخالفة</div>
                     <hr className="hr m-0 p-2" />
-                    <div className="container loc rounded mb-5 shadow-sm p-0">
-                      {isLoaded ? (
-                        <GoogleMap
-                          mapContainerStyle={containerStyle}
-                          center={location}
-                          zoom={11}
-                          onLoad={onLoad}
-                          onUnmount={onUnmount}
-                        >
-                          <MarkerF position={location}></MarkerF>
-                        </GoogleMap>
-                      ) : (
-                        <div>Loading...</div>
-                      )}
+                    <div className="container pic rounded mb-4 shadow-sm p-0">
+                      {
+                        //<img src={"data:image/jpeg;base64,"+ image} />
+                        // <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
+                        // //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
+                        <img src={Waste2} alt="Waste" className="imagewaste" />
+                      }
+                    </div> 
+                    <div className="heading text-end pe-2">ملاحظات</div>
+                    <hr className="hr m-0 p-2" />
+                    <div className="ps-5 ms-5 justify-content-end">
+                      <p className="h6 ps-5">{notes}</p>
                     </div>
+                  
                     <div className="row"> </div>
-                    <div className="container mt-5 pt-5">
+                    <div className="container pt-3">
                       <div className="row">
                         <div className="col-6">
                           <Button
                             variant="secondary"
                             size="lg"
-                            className="edit justify-content-between"
+                            className="edit justify-content-start"
                             onClick={Edit}
                           >
-                            <MdOutlineModeEditOutline color="white" /> &nbsp;
+                            <MdOutlineModeEditOutline color="white" className="ms-2"/> &nbsp;
                             تحرير
                           </Button>
                         </div>

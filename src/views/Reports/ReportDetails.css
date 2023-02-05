@@ -23,6 +23,14 @@
     margin-bottom: 24px;
   background-color: var(--light_grey);
 }
+.container.locName{
+  border-radius: 5px;
+    width: 60%;
+    padding: 0.2em 0.5em 0.1em 0.5em;
+    margin-right: 0.2em;
+    margin-bottom: 22px;
+
+}
 .reportstatus-container {
   border-radius: 5px;
   width: 40%;
@@ -86,6 +94,7 @@
 .send.btn {
   background-color: var(--primary);
   color: white;
+  width: 65%;
 }
 .send.btn:hover {
   background-color: rgb(0, 47, 0);
@@ -96,8 +105,20 @@
   color: white;
   display: flex;
   align-items: center;
+  width: 65%;
 }
 .edit.btn:hover {
+  background-color: rgb(17, 101, 17);
+  color: white;
+}
+.accept.btn {
+  background-color: var(--light_green);
+  color: white;
+  display: flex;
+  align-items: center;
+  width: 85%;
+}
+.accept.btn:hover {
   background-color: rgb(17, 101, 17);
   color: white;
 }
@@ -116,6 +137,7 @@
   color: white;
   display: flex;
   align-items: center;
+  width: 50%;
 }
 .save.btn:hover {
   background-color: var(--primary) !important;
@@ -127,6 +149,7 @@
   border: none;
   display: flex;
   align-items: center;
+  width: 50%;
 }
 .cancel.btn:hover {
   background-color: rgb(151, 89, 38) !important;
@@ -138,6 +161,7 @@
   border: none;
   display: flex;
   align-items: center;
+  width: 85%;
 }
 .deleteD.btn:hover {
   background-color: rgb(133, 27, 0) ;

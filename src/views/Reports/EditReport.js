@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import ReportsList from "./Reports_list";
 import { useReportDContext } from "../../hooks/useReportDContext";
 import { BsCheck } from "react-icons/bs";
+import { SlLocationPin } from "react-icons/sl";
 import {
   GoogleMap,
   Marker,
@@ -115,6 +116,33 @@ function EditReport({ report }) {
               <div className="row">
                 <div className="col-sm-6 ">
                   <div className="m-2 mt-0">
+                  <div className="heading text-end pe-2"> المنطقة</div>
+                    <hr className="hr m-0 p-2" />
+                  <div className="container locName  ">
+                      <h5>
+                        {" "}
+                        <SlLocationPin width={80} color="var(--primary)" className="ms-2" />
+                        {report.region}
+                      </h5>
+                    </div>
+                    <div className="heading text-end pe-2">موقع المخالفة</div>
+                    <hr className="hr m-0 p-2" />
+                    <div className="container loc rounded shadow-sm p-0 mb-4">
+                      {isLoaded ? (
+                        <GoogleMap
+                          mapContainerStyle={containerStyle}
+                          center={report.location}
+                          zoom={11}
+                          onLoad={onLoad}
+                          onUnmount={onUnmount}
+                        >
+                          {" "}
+                          <MarkerF position={report.location}></MarkerF>
+                        </GoogleMap>
+                      ) : (
+                        <div></div>
+                      )}
+                    </div>
                     <div className="heading text-end pe-2">الوقت والتاريخ</div>
                     <hr className="hr m-0 p-2" />
                     <div className="container time">
@@ -124,6 +152,25 @@ function EditReport({ report }) {
                           dateStyle: "full",
                         }).format(new Date(report.createdAt))}{" "}
                       </h6>{" "}
+                    </div>
+               
+                
+                  </div>
+                </div>
+                <div className="col-sm-6">
+                  <div className="m-2 mt-0">
+                    <div className="heading text-end pe-2">حالة البلاغ</div>
+                    <hr className="hr m-0 p-2" />
+                    <div className={"reportstatus-container " + report.status}>
+                      <h6>
+                        {report.status == "unsent"
+                          ? "غير مرسل"
+                          : report.status == "pending"
+                          ? "قيد الإنتظار"
+                          : report.status == "under_processing"
+                          ? "قيد المراجعة"
+                          : "مغلق"}
+                      </h6>
                     </div>
                     <div className="heading text-end pe-2">صورة المخالفة</div>
                     <hr className="hr m-0 p-2" />
@@ -143,55 +190,20 @@ function EditReport({ report }) {
                       rows="3"
                       // defaultValue={report.notes}
                       value={note}
-                      maxlength="500"
+                      maxlength="120"
                       pattern= "([A-z0-9\s]){0,500}"
                       onChange={ (event) => {
                         setNotes(event.target.value.replace(/[\/[\]<>]/g, ''));
                       }}
                     />
-                  </div>
-                </div>
-                <div className="col-sm-6">
-                  <div className="m-2 mt-0">
-                    <div className="heading text-end pe-2">حالة البلاغ</div>
-                    <hr className="hr m-0 p-2" />
-                    <div className={"reportstatus-container " + report.status}>
-                      <h6>
-                        {report.status == "unsent"
-                          ? "غير مرسل"
-                          : report.status == "pending"
-                          ? "قيد الإنتظار"
-                          : report.status == "under_processing"
-                          ? "قيد المراجعة"
-                          : "مغلق"}
-                      </h6>
-                    </div>
-                    <div className="heading text-end pe-2">موقع المخالفة</div>
-                    <hr className="hr m-0 p-2" />
-                    <div className="container loc rounded shadow-sm p-0 mb-5">
-                      {isLoaded ? (
-                        <GoogleMap
-                          mapContainerStyle={containerStyle}
-                          center={report.location}
-                          zoom={11}
-                          onLoad={onLoad}
-                          onUnmount={onUnmount}
-                        >
-                          {" "}
-                          <MarkerF position={report.location}></MarkerF>
-                        </GoogleMap>
-                      ) : (
-                        <div></div>
-                      )}
-                    </div>
                     <div className="row"> </div>
-                    <div className="container mt-5 pt-5">
+                    <div className="container mt-0 pt-2">
                       <div className="row">
                         <div className="col-6">
                           <Button
                             variant="secondary"
                             size="lg"
-                            className="edit justify-content-between"
+                            className="save justify-content-between"
                             data-bs-toggle="modal"
                             data-bs-target="#myModal-success"
                           >
