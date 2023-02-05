@@ -76,7 +76,7 @@ function DroneList() {
     if (region == "اختر المنطقة") {
       setErrorRegion("الرجاء اختيار المنطقة");
     }
-    if (errorName == "" && errorRegion == "" && region != "اختر المنطقة") {
+    if ((errorName == ""||errorName ==  "الحد الأعلى هو ١٠ أحرف." ) && errorRegion == "" && region != "اختر المنطقة") {
       const drone = {
         droneName,
         region,
@@ -641,7 +641,13 @@ function DroneList() {
                                     )
                                   ); //(/[#[$\]\\@]/g,''));
                                   if (e.target.value.length >= 2) {
+                                    if (e.target.value.length >=10) {
+                                      setErrorName(
+                                        "الحد الأعلى هو ١٠ أحرف."
+                                      );
+                                    }else{
                                     setErrorName("");
+                                  }
                                   } else if (e.target.value.length == 0) {
                                     setErrorName("الرجاء اختيار اسم الدرون");
                                   } else if (e.target.value.length < 2) {
