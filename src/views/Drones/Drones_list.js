@@ -615,11 +615,11 @@ function DroneList() {
                                 position-absolute top-0 start-50 translate-middle m-3 
                                 "
                                 />
-                                <div class="add-imgIcon">
-                                  <IoAddCircle color="#B5864C" />
-                                </div>
+                                
                               </label>
-
+                              <div class="add-imgIcon p-1 m-0">
+                                  <IoAddCircle size={30} color="#B5864C"  />
+                                </div>
                               <input
                                 type="file"
                                 lable="Image"
@@ -666,6 +666,10 @@ function DroneList() {
                                           setErrorName(
                                             "اسم الدرون يجب ان يحتوي على حرفين على الاقل "
                                           );
+                                        }
+                                        if (true) {
+                                          
+                                          console.log("hhhh")
                                         }
                                       }}
                                       pattern="([A-z0-9\s]){0,10}" //"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{2,10}"

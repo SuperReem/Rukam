@@ -40,8 +40,8 @@
   border-color: var(--light_green);
 }
 .biggerImg{
-  width: 140px !important;
-  height: 140px;
+  width: 120px !important;
+  height: 120px;
 }
 .nameDown{
   margin-top:5rem !important ;
@@ -53,7 +53,7 @@ border-color: var(--brown) !important;
 
 
 }
-.add-img{
+/* .add-img{
    
   display: flex;
   cursor: pointer;
@@ -63,16 +63,25 @@ border-color: var(--brown) !important;
   
 
 
+} */
+.DroneImg{
+  width: 120px !important;
+  height: 120px;
 }
-
+.biggerImg{
+  width: 140px !important;
+  height: 140px;
+ 
+}
 .add-imgIcon{
   position: absolute;
-  padding-left: 110px; 
+  padding-left: 30px; 
+  
 
 }
 #file-upload{
   display: none;
-  background-color: aqua;
+  
  
 }
 .custom-file-upload{
