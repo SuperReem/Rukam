@@ -7,6 +7,7 @@ import ArabicNumbers from "react-native-arabic-numbers/src/ArabicNumbers";
 import Dropdown from "./Dropdown";
 import "./Dropdown_Style.css";
 import "./Drones_list.css";
+import Modal from "react-bootstrap/Modal";
 import droneImg from "../../assets/images/Drone.png";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BsArrowUpLeft } from "react-icons/bs";
@@ -53,6 +54,8 @@ function DroneList() {
   const [pageNumber, setPageNumber] = useState(0);
   const [numberOfPages, setNumberOfPages] = useState(0);
   const pages = new Array(numberOfPages).fill(null).map((v, i) => i);
+  const [Success, setSuccess] = useState(false);
+  const [addD, setAddD] = useState(false);
 
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
@@ -98,6 +101,8 @@ function DroneList() {
       console.log("new drone added:", json);
       setRefresh(!refresh);
       //  dispatch({ type: "CREATE_DRONE", payload: json });
+      setAddD(false);
+      setSuccess(true);
     }
   }
   };
@@ -162,6 +167,16 @@ function DroneList() {
   const [index, setIndex] = useState(0);
   const [droneId, setDrone] = useState();
   const [formError, setformError] = useState("");
+  const handleClose = () => {
+    setAddD(false);
+    setSuccess(false);
+   
+  };
+  const handleAdd = () => {
+  
+    setAddD(true);
+   
+  };
 
   // useEffect(() => {
   //   if (droneName.length <= 0) {
@@ -185,8 +200,7 @@ function DroneList() {
                 variant="secondary"
                 size="sm"
                 className="darkbtn"
-                data-bs-toggle="modal"
-                data-bs-target="#myModal"
+          onClick={handleAdd}
               >
                 <AiOutlinePlus /> إضافة درون
               </Button>
@@ -547,15 +561,19 @@ function DroneList() {
             </div>
 
             <div>
-              <div className="modal" id="myModal">
-                <div className="modal-dialog modal-dialog-centered">
-                  <div className="modal-content">
+            <Modal
+            className="modal o1"
+            centered
+            show={addD}
+            onHide={handleClose}
+          >
+              
+         
                     <form onSubmit={handelSubmit}>
-                      <div className="">
                         <div className="row align-items-center  justify-content-end  pt-2">
                           <div className="col-2">
                             <button
-                              data-bs-dismiss="modal"
+                             onClick={handleClose}
                               className="closebtn btn rounded"
                               type="button"
                             >
@@ -672,7 +690,7 @@ function DroneList() {
                             </div>
                           </div>
                         </div>
-                      </div>
+                  
 
                       <div></div>
 
@@ -708,7 +726,7 @@ function DroneList() {
                إلغاء
                 </Button> */}
                         <button
-                          data-bs-dismiss="modal"
+                          onClick={handleClose}
                           type="button"
                           className="btn btn-primary my-2  px-4 classButton2"
                         >
@@ -716,11 +734,59 @@ function DroneList() {
                         </button>
                       </div>
                     </form>
+            
+            
+              </Modal>
+            </div>
+          </div>
+          <Modal
+            className="modal o1"
+            centered
+            show={Success}
+            onHide={handleClose}
+          >
+            <Modal.Body>
+              {" "}
+              <div class="icon-box">
+                <i id="material-icons">
+                  {" "}
+                  <BsCheck size={108} />{" "}
+                </i>
+              </div>
+              <div className="">
+                <div className="row align-items-center  justify-content-end mb-4 pt-2">
+                  <div className="col-6 p-0 ">
+                    <h4 className=" m-5"> </h4>
+                  </div>
+                  <div className="col-1"></div>
+                </div>
+                <div className="modal-body justify-content-center">
+                  <div className="row align-items-center  justify-content-center">
+                    <div className="row align-items-center justify-content-between">
+                      <div className="text-center  h4">
+                        تم إضافة الدرون بنجاح !
+                      </div>
+                    </div>
+                    <div className="row justify-content-start align-items-start">
+                      <div className="col-8 h5"></div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+              <div></div>
+              <div className="modal-footer border border-0 justify-content-center">
+                <Button
+                  variant="secondary"
+                  size="md"
+                  onClick={handleClose}
+                  className="popup-cancle"
+                >
+                  {" "}
+                  حسنًا{" "}
+                </Button>
+              </div>
+            </Modal.Body>
+          </Modal>
         </>
       ) : (
         <>
