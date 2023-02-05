@@ -70,9 +70,9 @@ function DroneList() {
     if (droneName.length == 0) {
       setErrorName("الرجاء اختيار اسم الدرون");
     }
-   // if (droneNames.includes(droneName)) {
-     // setErrorName("اسم الدرون موجود مسبقًا");
-   // }
+    // if (droneNames.includes(droneName)) {
+    // setErrorName("اسم الدرون موجود مسبقًا");
+    // }
     if (region == "اختر المنطقة") {
       setErrorRegion("الرجاء اختيار المنطقة");
     }
@@ -97,8 +97,8 @@ function DroneList() {
       if (!response.ok) {
         console.log("new drone not added:");
         setErrorName("اسم الدرون موجود مسبقًا");
-      
       }
+
       if (response.ok) {
         setName("");
         setRegion(ChoooseRegion);
@@ -106,8 +106,8 @@ function DroneList() {
         console.log("new drone added:", json);
         setRefresh(!refresh);
         //  dispatch({ type: "CREATE_DRONE", payload: json });
-      setAddD(false);
-      setSuccess(true);
+        setAddD(false);
+        setSuccess(true);
       }
     }
   };
@@ -160,19 +160,6 @@ function DroneList() {
           setNumberOfPages(totalPages);
         });
     };
-    var fetchAllDrones = async () => {
-      const response = await fetch("/api/Drone/AllDrones")
-        .then((response) => response.json())
-        .then(({ drones }) => {
-          {
-            drones && drones.map((Drone) => droneNames.push(Drone.droneName));
-          }
-        });
-
-      console.log(droneNames);
-    };
-
-    fetchAllDrones();
 
     fetchDrones();
   }, [dispatch, pageNumber, refresh]);
@@ -190,12 +177,10 @@ function DroneList() {
   const handleClose = () => {
     setAddD(false);
     setSuccess(false);
-   
+    setErrorName("");
   };
   const handleAdd = () => {
-  
     setAddD(true);
-   
   };
 
   // useEffect(() => {
@@ -220,7 +205,7 @@ function DroneList() {
                 variant="secondary"
                 size="sm"
                 className="darkbtn"
-          onClick={handleAdd}
+                onClick={handleAdd}
               >
                 <AiOutlinePlus /> إضافة درون
               </Button>
@@ -581,155 +566,139 @@ function DroneList() {
             </div>
 
             <div>
-            <Modal
-            className="modal o1"
-            centered
-            show={addD}
-            onHide={handleClose}
-          >
-              
-         
-                    <form onSubmit={handelSubmit}>
-                        <div className="row align-items-center  justify-content-end  pt-2">
-                          <div className="col-2">
-                            <button
-                             onClick={handleClose}
-                              className="closebtn btn rounded"
-                              type="button"
-                            >
-                              &#x2715;
-                            </button>
-                          </div>
-                        </div>
-                        <div className="modal-body justify-content-center">
-                          <div className="row align-items-center  justify-content-center">
-                            <div className="col-4  ">
-                              <label
-                                htmlFor="file-upload"
-                                className="custom-file-upload"
-                              >
-                                <img
-                                  src={image.myFile}
-                                  alt=""
-                                  class="
+              <Modal
+                className="modal o1"
+                centered
+                show={addD}
+                onHide={handleClose}
+              >
+                <form onSubmit={handelSubmit}>
+                  <div className="row align-items-center  justify-content-end  pt-2">
+                    <div className="col-2">
+                      <button
+                        onClick={handleClose}
+                        className="closebtn btn rounded"
+                        type="button"
+                      >
+                        &#x2715;
+                      </button>
+                    </div>
+                  </div>
+                  <div className="modal-body justify-content-center">
+                    <div className="row align-items-center  justify-content-center">
+                      <div className="col-4  ">
+                        <label
+                          htmlFor="file-upload"
+                          className="custom-file-upload"
+                        >
+                          <img
+                            src={image.myFile}
+                            alt=""
+                            class="
                                 card-img-top bg-white mx-auto  biggerImg   
                                 img-circle rounded-circle   
                                 position-absolute top-0 start-50 translate-middle m-3 
                                 "
-                                />
-                                
+                          />
+                        </label>
+                        <div class="add-imgIcon p-1 m-0">
+                          <IoAddCircle size={30} color="#B5864C" />
+                        </div>
+                        <input
+                          type="file"
+                          lable="Image"
+                          name="myFile"
+                          id="file-upload"
+                          accept=".jpeg, .png, .jpg"
+                          onChange={(e) => handleFileUpload(e)}
+                        />
+                      </div>
+
+                      <div className="row align-items-center justify-content-between  h5">
+                        <div class="row  m-0">
+                          <div className="container w-75 mt-3">
+                            {/* <form> */}
+                            <div class="form-group ">
+                              <label
+                                class="form-label  classLabel"
+                                for="droneName"
+                              >
+                                اسم الدرون
                               </label>
-                              <div class="add-imgIcon p-1 m-0">
-                                  <IoAddCircle size={30} color="#B5864C"  />
-                                </div>
                               <input
-                                type="file"
-                                lable="Image"
-                                name="myFile"
-                                id="file-upload"
-                                accept=".jpeg, .png, .jpg"
-                                onChange={(e) => handleFileUpload(e)}
+                                type="text"
+                                //style={{ width: "350px" }}
+                                name="name"
+                                id="droneName"
+                                className="form-control classInput"
+                                // required
+                                value={droneName}
+                                onChange={(e) => {
+                                  setName(
+                                    e.target.value.replace(
+                                      /[&\/[$\]\\#,;@!+()$~%.'":*?<>{}]/g,
+                                      ""
+                                    )
+                                  ); //(/[#[$\]\\@]/g,''));
+                                  if (e.target.value.length > 2) {
+                                    setErrorName("");
+                                  } else if (e.target.value.length == 0) {
+                                    setErrorName("الرجاء اختيار اسم الدرون");
+                                  } else if (e.target.value.length < 3) {
+                                    setErrorName(
+                                      "اسم الدرون يجب ان يحتوي على حرفين على الاقل "
+                                    );
+                                  }
+                                  if (true) {
+                                    console.log("hhhh");
+                                  }
+                                }}
+                                pattern="([A-z0-9\s]){0,10}" //"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{2,10}"
+                                maxlength="10"
                               />
                             </div>
+                            {
+                              <span style={{ color: "red", fontSize: "15px" }}>
+                                {errorName}
+                              </span>
+                            }
 
-                            <div className="row align-items-center justify-content-between  h5">
-                              <div class="row  m-0">
-                                <div className="container w-75 mt-3">
-                                  {/* <form> */}
-                                  <div class="form-group ">
-                                    <label
-                                      class="form-label  classLabel"
-                                      for="droneName"
-                                    >
-                                      اسم الدرون
-                                    </label>
-                                    <input
-                                      type="text"
-                                      //style={{ width: "350px" }}
-                                      name="name"
-                                      id="droneName"
-                                      className="form-control classInput"
-                                      // required
-                                      value={droneName}
-                                      onChange={(e) => {
-                                        setName(
-                                          e.target.value.replace(
-                                            /[&\/[$\]\\#,;@!+()$~%.'":*?<>{}]/g,
-                                            ""
-                                          )
-                                        ); //(/[#[$\]\\@]/g,''));
-                                        if (e.target.value.length > 2) {
-                                          setErrorName("");
-                                        } else if (e.target.value.length == 0) {
-                                          setErrorName(
-                                            "الرجاء اختيار اسم الدرون"
-                                          );
-                                        } else if (e.target.value.length < 3) {
-                                          setErrorName(
-                                            "اسم الدرون يجب ان يحتوي على حرفين على الاقل "
-                                          );
-                                        }
-                                        if (true) {
-                                          
-                                          console.log("hhhh")
-                                        }
-                                      }}
-                                      pattern="([A-z0-9\s]){0,10}" //"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{2,10}"
-                                      maxlength="10"
-                                    />
-                                  </div>
-                                  {
-                                    <span
-                                      style={{ color: "red", fontSize: "15px" }}
-                                    >
-                                      {errorName}
-                                    </span>
+                            <div class="form-group">
+                              <label class="form-label  classLabel" for="">
+                                المنطقة
+                              </label>
+                              <Dropdown
+                                region={region}
+                                setRegion={setRegion}
+                                setErrorRegion={setErrorRegion}
+                                placeholder="********"
+                                value={region}
+                                onChange={(e) => {
+                                  setRegion(e.target.value);
+                                  if (e.target.value != "اختر المنطقة") {
+                                    setErrorRegion("");
+                                  } else {
+                                    setErrorRegion("الرجاء اختيار المنطقة");
                                   }
-
-                                  <div class="form-group">
-                                    <label
-                                      class="form-label  classLabel"
-                                      for=""
-                                    >
-                                      المنطقة
-                                    </label>
-                                    <Dropdown
-                                      region={region}
-                                      setRegion={setRegion}
-                                      setErrorRegion={setErrorRegion}
-                                      placeholder="********"
-                                      value={region}
-                                      onChange={(e) => {
-                                        setRegion(e.target.value);
-                                        if (e.target.value != "اختر المنطقة") {
-                                          setErrorRegion("");
-                                        } else {
-                                          setErrorRegion(
-                                            "الرجاء اختيار المنطقة"
-                                          );
-                                        }
-                                      }}
-                                    />
-                                  </div>
-                                  {
-                                    <span
-                                      style={{ color: "red", fontSize: "15px" }}
-                                    >
-                                      {errorRegion}
-                                    </span>
-                                  }
-                                  {/* </form> */}
-                                </div>
-                              </div>
+                                }}
+                              />
                             </div>
+                            {
+                              <span style={{ color: "red", fontSize: "15px" }}>
+                                {errorRegion}
+                              </span>
+                            }
+                            {/* </form> */}
                           </div>
                         </div>
-                  
+                      </div>
+                    </div>
+                  </div>
 
-                      <div></div>
+                  <div></div>
 
-                      <div className="modal-footer border border-0 justify-content-evenly">
-                        {/* <Button
+                  <div className="modal-footer border border-0 justify-content-evenly">
+                    {/* <Button
                   variant="secondary"
                   size="md"
                   className="popup btn "
@@ -739,18 +708,18 @@ function DroneList() {
            
 إضافة
                </Button> */}
-                        <button
-                          // onClick={handle}
-                          // data-bs-dismiss="modal"
-                          type="Submit"
-                          className="btn btn-primary my-2  px-3 classButton"
-                          // disabled={!!errorName || !!errorRegion}
-                        >
-                          <IoAddSharp />
-                          إضافة
-                        </button>
+                    <button
+                      // onClick={handle}
+                      // data-bs-dismiss="modal"
+                      type="Submit"
+                      className="btn btn-primary my-2  px-3 classButton"
+                      // disabled={!!errorName || !!errorRegion}
+                    >
+                      <IoAddSharp />
+                      إضافة
+                    </button>
 
-                        {/* <Button
+                    {/* <Button
                   variant="secondary"
                   size="md"
                   className="popup btn "
@@ -759,17 +728,15 @@ function DroneList() {
            
                إلغاء
                 </Button> */}
-                        <button
-                          onClick={handleClose}
-                          type="button"
-                          className="btn btn-primary my-2  px-4 classButton2"
-                        >
-                          إلغاء
-                        </button>
-                      </div>
-                    </form>
-            
-            
+                    <button
+                      onClick={handleClose}
+                      type="button"
+                      className="btn btn-primary my-2  px-4 classButton2"
+                    >
+                      إلغاء
+                    </button>
+                  </div>
+                </form>
               </Modal>
             </div>
           </div>
