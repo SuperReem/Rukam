@@ -44,7 +44,7 @@ function DroneList() {
   const [refresh, setRefresh] = useState(false);
   const [errorName, setErrorName] = useState("");
   const [errorRegion, setErrorRegion] = useState("  ");
- 
+
   const [droneName, setName] = useState("");
   const [region, setRegion] = useState(ChoooseRegion);
   const [image, setImage] = useState({ myFile: droneImg });
@@ -64,42 +64,45 @@ function DroneList() {
   const handelSubmit = async (e) => {
     e.preventDefault();
 
-   if(droneName.length==0){
-    setErrorName(  "الرجاء اختيار اسم الدرون");
-   } 
-   if(region=="اختر المنطقة"){
+    if (droneName.length == 0) {
+      setErrorName("الرجاء اختيار اسم الدرون");
+    }
+    if (droneNames.includes(droneName)) {
+      setErrorName("اسم الدرون موجود مسبقًا");
+    }
+    if (region == "اختر المنطقة") {
       setErrorRegion("الرجاء اختيار المنطقة");
     }
-     if(errorName=="" && errorRegion==""){
-    const drone = {
-      droneName,
-      region,
-      image: image,
-      currentLocation: { lat: 24.717634, lng: 46.666387 },
-      visitedLocations: {},
-    };
+    if (errorName == "" && errorRegion == "") {
+      const drone = {
+        droneName,
+        region,
+        image: image,
+        currentLocation: { lat: 24.717634, lng: 46.666387 },
+        visitedLocations: {},
+      };
 
-    const response = await fetch("/api/Drone", {
-      method: "POST",
-      body: JSON.stringify(drone),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const json = await response.json();
+      const response = await fetch("/api/Drone", {
+        method: "POST",
+        body: JSON.stringify(drone),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const json = await response.json();
 
-    if (!response.ok) {
-      console.log("new drone not added:");
+      if (!response.ok) {
+        console.log("new drone not added:");
+      }
+      if (response.ok) {
+        setName("");
+        setRegion(ChoooseRegion);
+        setImage({ myFile: droneImg });
+        console.log("new drone added:", json);
+        setRefresh(!refresh);
+        //  dispatch({ type: "CREATE_DRONE", payload: json });
+      }
     }
-    if (response.ok) {
-      setName("");
-      setRegion(ChoooseRegion);
-      setImage({ myFile: droneImg });
-      console.log("new drone added:", json);
-      setRefresh(!refresh);
-      //  dispatch({ type: "CREATE_DRONE", payload: json });
-    }
-  }
   };
   const DeleteDrone = async (Id) => {
     const response = await fetch("/api/Drone/" + Id, {
@@ -137,6 +140,8 @@ function DroneList() {
   const onUnmount = React.useCallback(function callback(map) {
     setMap(null);
   }, []);
+
+  var droneNames = [];
   useEffect(() => {
     var fetchDrones = async () => {
       const response = await fetch(
@@ -148,6 +153,19 @@ function DroneList() {
           setNumberOfPages(totalPages);
         });
     };
+    var fetchAllDrones = async () => {
+      const response = await fetch("/api/Drone/AllDrones")
+        .then((response) => response.json())
+        .then(({ drones }) => {
+          {
+            drones && drones.map((Drone) => droneNames.push(Drone.droneName));
+          }
+        });
+
+      console.log(droneNames);
+    };
+
+    fetchAllDrones();
 
     fetchDrones();
   }, [dispatch, pageNumber, refresh]);
@@ -614,25 +632,32 @@ function DroneList() {
                                       // required
                                       value={droneName}
                                       onChange={(e) => {
-                                        setName(e.target.value.replace(/[&\/[$\]\\#,;@!+()$~%.'":*?<>{}]/g, ''));  //(/[#[$\]\\@]/g,''));
+                                        setName(
+                                          e.target.value.replace(
+                                            /[&\/[$\]\\#,;@!+()$~%.'":*?<>{}]/g,
+                                            ""
+                                          )
+                                        ); //(/[#[$\]\\@]/g,''));
                                         if (e.target.value.length > 2) {
                                           setErrorName("");
-                                        } else if(e.target.value.length ==0) {
+                                        } else if (e.target.value.length == 0) {
                                           setErrorName(
                                             "الرجاء اختيار اسم الدرون"
                                           );
-                                        }else if(e.target.value.length <3){
+                                        } else if (e.target.value.length < 3) {
                                           setErrorName(
                                             "اسم الدرون يجب ان يحتوي على حرفين على الاقل "
                                           );
                                         }
                                       }}
-                                      pattern= "([A-z0-9\s]){0,10}" //"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{2,10}"
-                                       maxlength="10"
+                                      pattern="([A-z0-9\s]){0,10}" //"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{2,10}"
+                                      maxlength="10"
                                     />
                                   </div>
                                   {
-                                    <span style={{ color: "red"  , fontSize:'15px' }}>
+                                    <span
+                                      style={{ color: "red", fontSize: "15px" }}
+                                    >
                                       {errorName}
                                     </span>
                                   }
@@ -652,17 +677,20 @@ function DroneList() {
                                       value={region}
                                       onChange={(e) => {
                                         setRegion(e.target.value);
-                                        if(e.target.value!="اختر المنطقة"){
+                                        if (e.target.value != "اختر المنطقة") {
                                           setErrorRegion("");
-                                        }
-                                        else{
-                                          setErrorRegion("الرجاء اختيار المنطقة");
+                                        } else {
+                                          setErrorRegion(
+                                            "الرجاء اختيار المنطقة"
+                                          );
                                         }
                                       }}
                                     />
                                   </div>
                                   {
-                                   <span style={{ color: "red"  , fontSize:'15px' }}>
+                                    <span
+                                      style={{ color: "red", fontSize: "15px" }}
+                                    >
                                       {errorRegion}
                                     </span>
                                   }
