@@ -640,11 +640,11 @@ function DroneList() {
                                       ""
                                     )
                                   ); //(/[#[$\]\\@]/g,''));
-                                  if (e.target.value.length > 2) {
+                                  if (e.target.value.length >= 2) {
                                     setErrorName("");
                                   } else if (e.target.value.length == 0) {
                                     setErrorName("الرجاء اختيار اسم الدرون");
-                                  } else if (e.target.value.length < 3) {
+                                  } else if (e.target.value.length < 2) {
                                     setErrorName(
                                       "اسم الدرون يجب ان يحتوي على حرفين على الاقل "
                                     );
