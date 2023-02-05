@@ -64,7 +64,11 @@ border-color: var(--brown) !important;
 
 
 } */
-
+.biggerImg{
+  width: 140px !important;
+  height: 140px;
+ 
+}
 .add-imgIcon{
   position: absolute;
   padding-left: 30px; 
