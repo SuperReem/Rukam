@@ -130,6 +130,24 @@ const getDetections = async (req, res) => {
 
 const getHighest = async (req, res) => {
   const detections = await detectionModel.aggregate([
+    {
+      $group: {
+        _id: {
+          $dateToString: {
+            format: "%Y-%m-%d %H:%M",
+            date: "$createdAt",
+          },
+        },
+        doc: {
+          $first: "$$ROOT",
+        },
+      },
+    },
+    {
+      $replaceRoot: {
+        newRoot: "$doc",
+      },
+    },
     { $unwind: "$region" },
     {
       $group: {
@@ -157,11 +175,37 @@ const getWeekdetections = async (req, res) => {
   var lastday = new Date(firstdayTemp.setDate(firstdayTemp.getDate() + 6))
     .toISOString()
     .slice(0, 10);
-  const total = await detectionModel.countDocuments({
-    filter: { $gte: firstday, $lte: lastday },
-  });
+  const detection = await detectionModel.aggregate([
+    {
+      $group: {
+        _id: {
+          $dateToString: {
+            format: "%Y-%m-%d %H:%M",
+            date: "$createdAt",
+          },
+        },
+        doc: {
+          $first: "$$ROOT",
+        },
+      },
+    },
+    {
+      $replaceRoot: {
+        newRoot: "$doc",
+      },
+    },
+    {
+      $match: {
+        filter: {
+          $gte: firstday,
+          $lte: lastday,
+        },
+      },
+    },
+  ]);
+
   res.json({
-    total,
+    total: detection.length,
     firstday,
     lastday,
   });
