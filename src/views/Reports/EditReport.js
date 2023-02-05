@@ -21,12 +21,23 @@ function EditReport({ report }) {
   const { reportD, dispatch } = useReportDContext();
   const [note, setNotes] = useState(report.notes);
   const [index, setIndex] = useState(0);
+  const [noteError, setNoteError] = useState("");
 
-  // const updatetext = (event) => {
-  //   setNotes(event.target.value.replace(/[&\/[$\]\\#,;@!+()$~%.'":*?<>{}]/g, ''));
-  // };
+  const [val1, setVal1] = useState(false);
+
+  const updatetext = () => {
+
+    if (note.length >= 120){
+      setVal1(true);
+      setNoteError("الحد الأعلى هو ١٢٠ حرف.");
+    }  else {
+      setNoteError("");
+        setVal1(false);
+      }
+  };
   useEffect(() => {
     console.log(note + "j");
+    updatetext();
   }, [note]);
 
   const rep = {
@@ -182,7 +193,12 @@ function EditReport({ report }) {
                         <img src={Waste2} alt="Waste" className="imagewaste" />
                       }
                     </div>
-                    <div className="heading text-end pe-2">ملاحظات</div>
+                    <div className="heading d-inline text-end pe-2">ملاحظات</div>
+                    {val1 ? (
+                          <span className="noteError  text-danger text-end  heading pe-2 "> {noteError}</span>
+                        ) : (
+                          <></>
+                        )}
                     <hr className="hr m-0 p-2" />
                     <textarea
                       className="notes p-2"
@@ -192,7 +208,8 @@ function EditReport({ report }) {
                       value={note}
                       maxlength="120"
                       pattern= "([A-z0-9\s]){0,500}"
-                      onChange={ (event) => {
+                      onChange={ 
+                        (event) => {
                         setNotes(event.target.value.replace(/[\/[\]<>]/g, ''));
                       }}
                     />

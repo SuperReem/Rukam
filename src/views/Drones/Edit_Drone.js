@@ -99,7 +99,7 @@ const EditDrone = ({ droId }) => {
 
 const HandleSave = async (e) => {
   Save();
-  setIndex(1);
+  
 };
 
   const PageNav = (i) => () => {
@@ -234,8 +234,8 @@ const HandleSave = async (e) => {
                             type="button"
                             className="btn btn-primary my-4   classButton"
                             onClick={HandleSave}
-                            data-bs-toggle="modal"
-                            data-bs-target="#myModal-success"
+                            // data-bs-toggle="modal"
+                            // data-bs-target="#myModal-success"
                           >
                             <BiSave />
                             حفظ
@@ -294,7 +294,8 @@ const HandleSave = async (e) => {
                           size="md"
                           data-bs-dismiss="modal"
                           className="popup-cancle"
-                          onClick={PageNav(1)}
+                          // onClick={HandleSave}
+                          //  onClick={PageNav(1)}
                         >
                           {" "}
                           حسنًا{" "}
