@@ -85,11 +85,12 @@
   width: 80%;
 }
 .notes {
-  width: 70%;
+  width: 90%;
   margin-left: 100px;
   font-size: 1rem;
   border-color: var(--light_brown);
   border-radius: 10px;
+  word-break: break-word;
 }
 .send.btn {
   background-color: var(--primary);
@@ -150,12 +151,13 @@
   display: flex;
   align-items: center;
   width: 50%;
+  justify-content:center;
 }
 .cancel.btn:hover {
   background-color: rgb(151, 89, 38) !important;
   color: white;
 }
-.deleteD.btn{
+.deleteDet.btn{
   background-color: rgb(169, 34, 0) ;
   color: white;
   border: none;
@@ -163,7 +165,7 @@
   align-items: center;
   width: 85%;
 }
-.deleteD.btn:hover {
+.deleteDet.btn:hover {
   background-color: rgb(133, 27, 0) ;
   color: white;
 }

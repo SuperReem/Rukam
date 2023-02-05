@@ -27,6 +27,7 @@ function ReportDetails({ repId }) {
   const [notes, setNotes] = useState("");
   const [region, setRegion] = useState("");
   const [location, setLocation] = useState("");
+  const [reportId, setrepId] = useState();
   const [disable, setDisable] = useState(true);
 
   useEffect(() => {
@@ -49,6 +50,7 @@ function ReportDetails({ repId }) {
         setNotes(report.notes);
         setLocation(report.location);
         setRegion(report.region);
+        setrepId(report.reportId);
         setTimestamp(
           Intl.DateTimeFormat("ar-EG", {
             dateStyle: "full",
@@ -139,7 +141,7 @@ function ReportDetails({ repId }) {
                 </div>
                 <div className="pe-4" id="title">
                   {" "}
-                  تفاصيل البلاغ
+                  تفاصيل بلاغ رقم {reportId}
                 </div>
               </div>
             </div>
@@ -216,7 +218,7 @@ function ReportDetails({ repId }) {
                     </div> 
                     <div className="heading text-end pe-2">ملاحظات</div>
                     <hr className="hr m-0 p-2" />
-                    <div className="ps-5 ms-5 justify-content-end">
+                    <div className="notes ps-5 ms-5 justify-content-end">
                       <p className="h6 ps-5">{notes}</p>
                     </div>
                   

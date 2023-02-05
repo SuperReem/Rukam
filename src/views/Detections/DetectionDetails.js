@@ -10,6 +10,7 @@ import { BsCheck } from "react-icons/bs";
 import { useDetectionsContext } from "../../hooks/useDetectionsContext";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import DetectionList from "../Detections/Detection_list";
+import { SlLocationPin } from "react-icons/sl";
 import {
   GoogleMap,
   Marker,
@@ -163,20 +164,37 @@ function DetectionDetails({ detection }) {
               <div className="row">
                 <div className="col-sm-6 ">
                   <div className="m-2 mt-0">
+                  
+                    <div className="heading text-end pe-2">المنطقة</div>
+                    <hr className="hr m-0 p-2" />
+                    <div className="container locName  ">
+                      <h5>
+                        {" "}
+                        <SlLocationPin width={80} color="var(--primary)" className="ms-2" />
+                        {detection.region}
+                      </h5>
+                    </div>
+                    <div className="heading text-end pe-2">موقع المخالفة</div>
+                    <hr className="hr m-0 p-2" />
+                    <div className="container loc rounded shadow-sm mb-4 p-0">
+                      {isLoaded ? (
+                        <GoogleMap
+                          mapContainerStyle={containerStyle}
+                          center={detection.location}
+                          zoom={11}
+                          onLoad={onLoad}
+                          onUnmount={onUnmount}
+                        >
+                          <MarkerF position={detection.location}></MarkerF>
+                        </GoogleMap>
+                      ) : (
+                        <div>Loading...</div>
+                      )}
+                    </div>
                     <div className="heading text-end pe-2">اسم الدرون</div>
                     <hr className="hr m-0 p-2" />
                     <div className="container h4  rounded p-1 mb-4 align-items-right ">
                       {detection.droneId}
-                    </div>
-                    <div className="heading text-end pe-2">صور المخالفة</div>
-                    <hr className="hr m-0 p-2" />
-                    <div className="container pic rounded mb-4 shadow-sm p-0">
-                      {
-                        //<img src={"data:image/jpeg;base64,"+ detection} />
-                        // <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
-                        // //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
-                        <img src={Waste2} alt="Waste" className="imagewaste" />
-                      }
                     </div>
                   </div>
                 </div>
@@ -193,25 +211,18 @@ function DetectionDetails({ detection }) {
                         }).format(new Date(detection.createdAt))}
                       </h6>
                     </div>
-                    <div className="heading text-end pe-2">موقع المخالفة</div>
+                    <div className="heading text-end pe-2">صور المخالفة</div>
                     <hr className="hr m-0 p-2" />
-                    <div className="container loc rounded shadow-sm mb-5 p-0">
-                      {isLoaded ? (
-                        <GoogleMap
-                          mapContainerStyle={containerStyle}
-                          center={detection.location}
-                          zoom={11}
-                          onLoad={onLoad}
-                          onUnmount={onUnmount}
-                        >
-                          <MarkerF position={detection.location}></MarkerF>
-                        </GoogleMap>
-                      ) : (
-                        <div>Loading...</div>
-                      )}
+                    <div className="container pic rounded mb-5 shadow-sm p-0">
+                      {
+                        //<img src={"data:image/jpeg;base64,"+ detection} />
+                        // <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
+                        // //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
+                        <img src={Waste2} alt="Waste" className="imagewaste" />
+                      }
                     </div>
                     <div className="row"> </div>
-                    <div className="container mt-4 mb-4 pt-3">
+                    <div className="container mt-5 mb-4 pt-4">
                       <div className="row">
                         <div className="col-6">
                           <Button
@@ -228,7 +239,7 @@ function DetectionDetails({ detection }) {
                           <Button
                             variant="secondary"
                             size="lg"
-                            className="deleteD btn"
+                            className="deleteDet btn"
                             data-bs-toggle="modal"
                             data-bs-target="#myModal"
                           >
