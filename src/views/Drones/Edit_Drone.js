@@ -22,6 +22,7 @@ const EditDrone = ({ droId }) => {
   const [currentLocation, setCurrentLocation] = useState();
   const { drones, dispatch } = useDronesContext();
   const [index, setIndex] = useState(0);
+  const [errorName, setErrorName] = useState("");
 
   useEffect(() => {
     const fetchDrones = async () => {
@@ -59,6 +60,12 @@ const EditDrone = ({ droId }) => {
     setImage({ ...image, myFile: base64 });
   };
   const Save = async (e) => {
+    if(droneName.length==0){
+      setErrorName(  "الرجاء اختيار اسم الدرون");
+     }
+
+
+     if(errorName==""){
     const drn = {
       droneName: droneName,
       region: region,
@@ -85,10 +92,19 @@ const EditDrone = ({ droId }) => {
       console.log("Drone is updated:", json);
     }
     console.log(droId);
+    setIndex(1);
   };
+  
+}
+
+const HandleSave = async (e) => {
+  Save();
+  setIndex(1);
+};
 
   const PageNav = (i) => () => {
-    setIndex(i);
+     setIndex(i);
+  
   };
 
   return (
@@ -169,13 +185,35 @@ const EditDrone = ({ droId }) => {
                       <input
                         type="text"
                         name="name"
-                        onChange={updatename}
+                        onChange={(e) => {
+                          // updatename
+                          setName(e.target.value.replace(/[&\/[$\]\\#,;@!+()$~%.'":*?<>{}]/g, ''));
+                          if (e.target.value.length > 2) {
+                            setErrorName("");
+                          } else if(e.target.value.length ==0) {
+                            setErrorName(
+                              "الرجاء اختيار اسم الدرون"
+                            );
+                          }else if(e.target.value.length <3){
+                            setErrorName(
+                              "اسم الدرون يجب ان يحتوي على حرفين على الاقل "
+                            );
+                          }}
+                        }
                         defaultValue={droneName}
                         id="droneName"
                         className="form-control classInput"
                         required
+                        pattern= "([A-z0-9\s]){0,10}" //"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{2,10}"
+                                       maxlength="10"
                       />
                     </div>
+                    <p></p>
+                    {
+                                    <p style={{ color: "red"  , fontSize:'15px' }} class="error" >
+                                      {errorName}
+                                    </p>
+                                  }
 
                     <div class="form-group">
                       <label class="form-label  classLabel" for="">
@@ -187,14 +225,15 @@ const EditDrone = ({ droId }) => {
                         onChange={(e) => setRegion(e.target.value)}
                       />
                     </div>
+                    
 
                     <div className="row px-md-5">
                       <div className="col">
                         <div className="text-center">
                           <button
                             type="button"
-                            className="btn btn-primary my-4  px-3 classButton"
-                            onClick={Save}
+                            className="btn btn-primary my-4   classButton"
+                            onClick={HandleSave}
                             data-bs-toggle="modal"
                             data-bs-target="#myModal-success"
                           >
@@ -208,7 +247,7 @@ const EditDrone = ({ droId }) => {
                           <button
                             type="button"
                             className="btn btn-primary my-4  px-4 classButton2"
-                            onClick={PageNav(1)}
+                            onClick={() => setIndex(1)}
                           >
                             إلغاء
                           </button>

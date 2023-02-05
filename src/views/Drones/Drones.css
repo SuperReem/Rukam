@@ -7,10 +7,14 @@
     font-weight: 600;
       
 }
+.error{
+  padding: 0px;
+  margin: 0px;
+}
 .box{
 
 justify-content: center;
-height: 450px;
+height: 480px;
 width: 550px;
 box-shadow: 5px 2px 13px 5px rgb(207,207,207);
 padding-top: 30px;

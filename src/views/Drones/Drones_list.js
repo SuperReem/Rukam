@@ -68,7 +68,7 @@ function DroneList() {
     setErrorName(  "الرجاء اختيار اسم الدرون");
    } 
    if(region=="اختر المنطقة"){
-      setErrorRegion("choose region ::: ");
+      setErrorRegion("الرجاء اختيار المنطقة");
     }
      if(errorName=="" && errorRegion==""){
     const drone = {
@@ -623,7 +623,7 @@ function DroneList() {
                                           );
                                         }else if(e.target.value.length <3){
                                           setErrorName(
-                                            "الرجاء اختيار 2 الدرون"
+                                            "اسم الدرون يجب ان يحتوي على حرفين على الاقل "
                                           );
                                         }
                                       }}
@@ -656,13 +656,13 @@ function DroneList() {
                                           setErrorRegion("");
                                         }
                                         else{
-                                          setErrorRegion("choose region ::: ");
+                                          setErrorRegion("الرجاء اختيار المنطقة");
                                         }
                                       }}
                                     />
                                   </div>
                                   {
-                                    <span style={{ color: "red" }}>
+                                   <span style={{ color: "red"  , fontSize:'15px' }}>
                                       {errorRegion}
                                     </span>
                                   }
