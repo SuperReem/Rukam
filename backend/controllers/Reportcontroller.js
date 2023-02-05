@@ -270,10 +270,23 @@ const createReport = async (req, res) => {
       .status(400)
       .json({ error: "Please fill in all fields", emptyFields });
   }
+  var reportId = Math.floor(1000 + Math.random() * 9000);
+  console.log(reportId);
+  var found = true;
+  while (found) {
+    const report = await reportModel.findOne({ reportId: reportId });
+
+    if (!report) {
+      found = false;
+    } else {
+      reportId = Math.floor(1000 + Math.random() * 9000);
+    }
+  }
 
   // add to the database
   try {
     const report = await reportModel.create({
+      reportId,
       status,
       region,
       image,

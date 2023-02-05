@@ -131,8 +131,8 @@ function DetectionDetails({ detection }) {
       //change it to detection location later
       (response) => {
         const address = response.results[0].formatted_address;
-        console.log(address.split("،")[1]);
         setStreet(address.split("،")[1]);
+        console.log(street);
       },
       (error) => {
         console.error(error);
@@ -164,13 +164,16 @@ function DetectionDetails({ detection }) {
               <div className="row">
                 <div className="col-sm-6 ">
                   <div className="m-2 mt-0">
-                  
                     <div className="heading text-end pe-2">المنطقة</div>
                     <hr className="hr m-0 p-2" />
                     <div className="container locName  ">
                       <h5>
                         {" "}
-                        <SlLocationPin width={80} color="var(--primary)" className="ms-2" />
+                        <SlLocationPin
+                          width={80}
+                          color="var(--primary)"
+                          className="ms-2"
+                        />
                         {detection.region}
                       </h5>
                     </div>
@@ -194,7 +197,7 @@ function DetectionDetails({ detection }) {
                     <div className="heading text-end pe-2">اسم الدرون</div>
                     <hr className="hr m-0 p-2" />
                     <div className="container h4  rounded p-1 mb-4 align-items-right ">
-                      {detection.droneId}
+                      {detection.droneName}
                     </div>
                   </div>
                 </div>

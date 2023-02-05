@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const detectionSchema = new Schema(
   {
-    droneId: {
+    droneName: {
       type: String,
     },
     location: {

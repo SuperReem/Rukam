@@ -339,7 +339,7 @@ const Dashboard_Employee = () => {
                                     {report.street}
                                   </Row>
                                   <Row className="active-drones-region-name">
-                                    حي {report.region}
+                                    بلاغ {report.reportId}
                                   </Row>
                                 </div>
                               </div>

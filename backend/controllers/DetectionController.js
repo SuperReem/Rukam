@@ -3,6 +3,41 @@ const mongoose = require("mongoose");
 
 // get all detection
 const getDetections = async (req, res) => {
+  // const detections2 = await detectionModel.aggregate([
+  //   {
+  //     $project: {
+  //       detections: { $first: "$detection" },
+  //     },
+  //   },
+  // ]);
+  // console.log(detections2);
+  // detectionModel
+  //   .find({})
+  //   .sort({ createdAt: 1 })
+  //   .distinct("createdAt", function (err, dates) {
+  //     if (err) return handleError(err);
+  //     const distinctMinutes = dates.map((date) => {
+  //       return new Date(
+  //         date.getFullYear(),
+  //         date.getMonth(),
+  //         date.getDate(),
+  //         date.getHours(),
+  //         date.getMinutes()
+  //       );
+  //     });
+  //     const query = {
+  //       createdAt: {
+  //         $in: distinctMinutes,
+  //       },
+  //     };
+  //     console.log(distinctMinutes);
+
+  //     detectionModel.find(query, function (err, docs) {
+  //       if (err) return handleError(err);
+  //       console.log(docs);
+  //     });
+  //   });
+
   const PAGE_SIZE = 8;
   var start = req.query.start || "All";
   var end = req.query.end || "All";
@@ -100,7 +135,7 @@ const getDetection = async (req, res) => {
 
 // create a new detection
 const createDetection = async (req, res) => {
-  const { droneId, location, region, time, image, filter } = req.body;
+  const { droneName, location, region, image, filter } = req.body;
 
   let emptyFields = [];
 
@@ -117,10 +152,9 @@ const createDetection = async (req, res) => {
   // add to the database
   try {
     const detection = await detectionModel.create({
-      droneId,
+      droneName,
       location,
       region,
-      time,
       image,
       filter,
     });

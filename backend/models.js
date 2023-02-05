@@ -4,6 +4,9 @@ const Schema = mongoose.Schema;
 
 const reportSchema = new Schema(
   {
+    reportId: {
+      type: String,
+    },
     status: {
       type: String,
     },
