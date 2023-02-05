@@ -207,7 +207,7 @@ function EditReport({ report }) {
                       // defaultValue={report.notes}
                       value={note}
                       maxlength="120"
-                      pattern= "([A-z0-9\s]){0,500}"
+                      pattern= "([A-z0-9\s]){0,120}"
                       onChange={ 
                         (event) => {
                         setNotes(event.target.value.replace(/[\/[\]<>]/g, ''));
