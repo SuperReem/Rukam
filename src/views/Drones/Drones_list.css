@@ -64,6 +64,10 @@ border-color: var(--brown) !important;
 
 
 } */
+.DroneImg{
+  width: 120px !important;
+  height: 120px;
+}
 .biggerImg{
   width: 140px !important;
   height: 140px;
