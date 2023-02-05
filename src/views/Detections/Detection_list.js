@@ -81,10 +81,9 @@ function DetectionList() {
     e.preventDefault();
     const date = new Date();
     const detection = {
-      droneId: "7777",
-      location: { latitude: 88.9, longitude: 66 },
+      droneName: "7777",
+      location: { lat: 28.9, lng: 46.8766 },
       region: "11حي حطين",
-      time: formattedDate,
       image: "kkkkk",
       filter: date.toISOString().slice(0, 10),
     };
