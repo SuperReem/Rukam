@@ -67,7 +67,7 @@ function DroneList() {
   const handelSubmit = async (e) => {
     e.preventDefault();
 
-    if (droneName.length == 0) {
+    if (droneName.replace(" ", "").length== 0) {
       setErrorName("الرجاء اختيار اسم الدرون");
     }
     if (region == "اختر المنطقة") {
@@ -645,7 +645,8 @@ function DroneList() {
                                     }else{
                                     setErrorName("");
                                   }
-                                  } else if (e.target.value.length == 0) {
+                                  } 
+                                   if (e.target.value.replace(" ", "").length == 0) {
                                     setErrorName("الرجاء اختيار اسم الدرون");
                                   } else if (e.target.value.length < 2) {
                                     setErrorName(
