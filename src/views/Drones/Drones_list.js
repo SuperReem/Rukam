@@ -67,7 +67,7 @@ function DroneList() {
   const handelSubmit = async (e) => {
     e.preventDefault();
 
-    if (droneName.replace(" ", "").length == 0) {
+    if (droneName.trim().replace(" ", "").length == 0) {
       console.log("handel method ");
       setErrorName("الرجاء اختيار اسم الدرون");
     }

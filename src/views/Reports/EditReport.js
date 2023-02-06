@@ -8,6 +8,7 @@ import ReportsList from "./Reports_list";
 import { useReportDContext } from "../../hooks/useReportDContext";
 import { BsCheck } from "react-icons/bs";
 import { SlLocationPin } from "react-icons/sl";
+import Modal from "react-bootstrap/Modal";
 import {
   GoogleMap,
   Marker,
@@ -22,6 +23,7 @@ function EditReport({ report }) {
   const [note, setNotes] = useState(report.notes);
   const [index, setIndex] = useState(0);
   const [noteError, setNoteError] = useState("");
+  const [Success2, setSuccess2] = useState(false);
 
   const [val1, setVal1] = useState(false);
   const updatetext = () => {
@@ -43,6 +45,11 @@ function EditReport({ report }) {
     notes: note,
   };
 
+  const handleClose = () => {
+    setSuccess2(false);
+    setIndex(1);
+
+  }; 
   const Save = async (e) => {
     const response = await fetch("/api/Report/" + report._id, {
       method: "PATCH",
@@ -57,16 +64,19 @@ function EditReport({ report }) {
       dispatch({ type: "UPDATE_DETAILS", payload: json });
       console.log("new report not added:");
       console.log(rep.notes);
+    
     }
     if (response.ok) {
       console.log("new report added:", json);
+      
     }
     console.log(report._id);
-    setIndex(1);
+ 
   };
   const HandleSave = async (e) => {
     Save();
-    setIndex(1);
+    setSuccess2(true);
+   
   };
 
   const containerStyle = {
@@ -220,8 +230,7 @@ function EditReport({ report }) {
                             variant="secondary"
                             size="lg"
                             className="save justify-content-between"
-                            data-bs-toggle="modal"
-                            data-bs-target="#myModal-success"
+                          onClick={HandleSave}
                           >
                             <FiSave /> &nbsp; حفظ
                           </Button>
@@ -245,51 +254,55 @@ function EditReport({ report }) {
             </div>
           </div>
           <div>
-            <div className="modal" id="myModal-success">
-              <div className="modal-dialog modal-dialog-centered">
-                <div className="modal-content">
-                  <div class="icon-box">
-                    <i id="material-icons">
-                      {" "}
-                      <BsCheck size={108} />{" "}
-                    </i>
+          <Modal
+            centered
+            className="modal o1"
+            show={Success2}
+            onHide={handleClose}
+          >
+            <Modal.Body>
+              {" "}
+              <div class="icon-box">
+                <i id="material-icons">
+                  {" "}
+                  <BsCheck size={108} />{" "}
+                </i>
+              </div>
+              <div className="">
+                <div className="row align-items-center  justify-content-end mb-4 pt-2">
+                  <div className="col-6 p-0 ">
+                    <h4 className=" m-5"> </h4>
                   </div>
-                  <div className="">
-                    <div className="row align-items-center  justify-content-end mb-4 pt-2">
-                      <div className="col-6 p-0 ">
-                        <h4 className=" m-5"> </h4>
-                      </div>
-                      <div className="col-1"></div>
-                    </div>
-                    <div className="modal-body justify-content-center ">
-                      <div className="row align-items-center  justify-content-center ">
-                        <div className="row align-items-center justify-content-between ">
-                          <div className="text-center  h4">
-                            تم حفظ البلاغ بنجاح !
-                          </div>
-                        </div>
-                        <div className="row justify-content-start align-items-start">
-                          <div className="col-8 h5"></div>
-                        </div>
+                  <div className="col-1"></div>
+                </div>
+                <div className="modal-body justify-content-center ">
+                  <div className="row align-items-center  justify-content-center">
+                    <div className="row align-items-center justify-content-between ">
+                      <div className="text-center  h4">
+                        تم رفض البلاغ بنجاح !
                       </div>
                     </div>
-                  </div>
-                  <div></div>
-                  <div className="modal-footer border border-0 justify-content-center">
-                    <Button
-                      variant="secondary"
-                      size="md"
-                      data-bs-dismiss="modal"
-                      className="popup-cancle"
-                      onClick={HandleSave}
-                    >
-                      {" "}
-                      حسنًا{" "}
-                    </Button>
+                    <div className="row justify-content-start align-items-start">
+                      <div className="col-8 h5"></div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+              <div></div>
+              <div className="modal-footer border border-0 justify-content-center">
+                <Button
+                  variant="secondary"
+                  size="md"
+                  onClick={handleClose}
+                  className="popup-cancle"
+                >
+                  {" "}
+                  حسنًا{" "}
+                </Button>
+              </div>
+            </Modal.Body>
+          </Modal>
+         
           </div>
         </>
       ) : index == 1 ? (
