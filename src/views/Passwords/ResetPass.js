@@ -273,7 +273,7 @@ function ResetPass() {
                   <div className="row align-items-center  justify-content-center ">
                     <div className="row align-items-center justify-content-between ">
                       <div className="text-center  h4">
-                        تم إعادة تعيّن كلمة المرور بنجاح !
+                        تم إعادة تعيين كلمة المرور بنجاح !
                       </div>
                     </div>
                     <div className="row justify-content-start align-items-start">
