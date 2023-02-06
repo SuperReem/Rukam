@@ -52,8 +52,9 @@ const getActiveList = async (req, res) => {
 };
 // create a new drone
 const createDrone = async (req, res) => {
-  const { droneName, image, region } = req.body;
-  
+  const { droneName, image, region, currentLocation, visitedLocations } =
+    req.body;
+
   let emptyFields = [];
 
   if (!droneName) {
@@ -64,32 +65,37 @@ const createDrone = async (req, res) => {
   }
 
   if (emptyFields.length > 0) {
-
     return res
       .status(400)
       .json({ error: "Please fill in all fields", emptyFields });
   }
 
   var found = true;
-  
-   
-    const Dr = await droneModel.findOne({ droneName: droneName.toLowerCase() });
-   
-    if (!Dr) {
-      found = false;
-    } else{
-    return res
-      .status(401)
-      .json({ error: "name already exist" });
+
+  const Dr = await droneModel.findOne({
+    droneName: new RegExp(droneName, "i"),
+  });
+
+  if (!Dr) {
+    found = false;
+  } else {
+    return res.status(401).json({ error: "name already exist" });
   }
   // add drone to the database
-  if(!found){
-  try {
-    const drone = await droneModel.create({ droneName, region, image });
-    res.status(200).json(drone);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }}
+  if (!found) {
+    try {
+      const drone = await droneModel.create({
+        droneName,
+        region,
+        image,
+        currentLocation,
+        visitedLocations,
+      });
+      res.status(200).json(drone);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  }
 };
 
 //get active drones
@@ -122,17 +128,47 @@ const deleteDrone = async (req, res) => {
 // update a drone
 const updateDrone = async (req, res) => {
   const { id } = req.params;
-
+  const { droneName, image, region, currentLocation, visitedLocations } =
+    req.body;
+  var drone;
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({ error: "No such drone" });
   }
+  //same name
+  const Dr = await droneModel.findOne({
+    _id: id,
+    droneName: new RegExp(droneName, "i"),
+  });
 
-  const drone = await droneModel.findOneAndUpdate(
-    { _id: id },
-    {
-      ...req.body,
+  if (!Dr) {
+    console.log("not same");
+    //another drone have same name
+    const Dr2 = await droneModel.findOne({
+      droneName: new RegExp(droneName, "i"),
+    });
+
+    if (!Dr2) {
+      console.log("not another");
+
+      drone = await droneModel.findOneAndUpdate(
+        { _id: id },
+        {
+          ...req.body,
+        }
+      );
+    } else {
+      return res.status(401).json({ error: "name already exist" });
     }
-  );
+  } else {
+    console.log("YES");
+
+    drone = await droneModel.findOneAndUpdate(
+      { _id: id },
+      {
+        ...req.body,
+      }
+    );
+  }
 
   if (!drone) {
     return res.status(400).json({ error: "No such drone" });

@@ -26,13 +26,12 @@ const EditDrone = ({ droId }) => {
   const [errorName, setErrorName] = useState("");
   const [Success, setSuccess] = useState(false);
   const [addD, setAddD] = useState(false);
-  
+
   const handleClose = () => {
     setAddD(false);
     setSuccess(false);
     setErrorName("");
   };
-
 
   useEffect(() => {
     const fetchDrones = async () => {
@@ -55,7 +54,6 @@ const EditDrone = ({ droId }) => {
         setRegion(drone.region);
         setCurrentLocation(drone.currentLocation);
         setVisitedLocations(drone.visitedLocations);
-        
       }
     };
     fetchDrones();
@@ -71,55 +69,49 @@ const EditDrone = ({ droId }) => {
     setImage({ ...image, myFile: base64 });
   };
   const Save = async (e) => {
-    if(droneName.length==0){
-      setErrorName(  "الرجاء اختيار اسم الدرون");
-     }
-
-
-     if(errorName == ""||errorName ==  "الحد الأعلى هو ١٠ أحرف." ){
-    const drn = {
-      droneName: droneName,
-      region: region,
-      image: image,
-      currentLocation: currentLocation,
-      visitedLocations: visitedLocations,
-    };
-    const response = await fetch("/api/Drone/" + droId, {
-      method: "PATCH",
-      body: JSON.stringify(drn),
-
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const json = await response.json();
-
-    if (!response.ok) {
-      dispatch({ type: "UPDATE_DETAILS", payload: json });
-      console.log("Drone is not updated:");
-      console.log(drn.droneName);
-      setErrorName("اسم الدرون موجود مسبقًا");
+    if (droneName.length == 0) {
+      setErrorName("الرجاء اختيار اسم الدرون");
     }
-    if (response.ok) {
-      console.log("Drone is updated:", json);
-      setAddD(false);
-      setSuccess(true);
+
+    if (errorName == "" || errorName == "الحد الأعلى هو ١٠ أحرف.") {
+      const drn = {
+        droneName: droneName,
+        region: region,
+        image: image,
+        currentLocation: currentLocation,
+        visitedLocations: visitedLocations,
+      };
+      const response = await fetch("/api/Drone/" + droId, {
+        method: "PATCH",
+        body: JSON.stringify(drn),
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const json = await response.json();
+
+      if (!response.ok) {
+        // dispatch({ type: "UPDATE_DETAILS", payload: json });
+        console.log("Drone is not updated:");
+        console.log(drn.droneName);
+        setErrorName("اسم الدرون موجود مسبقًا");
+      }
+      if (response.ok) {
+        console.log("Drone is updated:", json);
+        setAddD(false);
+        setSuccess(true);
+      }
+      console.log(droId);
     }
-    console.log(droId);
-   
-   
   };
-  
-}
 
-const HandleSave = async (e) => {
-  Save();
-  
-};
+  const HandleSave = async (e) => {
+    Save();
+  };
 
   const PageNav = (i) => () => {
-     setIndex(i);
-  
+    setIndex(i);
   };
 
   return (
@@ -202,15 +194,18 @@ const HandleSave = async (e) => {
                         name="name"
                         onChange={(e) => {
                           // updatename
-                          setName(e.target.value.replace(/[&\/[$\]\\#,;@!+()$~%.'":*?<>{}]/g, ''));
+                          setName(
+                            e.target.value.replace(
+                              /[&\/[$\]\\#,;@!+()$~%.'":*?<>{}]/g,
+                              ""
+                            )
+                          );
                           if (e.target.value.length >= 2) {
-                            if (e.target.value.length >=10) {
-                              setErrorName(
-                                "الحد الأعلى هو ١٠ أحرف."
-                              );
-                            }else{
-                            setErrorName("");
-                          }
+                            if (e.target.value.length >= 10) {
+                              setErrorName("الحد الأعلى هو ١٠ أحرف.");
+                            } else {
+                              setErrorName("");
+                            }
                           } else if (e.target.value.length == 0) {
                             setErrorName("الرجاء اختيار اسم الدرون");
                           } else if (e.target.value.length < 2) {
@@ -218,23 +213,24 @@ const HandleSave = async (e) => {
                               "اسم الدرون يجب ان يحتوي على حرفين على الاقل "
                             );
                           }
-                        
-                        }
-                        }
+                        }}
                         defaultValue={droneName}
                         id="droneName"
                         className="form-control classInput"
                         required
-                        pattern= "([A-z0-9\s]){0,10}" //"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{2,10}"
-                                       maxlength="10"
+                        pattern="([A-z0-9\s]){0,10}" //"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{2,10}"
+                        maxlength="10"
                       />
                     </div>
                     <p></p>
                     {
-                                    <p style={{ color: "red"  , fontSize:'15px' }} class="error" >
-                                      {errorName}
-                                    </p>
-                                  }
+                      <p
+                        style={{ color: "red", fontSize: "15px" }}
+                        class="error"
+                      >
+                        {errorName}
+                      </p>
+                    }
 
                     <div class="form-group">
                       <label class="form-label  classLabel" for="">
@@ -244,10 +240,8 @@ const HandleSave = async (e) => {
                         region={region}
                         setRegion={setRegion}
                         onChange={(e) => setRegion(e.target.value)}
-                       
                       />
                     </div>
-                    
 
                     <div className="row px-md-5">
                       <div className="col">
@@ -280,11 +274,6 @@ const HandleSave = async (e) => {
                   </form>
                 </div>
               </div>
-
-
-
-
-
 
               {/* <div>
                 <div className="modal" id="myModal-success">
@@ -334,65 +323,57 @@ const HandleSave = async (e) => {
                   </div>
                 </div>
               </div> */}
-            
-
-
-
-
-
 
               <Modal
-            className="modal o1"
-            centered
-            show={Success}
-            onHide={handleClose}
-          >
-            <Modal.Body>
-              {" "}
-              <div class="icon-box">
-                <i id="material-icons">
+                className="modal o1"
+                centered
+                show={Success}
+                onHide={handleClose}
+              >
+                <Modal.Body>
                   {" "}
-                  <BsCheck size={108} />{" "}
-                </i>
-              </div>
-              <div className="">
-                <div className="row align-items-center  justify-content-end mb-4 pt-2">
-                  <div className="col-6 p-0 ">
-                    <h4 className=" m-5"> </h4>
+                  <div class="icon-box">
+                    <i id="material-icons">
+                      {" "}
+                      <BsCheck size={108} />{" "}
+                    </i>
                   </div>
-                  <div className="col-1"></div>
-                </div>
-                <div className="modal-body justify-content-center">
-                  <div className="row align-items-center  justify-content-center">
-                    <div className="row align-items-center justify-content-between">
-                      <div className="text-center  h4">
-                      تم حفظ الدرون بنجاح !
+                  <div className="">
+                    <div className="row align-items-center  justify-content-end mb-4 pt-2">
+                      <div className="col-6 p-0 ">
+                        <h4 className=" m-5"> </h4>
+                      </div>
+                      <div className="col-1"></div>
+                    </div>
+                    <div className="modal-body justify-content-center">
+                      <div className="row align-items-center  justify-content-center">
+                        <div className="row align-items-center justify-content-between">
+                          <div className="text-center  h4">
+                            تم حفظ الدرون بنجاح !
+                          </div>
+                        </div>
+                        <div className="row justify-content-start align-items-start">
+                          <div className="col-8 h5"></div>
+                        </div>
                       </div>
                     </div>
-                    <div className="row justify-content-start align-items-start">
-                      <div className="col-8 h5"></div>
-                    </div>
                   </div>
-                </div>
-              </div>
-              <div></div>
-              <div className="modal-footer border border-0 justify-content-center">
-                <Button
-                  variant="secondary"
-                  size="md"
-                  onClick={PageNav(1)}
-                  className="popup-cancle"
-                >
-                  {" "}
-                  حسنًا{" "}
-                </Button>
-              </div>
-            </Modal.Body>
-          </Modal>
-
+                  <div></div>
+                  <div className="modal-footer border border-0 justify-content-center">
+                    <Button
+                      variant="secondary"
+                      size="md"
+                      onClick={PageNav(1)}
+                      className="popup-cancle"
+                    >
+                      {" "}
+                      حسنًا{" "}
+                    </Button>
+                  </div>
+                </Modal.Body>
+              </Modal>
             </div>
           </div>
-
         </>
       ) : (
         <>
