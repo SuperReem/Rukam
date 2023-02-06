@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import ResetPass from "./ResetPass";
+
 describe("The Password", () => {
   it("TEST_CASE_11: check valid password", () => {
     render(<ResetPass thePassword={"Dd123123@"} />);

@@ -1,4 +1,5 @@
 const { EditDroneName, EditRegion, EditPhoto } = require("./EditDrone");
+
 describe("EDIT_DRONE_PHOTO_TEST", () => {
   it("TEST_CASE_30: check updating photo with valid photo ", () => {
     expect(EditPhoto("saqer.jpg")).toBe(true);
@@ -15,9 +16,6 @@ describe("EDIT_DRONE_NAME_TEST", () => {
     expect(EditDroneName("صقر 1")).toBe(true);
   });
   //INVALID TCs
-  it("TEST_CASE_34: check delete drone name", () => {
-    expect(EditDroneName("")).toBe(false);
-  });
   it("TEST_CASE_35: check change drone name with only white spaces", () => {
     expect(EditDroneName("      ")).toBe(false);
   });

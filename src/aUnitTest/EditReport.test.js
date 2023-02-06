@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import EditReport from "./EditReport";
+
 describe("EditReport", () => {
   it("TEST_CASE_43: check valid Note ", () => {
     render(<EditReport note={"هذه مخلفات بناء"} />);
@@ -21,7 +22,3 @@ describe("EditReport", () => {
   });
 });
 
-//  it("check Invalid char ", () => {
-//     render(<EditReport note={"this is > hhh"} />);
-//     expect(screen.getByTitle("invalidNote")).toBeVisible();
-//   });

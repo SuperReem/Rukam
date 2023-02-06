@@ -1,4 +1,5 @@
 const ex = /[&\/[$\]\\#,;@!+()$~%.'":*?<>{}]/g;
+
 export const handleSubmit = (droneName ) => {
   if (droneName.trim().replace(" ", "").length == 0) {
     //if empty oronly ws
