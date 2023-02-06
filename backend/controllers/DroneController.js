@@ -73,7 +73,7 @@ const createDrone = async (req, res) => {
   var found = true;
   
    
-    const Dr = await droneModel.findOne({ droneName: droneName });
+    const Dr = await droneModel.findOne({ droneName: droneName.toLowerCase() });
    
     if (!Dr) {
       found = false;
