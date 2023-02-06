@@ -69,6 +69,9 @@ const EditDrone = ({ droId }) => {
     setImage({ ...image, myFile: base64 });
   };
   const Save = async (e) => {
+    if (droneName.replace(" ", "").length== 0) {
+      setErrorName("الرجاء اختيار اسم الدرون");
+    }
     if (droneName.length == 0) {
       setErrorName("الرجاء اختيار اسم الدرون");
     }
@@ -200,14 +203,17 @@ const EditDrone = ({ droId }) => {
                               ""
                             )
                           );
-                          if (e.target.value.length >= 2) {
+                          var aux= e.target.value.trim().replace(" ","");
+                                  if(aux.length === 0){
+                                    console.log("upper");
+                                    setErrorName("الرجاء اختيار اسم الدرون");
+                                  }
+                          else if (e.target.value.length >= 2) {
                             if (e.target.value.length >= 10) {
                               setErrorName("الحد الأعلى هو ١٠ أحرف.");
                             } else {
                               setErrorName("");
                             }
-                          } else if (e.target.value.length == 0) {
-                            setErrorName("الرجاء اختيار اسم الدرون");
                           } else if (e.target.value.length < 2) {
                             setErrorName(
                               "اسم الدرون يجب ان يحتوي على حرفين على الاقل "
