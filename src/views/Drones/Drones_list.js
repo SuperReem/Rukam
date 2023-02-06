@@ -635,7 +635,7 @@ function DroneList() {
                                     e.target.value.replace(
                                       /[&\/[$\]\\#,;@!+()$~%.'":*?<>{}]/g,
                                       ""
-                                    )
+                                    ).toLowerCase()
                                   ); //(/[#[$\]\\@]/g,''));
                                   if (e.target.value.length >= 2) {
                                     if (e.target.value.length >=10) {
@@ -743,6 +743,8 @@ function DroneList() {
               </Modal>
             </div>
           </div>
+
+          
           <Modal
             className="modal o1"
             centered

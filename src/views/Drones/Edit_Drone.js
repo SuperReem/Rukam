@@ -12,6 +12,7 @@ import { useDronesContext } from "../../hooks/useDronesContext";
 import Dronelist from "../../views/Drones/Drones_list";
 import droneImg from "../../assets/images/Drone.png";
 import { BsCheck } from "react-icons/bs";
+import Modal from "react-bootstrap/Modal";
 
 const EditDrone = ({ droId }) => {
   const [droneName, setName] = useState("");
@@ -23,9 +24,14 @@ const EditDrone = ({ droId }) => {
   const { drones, dispatch } = useDronesContext();
   const [index, setIndex] = useState(0);
   const [errorName, setErrorName] = useState("");
-  const [success, setSuccess] = useState(false);
+  const [Success, setSuccess] = useState(false);
   const [addD, setAddD] = useState(false);
-
+  
+  const handleClose = () => {
+    setAddD(false);
+    setSuccess(false);
+    setErrorName("");
+  };
 
 
   useEffect(() => {
@@ -49,6 +55,7 @@ const EditDrone = ({ droId }) => {
         setRegion(drone.region);
         setCurrentLocation(drone.currentLocation);
         setVisitedLocations(drone.visitedLocations);
+        
       }
     };
     fetchDrones();
@@ -237,6 +244,7 @@ const HandleSave = async (e) => {
                         region={region}
                         setRegion={setRegion}
                         onChange={(e) => setRegion(e.target.value)}
+                       
                       />
                     </div>
                     
@@ -248,9 +256,9 @@ const HandleSave = async (e) => {
                             type="button"
                             className="btn btn-primary my-4   classButton"
                             onClick={HandleSave}
-                            data-bs-toggle="modal"
-                            data-bs-target="#myModal-success"
-                            disabled={errorName != ""}
+                            // data-bs-toggle="modal"
+                            // data-bs-target="#myModal-success"
+                            // disabled={errorName != ""}
                           >
                             <BiSave />
                             حفظ
@@ -274,7 +282,11 @@ const HandleSave = async (e) => {
               </div>
 
 
-              <div>
+
+
+
+
+              {/* <div>
                 <div className="modal" id="myModal-success">
                   <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
@@ -321,16 +333,65 @@ const HandleSave = async (e) => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             
+
+
+
+
+
+
+              <Modal
+            className="modal o1"
+            centered
+            show={Success}
+            onHide={handleClose}
+          >
+            <Modal.Body>
+              {" "}
+              <div class="icon-box">
+                <i id="material-icons">
+                  {" "}
+                  <BsCheck size={108} />{" "}
+                </i>
+              </div>
+              <div className="">
+                <div className="row align-items-center  justify-content-end mb-4 pt-2">
+                  <div className="col-6 p-0 ">
+                    <h4 className=" m-5"> </h4>
+                  </div>
+                  <div className="col-1"></div>
+                </div>
+                <div className="modal-body justify-content-center">
+                  <div className="row align-items-center  justify-content-center">
+                    <div className="row align-items-center justify-content-between">
+                      <div className="text-center  h4">
+                      تم حفظ الدرون بنجاح !
+                      </div>
+                    </div>
+                    <div className="row justify-content-start align-items-start">
+                      <div className="col-8 h5"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div></div>
+              <div className="modal-footer border border-0 justify-content-center">
+                <Button
+                  variant="secondary"
+                  size="md"
+                  onClick={PageNav(1)}
+                  className="popup-cancle"
+                >
+                  {" "}
+                  حسنًا{" "}
+                </Button>
+              </div>
+            </Modal.Body>
+          </Modal>
+
             </div>
           </div>
-
-
-          
-
-
-
 
         </>
       ) : (
