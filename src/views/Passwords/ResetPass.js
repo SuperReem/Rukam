@@ -33,7 +33,7 @@ function ResetPass() {
     const uppercaseRegExp = /(?=.*[A-Z])/;
     const lowercaseRegExp = /(?=.*[a-z])/;
     const digitsRegExp = /^(?=.*[0-9])/;
-    const minLengthRegExp = /.{7,}/;
+    const minLengthRegExp = /.{8,}/;
 
     const uppercasePassword = uppercaseRegExp.test(thePassword);
     const lowercasePassword = lowercaseRegExp.test(thePassword);
