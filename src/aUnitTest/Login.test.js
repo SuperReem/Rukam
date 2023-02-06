@@ -1,5 +1,4 @@
 const { handleSubmit } = require("./Login");
-
 describe("LOG_IN_EMAIL_TEST", () => {
   it("TEST_CASE_1: check valid email", () => {
     expect(handleSubmit("deemmf0@gmail.com")).toBe(true);

@@ -24,7 +24,6 @@ function EditReport({ report }) {
   const [noteError, setNoteError] = useState("");
 
   const [val1, setVal1] = useState(false);
-
   const updatetext = () => {
 
     if (note.length >= 120){

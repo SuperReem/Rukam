@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-// const { ConfirmPassword } = require("./ConfirmPassword");
 import ConfirmPassword from "./ConfirmPassword";
 
 
