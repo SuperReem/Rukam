@@ -70,9 +70,6 @@ function DroneList() {
     if (droneName.length == 0) {
       setErrorName("الرجاء اختيار اسم الدرون");
     }
-    // if (droneNames.includes(droneName)) {
-    // setErrorName("اسم الدرون موجود مسبقًا");
-    // }
     if (region == "اختر المنطقة") {
       setErrorRegion("الرجاء اختيار المنطقة");
     }
@@ -595,14 +592,14 @@ function DroneList() {
                             src={image.myFile}
                             alt=""
                             class="
-                                card-img-top bg-white mx-auto  biggerImg   
+                                card-img-top bg-white mx-auto  DroneImg   
                                 img-circle rounded-circle   
                                 position-absolute top-0 start-50 translate-middle m-3 
                                 "
                           />
                         </label>
-                        <div class="add-imgIcon p-1 m-0">
-                          <IoAddCircle size={30} color="#B5864C" />
+                        <div class="add-imgIcon p-1 m-1">
+                          <IoAddCircle size={28} color="#B5864C" />
                         </div>
                         <input
                           type="file"
