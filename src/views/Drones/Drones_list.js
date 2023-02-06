@@ -68,12 +68,14 @@ function DroneList() {
     e.preventDefault();
 
     if (droneName.replace(" ", "").length== 0) {
+      console.log("handel method ");
       setErrorName("الرجاء اختيار اسم الدرون");
     }
     if (region == "اختر المنطقة") {
       setErrorRegion("الرجاء اختيار المنطقة");
     }
     if ((errorName == ""||errorName ==  "الحد الأعلى هو ١٠ أحرف." ) && errorRegion == "" && region != "اختر المنطقة") {
+      console.log("good l ");
       const drone = {
         droneName,
         region,
@@ -637,18 +639,22 @@ function DroneList() {
                                       ""
                                     )
                                   ); //(/[#[$\]\\@]/g,''));
+                                  var aux= e.target.value.trim().replace(" ","");
+                                  if(aux.length === 0){
+                                    console.log("upper");
+                                    setErrorName("الرجاء اختيار اسم الدرون");
+                                  } else
                                   if (e.target.value.length >= 2) {
                                     if (e.target.value.length >=10) {
                                       setErrorName(
                                         "الحد الأعلى هو ١٠ أحرف."
                                       );
                                     }else{
-                                    setErrorName("");
+                                      console.log("the prob");
+                                    setErrorName(""); //
                                   }
                                   } 
-                                   if (e.target.value.replace(" ", "").length == 0) {
-                                    setErrorName("الرجاء اختيار اسم الدرون");
-                                  } else if (e.target.value.length < 2) {
+                                   else if (e.target.value.length < 2) {
                                     setErrorName(
                                       "اسم الدرون يجب ان يحتوي على حرفين على الاقل "
                                     );

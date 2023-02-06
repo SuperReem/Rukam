@@ -146,7 +146,6 @@ function ResetPass() {
                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,35}"
                           required
                         />
-
                         <span
                           onClick={togglePassword}
                           className="showhide position-absolute top-50  translate-middle "
