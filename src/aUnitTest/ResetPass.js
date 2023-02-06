@@ -1,7 +1,7 @@
 const uppercaseRegExp = /(?=.*[A-Z])/;
 const lowercaseRegExp = /(?=.*[a-z])/;
 const digitsRegExp = /^(?=.*[0-9])/;
-const minLengthRegExp = /.{7,}/;
+const minLengthRegExp = /.{8,}/;
 function ResetPass({ thePassword }) {
   const allValid =
     minLengthRegExp.test(thePassword) &&

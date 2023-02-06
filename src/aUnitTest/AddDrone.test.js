@@ -1,4 +1,5 @@
-const { handleSubmit, handelRegion } = require("./AddDrone");
+const { handleSubmit, handelRegion, PhotoUplaod } = require("./AddDrone");
+
 describe("ADD_DRONE_NAME_TEST", () => {
   it("TEST_CASE_: check valid drone name", () => {
     expect(handleSubmit("Drone54")).toBe(true);
@@ -37,5 +38,18 @@ describe("ADD_DRONE_REGION_TEST", () => {
     it("TEST_CASE_: check only white spaces", () => {
       expect(handelRegion("الروضة")).toBe(false);
     });
+});
+describe("ADD_DRONE_PHOTO_TEST", () => {
+  it("check valid photo ", () => {
+    expect(PhotoUplaod("Drone54.png")).toBe(true);
   });
-  
+  it("check valid photo ", () => {
+    expect(PhotoUplaod("Drone54.jpg")).toBe(true);
+  });
+  it("check valid photo ", () => {
+    expect(PhotoUplaod("Drone54.jpeg")).toBe(true);
+  });
+  it("check valid photo ", () => {
+    expect(PhotoUplaod("Drone54.pdf")).toBe(false);
+  });
+});
