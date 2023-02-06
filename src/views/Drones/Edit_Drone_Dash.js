@@ -9,12 +9,12 @@ import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
 import Dropdown from "./Dropdown";
 import { useDronesContext } from "../../hooks/useDronesContext";
-import Dronelist from "../../views/Drones/Drones_list";
+import Dashboard_Admin from "../../views/Dashboard/Dashboard_Admin";
 import droneImg from "../../assets/images/Drone.png";
 import { BsCheck } from "react-icons/bs";
 import Modal from "react-bootstrap/Modal";
 
-const EditDrone = ({ droId }) => {
+const EditDroneDash = ({ droId }) => {
   const [droneName, setName] = useState("");
   const [region, setRegion] = useState("");
   const [image, setImage] = useState();
@@ -25,7 +25,6 @@ const EditDrone = ({ droId }) => {
   const [index, setIndex] = useState(0);
   const [errorName, setErrorName] = useState("");
   const [Success, setSuccess] = useState(false);
-  const [active, setActive] = useState();
   const [addD, setAddD] = useState(false);
 
   const handleClose = () => {
@@ -55,7 +54,6 @@ const EditDrone = ({ droId }) => {
         setRegion(drone.region);
         setCurrentLocation(drone.currentLocation);
         setVisitedLocations(drone.visitedLocations);
-        setActive(drone.active);
       }
     };
     fetchDrones();
@@ -83,7 +81,6 @@ const EditDrone = ({ droId }) => {
         droneName: droneName,
         region: region,
         image: image,
-        active: active,
         currentLocation: currentLocation,
         visitedLocations: visitedLocations,
       };
@@ -129,7 +126,7 @@ const EditDrone = ({ droId }) => {
               <div className="col-sm-12">
                 <div className="pageNavigation">
                   <a class="pagenav h5 text-end pe-4" onClick={PageNav(1)}>
-                    قائمة الدرون
+                    الرئيسية
                   </a>
                   <p className="pagenav h5 text-end">&gt;&gt;</p>
 
@@ -226,8 +223,7 @@ const EditDrone = ({ droId }) => {
                         id="droneName"
                         className="form-control classInput"
                         required
-                        pattern="([A-z0-9\s]){0,10}"
-                        
+                        pattern="([A-z0-9\s]){0,10}" //"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{2,10}"
                         maxlength="10"
                       />
                     </div>
@@ -386,14 +382,14 @@ const EditDrone = ({ droId }) => {
         </>
       ) : (
         <>
-          <Dronelist />
+          <Dashboard_Admin />
         </>
       )}
     </>
   );
 };
 
-export default EditDrone;
+export default EditDroneDash;
 function convertToBase64(file) {
   return new Promise((resolve, reject) => {
     const fileReader = new FileReader();

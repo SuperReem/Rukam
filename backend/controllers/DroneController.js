@@ -88,6 +88,7 @@ const createDrone = async (req, res) => {
         droneName,
         region,
         image,
+        active,
         currentLocation,
         visitedLocations,
       });
