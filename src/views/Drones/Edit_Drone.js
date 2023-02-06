@@ -224,7 +224,8 @@ const EditDrone = ({ droId }) => {
                         id="droneName"
                         className="form-control classInput"
                         required
-                        pattern="([A-z0-9\s]){0,10}" //"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{2,10}"
+                        pattern="([A-z0-9\s]){0,10}"
+                        
                         maxlength="10"
                       />
                     </div>
