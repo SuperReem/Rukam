@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for AddDrone.js</title>
+    <title>Code coverage report for EditDrone.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="prettify.css" />
     <link rel="stylesheet" href="base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="index.html">All files</a> AddDrone.js</h1>
+        <h1><a href="index.html">All files</a> EditDrone.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -100,13 +100,11 @@
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a>
-<a name='L39'></a><a href='#L39'>39</a>
-<a name='L40'></a><a href='#L40'>40</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -120,13 +118,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -142,7 +138,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const ex = /[&amp;\/[$\]\\#,;@!+()$~%.'":*?&lt;&gt;{}]/g;
-export const handleSubmit = (droneName ) =&gt; {
+export const EditDroneName = (droneName ) =&gt; {
   if (droneName.trim().replace(" ", "").length == 0) {
     //if empty oronly ws
     return false;
@@ -156,23 +152,21 @@ export const handleSubmit = (droneName ) =&gt; {
       return false;
     } else {
       return true;
-    
-  }
-};
+    }
 &nbsp;
-export const handelRegion = (region) =&gt; {
+};
+export const EditRegion = (region ) =&gt; {
   if (region != "حطين" &amp;&amp; region != "النخيل" &amp;&amp; region != "عرقه") {
     return false;
   } else {
     return true;
   }
 };
-&nbsp;
-export const PhotoUplaod = (file ) =&gt; {
+export const EditPhoto = (file ) =&gt; {
   const checkJPG = file.endsWith(".jpg");
   const checkPNG = file.endsWith(".png");
   const checkJPEG = file.endsWith(".jpeg");
-  const emtpy = file.length ==0
+  const emtpy = file.length == 0;
 &nbsp;
   if (checkPNG || checkJPG || checkJPEG || emtpy) {
     return true;

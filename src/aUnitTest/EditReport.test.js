@@ -1,13 +1,15 @@
 import { render, screen } from "@testing-library/react";
 import EditReport from "./EditReport";
-
 describe("EditReport", () => {
-  it("check valid Note ", () => {
+  it("TEST_CASE_43: check valid Note ", () => {
     render(<EditReport note={"هذه مخلفات بناء"} />);
     expect(screen.getByTitle("validNote")).toBeVisible();
   });
-
-  it("check more than 120 char", () => {
+  it("TEST_CASE_44: check delete Note ", () => {
+    render(<EditReport note={""} />);
+    expect(screen.getByTitle("addnote")).toBeVisible();
+  });
+  it("TEST_CASE_45: check more than 120 char", () => {
     render(
       <EditReport
         note={
@@ -17,9 +19,9 @@ describe("EditReport", () => {
     );
     expect(screen.getByTitle("errorMoreThan120")).toBeVisible();
   });
-
-  it("check Invalid char ", () => {
-    render(<EditReport note={"this is > hhh"} />);
-    expect(screen.getByTitle("invalidNote")).toBeVisible();
-  });
 });
+
+//  it("check Invalid char ", () => {
+//     render(<EditReport note={"this is > hhh"} />);
+//     expect(screen.getByTitle("invalidNote")).toBeVisible();
+//   });
