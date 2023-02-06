@@ -69,7 +69,7 @@ const EditDrone = ({ droId }) => {
      }
 
 
-     if(errorName==""){
+     if(errorName == ""||errorName ==  "الحد الأعلى هو ١٠ أحرف." ){
     const drn = {
       droneName: droneName,
       region: region,
@@ -91,6 +91,7 @@ const EditDrone = ({ droId }) => {
       dispatch({ type: "UPDATE_DETAILS", payload: json });
       console.log("Drone is not updated:");
       console.log(drn.droneName);
+      setErrorName("اسم الدرون موجود مسبقًا");
     }
     if (response.ok) {
       console.log("Drone is updated:", json);
@@ -195,17 +196,23 @@ const HandleSave = async (e) => {
                         onChange={(e) => {
                           // updatename
                           setName(e.target.value.replace(/[&\/[$\]\\#,;@!+()$~%.'":*?<>{}]/g, ''));
-                          if (e.target.value.length > 2) {
+                          if (e.target.value.length >= 2) {
+                            if (e.target.value.length >=10) {
+                              setErrorName(
+                                "الحد الأعلى هو ١٠ أحرف."
+                              );
+                            }else{
                             setErrorName("");
-                          } else if(e.target.value.length ==0) {
-                            setErrorName(
-                              "الرجاء اختيار اسم الدرون"
-                            );
-                          }else if(e.target.value.length <3){
+                          }
+                          } else if (e.target.value.length == 0) {
+                            setErrorName("الرجاء اختيار اسم الدرون");
+                          } else if (e.target.value.length < 2) {
                             setErrorName(
                               "اسم الدرون يجب ان يحتوي على حرفين على الاقل "
                             );
-                          }}
+                          }
+                        
+                        }
                         }
                         defaultValue={droneName}
                         id="droneName"
