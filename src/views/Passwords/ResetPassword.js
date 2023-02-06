@@ -85,7 +85,9 @@ function ResetPassword() {
                         name="email"
                         placeholder="example@email.com"
                         value={email}
-                        onChange={setVal}
+                        onChange={(e) => {
+                          setEmail(e.target.value.replace(" ", ""));
+                        }}
                         required
                       />
                     </div>
