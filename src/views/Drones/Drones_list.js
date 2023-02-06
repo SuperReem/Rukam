@@ -610,7 +610,7 @@ function DroneList() {
                           onChange={(e) => handleFileUpload(e)}
                         />
                       </div>
-
+                      <div class="row  p-2"></div>
                       <div className="row align-items-center justify-content-between  h5">
                         <div class="row  m-0">
                           <div className="container w-75 mt-3">
