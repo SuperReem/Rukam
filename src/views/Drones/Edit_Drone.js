@@ -144,7 +144,7 @@ const EditDrone = ({ droId }) => {
             </div>
 
             <div class="box">
-              <div class="row  m-2">
+              <div class="row ">
                 <div class="img">
                   <label htmlFor="file-upload" className="custom-file-upload">
                     <img
@@ -165,7 +165,7 @@ const EditDrone = ({ droId }) => {
                       // src={image.myFile || droneImg}
                       // alt=""
                       class="
-                     bg-white  mx-auto  biggerImg
+                     bg-white  mx-auto  droneImage
                     img-circle rounded-circle
 
                     "
@@ -228,7 +228,7 @@ const EditDrone = ({ droId }) => {
                         maxlength="10"
                       />
                     </div>
-                    <p></p>
+                    
                     {
                       <p
                         style={{ color: "red", fontSize: "15px" }}
