@@ -179,7 +179,7 @@ const EditDrone = ({ droId }) => {
                     lable="Image"
                     name="myFile"
                     id="file-upload"
-                    accept=".jpeg, .png, .jpg"
+                    accept=".jpeg, .png, .jpg , .svg"
                     onChange={(e) => handleFileUpload(e)}
                   />
                 </div>
