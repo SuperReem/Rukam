@@ -25,7 +25,7 @@ import droneImg from "../../assets/images/Drone.png";
 import { MdOutlineEdit } from "react-icons/md";
 import { BsTrash } from "react-icons/bs";
 import { BsCheck } from "react-icons/bs";
-import EditDrone from "../../views/Drones/Edit_Drone";
+import EditDroneDash from "../../views/Drones/Edit_Drone_Dash";
 import Geocode from "react-geocode";
 
 const containerStyle = {
@@ -697,7 +697,7 @@ const Dashboard_Admin = () => {
         </>
       ) : (
         <>
-          <EditDrone droId={droneId._id} />
+          <EditDroneDash droId={droneId._id} />
         </>
       )}
     </>
