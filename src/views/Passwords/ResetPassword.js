@@ -15,7 +15,7 @@ function ResetPassword() {
   const { forgotPassword } = useForgotPassword();
 
   const setVal = (e) => {
-    setEmail(e.target.value.replace(" ", ""));
+    setEmail(e.target.value.trim().replace(" ", ""));
   };
   const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
@@ -84,7 +84,7 @@ function ResetPassword() {
                         id="email"
                         name="email"
                         placeholder="example@email.com"
-                        value={email}
+                        value={email.trim().replace(" ", "")}
                         onChange={setVal}
                         required
                       />

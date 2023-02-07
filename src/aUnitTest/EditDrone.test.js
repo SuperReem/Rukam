@@ -1,42 +1,45 @@
-const { handleSubmit, handelRegion } = require("./EditDrone");
-describe("ADD_DRONE_NAME_TEST", () => {
-  it("TEST_CASE_: check valid drone name", () => {
-    // render(<handleSubmit thePassword={"Drone 54"} />);
-    expect(handleSubmit("Drone54")).toBe(true);
+const { EditDroneName, EditRegion, EditPhoto } = require("./EditDrone");
+
+describe("EDIT_DRONE_PHOTO_TEST", () => {
+  it("TEST_CASE_30: check updating photo with valid photo ", () => {
+    expect(EditPhoto("saqer.jpg")).toBe(true);
   });
-  //INVALID TCs
-  it("TEST_CASE_: check empty", () => {
-    expect(handleSubmit("")).toBe(false);
+  it("TEST_CASE_31: check deleting photo ", () => {
+    expect(EditPhoto("")).toBe(true);
   });
-  it("TEST_CASE_: check only white spaces", () => {
-    expect(handleSubmit("   ")).toBe(false);
-  });
-  it("TEST_CASE_: check less then two char", () => {
-    expect(handleSubmit("d")).toBe(false);
-  });
-  it("TEST_CASE_: check more than 10", () => {
-    expect(handleSubmit("Drone Number 54")).toBe(false);
-  });
-  it("TEST_CASE_: check with special char", () => {
-    expect(handleSubmit("drone$f#7")).toBe(false);
+  it("TEST_CASE_32: check updating photo with Invalid photo extention ", () => {
+    expect(EditPhoto("saqer.docx")).toBe(false);
   });
 });
-describe("ADD_DRONE_REGION_TEST", () => {
-    it("TEST_CASE_: check valid drone name", () => {
-      expect(handelRegion("حطين")).toBe(true);
-    });
-    it("TEST_CASE_: check valid drone name", () => {
-        expect(handelRegion("النخيل")).toBe(true);
-    });
-    it("TEST_CASE_: check valid drone name", () => {
-        expect(handelRegion("عرقه")).toBe(true);
-    });
-    //INVALID TCs
-    it("TEST_CASE_: check empty", () => {
-      expect(handelRegion("")).toBe(false);
-    });
-    it("TEST_CASE_: check only white spaces", () => {
-      expect(handelRegion("الروضة")).toBe(false);
-    });
+describe("EDIT_DRONE_NAME_TEST", () => {
+  it("TEST_CASE_33: check valid drone name", () => {
+    expect(EditDroneName("صقر 1")).toBe(true);
   });
-  
+  //INVALID TCs
+  it("TEST_CASE_35: check change drone name with only white spaces", () => {
+    expect(EditDroneName("      ")).toBe(false);
+  });
+  it("TEST_CASE_36: check update drone name to less then two char", () => {
+    expect(EditDroneName("ص")).toBe(false);
+  });
+  it("TEST_CASE_37: check updadte drone name more than 10", () => {
+    expect(EditDroneName("الشيخ صقر طويل العمر")).toBe(false);
+  });
+  it("TEST_CASE_38: check drone name adding special char", () => {
+    expect(EditDroneName("ص|ق*ر٪")).toBe(false);
+  });
+  it("TEST_CASE_39: check delete drone name", () => {
+    expect(EditDroneName("")).toBe(false);
+  });
+});
+describe("EDIT_DRONE_REGION_TEST", () => {
+  it("TEST_CASE_40: check change region with valid region", () => {
+    expect(EditRegion("النخيل")).toBe(true);
+  });
+  it("TEST_CASE_41: check change region with only white spaces", () => {
+    expect(EditRegion("الياسمين")).toBe(false);
+  });
+  it("TEST_CASE_42: check delete region", () => {
+    expect(EditRegion("")).toBe(false);
+  });
+});

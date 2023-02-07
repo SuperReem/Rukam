@@ -85,6 +85,9 @@ background-color: white;
     
   
   }
+  .droneImage{
+    height: 300px;
+  }
   .pagenav {
     padding-right: 1%;
     color: var(--brown) !important;
