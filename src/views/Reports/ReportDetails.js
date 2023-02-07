@@ -210,10 +210,10 @@ function ReportDetails({ repId }) {
                     <hr className="hr m-0 p-2" />
                     <div className="container pic rounded mb-4 shadow-sm p-0">
                       {
-                        //<img src={"data:image/jpeg;base64,"+ image} />
+                        <img src={"data:image/jpeg;base64,"+ image} />
                         // <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
                         // //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
-                        <img src={Waste2} alt="Waste" className="imagewaste" />
+                       // <img src={Waste2} alt="Waste" className="imagewaste" />
                       }
                     </div> 
                     <div className="heading text-end pe-2">ملاحظات</div>
@@ -223,7 +223,7 @@ function ReportDetails({ repId }) {
                     </div>
                   
                     <div className="row"> </div>
-                    <div className="container pt-3">
+                    <div className="container pt-4">
                       <div className="row">
                         <div className="col-6">
                           <Button

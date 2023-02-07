@@ -84,6 +84,11 @@
   size: 5;
   width: 80%;
 }
+.up.btn {
+  background-color: var(--primary);
+  color: white;
+  width: 85%;
+}
 .notes {
   width: 90%;
   margin-left: 100px;

@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { BsCalendar4 } from "react-icons/bs";
 import ReportsList from "./Report_list_Employee.js";
 import { useReportDContext } from "../../hooks/useReportDContext";
-
+import { SlLocationPin } from "react-icons/sl";
 import {
   GoogleMap,
   Marker,
@@ -22,7 +22,9 @@ function UpdateStatus({ repId, repStat }) {
   const [timestamp, setTimestamp] = useState("");
   const [status, setStatus] = useState(repStat);
   const [image, setimage] = useState("");
+  const [region, setRegion] = useState("");
   const [notes, setNotes] = useState("");
+  const [repoId, setrepID] = useState("");
   const [location, setLocation] = useState("");
   const [disable, setDisable] = useState(false);
   const [currentState, setCurrentState] = useState(
@@ -46,11 +48,13 @@ function UpdateStatus({ repId, repStat }) {
         setimage(report.image);
         setNotes(report.notes);
         setLocation(report.location);
+        setRegion(report.region);
         setTimestamp(
           Intl.DateTimeFormat("ar-EG", {
             dateStyle: "full",
           }).format(new Date(report.createdAt))
         );
+        setrepID(report.reportId);
         setStatus(report.status);
         dispatch({ type: "GET_DETAILS", payload: report });
         console.log("get:", report);
@@ -155,13 +159,39 @@ function UpdateStatus({ repId, repStat }) {
                   <p className="pagenav h5 text-end">&gt;&gt;</p>
                   <a class="pagenav h5 text-end colored">تفاصيل البلاغ</a>
                 </div>
-                <div id="title"> تفاصيل البلاغ</div>
+                <div id="title">   تفاصيل بلاغ رقم {repoId}</div>
               </div>
             </div>
             <div class="he shadow-sm ms-4 me-3 rounded-4 pb-0 mt-2">
               <div className="row">
                 <div className="col-sm-6 ">
                   <div className="m-2 mt-0">
+                  <div className="heading text-end pe-2">المنطقة</div>
+                    <hr className="hr m-0 p-2" />
+                    <div className="container locName ">
+                      <h5>
+                      {" "}
+                        <SlLocationPin width={80} color="var(--primary)" className="ms-2" />
+                        {region}
+                      </h5>{" "}
+                    </div>
+                    <div className="heading text-end pe-2">موقع المخالفة</div>
+                    <hr className="hr m-0 p-2" />
+                    <div className="container loc rounded shadow-sm mb-4 p-0">
+                      {isLoaded ? (
+                        <GoogleMap
+                          mapContainerStyle={containerStyle}
+                          center={center}
+                          zoom={11}
+                          onLoad={onLoad}
+                          onUnmount={onUnmount}
+                        >
+                          <MarkerF position={center}></MarkerF>
+                        </GoogleMap>
+                      ) : (
+                        <div>Loading...</div>
+                      )}
+                    </div>
                     <div className="heading text-end pe-2">الوقت والتاريخ</div>
                     <hr className="hr m-0 p-2" />
                     <div className="container time ">
@@ -171,21 +201,7 @@ function UpdateStatus({ repId, repStat }) {
                         {timestamp}{" "}
                       </h6>{" "}
                     </div>
-                    <div className="heading text-end pe-2">صورة المخالفة</div>
-                    <hr className="hr m-0 p-2" />
-                    <div className="container pic rounded mb-4 shadow-sm p-0">
-                      {
-                        //<img src={"data:image/jpeg;base64,"+ image} />
-                        // <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
-                        // //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
-                        <img src={Waste2} alt="Waste" className="imagewaste" />
-                      }
-                    </div>
-                    <div className="heading text-end pe-2">ملاحظات</div>
-                    <hr className="hr m-0 p-2" />
-                    <div className="ps-5 ms-5 justify-content-end">
-                      <p className="h6 ps-5">{notes}</p>
-                    </div>
+                  
                   </div>
                 </div>
                 <div className="col-sm-6">
@@ -203,31 +219,29 @@ function UpdateStatus({ repId, repStat }) {
                           : "مغلق"}
                       </h6>
                     </div>
-                    <div className="heading text-end pe-2">موقع المخالفة</div>
+                    <div className="heading text-end pe-2">صورة المخالفة</div>
                     <hr className="hr m-0 p-2" />
-                    <div className="container loc rounded shadow-sm mb-5 p-0">
-                      {isLoaded ? (
-                        <GoogleMap
-                          mapContainerStyle={containerStyle}
-                          center={center}
-                          zoom={11}
-                          onLoad={onLoad}
-                          onUnmount={onUnmount}
-                        >
-                          <MarkerF position={center}></MarkerF>
-                        </GoogleMap>
-                      ) : (
-                        <div>Loading...</div>
-                      )}
+                    <div className="container pic rounded mb-4 shadow-sm p-0">
+                      {
+                        <img src={"data:image/jpeg;base64,"+ image} />
+                        // <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
+                        // //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
+                        //<img src={Waste2} alt="Waste" className="imagewaste" />
+                      }
+                    </div>
+                    <div className="heading text-end pe-2">ملاحظات</div>
+                    <hr className="hr m-0 p-2" />
+                    <div className="ps-5 ms-5 justify-content-end">
+                      <p className="h6 ps-5">{notes}</p>
                     </div>
                     <div className="row"> </div>
-                    <div className="container mt-5 pt-5">
+                    <div className="container  pt-4">
                       <div className="row">
                         <div className="col-6">
                           <Button
                             variant="secondary"
                             size="lg"
-                            className="send btn"
+                            className="up btn"
                             data-bs-toggle="modal"
                             data-bs-target="#myModal"
                             disabled={disable}

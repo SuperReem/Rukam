@@ -196,10 +196,10 @@ function EditReport({ report }) {
                     <hr className="hr m-0 p-2" />
                     <div className="container pic rounded mb-4 shadow-sm p-0">
                       {
-                        //<img src={"data:image/jpeg;base64,"+ report.image} />
+                        <img src={"data:image/jpeg;base64,"+ report.image} />
                         // <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
                         // //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
-                        <img src={Waste2} alt="Waste" className="imagewaste" />
+                       // <img src={Waste2} alt="Waste" className="imagewaste" />
                       }
                     </div>
                     <div className="heading d-inline text-end pe-2">ملاحظات</div>
