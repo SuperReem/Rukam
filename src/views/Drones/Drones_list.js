@@ -1,7 +1,6 @@
 import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
 //import drone from "../../assets/images/DRONE_ICON.png";
-import Drone_card from "../../components/Drones/Drone_card";
 import { useDronesContext } from "../../hooks/useDronesContext";
 import ArabicNumbers from "react-native-arabic-numbers/src/ArabicNumbers";
 import Dropdown from "./Dropdown";
