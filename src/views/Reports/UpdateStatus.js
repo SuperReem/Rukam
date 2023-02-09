@@ -231,10 +231,10 @@ function UpdateStatus({ repId, repStat }) {
                     </div>
                     <div className="heading text-end pe-2">ملاحظات</div>
                     <hr className="hr m-0 p-2" />
-                    <div className="ps-5 ms-5 justify-content-end">
+                    <div className="notes ps-5 ms-5 justify-content-end">
                       <p className="h6 ps-5">{notes}</p>
                     </div>
-                    <div className="row"> </div>
+                
                     <div className="container  pt-4">
                       <div className="row">
                         <div className="col-6">

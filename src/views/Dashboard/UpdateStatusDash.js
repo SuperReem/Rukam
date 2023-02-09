@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { BsCalendar4 } from "react-icons/bs";
 import Dashboard_Employee from "./Dashboard_Employee";
 import { useReportDContext } from "../../hooks/useReportDContext";
+import { SlLocationPin } from "react-icons/sl";
 import {
   GoogleMap,
   Marker,
@@ -23,6 +24,7 @@ function UpdateStatusDash({ repId, repStat }) {
   const [image, setimage] = useState("");
   const [notes, setNotes] = useState("");
   const [location, setLocation] = useState("");
+  const [region, setRegion] = useState("");
   const [disable, setDisable] = useState(false);
   const [currentState, setCurrentState] = useState(
     "تحديث الحالة الى قيد المراجعة "
@@ -45,6 +47,7 @@ function UpdateStatusDash({ repId, repStat }) {
         setimage(report.image);
         setNotes(report.notes);
         setLocation(report.location);
+        setRegion(report.region);
         setTimestamp(
           Intl.DateTimeFormat("ar-EG", {
             dateStyle: "full",
@@ -163,46 +166,14 @@ function UpdateStatusDash({ repId, repStat }) {
               <div className="row">
                 <div className="col-sm-6 ">
                   <div className="m-2 mt-0">
-                    <div className="heading text-end pe-2">الوقت والتاريخ</div>
+                  <div className="heading text-end pe-2">المنطقة</div>
                     <hr className="hr m-0 p-2" />
-                    <div className="container time ">
-                      <h6>
-                        {" "}
-                        <BsCalendar4 color="var(--primary)" className="ms-4" />
-                        {timestamp}{" "}
-                      </h6>{" "}
-                    </div>
-                    <div className="heading text-end pe-2">صورة المخالفة</div>
-                    <hr className="hr m-0 p-2" />
-                    <div className="container pic rounded mb-4 shadow-sm p-0">
-                      {
-                        //<img src={"data:image/jpeg;base64,"+ image} />
-                        // <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
-                        // //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
-                        <img src={Waste2} alt="Waste" className="imagewaste" />
-                      }
-                    </div>
-                    <div className="heading text-end pe-2">ملاحظات</div>
-                    <hr className="hr m-0 p-2" />
-                    <div className="ps-5 ms-5 justify-content-end">
-                      <p className="h6 ps-5">{notes}</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-sm-6">
-                  <div className="m-2 mt-0">
-                    <div className="heading text-end pe-2">حالة البلاغ</div>
-                    <hr className="hr m-0 p-2" />
-                    <div className={"reportstatus-container " + status}>
-                      <h6>
-                        {status == "unsent"
-                          ? "غير مرسل"
-                          : status == "pending"
-                          ? "قيد الإنتظار"
-                          : status == "under_processing"
-                          ? "قيد المراجعة"
-                          : "مغلق"}
-                      </h6>
+                    <div className="container locName ">
+                      <h5>
+                      {" "}
+                        <SlLocationPin width={80} color="var(--primary)" className="ms-2" />
+                        {region}
+                      </h5>{" "}
                     </div>
                     <div className="heading text-end pe-2">موقع المخالفة</div>
                     <hr className="hr m-0 p-2" />
@@ -221,14 +192,57 @@ function UpdateStatusDash({ repId, repStat }) {
                         <div>Loading...</div>
                       )}
                     </div>
-                    <div className="row"> </div>
-                    <div className="container mt-5 pt-5">
+                    <div className="heading text-end pe-2">الوقت والتاريخ</div>
+                    <hr className="hr m-0 p-2" />
+                    <div className="container time ">
+                      <h6>
+                        {" "}
+                        <BsCalendar4 color="var(--primary)" className="ms-4" />
+                        {timestamp}{" "}
+                      </h6>{" "}
+                    </div>
+                
+                
+                  </div>
+                </div>
+                <div className="col-sm-6">
+                  <div className="m-2 mt-0">
+                    <div className="heading text-end pe-2">حالة البلاغ</div>
+                    <hr className="hr m-0 p-2" />
+                    <div className={"reportstatus-container " + status}>
+                      <h6>
+                        {status == "unsent"
+                          ? "غير مرسل"
+                          : status == "pending"
+                          ? "قيد الإنتظار"
+                          : status == "under_processing"
+                          ? "قيد المراجعة"
+                          : "مغلق"}
+                      </h6>
+                    </div>
+                    <div className="heading text-end pe-2">صورة المخالفة</div>
+                    <hr className="hr m-0 p-2" />
+                    <div className="container pic rounded mb-4 shadow-sm p-0">
+                      {
+                        <img src={"data:image/jpeg;base64,"+ image} />
+                        // <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
+                        // //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
+                       // <img src={Waste2} alt="Waste" className="imagewaste" />
+                      }
+                    </div>
+                    <div className="heading text-end pe-2">ملاحظات</div>
+                    <hr className="hr m-0 p-2" />
+                    <div className="notes ps-5 ms-5 justify-content-end">
+                      <p className="h6 ps-5">{notes}</p>
+                    </div>
+                   
+                    <div className="container  pt-4">
                       <div className="row">
                         <div className="col-6">
                           <Button
                             variant="secondary"
                             size="lg"
-                            className="send btn"
+                            className="up btn"
                             data-bs-toggle="modal"
                             data-bs-target="#myModal"
                             disabled={disable}
