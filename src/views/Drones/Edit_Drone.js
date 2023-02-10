@@ -76,6 +76,10 @@ const EditDrone = ({ droId }) => {
     }
     if (droneName.length == 0) {
       setErrorName("الرجاء اختيار اسم الدرون");
+    }else if (droneName.length < 2) {
+      setErrorName(
+        "اسم الدرون يجب ان يحتوي على حرفين على الاقل "
+      );
     }
 
     if (errorName == "" || errorName == "الحد الأعلى هو ١٠ أحرف.") {
@@ -222,10 +226,10 @@ const EditDrone = ({ droId }) => {
                             );
                           }
                         }}
-                        defaultValue={droneName}
+                        value={droneName}
                         id="droneName"
                         className="form-control classInput"
-                        required
+                        // required
                         pattern="([A-z0-9\s]){0,10}"
                         
                         maxlength="10"
