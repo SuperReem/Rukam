@@ -76,13 +76,13 @@ const EditDrone = ({ droId }) => {
     }
     if (droneName.length == 0) {
       setErrorName("الرجاء اختيار اسم الدرون");
-    }else if (droneName.length < 2) {
+    } if (droneName.length < 2 && droneName.length >0) {
       setErrorName(
         "اسم الدرون يجب ان يحتوي على حرفين على الاقل "
       );
     }
 
-    if (errorName == "" || errorName == "الحد الأعلى هو ١٠ أحرف.") {
+   else if (errorName == "" || errorName == "الحد الأعلى هو ١٠ أحرف.") {
       const drn = {
         droneName: droneName,
         region: region,
