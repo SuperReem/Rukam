@@ -81,12 +81,12 @@ function DroneList() {
     ) {
       console.log("good l ");
       const drone = {
-        droneName,
-        region,
+        droneName:droneName,
+        region:region,
         image: image,
         active: false,
         currentLocation: { lat: 24.717634, lng: 46.666387 },
-        visitedLocations: {},
+         visitedLocations: [{}],
       };
 
       const response = await fetch("/api/Drone", {
@@ -99,8 +99,10 @@ function DroneList() {
       const json = await response.json();
 
       if (!response.ok) {
-        console.log("new drone not added:");
-        setErrorName("اسم الدرون موجود مسبقًا");
+        console.log(response.error);
+
+          if(response.status == 401){
+         setErrorName("اسم الدرون موجود مسبقًا");}
       }
 
       if (response.ok) {
@@ -372,6 +374,7 @@ function DroneList() {
                                   <Button
                                     variant="secondary"
                                     size="md"
+                                    id="edit"
                                     className="btn btn-primary my-2  px-3 classButton"
                                     data-bs-dismiss="modal"
                                     onClick={() => {
@@ -442,6 +445,7 @@ function DroneList() {
                                       onClick={() => DeleteDrone(Drone._id)}
                                       className="popup3 btn"
                                       data-bs-toggle="modal"
+                                      id='dele'
                                       data-bs-target="#myModal-success"
                                     >
                                       {" "}
@@ -724,6 +728,7 @@ function DroneList() {
                     <button
                       // onClick={handle}
                       // data-bs-dismiss="modal"
+                      id="add"
                       type="Submit"
                       className="btn btn-primary my-2  px-3 classButton"
                       // disabled={!!errorName || !!errorRegion}

@@ -52,7 +52,7 @@ const getActiveList = async (req, res) => {
 };
 // create a new drone
 const createDrone = async (req, res) => {
-  const { droneName, image, region, currentLocation, visitedLocations } =
+  const { droneName, image,active, region, currentLocation, visitedLocations } =
     req.body;
 
   let emptyFields = [];
@@ -94,6 +94,7 @@ const createDrone = async (req, res) => {
       });
       res.status(200).json(drone);
     } catch (error) {
+      console.log({ error: error.message });
       res.status(400).json({ error: error.message });
     }
   }
