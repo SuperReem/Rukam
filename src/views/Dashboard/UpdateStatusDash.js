@@ -25,6 +25,7 @@ function UpdateStatusDash({ repId, repStat }) {
   const [notes, setNotes] = useState("");
   const [location, setLocation] = useState("");
   const [region, setRegion] = useState("");
+  const [street, setStreet] = useState("");
   const [disable, setDisable] = useState(false);
   const [currentState, setCurrentState] = useState(
     "تحديث الحالة الى قيد المراجعة "
@@ -48,6 +49,7 @@ function UpdateStatusDash({ repId, repStat }) {
         setNotes(report.notes);
         setLocation(report.location);
         setRegion(report.region);
+        setStreet(report.street);
         setTimestamp(
           Intl.DateTimeFormat("ar-EG", {
             dateStyle: "full",
@@ -166,13 +168,13 @@ function UpdateStatusDash({ repId, repStat }) {
               <div className="row">
                 <div className="col-sm-6 ">
                   <div className="m-2 mt-0">
-                  <div className="heading text-end pe-2">المنطقة</div>
+                  <div className="heading text-end pe-2">الشارع</div>
                     <hr className="hr m-0 p-2" />
                     <div className="container locName ">
                       <h5>
                       {" "}
                         <SlLocationPin width={80} color="var(--primary)" className="ms-2" />
-                        {region}
+                        {street}
                       </h5>{" "}
                     </div>
                     <div className="heading text-end pe-2">موقع المخالفة</div>
