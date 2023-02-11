@@ -14,15 +14,9 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 import Button from "react-bootstrap/Button";
 
 const Sidebar = () => {
-  console.log("admin sidebar");
-
   const [currentIndex, setCurrentIndex] = useState(0);
-
   const { user } = useAuthContext();
-  console.log(user);
-
   const { logout } = useLogout();
-
   const onLogOut = () => {
     logout();
   };

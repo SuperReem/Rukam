@@ -11,15 +11,11 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 import { Navigate, useLocation } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 const SidebarEmployee = () => {
-  console.log("Employee sidebar");
   const [currentIndex, setCurrentIndex] = useState(0);
-
   const { user } = useAuthContext();
   const location = useLocation();
   const redirectLoginUrl = `/login?redirectTo=${encodeURI(location.pathname)}`;
-
   const { logout } = useLogout();
-
   const onLogOut = () => {
     logout();
   };

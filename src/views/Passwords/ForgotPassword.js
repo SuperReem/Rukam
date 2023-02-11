@@ -1,12 +1,12 @@
 import { useState } from "react";
-import "./ResetPassword.css";
+import "./ForgotPassword.css";
 import Footer from "../Footer/Footer";
 import TopNavbar from "../TopNavbar/TopNavbar";
 import Drone from "../../assets/images/DroneToFly.png";
 import { useNavigate } from "react-router-dom";
 import { useForgotPassword } from "../../hooks/useForgotPassword";
 
-function ResetPassword() {
+function ForgotPassword() {
   let Navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -111,4 +111,4 @@ function ResetPassword() {
     </body>
   );
 }
-export default ResetPassword;
+export default ForgotPassword;

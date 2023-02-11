@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import Login from "./pages/Login";
-import ResetPassword from "./views/Passwords/ResetPassword";
+import Login from "./Login/Login";
+import ForgotPassword from "./views/Passwords/ForgotPassword";
 import EmailResetPassword from "./views/Passwords/EmailResetPassword";
 import ResetPass from "./views/Passwords/ResetPass";
 import HomePage from "./views/extraPages/HomePage";
@@ -43,7 +43,7 @@ function App() {
               element={!user ? <Login /> : <Navigate to="/" />}
             />
 
-            <Route path="/forgotPassword" element={<ResetPassword />} />
+            <Route path="/forgotPassword" element={<ForgotPassword />} />
             <Route path="/resetPassword/:token" element={<ResetPass />} />
             <Route path="/homePage" element={<HomePage />} />
             <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
