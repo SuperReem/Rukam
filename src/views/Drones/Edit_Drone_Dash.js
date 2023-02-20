@@ -26,6 +26,7 @@ const EditDroneDash = ({ droId }) => {
   const [errorName, setErrorName] = useState("");
   const [Success, setSuccess] = useState(false);
   const [addD, setAddD] = useState(false);
+  const [errorRegion, setErrorRegion] = useState("  ");
 
   const handleClose = () => {
     setAddD(false);
@@ -244,6 +245,7 @@ const EditDroneDash = ({ droId }) => {
                       <Dropdown
                         region={region}
                         setRegion={setRegion}
+                        setErrorRegion={setErrorRegion}
                         onChange={(e) => setRegion(e.target.value)}
                       />
                     </div>

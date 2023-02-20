@@ -127,10 +127,7 @@ function DetectionDetails({ detection }) {
   Geocode.setApiKey("AIzaSyBUMSPnho9iIVnF-MKvOMgYw_bRBwc7U7Q");
 
   useEffect(() => {
-    Geocode.fromLatLng(
-      detection.location.lat.toString(),
-      detection.location.lng.toString()
-    ).then(
+    Geocode.fromLatLng("24.72", "46.62").then(
       //change it to detection location later
       (response) => {
         const address = response.results[0].formatted_address;

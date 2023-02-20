@@ -27,6 +27,7 @@ const EditDrone = ({ droId }) => {
   const [Success, setSuccess] = useState(false);
   const [active, setActive] = useState();
   const [addD, setAddD] = useState(false);
+  const [errorRegion, setErrorRegion] = useState("  ");
 
   const handleClose = () => {
     setAddD(false);
@@ -76,13 +77,10 @@ const EditDrone = ({ droId }) => {
     }
     if (droneName.length == 0) {
       setErrorName("الرجاء اختيار اسم الدرون");
-    } if (droneName.length < 2 && droneName.length >0) {
-      setErrorName(
-        "اسم الدرون يجب ان يحتوي على حرفين على الاقل "
-      );
     }
-
-   else if (errorName == "" || errorName == "الحد الأعلى هو ١٠ أحرف.") {
+    if (droneName.length < 2 && droneName.length > 0) {
+      setErrorName("اسم الدرون يجب ان يحتوي على حرفين على الاقل ");
+    } else if (errorName == "" || errorName == "الحد الأعلى هو ١٠ أحرف.") {
       const drn = {
         droneName: droneName,
         region: region,
@@ -231,7 +229,6 @@ const EditDrone = ({ droId }) => {
                         className="form-control classInput"
                         // required
                         pattern="([A-z0-9\s]){0,10}"
-                        
                         maxlength="10"
                       />
                     </div>
@@ -252,6 +249,7 @@ const EditDrone = ({ droId }) => {
                       <Dropdown
                         region={region}
                         setRegion={setRegion}
+                        setErrorRegion={setErrorRegion}
                         onChange={(e) => setRegion(e.target.value)}
                       />
                     </div>

@@ -154,7 +154,11 @@ function ReportDetails({ repId }) {
                     <div className="container locName  ">
                       <h5>
                         {" "}
-                        <SlLocationPin width={80} color="var(--primary)" className="ms-2" />
+                        <SlLocationPin
+                          width={80}
+                          color="var(--primary)"
+                          className="ms-2"
+                        />
                         {region}
                       </h5>
                     </div>
@@ -176,9 +180,8 @@ function ReportDetails({ repId }) {
                         <div>Loading...</div>
                       )}
                     </div>
-               
-                  
-                         <div className="heading text-end pe-2">الوقت والتاريخ</div>
+
+                    <div className="heading text-end pe-2">الوقت والتاريخ</div>
                     <hr className="hr m-0 p-2" />
                     <div className="container time  ">
                       <h6>
@@ -205,23 +208,23 @@ function ReportDetails({ repId }) {
                           : "مغلق"}
                       </h6>
                     </div>
-                   
+
                     <div className="heading text-end pe-2">صورة المخالفة</div>
                     <hr className="hr m-0 p-2" />
                     <div className="container pic rounded mb-4 shadow-sm p-0">
                       {
-                        <img src={"data:image/jpeg;base64,"+ image} />
+                        // <img src={"data:image/jpeg;base64,"+ image} />
                         // <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
                         // //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
-                       // <img src={Waste2} alt="Waste" className="imagewaste" />
+                        <img src={Waste2} alt="Waste" className="imagewaste" />
                       }
-                    </div> 
+                    </div>
                     <div className="heading text-end pe-2">ملاحظات</div>
                     <hr className="hr m-0 p-2" />
                     <div className="notes ps-5 ms-5 justify-content-end">
                       <p className="h6 ps-5">{notes}</p>
                     </div>
-                  
+
                     <div className="row"> </div>
                     <div className="container pt-4">
                       <div className="row">
@@ -232,8 +235,11 @@ function ReportDetails({ repId }) {
                             className="edit justify-content-start"
                             onClick={Edit}
                           >
-                            <MdOutlineModeEditOutline color="white" className="ms-2"/> &nbsp;
-                            تحرير
+                            <MdOutlineModeEditOutline
+                              color="white"
+                              className="ms-2"
+                            />{" "}
+                            &nbsp; تحرير
                           </Button>
                         </div>
                         <div className="col-6">
