@@ -161,19 +161,23 @@ function UpdateStatus({ repId, repStat }) {
                   <p className="pagenav h5 text-end">&gt;&gt;</p>
                   <a class="pagenav h5 text-end colored">تفاصيل البلاغ</a>
                 </div>
-                <div id="title">   تفاصيل بلاغ رقم {repoId}</div>
+                <div id="title"> تفاصيل بلاغ رقم {repoId}</div>
               </div>
             </div>
             <div class="he shadow-sm ms-4 me-3 rounded-4 pb-0 mt-2">
               <div className="row">
                 <div className="col-sm-6 ">
                   <div className="m-2 mt-0">
-                  <div className="heading text-end pe-2">الشارع</div>
+                    <div className="heading text-end pe-2">الشارع</div>
                     <hr className="hr m-0 p-2" />
                     <div className="container locName ">
                       <h5>
-                      {" "}
-                        <SlLocationPin width={80} color="var(--primary)" className="ms-2" />
+                        {" "}
+                        <SlLocationPin
+                          width={80}
+                          color="var(--primary)"
+                          className="ms-2"
+                        />
                         {street}
                       </h5>{" "}
                     </div>
@@ -203,7 +207,6 @@ function UpdateStatus({ repId, repStat }) {
                         {timestamp}{" "}
                       </h6>{" "}
                     </div>
-                  
                   </div>
                 </div>
                 <div className="col-sm-6">
@@ -225,10 +228,11 @@ function UpdateStatus({ repId, repStat }) {
                     <hr className="hr m-0 p-2" />
                     <div className="container pic rounded mb-4 shadow-sm p-0">
                       {
-                        <img src={"data:image/jpeg;base64,"+ image} />
+                        // <img src={"data:image/jpeg;base64,"+ image} />
                         // <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
                         // //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
                         //<img src={Waste2} alt="Waste" className="imagewaste" />
+                        <img src={Waste2} alt="Waste" className="imagewaste" />
                       }
                     </div>
                     <div className="heading text-end pe-2">ملاحظات</div>
@@ -236,7 +240,7 @@ function UpdateStatus({ repId, repStat }) {
                     <div className="notes ps-5 ms-5 justify-content-end">
                       <p className="h6 ps-5">{notes}</p>
                     </div>
-                
+
                     <div className="container  pt-4">
                       <div className="row">
                         <div className="col-6">
